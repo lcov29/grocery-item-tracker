@@ -1,10 +1,10 @@
-# **Requirements Food Supply Tracker**
+# **Requirements Grocery Item Tracker**
 <br>
 
 ## **Table Of Contents**
 <br>
 
-- [**Requirements Food Supply Tracker**](#requirements-food-supply-tracker)
+- [**Requirements Grocery Item Tracker**](#requirements-grocery-item-tracker)
   - [**Table Of Contents**](#table-of-contents)
   - [**Required Features**](#required-features)
     - [**Add Food Item To Supply**](#add-food-item-to-supply)
