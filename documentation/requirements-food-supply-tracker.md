@@ -21,6 +21,7 @@
     - [**Generate Report About Shopping History**](#generate-report-about-shopping-history)
     - [**Change Language**](#change-language)
     - [**Configure Database Connection**](#configure-database-connection)
+  - [**UI Mockup**](#ui-mockup)
 
 <br>
 <br>
@@ -158,3 +159,13 @@
 
 ### **Configure Database Connection**
 <br>
+
+<br>
+<br>
+<br>
+
+## **UI Mockup**
+<br>
+<br>
+
+![Mockup](./ui-mockup/ui-mockup.jpg)
