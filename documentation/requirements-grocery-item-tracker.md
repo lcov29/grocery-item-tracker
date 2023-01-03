@@ -23,6 +23,7 @@
     - [**Configure Database Connection**](#configure-database-connection)
       - [**MySQL Database**](#mysql-database)
       - [**indexedDB**](#indexeddb)
+  - [**Use Case Diagram**](#use-case-diagram)
   - [**UI Mockup**](#ui-mockup)
 
 <br>
@@ -176,6 +177,16 @@
 <br>
 
 * setup database schema
+
+<br>
+<br>
+<br>
+
+## **Use Case Diagram**
+<br>
+<br>
+
+![Use Case Diagram](./use-case-diagram/use-case-diagram.jpg)
 
 <br>
 <br>
