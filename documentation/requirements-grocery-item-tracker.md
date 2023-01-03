@@ -7,20 +7,22 @@
 - [**Requirements Grocery Item Tracker**](#requirements-grocery-item-tracker)
   - [**Table Of Contents**](#table-of-contents)
   - [**Required Features**](#required-features)
-    - [**Add Food Item To Supply**](#add-food-item-to-supply)
+    - [**Add Grocery Item To Supply**](#add-grocery-item-to-supply)
     - [**Add Product Information**](#add-product-information)
     - [**Add Product Category Information**](#add-product-category-information)
     - [**Add Product Subcategory Information**](#add-product-subcategory-information)
     - [**Add Distributor Information**](#add-distributor-information)
-    - [**List Current Food Supply**](#list-current-food-supply)
-    - [**Mark Food Items As Consumed**](#mark-food-items-as-consumed)
-    - [**Define Minimum Supply**](#define-minimum-supply)
+    - [**List Current Grocery Item Supply**](#list-current-grocery-item-supply)
+    - [**Mark Grocery Items As Consumed**](#mark-grocery-items-as-consumed)
+    - [**Define Minimum Grocery Item Supply**](#define-minimum-grocery-item-supply)
     - [**List Expiration Dates**](#list-expiration-dates)
     - [**Generate Shopping List**](#generate-shopping-list)
     - [**Generate Report About Consumption**](#generate-report-about-consumption)
     - [**Generate Report About Shopping History**](#generate-report-about-shopping-history)
     - [**Change Language**](#change-language)
     - [**Configure Database Connection**](#configure-database-connection)
+      - [**MySQL Database**](#mysql-database)
+      - [**indexedDB**](#indexeddb)
   - [**UI Mockup**](#ui-mockup)
 
 <br>
@@ -31,7 +33,7 @@
 <br>
 <br>
 
-### **Add Food Item To Supply**
+### **Add Grocery Item To Supply**
 <br>
 
 * select product name
@@ -40,7 +42,6 @@
 * select expiration date of added items
 * display added products before saving
 * ability to delete added products before saving
-* ability to edit added products before saving
 * save added food items to database
 
 <br>
@@ -70,10 +71,10 @@
 <br>
 <br>
 
-### **List Current Food Supply**
+### **List Current Grocery Item Supply**
 <br>
 
-* list all food items ordered by category and subcategory
+* list all grocery items ordered by category and subcategory
 * display number of items per category and subcategory
 * ability to collapse categories and subcategories
 * filter list by
@@ -85,7 +86,7 @@
 <br>
 <br>
 
-### **Mark Food Items As Consumed**
+### **Mark Grocery Items As Consumed**
 <br>
 
 * add consumed product by id
@@ -96,7 +97,7 @@
 <br>
 <br>
 
-### **Define Minimum Supply**
+### **Define Minimum Grocery Item Supply**
 <br>
 
 * add product to minimum supply
@@ -159,6 +160,22 @@
 
 ### **Configure Database Connection**
 <br>
+<br>
+
+#### **MySQL Database**
+<br>
+
+* define hostname and port of database server
+* setup database user for application
+* setup database schema
+
+<br>
+<br>
+
+#### **indexedDB**
+<br>
+
+* setup database schema
 
 <br>
 <br>
