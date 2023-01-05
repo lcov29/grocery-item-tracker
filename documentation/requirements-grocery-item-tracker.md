@@ -21,7 +21,7 @@
     - [**Generate Report About Shopping History**](#generate-report-about-shopping-history)
     - [**Change Language**](#change-language)
     - [**Configure Database Connection**](#configure-database-connection)
-      - [**MySQL Database**](#mysql-database)
+      - [**MariaDB Database**](#mariadb-database)
       - [**indexedDB**](#indexeddb)
   - [**Use Case Diagram**](#use-case-diagram)
   - [**UI Mockup**](#ui-mockup)
@@ -163,7 +163,7 @@
 <br>
 <br>
 
-#### **MySQL Database**
+#### **MariaDB Database**
 <br>
 
 * define hostname and port of database server
