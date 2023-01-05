@@ -4,7 +4,7 @@
   "description": "A tool for managing grocery item supply",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": ""
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,5 @@
     "tracker"
   ],
   "author": "voss29",
-  "license": "ISC"
+  "license": "MIT"
 }
