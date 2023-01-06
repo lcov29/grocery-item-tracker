@@ -2,7 +2,6 @@
   "name": "grocery-item-tracker",
   "version": "0.0.0",
   "description": "A tool for managing grocery item supply",
-  "main": "index.js",
   "scripts": {
     "start": "webpack serve",
     "compile": "webpack"
@@ -26,6 +25,7 @@
     "@typescript-eslint/parser": "5.48.0",
     "babel-loader": "9.1.2",
     "css-loader": "6.7.3",
+    "cypress": "12.3.0",
     "eslint": "8.31.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",

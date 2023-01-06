@@ -31,6 +31,9 @@
         "react/require-default-props": "off",
         "no-multiple-empty-lines": "off",
         "padded-blocks": "off",
-        "@typescript-eslint/indent": ["error", 3]
+        "@typescript-eslint/indent": ["error", 3],
+        "@typescript-eslint/comma-dangle": "off",
+        "react/jsx-indent": ["error", 3],
+        "object-curly-newline": "off"
     }
 }
