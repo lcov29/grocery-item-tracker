@@ -1,0 +1,27 @@
+:root {
+    --border: 0.1rem solid black;
+}
+
+#container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#counterValue {
+    display: flex;
+    align-items: center;
+    border-top: var(--border);
+    border-bottom: var(--border);
+    padding: 0rem 0.5rem;
+    vertical-align: middle;
+    user-select: none;
+}
+
+.buttons {
+    border: var(--border);
+    background: none;
+}
+
+.buttons:hover {
+    background-color: lightgray;
+}
