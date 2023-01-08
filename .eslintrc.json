@@ -34,6 +34,7 @@
         "@typescript-eslint/indent": ["error", 3],
         "@typescript-eslint/comma-dangle": "off",
         "react/jsx-indent": ["error", 3],
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "jsx-a11y/control-has-associated-label": "off"
     }
 }
