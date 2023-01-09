@@ -33,8 +33,10 @@
         "padded-blocks": "off",
         "@typescript-eslint/indent": ["error", 3],
         "@typescript-eslint/comma-dangle": "off",
-        "react/jsx-indent": ["error", 3],
+        "react/jsx-indent": "off",
         "object-curly-newline": "off",
-        "jsx-a11y/control-has-associated-label": "off"
+        "jsx-a11y/control-has-associated-label": "off",
+        "react/jsx-indent-props": ["error", 3],
+        "react/no-array-index-key": "off"
     }
 }
