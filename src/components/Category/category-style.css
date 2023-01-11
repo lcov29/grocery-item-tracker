@@ -1,0 +1,35 @@
+.categoryContainerTopLevel {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.categoryContainerSubLevel {
+    display: flex;
+    justify-content: right;
+}
+
+.category {
+    width: 95%;
+}
+
+.categoryBar {
+    display: grid;
+    grid-template-columns: 5fr 1fr 0.2fr;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+}
+
+.categoryBarSubLevel {
+    background-color: rgb(160, 202, 216);
+    margin-top: 2rem;
+}
+
+.categoryBarTopLevel {
+    background-color: rgb(47, 131, 161);
+}
+
+.invisible {
+    display: none;
+}

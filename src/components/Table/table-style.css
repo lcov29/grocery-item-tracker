@@ -1,0 +1,27 @@
+:root {
+    --tablePadding: 0.25rem 0rem 0.25rem 0.5rem;
+}
+
+.itemTable {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.itemTable th {
+    background-color: gray;
+    text-align: left;
+    padding: var(--tablePadding);
+}
+
+.itemTable tr:nth-child(2n+1) {
+    background-color: rgb(236, 232, 232);
+}
+
+.itemTable tr:nth-child(2n) {
+    background-color:  rgb(212, 210, 210);
+}
+
+.itemTable td {
+    padding: var(--tablePadding);
+
+}
