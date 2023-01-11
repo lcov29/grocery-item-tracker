@@ -3,7 +3,7 @@ import './category-style.css';
 
 
 type CategoryProps = {
-   categoryName: string,
+   name: string,
    additionalText?: string,
    isTopLevel?: boolean,
    contentList?: ReactElement[],
@@ -74,16 +74,16 @@ ReactElement | null {
 
 
 function Category(props: CategoryProps): ReactElement {
-   const { categoryName, additionalText = ' ', isTopLevel = false, contentList } = props;
+   const { name, additionalText = ' ', isTopLevel = false, contentList } = props;
    return (
       <div className={(isTopLevel) ? 'categoryContainerTopLevel' : 'categoryContainerSubLevel'}>
          <div className="category">
             <div className={`categoryBar ${(isTopLevel) ? 'categoryBarTopLevel' : 'categoryBarSubLevel'}`}>
-               <div className="categoryName">{categoryName}</div>
+               <div className="categoryName">{name}</div>
                { buildAdditionalTextElement(additionalText) }
-               { buildContentCollapseButton(categoryName, contentList) }
+               { buildContentCollapseButton(name, contentList) }
             </div>
-            { buildContentSectionElement(categoryName, contentList) }
+            { buildContentSectionElement(name, contentList) }
          </div>
       </div>
    );
