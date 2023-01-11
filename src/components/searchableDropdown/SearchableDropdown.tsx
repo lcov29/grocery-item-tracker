@@ -27,7 +27,7 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
 
    return (
       <>
-         <input id={inputId} name={inputId} type="search" placeholder={placeholderText} list={datalistId} onBlur={handleUserInput} />
+         <input id={inputId} name={inputId} className="searchInput" type="search" placeholder={placeholderText} list={datalistId} onBlur={handleUserInput} />
          <datalist id={datalistId}>
             {optionList.map((option) => <option key={option} value={option} />)}
          </datalist>
