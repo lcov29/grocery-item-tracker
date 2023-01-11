@@ -1,0 +1,16 @@
+#homePageContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2;
+    column-gap: 2rem;
+    row-gap: 4rem;
+}
+
+#menuBarContainer {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+#supplyOverviewContainer, #upcomingExpirationDatesContainer {
+    border: 0.1rem solid black;
+}
