@@ -23,5 +23,8 @@
 
 .itemTable td {
     padding: var(--tablePadding);
+}
 
+.reactElementField {
+    text-align: center;
 }

@@ -8,19 +8,17 @@ type TableProps = {
 };
 
 
-function buildTableHeader(headerList: string[]): ReactElement {
-   return (
-      <thead>
-         <tr key="header">{headerList.map((header, index) => <th key={index}>{header}</th>)}</tr>
-      </thead>
-   );
+function buildTableDataField(data: string | ReactElement, keyValue: number): ReactElement {
+   const isString = typeof data === 'string';
+   const className = (isString) ? '' : 'reactElementField';
+   return <td key={keyValue} className={className}>{data}</td>;
 }
 
 
 function buildTableRow(index: number, rowDataList: (string | ReactElement)[]): ReactElement {
    return (
       <tr key={index}>
-         {rowDataList.map((data, columnIndex) => <td key={columnIndex}>{data}</td>)}
+         {rowDataList.map((data, columnIndex) => buildTableDataField(data, columnIndex))}
       </tr>
    );
 }
@@ -28,6 +26,15 @@ function buildTableRow(index: number, rowDataList: (string | ReactElement)[]): R
 
 function buildTableBody(rowList: (string | ReactElement)[][]): ReactElement {
    return <tbody>{rowList.map((rowData, index) => buildTableRow(index, rowData))}</tbody>;
+}
+
+
+function buildTableHeader(headerList: string[]): ReactElement {
+   return (
+      <thead>
+         <tr key="header">{headerList.map((header, index) => <th key={index}>{header}</th>)}</tr>
+      </thead>
+   );
 }
 
 
