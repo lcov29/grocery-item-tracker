@@ -6,9 +6,6 @@
     display: grid;
     column-gap: 5%;
     grid-template-columns: repeat(var(--columnCount), 1fr);
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 2%;
 }
 
 .invisible {
