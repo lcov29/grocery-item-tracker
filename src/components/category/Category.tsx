@@ -6,7 +6,7 @@ type CategoryProps = {
    name: string,
    additionalText?: string,
    isTopLevel?: boolean,
-   contentList?: ReactElement[],
+   contentList?: ReactElement[]
 };
 
 

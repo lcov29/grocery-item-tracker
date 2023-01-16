@@ -3,7 +3,7 @@ import './counter-style.css';
 
 
 type CounterProps = {
-   value: number
+   value: number,
    minimum?: number,
    maximum?: number,
    suffix?: string

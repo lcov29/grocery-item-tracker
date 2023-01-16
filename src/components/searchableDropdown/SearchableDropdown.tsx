@@ -2,9 +2,9 @@ import React, { ReactElement } from 'react';
 
 
 type SearchableDropdownProps = {
-   id: string;
-   placeholderText?: string;
-   optionList: string[];
+   id: string,
+   placeholderText?: string,
+   optionList: string[]
 };
 
 

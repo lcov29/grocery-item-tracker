@@ -3,8 +3,8 @@ import './table-style.css';
 
 
 type TableProps = {
-   headerList: string[]
-   rowList: (string | ReactElement)[][],
+   headerList: string[],
+   rowList: (string | ReactElement)[][]
 };
 
 
