@@ -1,0 +1,51 @@
+nav {
+    background-color: lightgray;
+    padding: 1rem;
+}
+
+
+@media screen and (max-width: 700px) {
+
+    #toggle-button {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.3rem;
+        border: none;
+        background: transparent;
+    }
+
+    .bar {
+        display: block;
+        background-color: white;
+        height: 0.2rem;
+        width: 2rem;
+        border-radius: 0.3rem;
+    }
+
+    .menu-container {
+        display: flex;
+        flex-direction: column;
+        column-gap: 3rem;
+        padding-top: 1rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+}
+
+
+@media screen and (min-width: 701px) {
+
+    #toggle-button {
+        display: none;
+    }
+
+    .menu-container {
+        display: flex;
+        column-gap: 3rem;
+        padding: 1rem 0rem;
+    }
+
+}
