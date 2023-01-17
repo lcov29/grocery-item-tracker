@@ -40,4 +40,4 @@ function handleMenuButtonFocus(event: ButtonFocusEvent): void {
 }
 
 
-export { handleMenuButtonFocus, hideAllDropdowns };
+export { handleMenuButtonFocus, hideAllDropdowns, removeAllMenuButtonHighlights };
