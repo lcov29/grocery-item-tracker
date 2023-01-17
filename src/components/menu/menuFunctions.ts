@@ -28,7 +28,14 @@ function hideAllDropdowns() {
 }
 
 
-function handleMenuButtonFocus(event: ButtonFocusEvent): void {
+function isDesktopView(windowInnerWidth: number): boolean {
+   return windowInnerWidth > 700;
+}
+
+type MenuButtonEvent = ButtonFocusEvent | MouseEvent<HTMLButtonElement>;
+
+
+function handleMenuButtonInteraction(event: MenuButtonEvent): void {
    const button = event.target as HTMLElement;
    const dropdown = button.nextElementSibling as HTMLElement | undefined;
 
@@ -40,4 +47,24 @@ function handleMenuButtonFocus(event: ButtonFocusEvent): void {
 }
 
 
-export { handleMenuButtonFocus, hideAllDropdowns, removeAllMenuButtonHighlights };
+function handleMenuButtonHover(event: ButtonFocusEvent): void {
+   if (isDesktopView(window.innerWidth)) {
+      handleMenuButtonInteraction(event);
+   }
+}
+
+
+function handleMenuButtonClick(event: MouseEvent<HTMLButtonElement>): void {
+   if (!isDesktopView(window.innerWidth)) {
+      handleMenuButtonInteraction(event);
+   }
+}
+
+
+export {
+   handleMenuButtonHover,
+   handleMenuButtonClick,
+   hideAllDropdowns,
+   removeAllMenuButtonHighlights,
+   isDesktopView
+};

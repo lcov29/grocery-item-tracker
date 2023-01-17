@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { handleMenuButtonFocus, hideAllDropdowns } from '../menuFunctions';
+import { handleMenuButtonHover, handleMenuButtonClick, hideAllDropdowns } from '../menuFunctions';
 import './menuEntry-style.css';
 
 
@@ -32,9 +32,11 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
          <button
             type="button"
             className="menu-entry-button"
-            onClick={button.action}
-            onFocus={handleMenuButtonFocus}
-            onMouseOver={handleMenuButtonFocus}
+            onClick={(event) => {
+               handleMenuButtonClick(event);
+            }}
+            onFocus={handleMenuButtonHover}
+            onMouseOver={handleMenuButtonHover}
          >
             {button.text}
          </button>

@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { removeAllMenuButtonHighlights, hideAllDropdowns } from '../menuFunctions';
+import { removeAllMenuButtonHighlights, hideAllDropdowns, isDesktopView } from '../menuFunctions';
 import './menuBar-style.css';
 
 
@@ -19,9 +19,11 @@ function hideMenuBar() {
 
 
 function handleNavigationBarMouseLeave() {
-   removeAllMenuButtonHighlights();
-   hideAllDropdowns();
-   hideMenuBar();
+   if (isDesktopView(window.innerWidth)) {
+      removeAllMenuButtonHighlights();
+      hideAllDropdowns();
+      hideMenuBar();
+   }
 }
 
 
