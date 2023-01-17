@@ -6,7 +6,7 @@ import './menuEntry-style.css';
 type MenuEntryProps = {
    button: {
       text: string,
-      action: () => void
+      action?: () => void
    },
    dropdown?: ReactElement
 };
