@@ -4,6 +4,7 @@ import './menuEntry-style.css';
 
 
 type MenuEntryProps = {
+   id: string,
    button: {
       text: string,
       action?: () => void
@@ -80,11 +81,12 @@ function createDropdown(dropdownContent: ReactElement | undefined): ReactElement
 
 
 function MenuEntry(props: MenuEntryProps): ReactElement {
-   const { button, dropdown } = props;
+   const { id, button, dropdown } = props;
 
    return (
       <div className="menu-entry">
          <button
+            id={id}
             type="button"
             className="menu-entry-button"
             onClick={(event) => handleMenuButtonClick({ event, customEventHandler: button.action })}
