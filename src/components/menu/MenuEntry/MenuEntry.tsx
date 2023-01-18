@@ -15,6 +15,11 @@ type ButtonFocusEvent = ChangeEvent<HTMLButtonElement> | MouseEvent<HTMLButtonEl
 
 type MenuButtonEvent = ButtonFocusEvent | MouseEvent<HTMLButtonElement>;
 
+type MenuButtonClickHandlerParams = {
+   event: MouseEvent<HTMLButtonElement>,
+   customEventHandler?: () => void
+};
+
 
 function removeAllMenuButtonHighlights() {
    const menuButtonList = document.querySelectorAll<HTMLElement>('.menu-entry-button');
@@ -59,9 +64,15 @@ function handleMenuButtonHover(event: ButtonFocusEvent): void {
 }
 
 
-function handleMenuButtonClick(event: MouseEvent<HTMLButtonElement>): void {
+function handleMenuButtonClick(param: MenuButtonClickHandlerParams): void {
+   const { event, customEventHandler } = param;
+
    if (!isDesktopView(window.innerWidth)) {
       handleMenuButtonInteraction(event);
+   }
+
+   if (customEventHandler) {
+      customEventHandler();
    }
 }
 
@@ -86,9 +97,7 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
          <button
             type="button"
             className="menu-entry-button"
-            onClick={(event) => {
-               handleMenuButtonClick(event);
-            }}
+            onClick={(event) => handleMenuButtonClick({ event, customEventHandler: button.action })}
             onFocus={handleMenuButtonHover}
             onMouseOver={handleMenuButtonHover}
          >
