@@ -2,10 +2,6 @@
     position: relative;
 }
 
-.active {
-    font-weight: bold;
-}
-
 .menu-entry-button:hover {
     font-weight: bold;
 }
