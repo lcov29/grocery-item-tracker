@@ -7,11 +7,20 @@ nav {
 @media screen and (max-width: 700px) {
 
     #toggle-button {
+        border: none;
+        background: transparent;
+    }
+
+    .collapsedIcon {
         display: flex;
         flex-direction: column;
         row-gap: 0.3rem;
-        border: none;
-        background: transparent;
+    }
+
+    .unfoldedIcon {
+        color: white;
+        font-weight: bold;
+        font-size: 1.8rem;
     }
 
     .bar {
