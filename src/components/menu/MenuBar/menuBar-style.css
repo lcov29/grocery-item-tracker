@@ -9,6 +9,7 @@ nav {
     #toggle-button {
         border: none;
         background: transparent;
+        vertical-align: middle;
     }
 
     .collapsedIcon {
