@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { hideAllDropdowns, removeAllMenuButtonHighlights } from '../MenuEntry/MenuEntry';
+import { hideAllDropdowns } from '../MenuEntry/MenuEntry';
 import { isDesktopView } from '../menuFunctions';
 import './menuBar-style.css';
 
@@ -45,7 +45,6 @@ function displayCollapsedButtonIcon() {
 
 function handleNavigationBarMouseLeave() {
    if (isDesktopView(window.innerWidth)) {
-      removeAllMenuButtonHighlights();
       hideAllDropdowns();
       hideMenuBar();
       displayCollapsedButtonIcon();

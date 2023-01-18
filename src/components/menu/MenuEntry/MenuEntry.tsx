@@ -24,17 +24,6 @@ type MenuButtonClickHandlerParams = {
 };
 
 
-function removeAllMenuButtonHighlights() {
-   const menuButtonList = document.querySelectorAll<HTMLElement>('.menu-entry-button');
-   menuButtonList.forEach((menuButton) => menuButton.classList.remove('active'));
-}
-
-
-function addMenuButtonHightlight(menuButton: HTMLElement) {
-   menuButton.classList.add('active');
-}
-
-
 function hideAllDropdowns(): void {
    const dropdownList = document.querySelectorAll<HTMLElement>('.menu-entry-dropdown');
    dropdownList.forEach((dropdown) => dropdown.classList.remove('visible'));
@@ -53,8 +42,6 @@ function handleMenuButtonInteraction(event: MenuButtonEvent): void {
    const dropdown = button.nextElementSibling as HTMLElement | undefined;
 
    event.stopPropagation();
-   removeAllMenuButtonHighlights();
-   addMenuButtonHightlight(button);
    hideAllDropdowns();
    showDropdown(dropdown);
 }
@@ -112,4 +99,4 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
 }
 
 
-export { MenuEntry, hideAllDropdowns, removeAllMenuButtonHighlights };
+export { MenuEntry, hideAllDropdowns };
