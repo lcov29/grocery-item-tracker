@@ -11,9 +11,12 @@ type MenuEntryProps = {
    dropdown?: ReactElement
 };
 
+
 type ButtonFocusEvent = ChangeEvent<HTMLButtonElement> | MouseEvent<HTMLButtonElement>;
 
+
 type MenuButtonEvent = ButtonFocusEvent | MouseEvent<HTMLButtonElement>;
+
 
 type MenuButtonClickHandlerParams = {
    event: MouseEvent<HTMLButtonElement>,
