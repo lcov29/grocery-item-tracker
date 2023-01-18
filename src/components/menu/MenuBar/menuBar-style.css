@@ -55,7 +55,6 @@ nav {
     .menu-container {
         display: flex;
         column-gap: 3rem;
-        padding: 1rem 0rem;
     }
 
 }
