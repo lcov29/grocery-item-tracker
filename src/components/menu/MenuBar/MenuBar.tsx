@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
-import { removeAllMenuButtonHighlights, hideAllDropdowns, isDesktopView } from '../menuFunctions';
+import { hideAllDropdowns, removeAllMenuButtonHighlights } from '../MenuEntry/MenuEntry';
+import { isDesktopView } from '../menuFunctions';
 import './menuBar-style.css';
 
 
