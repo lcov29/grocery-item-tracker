@@ -88,7 +88,7 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
          <button
             id={id}
             type="button"
-            className="menu-entry-button"
+            className={`menu-entry-button ${(dropdown) ? 'menu-entry-with-dropdown' : ''}`}
             onClick={(event) => handleMenuButtonClick({ event, customEventHandler: button.action })}
             onFocus={handleMenuButtonHover}
             onMouseOver={handleMenuButtonHover}
