@@ -22,6 +22,8 @@
     }
 
     .menu-entry-button {
+        display: flex;
+        justify-content: space-between;
         text-align: left;
         padding: 0.5rem;
     }
