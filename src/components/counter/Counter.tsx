@@ -1,5 +1,5 @@
 import React, { useState, ReactElement } from 'react';
-import './counter-style.css';
+import './counter.css';
 
 
 type CounterProps = {

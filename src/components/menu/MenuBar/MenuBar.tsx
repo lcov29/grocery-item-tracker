@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { hideAllDropdowns } from '../MenuEntry/MenuEntry';
 import { isDesktopView } from '../menuFunctions';
-import './menuBar-style.css';
+import './menuBar.css';
 
 
 type MenuBarProps = {

@@ -1,6 +1,6 @@
 import React, { MouseEvent, ChangeEvent, ReactElement } from 'react';
 import { isDesktopView } from '../menuFunctions';
-import './menuEntry-style.css';
+import './menuEntry.css';
 
 
 type MenuEntryProps = {

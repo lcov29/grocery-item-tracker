@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import './table-style.css';
+import './table.css';
 
 
 type TableProps = {

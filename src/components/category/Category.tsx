@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import './category-style.css';
+import './category.css';
 
 
 type CategoryProps = {

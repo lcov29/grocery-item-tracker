@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { SearchableDropdown } from '../searchableDropdown/SearchableDropdown';
-import './searchBar-style.css';
+import './searchBar.css';
 
 
 type SearchBarProps = {
