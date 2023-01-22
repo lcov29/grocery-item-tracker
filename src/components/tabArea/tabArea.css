@@ -1,0 +1,33 @@
+.tab-bar {
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+.tab {
+    border: 0.1rem solid black;
+    border-bottom: none;
+    border-right: none;
+    font-weight: bold;
+    padding: .5rem .7rem;
+}
+
+.tab:last-of-type {
+    border-right: 0.1rem solid black;
+}
+
+.tab:hover {
+    background-color: lightgray
+}
+
+.active-tab {
+    background-color: gray;
+}
+
+.active-tab:hover {
+    background-color: gray;
+}
+
+.content-area {
+    border: 0.1rem solid black;
+    padding: 1rem;
+}
