@@ -46,9 +46,13 @@ function Counter({ value, minimum, maximum, suffix = '' } : CounterProps): React
 
    return (
       <div id="container">
-         <button type="button" className="buttons" onClick={handleDecrement}>-</button>
-         <div id="counterValue">{formatValueString()}</div>
-         <button type="button" className="buttons" onClick={handleIncrement}>+</button>
+         <button type="button" className="button" onClick={handleDecrement}>
+            <div className="icon icon-decrement" />
+         </button>
+         <div className="counter-value">{formatValueString()}</div>
+         <button type="button" className="button" onClick={handleIncrement}>
+            <div className="icon icon-increment" />
+         </button>
       </div>
    );
 

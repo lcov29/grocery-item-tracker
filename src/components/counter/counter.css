@@ -7,7 +7,7 @@
     flex-wrap: nowrap;
 }
 
-#counterValue {
+.counter-value {
     display: flex;
     align-items: center;
     border-top: var(--border);
@@ -15,13 +15,34 @@
     padding: 0rem 0.5rem;
     vertical-align: middle;
     user-select: none;
+    min-width: 3rem;
+    justify-content: center;
 }
 
-.buttons {
+.button {
     border: var(--border);
     background: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
 }
 
-.buttons:hover {
+.icon {
+    background-image: url(../../icons/dropdownIcon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+.icon-decrement {
+    transform: rotate(90deg);
+}
+
+.icon-increment {
+    transform: rotate(-90deg);
+}
+
+.button:hover {
     background-color: lightgray;
 }
