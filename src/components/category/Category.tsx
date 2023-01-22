@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import './category.css';
 
 
@@ -10,80 +10,50 @@ type CategoryProps = {
 };
 
 
-function isRenderable(contentList?: ReactElement[]): boolean {
-   if (contentList) {
-      return contentList.length > 0;
-   }
-   return false;
-}
-
-
-function generateContentSectionId(categoryName: string): string {
-   return `${categoryName}-content-section`;
-}
-
-
-function buildAdditionalTextElement(additionalText?: string): ReactElement | null {
-   if (additionalText) {
-      return <div className="additionalText">{additionalText}</div>;
-   }
-   return null;
-}
-
-
-function buildContentSectionElement(categoryName: string, contentSectionList?: ReactElement[]):
-ReactElement | null {
-   if (isRenderable(contentSectionList)) {
-      return (
-         <div id={generateContentSectionId(categoryName)} className="contentSection">
-            {contentSectionList}
-         </div>
-      );
-   }
-   return null;
-}
-
-
-function buildContentCollapseButton(categoryName: string, contentList?: ReactElement[]):
-ReactElement | null {
-   if (isRenderable(contentList)) {
-      const buttonId = `${categoryName}-content-collapse-button`;
-      return (
-         <button
-            id={buttonId}
-            type="button"
-            className="contentSectionCollapseButton"
-            onClick={() => {
-               const collapseButton = document.getElementById(buttonId);
-               const subcategoryListId = generateContentSectionId(categoryName);
-               const subcategoryListElement = document.getElementById(subcategoryListId);
-
-               if (!collapseButton || !subcategoryListElement) { return; }
-
-               const isListCollapsed = subcategoryListElement.classList.contains('invisible');
-               collapseButton.innerText = (isListCollapsed) ? '^' : 'V';
-               subcategoryListElement.classList.toggle('invisible');
-            }}
-         >
-            ^
-         </button>
-      );
-   }
-   return null;
-}
-
-
 function Category(props: CategoryProps): ReactElement {
    const { name, additionalText = ' ', isTopLevel = false, contentList } = props;
+   const [isContentSectionCollapsed, setIsContentSectionCollapsed] = useState(true);
+
+
+   function isRenderable(): boolean {
+      if (contentList) {
+         return contentList.length > 0;
+      }
+      return false;
+   }
+
+
+   function buildContentCollapseButton(): ReactElement | null {
+      if (isRenderable()) {
+         return (
+            <button
+               type="button"
+               className={`toggle-button ${(isContentSectionCollapsed) ? '' : 'toggle-button-unfolded'}`}
+               onClick={() => { setIsContentSectionCollapsed(!isContentSectionCollapsed); }}
+            />
+         );
+      }
+      return null;
+   }
+
+
+   function buildContentSection():ReactElement | null {
+      if (isRenderable() && !isContentSectionCollapsed) {
+         return <div className="content-section">{contentList}</div>;
+      }
+      return null;
+   }
+
+
    return (
-      <div className={(isTopLevel) ? 'categoryContainerTopLevel' : 'categoryContainerSubLevel'}>
+      <div className={(isTopLevel) ? 'category-container-top-level' : 'category-container-sub-level'}>
          <div className="category">
-            <div className={`categoryBar ${(isTopLevel) ? 'categoryBarTopLevel' : 'categoryBarSubLevel'}`}>
-               <div className="categoryName">{name}</div>
-               { buildAdditionalTextElement(additionalText) }
-               { buildContentCollapseButton(name, contentList) }
+            <div className={`category-bar ${(isTopLevel) ? 'category-bar-top-level' : 'category-bar-sub-level'}`}>
+               <div className="category-name">{name}</div>
+               <div className="additionalText">{additionalText}</div>
+               { buildContentCollapseButton() }
             </div>
-            { buildContentSectionElement(name, contentList) }
+            { buildContentSection() }
          </div>
       </div>
    );

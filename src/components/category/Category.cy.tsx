@@ -12,7 +12,7 @@ describe('<Category />', () => {
 
    it('displays user defined category name', () => {
       cy.mount(<Category name="CategoryName" />);
-      cy.get('.categoryName').should('have.text', 'CategoryName');
+      cy.get('.category-name').should('have.text', 'CategoryName');
    });
 
 
@@ -25,44 +25,87 @@ describe('<Category />', () => {
    it('adds formatting style classes for top level elements', () => {
       // Top Level Category
       cy.mount(<Category name="CategoryName" isTopLevel />);
-      cy.get('.categoryBar').should('have.class', 'categoryBarTopLevel');
-      cy.get('.categoryContainerTopLevel').should('exist');
-      cy.get('.categoryContainerSubLevel').should('not.exist');
+      cy.get('.category-bar').should('have.class', 'category-bar-top-level');
+      cy.get('.category-bar-top-level').should('exist');
+      cy.get('.category-bar-sub-level').should('not.exist');
 
       // Sub Level Category
       cy.mount(<Category name="CategoryName" />);
-      cy.get('.categoryBar').should('have.class', 'categoryBarSubLevel');
-      cy.get('.categoryContainerTopLevel').should('not.exist');
-      cy.get('.categoryContainerSubLevel').should('exist');
-   });
-
-
-   it('displays user defined content', () => {
-      cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
-      cy.get('.category').should('exist');
-      cy.get('p').should('have.text', 'Content');
+      cy.get('.category-bar').should('have.class', 'category-bar-sub-level');
+      cy.get('.category-bar-top-level').should('not.exist');
+      cy.get('.category-bar-sub-level').should('exist');
    });
 
 
    it('renders a collapse button for user defined content', () => {
       cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
-      cy.get('#CategoryName-content-collapse-button').should('exist');
-      cy.get('#CategoryName-content-collapse-button').should('have.text', '^');
+      cy.get('.toggle-button').should('exist');
    });
 
 
-   it('collapses user defined content upon click of collapse button', () => {
-      cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
-      cy.get('#CategoryName-content-collapse-button').click();
-      cy.get('.category-content-section').should('not.exist');
+   it('does not render a collapse button when no user defined content is available', () => {
+      cy.mount(<Category name="CategoryName" isTopLevel />);
+      cy.get('.category-name').should('exist');
    });
 
 
-   it('collapses user defined content upon click of collapse button', () => {
+   it('hides user defined content by default', () => {
       cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
-      cy.get('#CategoryName-content-collapse-button').click();
-      cy.get('#CategoryName-content-collapse-button').should('have.text', 'V');
-      cy.get('.category-content-section').should('not.exist');
+      cy.get('.content-section').should('not.exist');
+   });
+
+
+   it('shows user defined content upon first click of collapse button', () => {
+      cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
+      cy.get('.content-section').should('not.exist');
+      cy.get('.toggle-button').click();
+      cy.get('.content-section').should('exist');
+   });
+
+
+   it('collapses user defined content upon second click of collapse button', () => {
+      cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
+      cy.get('.content-section').should('not.exist');
+      cy.get('.toggle-button').click();
+      cy.get('.content-section').should('exist');
+      cy.get('.toggle-button').click();
+      cy.get('.content-section').should('not.exist');
+   });
+
+
+   it('renders sub category elements', () => {
+      const subLevelCategory = <Category name="SubCategoryName" contentList={[<p>Content</p>]} />;
+      const topLevelCategory = <Category name="TopCategoryName" contentList={[subLevelCategory]} isTopLevel />;
+      cy.mount(topLevelCategory);
+   });
+
+
+   it('hides subcategory by default', () => {
+      const subLevelCategory = <Category name="SubCategoryName" contentList={[<p>Content</p>]} />;
+      const topLevelCategory = <Category name="TopCategoryName" contentList={[subLevelCategory]} isTopLevel />;
+      cy.mount(topLevelCategory);
+      cy.get('.category-container-sub-level > .category > .category-bar').should('not.exist');
+   });
+
+
+   it('shows collapsed subcategory upon first click on topcategory toggle button', () => {
+      const subLevelCategory = <Category name="SubCategoryName" contentList={[<p>Content</p>]} />;
+      const topLevelCategory = <Category name="TopCategoryName" contentList={[subLevelCategory]} isTopLevel />;
+      cy.mount(topLevelCategory);
+      cy.get('.toggle-button').click();
+      cy.get('.category-container-sub-level > .category > .category-bar > .category-name').should('be.visible');
+      cy.get('p').should('not.exist');
+   });
+
+
+   it('shows subcategory content upon first click on subcategory toggle button', () => {
+      const subLevelCategory = <Category name="SubCategoryName" contentList={[<p>Content</p>]} />;
+      const topLevelCategory = <Category name="TopCategoryName" contentList={[subLevelCategory]} isTopLevel />;
+      cy.mount(topLevelCategory);
+      cy.get('.toggle-button').click();
+      cy.get('.category-container-sub-level > .category > .category-bar > .toggle-button').click();
+      cy.get('p').should('exist');
+      cy.get('p').should('be.visible');
    });
 
 });
