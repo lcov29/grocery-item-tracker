@@ -16,6 +16,7 @@ function TabArea(props: TabAreaProps): ReactElement {
          <div className="tab-bar">
             { entryList.map((entry, index) => (
                <button
+                  key={index}
                   type="button"
                   className={(index === activeAreaIndex) ? ' tab active-tab' : 'tab'}
                   onClick={() => setActiveAreaIndex(index)}
