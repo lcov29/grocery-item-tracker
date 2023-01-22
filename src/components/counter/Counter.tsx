@@ -25,16 +25,18 @@ function Counter({ value, minimum, maximum, suffix = '' } : CounterProps): React
 
 
    function handleIncrement() {
-      const isMaximumReached = isMaximumDefined ? counterValue === maximum : false;
-      const newValue = isMaximumReached ? counterValue : counterValue + 1;
-      setCounterValue(newValue);
+      const isMaximumReached = isMaximumDefined && counterValue === maximum;
+      if (!isMaximumReached) {
+         setCounterValue((counter) => counter + 1);
+      }
    }
 
 
    function handleDecrement() {
-      const isMinimumReached = isMinimumDefined ? counterValue === minimum : false;
-      const newValue = isMinimumReached ? counterValue : counterValue - 1;
-      setCounterValue(newValue);
+      const isMinimumReached = isMinimumDefined && counterValue === minimum;
+      if (!isMinimumReached) {
+         setCounterValue((counter) => counter - 1);
+      }
    }
 
 
