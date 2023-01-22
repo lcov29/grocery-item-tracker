@@ -1,3 +1,4 @@
+/*
 import React, { ReactElement } from 'react';
 import { MenuBar } from '../../components/menuBar/MenuBar';
 import { Category } from '../../components/category/Category';
@@ -38,3 +39,5 @@ function Home(): ReactElement {
 
 
 export { Home };
+
+*/
