@@ -53,8 +53,7 @@ describe('<MenuEntry />', () => {
 
 
    it('renders user defined dropdown', () => {
-      cy.get('#menu-entry').focus();
-
+      cy.get('#menu-entry').trigger('mouseover');
       const dropdown = cy.get('.menu-entry-dropdown');
       dropdown.should('contain.text', 'Blue');
       dropdown.should('contain.text', 'Green');
@@ -73,21 +72,21 @@ describe('<MenuEntry />', () => {
 
 
    it('displays user defined dropdown when mouse is over menu button in desktop view', () => {
-      cy.get('.menu-entry-dropdown').should('not.be.visible');
-      cy.get('#menu-entry').focus();
-      cy.get('.menu-entry-dropdown').should('be.visible');
+      cy.get('.menu-entry-dropdown').should('not.exist');
+      cy.get('#menu-entry').trigger('mouseover');
+      cy.get('.menu-entry-dropdown').should('exist');
    });
 
 
    it('displays user defined dropdown when menu button is clicked in mobile view', () => {
       cy.viewport(650, 600);
-      cy.get('.menu-entry-dropdown').should('not.be.visible');
+      cy.get('.menu-entry-dropdown').should('not.exist');
 
-      cy.get('#menu-entry').focus();
-      cy.get('.menu-entry-dropdown').should('not.be.visible');
+      cy.get('#menu-entry').trigger('mouseover');
+      cy.get('.menu-entry-dropdown').should('not.exist');
 
       cy.get('#menu-entry').click();
-      cy.get('.menu-entry-dropdown').should('be.visible');
+      cy.get('.menu-entry-dropdown').should('exist');
    });
 
 
@@ -95,9 +94,9 @@ describe('<MenuEntry />', () => {
       cy.get('#menu-entry').trigger('mouseover');
 
       const dropdown = cy.get('.menu-entry-dropdown');
-      dropdown.should('be.visible');
+      dropdown.should('exist');
       dropdown.trigger('mouseout');
-      dropdown.should('not.be.visible');
+      dropdown.should('not.exist');
    });
 
 
@@ -106,9 +105,9 @@ describe('<MenuEntry />', () => {
       cy.get('#menu-entry').click();
 
       const dropdown = cy.get('.menu-entry-dropdown');
-      dropdown.should('be.visible');
+      dropdown.should('exist');
       dropdown.trigger('mouseout');
-      dropdown.should('not.be.visible');
+      dropdown.should('not.exist');
    });
 
 
