@@ -6,19 +6,19 @@ nav {
 
 @media screen and (max-width: 700px) {
 
-    #toggle-button {
+    .toggle-button {
         border: none;
         background: transparent;
         vertical-align: middle;
     }
 
-    .collapsedIcon {
+    .collapsed-icon {
         display: flex;
         flex-direction: column;
         row-gap: 0.3rem;
     }
 
-    .unfoldedIcon {
+    .unfolded-icon {
         color: white;
         font-weight: bold;
         font-size: 1.8rem;
@@ -38,18 +38,10 @@ nav {
         padding-top: .5rem;
     }
 
-    .hidden {
-        display: none;
-    }
-
 }
 
 
 @media screen and (min-width: 701px) {
-
-    #toggle-button {
-        display: none;
-    }
 
     .menu-container {
         display: flex;

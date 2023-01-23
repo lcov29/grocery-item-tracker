@@ -1,5 +1,4 @@
-import React, { ReactElement } from 'react';
-import { hideAllDropdowns } from '../MenuEntry/MenuEntry';
+import React, { ReactElement, useState, useEffect } from 'react';
 import { isDesktopView } from '../menuFunctions';
 import './menuBar.css';
 
@@ -9,74 +8,81 @@ type MenuBarProps = {
 };
 
 
-const classNameHidden = 'hidden';
-
-
-function toggleMenuCollapseButtonIcon() {
-   const collapsedIconClassList = document.getElementsByClassName('collapsedIcon')[0].classList;
-   const unfoldedIconClassList = document.getElementsByClassName('unfoldedIcon')[0].classList;
-   const isMenuContainerHidden = document.getElementsByClassName('menu-container')[0].classList.contains(classNameHidden);
-
-   if (isMenuContainerHidden) {
-      collapsedIconClassList.remove(classNameHidden);
-      unfoldedIconClassList.add(classNameHidden);
-   } else {
-      collapsedIconClassList.add(classNameHidden);
-      unfoldedIconClassList.remove(classNameHidden);
-   }
-}
-
-
-function toggleMenuVisibility() {
-   document.getElementsByClassName('menu-container')[0].classList.toggle(classNameHidden);
-}
-
-
-function hideMenuBar() {
-   document.getElementsByClassName('menu-container')[0].classList.add(classNameHidden);
-}
-
-
-function displayCollapsedButtonIcon() {
-   document.getElementsByClassName('collapsedIcon')[0].classList.remove(classNameHidden);
-   document.getElementsByClassName('unfoldedIcon')[0].classList.add(classNameHidden);
-}
-
-
-function handleNavigationBarMouseLeave() {
-   if (isDesktopView(window.innerWidth)) {
-      hideAllDropdowns();
-      hideMenuBar();
-      displayCollapsedButtonIcon();
-   }
-}
-
-
-function handleToggleButtonClick() {
-   toggleMenuVisibility();
-   toggleMenuCollapseButtonIcon();
-}
-
-
 function MenuBar(props: MenuBarProps): ReactElement {
+
    const { menuEntryList } = props;
+   const isDesktop = isDesktopView(window.innerWidth);
+
+   const [isMenuContainerVisible, setIsMenuContainerVisible] = useState(isDesktop);
+   const [isToggleButtonVisible, setIsToggleButtonVisible] = useState(!isDesktop);
+   const [isToggleButtonCollapsed, setIsToggleButtonCollapsed] = useState(true);
+
+
+   function handleNavigationBarResize() {
+      setIsMenuContainerVisible(isDesktopView(window.innerWidth));
+      setIsToggleButtonVisible(!isDesktopView(window.innerWidth));
+      setIsToggleButtonCollapsed(true);
+   }
+
+
+   useEffect(() => {
+      window.addEventListener('resize', handleNavigationBarResize);
+
+      return function cleanUp() {
+         window.removeEventListener('resize', handleNavigationBarResize);
+      };
+   }, []);
+
+
+   function handleNavigationBarMouseLeave() {
+      if (isDesktopView(window.innerWidth)) {
+         // implement closing all open dropdowns;
+      }
+   }
+
+
+   function handleToggleButtonClick() {
+      setIsMenuContainerVisible(!isMenuContainerVisible);
+      setIsToggleButtonCollapsed(!isToggleButtonCollapsed);
+   }
+
+
+   function createToggleButton(): ReactElement | null {
+      if (!isToggleButtonVisible) return null;
+
+      return (
+         <button type="button" className="toggle-button" onClick={handleToggleButtonClick}>
+            {
+               (isToggleButtonCollapsed) ? (
+                  <div className="collapsed-icon">
+                     <span className="bar" />
+                     <span className="bar" />
+                     <span className="bar" />
+                  </div>
+               ) : (
+                  <div className="unfolded-icon">X</div>
+               )
+            }
+         </button>
+      );
+   }
+
+
+   function createMenuContainer(): ReactElement | null {
+      if (isMenuContainerVisible) {
+         return <div className="menu-container">{ menuEntryList }</div>;
+      }
+      return null;
+   }
+
+
    return (
       <nav onMouseLeave={handleNavigationBarMouseLeave}>
-         <button type="button" id="toggle-button" onClick={handleToggleButtonClick}>
-            <div className="collapsedIcon">
-               <span className="bar" />
-               <span className="bar" />
-               <span className="bar" />
-            </div>
-            <div className="unfoldedIcon hidden">
-               X
-            </div>
-         </button>
-         <div className="menu-container hidden">
-            { menuEntryList }
-         </div>
+         {createToggleButton()}
+         {createMenuContainer()}
       </nav>
    );
+
 }
 
 

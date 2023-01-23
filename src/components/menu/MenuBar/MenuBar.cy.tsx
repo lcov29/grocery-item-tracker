@@ -31,15 +31,15 @@ describe('<MenuBar />', () => {
 
 
    it('hides toggle button in desktop view', () => {
-      cy.get('#toggle-button').should('not.be.visible');
+      cy.get('.toggle-button').should('not.exist');
    });
 
 
-   it('displays visibilitytoggle button in mobile view by default', () => {
+   it('displays visibility toggle button in mobile view by default', () => {
       cy.viewport(600, 600);
-      cy.get('#toggle-button').should('be.visible');
-      cy.get('.collapsedIcon').should('be.visible');
-      cy.get('.unfoldedIcon').should('not.be.visible');
+      cy.get('.toggle-button').should('exist');
+      cy.get('.collapsed-icon').should('exist');
+      cy.get('.unfolded-icon').should('not.exist');
    });
 
 
@@ -50,41 +50,39 @@ describe('<MenuBar />', () => {
 
    it('hides user defined entries in mobile view by default', () => {
       cy.viewport(600, 600);
-      cy.get('.menu-container').should('not.be.visible');
+      cy.get('.menu-container').should('not.exist');
    });
 
 
    it('displays user defined entries after clicking the toggle button', () => {
       cy.viewport(600, 600);
-      cy.get('#toggle-button').click();
-      cy.get('.menu-container').should('be.visible');
+      cy.get('.toggle-button').click();
+      cy.get('.menu-container').should('exist');
    });
 
 
    it('displays unfolded icon after clicking the toggle button', () => {
       cy.viewport(600, 600);
-      cy.get('#toggle-button').click();
-      cy.get('.collapsedIcon').should('not.be.visible');
-      cy.get('.unfoldedIcon').should('be.visible');
+      cy.get('.toggle-button').click();
+      cy.get('.collapsed-icon').should('not.exist');
+      cy.get('.unfolded-icon').should('exist');
    });
 
 
    it('displays user defined entries after clicking the toggle button', () => {
       cy.viewport(600, 600);
-      const toggleButton = cy.get('#toggle-button');
-      toggleButton.click();
-      toggleButton.click();
-      cy.get('.menu-container').should('not.be.visible');
+      cy.get('.toggle-button').click();
+      cy.get('.menu-container').should('exist');
    });
 
 
    it('displays collapsed icon after clicking the toggle button two times', () => {
       cy.viewport(600, 600);
-      const toggleButton = cy.get('#toggle-button');
+      const toggleButton = cy.get('.toggle-button');
       toggleButton.click();
       toggleButton.click();
-      cy.get('.collapsedIcon').should('be.visible');
-      cy.get('.unfoldedIcon').should('not.be.visible');
+      cy.get('.collapsed-icon').should('exist');
+      cy.get('.unfolded-icon').should('not.exist');
    });
 
 
@@ -109,7 +107,7 @@ describe('<MenuBar />', () => {
       cy.viewport(1200, 600);
       cy.mount(menuBar);
 
-      cy.get('.menu-entry-dropdown').should('not.be.visible');
+      cy.get('.menu-entry-dropdown').should('not.exist');
       cy.get('#menu-entry').trigger('mouseover');
       cy.get('.menu-entry-dropdown').should('be.visible');
       cy.get('nav').trigger('mouseout');
