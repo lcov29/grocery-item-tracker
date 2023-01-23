@@ -37,6 +37,7 @@
         "object-curly-newline": "off",
         "jsx-a11y/control-has-associated-label": "off",
         "react/jsx-indent-props": ["error", 3],
-        "react/no-array-index-key": "off"
+        "react/no-array-index-key": "off",
+        "react-hooks/exhaustive-deps": "off"
     }
 }
