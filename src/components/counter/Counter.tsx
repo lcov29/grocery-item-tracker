@@ -1,5 +1,15 @@
-import React, { useState, ReactElement } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import './counter.css';
+
+
+function isValueBelowMinimum(value: number, minimum?: number): boolean {
+   return (minimum !== undefined) ? value < minimum : false;
+}
+
+
+function isValueAboveMaximum(value: number, maximum?: number): boolean {
+   return (maximum !== undefined) ? value > maximum : false;
+}
 
 
 type CounterProps = {
@@ -10,39 +20,40 @@ type CounterProps = {
 };
 
 
-function Counter({ value, minimum, maximum, suffix = '' } : CounterProps): ReactElement {
+function formatValueString(counterValue: number, suffix: string): string {
+   const result = suffix ? `${counterValue} ${suffix}` : counterValue.toString();
+   return result;
+}
 
-   const isMinimumDefined = minimum !== undefined;
-   const isMaximumDefined = maximum !== undefined;
-   const isInitialValueBelowMinimum = isMinimumDefined ? value < minimum : false;
-   const isInitialValueAboveMaximum = isMaximumDefined ? value > maximum : false;
 
-   let initialValue = value;
-   initialValue = (isMinimumDefined && isInitialValueBelowMinimum) ? minimum : initialValue;
-   initialValue = (isMaximumDefined && isInitialValueAboveMaximum) ? maximum : initialValue;
+function Counter(props: CounterProps): ReactElement {
 
-   const [counterValue, setCounterValue] = useState(initialValue);
+   const { value, minimum, maximum, suffix = '' } = props;
+   const [counterValue, setCounterValue] = useState(value);
+
+
+   function updateCounter(inputValue: number): void {
+      let output = inputValue;
+      output = (isValueBelowMinimum(inputValue, minimum)) ? minimum as number : output;
+      output = (isValueAboveMaximum(inputValue, maximum)) ? maximum as number : output;
+      setCounterValue(output);
+   }
+
+
+   useEffect(() => { updateCounter(value); }, []);
 
 
    function handleIncrement() {
-      const isMaximumReached = isMaximumDefined && counterValue === maximum;
-      if (!isMaximumReached) {
-         setCounterValue((counter) => counter + 1);
+      if (!isValueAboveMaximum(counterValue, maximum)) {
+         updateCounter(counterValue + 1);
       }
    }
 
 
    function handleDecrement() {
-      const isMinimumReached = isMinimumDefined && counterValue === minimum;
-      if (!isMinimumReached) {
-         setCounterValue((counter) => counter - 1);
+      if (!isValueBelowMinimum(counterValue, minimum)) {
+         updateCounter(counterValue - 1);
       }
-   }
-
-
-   function formatValueString(): string {
-      const result = suffix ? `${counterValue} ${suffix}` : counterValue.toString();
-      return result;
    }
 
 
@@ -51,7 +62,7 @@ function Counter({ value, minimum, maximum, suffix = '' } : CounterProps): React
          <button type="button" className="button" onClick={handleDecrement}>
             <div className="icon icon-decrement" />
          </button>
-         <div className="counter-value">{formatValueString()}</div>
+         <div className="counter-value">{formatValueString(counterValue, suffix)}</div>
          <button type="button" className="button" onClick={handleIncrement}>
             <div className="icon icon-increment" />
          </button>
