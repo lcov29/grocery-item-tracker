@@ -1,1 +1,44 @@
-<svg opacity=".5" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.78 6.22a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 7.28a.75.75 0 0 1 1.06-1.06L8 9.94l3.72-3.72a.75.75 0 0 1 1.06 0z"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   opacity=".5"
+   height="16"
+   width="16"
+   version="1.1"
+   id="svg193"
+   sodipodi:docname="dropdownIcon.svg"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs197" />
+  <sodipodi:namedview
+     id="namedview195"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="true"
+     inkscape:zoom="50.4375"
+     inkscape:cx="7.9900867"
+     inkscape:cy="8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg193">
+    <inkscape:grid
+       type="xygrid"
+       id="grid249" />
+  </sodipodi:namedview>
+  <path
+     fill-rule="evenodd"
+     d="m 12.806332,5.2038198 a 0.75,0.78153504 0 0 1 0,1.1045696 L 8.5563321,10.737088 a 0.75,0.78153504 0 0 1 -1.06,0 l -4.25,-4.4286986 a 0.75,0.78153504 0 0 1 1.06,-1.1045696 l 3.72,3.8764138 3.7199999,-3.8764138 a 0.75,0.78153504 0 0 1 1.06,0 z"
+     id="path191"
+     style="stroke-width:1.02081" />
+</svg>
