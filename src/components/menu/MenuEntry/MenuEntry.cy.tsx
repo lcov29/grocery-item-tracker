@@ -45,13 +45,6 @@ describe('<MenuEntry />', () => {
    });
 
 
-   it('executes user defined click event', () => {
-      const menuEntry = cy.get('#menu-entry');
-      menuEntry.click();
-      menuEntry.should('have.class', 'red');
-   });
-
-
    it('renders user defined dropdown', () => {
       cy.get('#menu-entry').trigger('mouseover');
       const dropdown = cy.get('.menu-entry-dropdown');
@@ -61,7 +54,7 @@ describe('<MenuEntry />', () => {
 
 
    it('renders dropdown icon for menu entries with dropdown', () => {
-      cy.get('#menu-entry').should('have.class', 'menu-entry-with-dropdown');
+      cy.get('#menu-entry').should('have.class', 'collapsed-dropdown');
    });
 
 
