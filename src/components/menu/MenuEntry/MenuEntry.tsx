@@ -42,6 +42,32 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
    }
 
 
+   function getDropdownButtonClassName(): string {
+      if (!dropdown) return 'no-dropdown';
+
+      if (isDropdownVisible) {
+         return 'unfolded-dropdown';
+      }
+
+      return 'collapsed-dropdown';
+   }
+
+
+   function createMenuEntryButton(): ReactElement {
+      return (
+         <button
+            id={id}
+            type="button"
+            className={`menu-entry-button ${getDropdownButtonClassName()}`}
+            onClick={handleMenuButtonClick}
+            onMouseEnter={handleMenuButtonMouseEnter}
+         >
+            {button.text}
+         </button>
+      );
+   }
+
+
    function createDropdown(): ReactElement | null {
       const isDropdownRenderable = dropdown && isDropdownVisible;
       if (isDropdownRenderable) {
@@ -57,15 +83,7 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
 
    return (
       <div className="menu-entry">
-         <button
-            id={id}
-            type="button"
-            className={`menu-entry-button ${(dropdown) ? 'menu-entry-with-dropdown' : ''}`}
-            onClick={handleMenuButtonClick}
-            onMouseEnter={handleMenuButtonMouseEnter}
-         >
-            {button.text}
-         </button>
+         {createMenuEntryButton()}
          {createDropdown()}
       </div>
    );
