@@ -58,6 +58,13 @@ describe('<MenuEntry />', () => {
    });
 
 
+   it('executes user defined function upon button click', () => {
+      cy.get('#menu-entry').click();
+      cy.get('#menu-entry').click();
+      cy.get('#menu-entry').should('have.class', 'red');
+   });
+
+
    it('does not render dropdown icon for menu entries without dropdown', () => {
       cy.mount(<MenuEntry id="menu-entry" button={{ text: 'Color' }} />);
       cy.get('#menu-entry').should('not.have.class', 'menu-entry-with-dropdown');
