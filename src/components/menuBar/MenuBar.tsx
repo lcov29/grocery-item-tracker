@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { MenuEntry, MenuEntryCoreProps } from './MenuEntry/MenuEntry';
+import { MenuEntry, MenuEntryCoreProps } from './menuEntry/MenuEntry';
 import { isDesktopView } from './menuFunctions';
 import './menuBar.css';
 
