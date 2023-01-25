@@ -1,10 +1,9 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { isDesktopView } from '../menuFunctions';
 import './menuEntry.css';
 
 
-type MenuEntryProps = {
-   id: string,
+type MenuEntryCoreProps = {
    button: {
       text: string,
       action?: () => void
@@ -13,15 +12,26 @@ type MenuEntryProps = {
 };
 
 
-function MenuEntry(props: MenuEntryProps): ReactElement {
+type MenuEntryAdditionalProps = {
+   id: string,
+   idDropdownVisible: string,
+   setIdDropdownVisible: (id: string) => void
+};
 
-   const { id, button, dropdown } = props;
-   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+function MenuEntry(props: MenuEntryCoreProps & MenuEntryAdditionalProps): ReactElement {
+
+   const { id, button, dropdown, setIdDropdownVisible, idDropdownVisible } = props;
+
+
+   function isDropdownVisible(): boolean {
+      return id === idDropdownVisible;
+   }
 
 
    function handleMenuButtonClick(): void {
       if (!isDesktopView(window.innerWidth)) {
-         setIsDropdownVisible(!isDropdownVisible);
+         setIdDropdownVisible(id);
       }
 
       if (button.action) {
@@ -32,20 +42,20 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
 
    function handleMenuButtonMouseEnter(): void {
       if (isDesktopView(window.innerWidth)) {
-         setIsDropdownVisible(true);
+         setIdDropdownVisible(id);
       }
    }
 
 
    function handleDropdownMouseLeave(): void {
-      setIsDropdownVisible(false);
+      setIdDropdownVisible('');
    }
 
 
    function getDropdownButtonClassName(): string {
       if (!dropdown) return 'no-dropdown';
 
-      if (isDropdownVisible) {
+      if (isDropdownVisible()) {
          return 'unfolded-dropdown';
       }
 
@@ -69,7 +79,7 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
 
 
    function createDropdown(): ReactElement | null {
-      const isDropdownRenderable = dropdown && isDropdownVisible;
+      const isDropdownRenderable = dropdown && isDropdownVisible();
       if (isDropdownRenderable) {
          return (
             <div className="menu-entry-dropdown" onMouseLeave={handleDropdownMouseLeave}>
@@ -91,4 +101,4 @@ function MenuEntry(props: MenuEntryProps): ReactElement {
 }
 
 
-export { MenuEntry };
+export { MenuEntry, MenuEntryCoreProps };

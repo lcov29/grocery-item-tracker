@@ -1,10 +1,11 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { isDesktopView } from '../menuFunctions';
+import { MenuEntry, MenuEntryCoreProps } from './MenuEntry/MenuEntry';
+import { isDesktopView } from './menuFunctions';
 import './menuBar.css';
 
 
 type MenuBarProps = {
-   menuEntryList: ReactElement[]
+   menuEntryList: MenuEntryCoreProps[]
 };
 
 
@@ -13,6 +14,7 @@ function MenuBar(props: MenuBarProps): ReactElement {
    const { menuEntryList } = props;
    const isDesktop = isDesktopView(window.innerWidth);
 
+   const [idDropdownVisible, setIdDropdownVisible] = useState('');
    const [isMenuContainerVisible, setIsMenuContainerVisible] = useState(isDesktop);
    const [isToggleButtonVisible, setIsToggleButtonVisible] = useState(!isDesktop);
    const [isToggleButtonCollapsed, setIsToggleButtonCollapsed] = useState(true);
@@ -36,6 +38,7 @@ function MenuBar(props: MenuBarProps): ReactElement {
 
    function handleNavigationBarMouseLeave() {
       if (isDesktopView(window.innerWidth)) {
+         setIdDropdownVisible('');
          // implement closing all open dropdowns;
       }
    }
@@ -70,7 +73,21 @@ function MenuBar(props: MenuBarProps): ReactElement {
 
    function createMenuContainer(): ReactElement | null {
       if (isMenuContainerVisible) {
-         return <div className="menu-container">{ menuEntryList }</div>;
+         return (
+            <div className="menu-container">
+               {
+                  menuEntryList.map((entry, index) => (
+                     <MenuEntry
+                        id={`entry-${index}`}
+                        button={entry.button}
+                        dropdown={entry.dropdown}
+                        idDropdownVisible={idDropdownVisible}
+                        setIdDropdownVisible={setIdDropdownVisible}
+                     />
+                  ))
+               }
+            </div>
+         );
       }
       return null;
    }
