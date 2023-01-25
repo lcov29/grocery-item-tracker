@@ -39,7 +39,6 @@ function MenuBar(props: MenuBarProps): ReactElement {
    function handleNavigationBarMouseLeave() {
       if (isDesktopView(window.innerWidth)) {
          setIdDropdownVisible('');
-         // implement closing all open dropdowns;
       }
    }
 
