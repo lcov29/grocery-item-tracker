@@ -1,17 +1,35 @@
-/*
 import React, { ReactElement } from 'react';
 import { MenuBar } from '../../components/menuBar/MenuBar';
 import { Category } from '../../components/category/Category';
 import { Table } from '../../components/table/Table';
 import './home-style.css';
 
+/*
+button: {
+   text: string,
+   action?: () => void
+},
+dropdown?: ReactElement
+*/
+
 const menuEntryList = [
-   { entryText: 'Home' },
-   { entryText: 'Grocery Items' },
-   { entryText: 'Shopping List' },
-   { entryText: 'Reports' },
-   { entryText: 'Settings' }
+   { button: { text: 'Home', action: () => {} } },
+   {
+      button: { text: 'Grocery Items', action: () => {} },
+      dropdown: (
+         <>
+            <p>Supply</p>
+            <p>Add Items</p>
+            <p>Consume Items</p>
+            <p>Minimum Supply</p>
+         </>
+      )
+   },
+   { button: { text: 'Shopping List', action: () => {} } },
+   { button: { text: 'Reports', action: () => {} } },
+   { button: { text: 'Settings', action: () => {} } }
 ];
+
 const expirationHeaderList = ['Id', 'Product', 'Expiration Date'];
 const expirationRowList = [
    ['12', 'Spaghetti', '03.02.2023'],
@@ -39,5 +57,3 @@ function Home(): ReactElement {
 
 
 export { Home };
-
-*/
