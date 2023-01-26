@@ -2,15 +2,9 @@ import React, { ReactElement } from 'react';
 import { MenuBar } from '../../components/menuBar/MenuBar';
 import { Category } from '../../components/category/Category';
 import { Table } from '../../components/table/Table';
+import img from '../../icons/application-icon-with-text.svg';
 import './home-style.css';
 
-/*
-button: {
-   text: string,
-   action?: () => void
-},
-dropdown?: ReactElement
-*/
 
 const menuEntryList = [
    { button: { text: 'Home', action: () => {} } },
@@ -51,6 +45,7 @@ function Home(): ReactElement {
             <h2>Upcoming Expiration Dates</h2>
             <Table headerList={expirationHeaderList} rowList={expirationRowList} />
          </div>
+         <img src={img} alt="logo" />
       </div>
    );
 }
