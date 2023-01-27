@@ -1,39 +1,9 @@
-:root {
-    --contentUrl: url(../../../icons/dropdownIcon.svg);
-}
-
 .menu-entry {
     position: relative;
 }
 
 .menu-entry-button:hover {
     font-weight: bold;
-}
-
-.no-dropdown::after {
-    display: inline-block;
-    padding-top: .2rem;
-    content: var(--contentUrl);
-    max-width: 0px;
-    vertical-align: middle;
-    opacity: 0;
-}
-
-.collapsed-dropdown::after {
-    display: inline-block;
-    padding-top: .2rem;
-    padding-left: .5rem;
-    content: var(--contentUrl);
-    vertical-align: middle;
-}
-
-.unfolded-dropdown::after {
-    display: inline-block;
-    padding-top: .2rem;
-    padding-right: .5rem;
-    content: var(--contentUrl);
-    transform: rotate(180deg);
-    vertical-align: middle;
 }
 
 
@@ -65,6 +35,14 @@
 
 
 @media screen and (min-width: 701px) {
+
+    .menu-entry-button {
+        display: flex;
+        justify-content: space-between;
+        column-gap: .5rem;
+        text-align: left;
+        padding: .5rem;
+    }
 
     .menu-entry-dropdown {
         position: absolute;

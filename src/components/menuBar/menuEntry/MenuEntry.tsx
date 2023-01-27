@@ -1,11 +1,13 @@
 import React, { ReactElement } from 'react';
 import { isDesktopView } from '../menuFunctions';
+import dropdownCollapseIcon from '../../../icons/arrowDownIcon.svg';
+import dropdownUnfoldedIcon from '../../../icons/arrowUpIcon.svg';
 import './menuEntry.css';
 
 
 type MenuEntryCoreProps = {
    button: {
-      text: string,
+      text?: string,
       action?: () => void
    },
    dropdown?: ReactElement
@@ -52,14 +54,10 @@ function MenuEntry(props: MenuEntryCoreProps & MenuEntryAdditionalProps): ReactE
    }
 
 
-   function getDropdownButtonClassName(): string {
-      if (!dropdown) return 'no-dropdown';
+   function createIcon(): ReactElement | null {
+      if (dropdown === undefined) return null;
 
-      if (isDropdownVisible()) {
-         return 'unfolded-dropdown';
-      }
-
-      return 'collapsed-dropdown';
+      return <img src={isDropdownVisible() ? dropdownUnfoldedIcon : dropdownCollapseIcon} alt="" />;
    }
 
 
@@ -68,11 +66,12 @@ function MenuEntry(props: MenuEntryCoreProps & MenuEntryAdditionalProps): ReactE
          <button
             id={id}
             type="button"
-            className={`menu-entry-button ${getDropdownButtonClassName()}`}
+            className="menu-entry-button"
             onClick={handleMenuButtonClick}
             onMouseEnter={handleMenuButtonMouseEnter}
          >
             {button.text}
+            {createIcon()}
          </button>
       );
    }
