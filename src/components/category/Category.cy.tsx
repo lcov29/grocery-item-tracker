@@ -39,7 +39,7 @@ describe('<Category />', () => {
 
    it('renders a collapse button for user defined content', () => {
       cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
-      cy.get('.toggle-button').should('exist');
+      cy.get('button').should('exist');
    });
 
 
@@ -58,7 +58,7 @@ describe('<Category />', () => {
    it('shows user defined content upon first click of collapse button', () => {
       cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
       cy.get('.content-section').should('not.exist');
-      cy.get('.toggle-button').click();
+      cy.get('button').click();
       cy.get('.content-section').should('exist');
    });
 
@@ -66,9 +66,9 @@ describe('<Category />', () => {
    it('collapses user defined content upon second click of collapse button', () => {
       cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
       cy.get('.content-section').should('not.exist');
-      cy.get('.toggle-button').click();
+      cy.get('button').click();
       cy.get('.content-section').should('exist');
-      cy.get('.toggle-button').click();
+      cy.get('button').click();
       cy.get('.content-section').should('not.exist');
    });
 
@@ -92,7 +92,7 @@ describe('<Category />', () => {
       const subLevelCategory = <Category name="SubCategoryName" contentList={[<p>Content</p>]} />;
       const topLevelCategory = <Category name="TopCategoryName" contentList={[subLevelCategory]} isTopLevel />;
       cy.mount(topLevelCategory);
-      cy.get('.toggle-button').click();
+      cy.get('button').click();
       cy.get('.category-container-sub-level > .category > .category-bar > .category-name').should('be.visible');
       cy.get('p').should('not.exist');
    });
@@ -102,8 +102,8 @@ describe('<Category />', () => {
       const subLevelCategory = <Category name="SubCategoryName" contentList={[<p>Content</p>]} />;
       const topLevelCategory = <Category name="TopCategoryName" contentList={[subLevelCategory]} isTopLevel />;
       cy.mount(topLevelCategory);
-      cy.get('.toggle-button').click();
-      cy.get('.category-container-sub-level > .category > .category-bar > .toggle-button').click();
+      cy.get('button').click();
+      cy.get('.category-container-sub-level > .category > .category-bar > button').click();
       cy.get('p').should('exist');
       cy.get('p').should('be.visible');
    });
