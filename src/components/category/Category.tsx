@@ -1,4 +1,6 @@
 import React, { ReactElement, useState } from 'react';
+import dropdownCollapseIcon from '../../icons/arrowDownIcon.svg';
+import dropdownUnfoldedIcon from '../../icons/arrowUpIcon.svg';
 import './category.css';
 
 
@@ -23,14 +25,22 @@ function Category(props: CategoryProps): ReactElement {
    }
 
 
+   function createIcon(): ReactElement | null {
+      if (!isRenderable()) return null;
+
+      return <img src={isContentSectionCollapsed ? dropdownCollapseIcon : dropdownUnfoldedIcon} alt="icon" />;
+   }
+
+
    function buildContentCollapseButton(): ReactElement | null {
       if (isRenderable()) {
          return (
             <button
                type="button"
-               className={`toggle-button ${(isContentSectionCollapsed) ? '' : 'toggle-button-unfolded'}`}
                onClick={() => { setIsContentSectionCollapsed(!isContentSectionCollapsed); }}
-            />
+            >
+               {createIcon()}
+            </button>
          );
       }
       return null;

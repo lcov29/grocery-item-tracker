@@ -29,14 +29,3 @@
 .category-bar-top-level {
     background-color: rgb(47, 131, 161);
 }
-
-.toggle-button {
-    background-image: url(../../icons/dropdownIcon.svg);
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-}
-
-.toggle-button-unfolded {
-    transform: rotate(180deg);
-}
