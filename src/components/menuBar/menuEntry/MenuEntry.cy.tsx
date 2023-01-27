@@ -19,7 +19,7 @@ describe('<MenuEntry />', () => {
             idDropdownVisible="menu-entry"
             // eslint-disable-next-line react/jsx-no-bind
             setIdDropdownVisible={() => {}}
-            button={{ text: 'Change Color', action: () => addClassName('red') }}
+            button={{ content: 'Change Color', action: () => addClassName('red') }}
             dropdown={(
                <div>
                   <button type="button" onClick={() => addClassName('blue')}>Blue</button>
@@ -56,7 +56,7 @@ describe('<MenuEntry />', () => {
 
 
    it('renders collapsed dropdown icon for menu entries with collapsed dropdown', () => {
-      cy.mount(<MenuEntry id="menu-entry" button={{ text: 'Color' }} idDropdownVisible="" setIdDropdownVisible={() => {}} dropdown={<p>Option</p>} />);
+      cy.mount(<MenuEntry id="menu-entry" button={{ content: 'Color' }} idDropdownVisible="" setIdDropdownVisible={() => {}} dropdown={<p>Option</p>} />);
       cy.get('#menu-entry').should('have.class', 'collapsed-dropdown');
    });
 
@@ -67,7 +67,7 @@ describe('<MenuEntry />', () => {
 
 
    it('does not render dropdown icon for menu entries without dropdown', () => {
-      cy.mount(<MenuEntry id="menu-entry" button={{ text: 'Change Color' }} idDropdownVisible="" setIdDropdownVisible={() => {}} />);
+      cy.mount(<MenuEntry id="menu-entry" button={{ content: 'Change Color' }} idDropdownVisible="" setIdDropdownVisible={() => {}} />);
       cy.get('#menu-entry').should('have.class', 'no-dropdown');
    });
 

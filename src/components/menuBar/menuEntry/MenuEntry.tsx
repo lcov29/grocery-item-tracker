@@ -7,7 +7,7 @@ import './menuEntry.css';
 
 type MenuEntryCoreProps = {
    button: {
-      text?: string,
+      content: string | ReactElement,
       action?: () => void
    },
    dropdown?: ReactElement
@@ -70,7 +70,7 @@ function MenuEntry(props: MenuEntryCoreProps & MenuEntryAdditionalProps): ReactE
             onClick={handleMenuButtonClick}
             onMouseEnter={handleMenuButtonMouseEnter}
          >
-            {button.text}
+            {button.content}
             {createIcon()}
          </button>
       );
