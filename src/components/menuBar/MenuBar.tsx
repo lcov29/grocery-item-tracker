@@ -78,6 +78,7 @@ function MenuBar(props: MenuBarProps): ReactElement {
                   menuEntryList.map((entry, index) => (
                      <MenuEntry
                         id={`entry-${index}`}
+                        key={index}
                         button={entry.button}
                         dropdown={entry.dropdown}
                         idDropdownVisible={idDropdownVisible}
