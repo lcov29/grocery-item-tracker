@@ -8,7 +8,7 @@ describe('<MenuBar />', () => {
    beforeEach(() => {
       const menuEntryList = [
          {
-            button: { text: 'Option 1' },
+            button: { content: 'Option 1' },
             dropdown: (
                <>
                   <div>Entry1</div>
@@ -16,9 +16,9 @@ describe('<MenuBar />', () => {
                </>
             )
          },
-         { button: { text: 'Option 2' } },
+         { button: { content: 'Option 2' } },
          {
-            button: { text: 'Option 3' },
+            button: { content: 'Option 3' },
             dropdown: (
                <>
                   <div>Entry1</div>
