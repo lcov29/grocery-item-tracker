@@ -7,9 +7,9 @@ import './home-style.css';
 
 
 const menuEntryList = [
-   { button: { text: 'Home', action: () => {} } },
+   { button: { content: <img src={img} alt="logo" width="50px" height="50px" />, action: () => {} } },
    {
-      button: { text: 'Grocery Items', action: () => {} },
+      button: { content: 'Grocery Items', action: () => {} },
       dropdown: (
          <>
             <p>Supply</p>
@@ -19,9 +19,9 @@ const menuEntryList = [
          </>
       )
    },
-   { button: { text: 'Shopping List', action: () => {} } },
-   { button: { text: 'Reports', action: () => {} } },
-   { button: { text: 'Settings', action: () => {} } }
+   { button: { content: 'Shopping List', action: () => {} } },
+   { button: { content: 'Reports', action: () => {} } },
+   { button: { content: 'Settings', action: () => {} } }
 ];
 
 const expirationHeaderList = ['Id', 'Product', 'Expiration Date'];
@@ -45,7 +45,6 @@ function Home(): ReactElement {
             <h2>Upcoming Expiration Dates</h2>
             <Table headerList={expirationHeaderList} rowList={expirationRowList} />
          </div>
-         <img src={img} alt="logo" />
       </div>
    );
 }
