@@ -45,6 +45,7 @@ nav {
 
     .menu-container {
         display: flex;
+        justify-content: space-around;
         column-gap: 3rem;
     }
 
