@@ -2,14 +2,18 @@ import React, { ReactElement } from 'react';
 import { MenuBar } from '../../components/menuBar/MenuBar';
 import { Category } from '../../components/category/Category';
 import { Table } from '../../components/table/Table';
-import img from '../../icons/application-icon-with-text.svg';
+import home from '../../icons/homeIcon.svg';
+import groceryItem from '../../icons/groceryItemIcon.svg';
+import shoppingList from '../../icons/shoppingCartIcon.svg';
+import reports from '../../icons/reportIcon.svg';
+import settings from '../../icons/settingIcon.svg';
 import './home-style.css';
 
 
 const menuEntryList = [
-   { button: { content: <img src={img} alt="logo" width="50px" height="50px" />, action: () => {} } },
+   { button: { content: <img src={home} alt="Home" width="50px" height="50px" />, action: () => {} } },
    {
-      button: { content: 'Grocery Items', action: () => {} },
+      button: { content: <img src={groceryItem} alt="Grocery Items" width="50px" height="50px" />, action: () => {} },
       dropdown: (
          <>
             <p>Supply</p>
@@ -19,9 +23,9 @@ const menuEntryList = [
          </>
       )
    },
-   { button: { content: 'Shopping List', action: () => {} } },
-   { button: { content: 'Reports', action: () => {} } },
-   { button: { content: 'Settings', action: () => {} } }
+   { button: { content: <img src={shoppingList} alt="Shopping List" width="50px" height="50px" />, action: () => {} } },
+   { button: { content: <img src={reports} alt="Reports" width="50px" height="50px" />, action: () => {} } },
+   { button: { content: <img src={settings} alt="Settings" width="50px" height="50px" />, action: () => {} } }
 ];
 
 const expirationHeaderList = ['Id', 'Product', 'Expiration Date'];
