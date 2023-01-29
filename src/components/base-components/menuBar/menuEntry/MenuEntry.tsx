@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { isDesktopView } from '../menuFunctions';
-import dropdownCollapseIcon from '../../../icons/arrowDownIcon.svg';
-import dropdownUnfoldedIcon from '../../../icons/arrowUpIcon.svg';
+import dropdownCollapseIcon from '../../../../icons/arrowDownIcon.svg';
+import dropdownUnfoldedIcon from '../../../../icons/arrowUpIcon.svg';
 import './menuEntry.css';
 
 

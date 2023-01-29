@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import { MenuBar } from '../../components/menuBar/MenuBar';
-import { Category } from '../../components/category/Category';
-import { Table } from '../../components/table/Table';
+import { MenuBar } from '../../components/base-components/menuBar/MenuBar';
+import { Category } from '../../components/base-components/category/Category';
+import { Table } from '../../components/base-components/table/Table';
 import home from '../../icons/homeIcon.svg';
 import groceryItem from '../../icons/groceryItemIcon.svg';
 import shoppingList from '../../icons/shoppingCartIcon.svg';

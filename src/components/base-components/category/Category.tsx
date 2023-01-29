@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
-import dropdownCollapseIcon from '../../icons/arrowDownIcon.svg';
-import dropdownUnfoldedIcon from '../../icons/arrowUpIcon.svg';
+import dropdownCollapseIcon from '../../../icons/arrowDownIcon.svg';
+import dropdownUnfoldedIcon from '../../../icons/arrowUpIcon.svg';
 import './category.css';
 
 
