@@ -1,5 +1,5 @@
 :root {
-    --border: 0.1rem solid black;
+    --border: .1rem solid black;
 }
 
 #container {
@@ -12,7 +12,7 @@
     align-items: center;
     border-top: var(--border);
     border-bottom: var(--border);
-    padding: 0rem 0.5rem;
+    padding: 0rem .5rem;
     vertical-align: middle;
     user-select: none;
     min-width: 3rem;
@@ -25,22 +25,6 @@
     width: 1.5rem;
     height: 1.5rem;
     padding: 0;
-}
-
-.icon {
-    background-image: url(../../icons/dropdownIcon.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-}
-
-.icon-decrement {
-    transform: rotate(90deg);
-}
-
-.icon-increment {
-    transform: rotate(-90deg);
 }
 
 .button:hover {

@@ -1,4 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react';
+import arrowLeft from '../../../icons/arrowLeftIcon.svg';
+import arrowRight from '../../../icons/arrowRightIcon.svg';
 import './counter.css';
 
 
@@ -60,11 +62,11 @@ function Counter(props: CounterProps): ReactElement {
    return (
       <div id="container">
          <button type="button" className="button" onClick={handleDecrement}>
-            <div className="icon icon-decrement" />
+            <img src={arrowLeft} alt="-" />
          </button>
          <div className="counter-value">{formatValueString(counterValue, suffix)}</div>
          <button type="button" className="button" onClick={handleIncrement}>
-            <div className="icon icon-increment" />
+            <img src={arrowRight} alt="+" />
          </button>
       </div>
    );
