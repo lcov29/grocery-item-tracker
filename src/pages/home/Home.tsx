@@ -1,32 +1,9 @@
 import React, { ReactElement } from 'react';
-import { MenuBar } from '../../components/base-components/menuBar/MenuBar';
 import { Category } from '../../components/base-components/category/Category';
 import { Table } from '../../components/base-components/table/Table';
-import home from '../../icons/homeIcon.svg';
-import groceryItem from '../../icons/groceryItemIcon.svg';
-import shoppingList from '../../icons/shoppingCartIcon.svg';
-import reports from '../../icons/reportIcon.svg';
-import settings from '../../icons/settingIcon.svg';
-import './home-style.css';
+import { Template } from '../template/Template';
+import './home.css';
 
-
-const menuEntryList = [
-   { button: { content: <img src={home} alt="Home" width="50px" height="50px" />, action: () => {} } },
-   {
-      button: { content: <img src={groceryItem} alt="Grocery Items" width="50px" height="50px" />, action: () => {} },
-      dropdown: (
-         <>
-            <p>Supply</p>
-            <p>Add Items</p>
-            <p>Consume Items</p>
-            <p>Minimum Supply</p>
-         </>
-      )
-   },
-   { button: { content: <img src={shoppingList} alt="Shopping List" width="50px" height="50px" />, action: () => {} } },
-   { button: { content: <img src={reports} alt="Reports" width="50px" height="50px" />, action: () => {} } },
-   { button: { content: <img src={settings} alt="Settings" width="50px" height="50px" />, action: () => {} } }
-];
 
 const expirationHeaderList = ['Id', 'Product', 'Expiration Date'];
 const expirationRowList = [
@@ -36,11 +13,8 @@ const expirationRowList = [
 
 
 function Home(): ReactElement {
-   return (
-      <div id="homePageContainer">
-         <div id="menuBarContainer">
-            <MenuBar menuEntryList={menuEntryList} />
-         </div>
+   const content = (
+      <>
          <div id="supplyOverviewContainer">
             <h2>Supply Overview</h2>
             <Category
@@ -49,6 +23,7 @@ function Home(): ReactElement {
                contentList={[
                   <Category
                      name="Bread"
+                     key={1}
                      additionalText="7 Items"
                      contentList={[
                         <Table
@@ -62,6 +37,7 @@ function Home(): ReactElement {
                   />,
                   <Category
                      name="Noodles"
+                     key={2}
                      additionalText="2 Items"
                   />
                ]}
@@ -71,8 +47,10 @@ function Home(): ReactElement {
             <h2>Upcoming Expiration Dates</h2>
             <Table headerList={expirationHeaderList} rowList={expirationRowList} />
          </div>
-      </div>
+      </>
    );
+
+   return <Template content={content} />;
 }
 
 
