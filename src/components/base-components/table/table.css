@@ -1,10 +1,10 @@
 :root {
-    --tablePadding: 0.25rem 0rem 0.25rem 0.5rem;
+    --tablePadding: .25rem .5rem
 }
 
 .itemTable {
     width: 100%;
-    margin-top: 0.5rem;
+    margin-top: .5rem;
 }
 
 .itemTable th {
