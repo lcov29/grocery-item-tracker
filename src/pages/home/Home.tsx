@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Category } from '../../components/base-components/category/Category';
 import { Table } from '../../components/base-components/table/Table';
+import { Counter } from '../../components/base-components/counter/Counter';
 import { Template } from '../template/Template';
 import './home.css';
 
@@ -45,6 +46,9 @@ function Home(): ReactElement {
          </div>
          <div id="upcomingExpirationDatesContainer">
             <h2>Upcoming Expiration Dates</h2>
+            <div className="counter-container">
+               <Counter value={4} minimum={0} maximum={14} suffix="Days" />
+            </div>
             <Table headerList={expirationHeaderList} rowList={expirationRowList} />
          </div>
       </>
