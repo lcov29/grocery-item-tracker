@@ -1,6 +1,6 @@
 .category-container-top-level {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-bottom: 3rem;
 }
 
