@@ -1,10 +1,37 @@
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 2rem;
+#supplyOverviewContainer, #upcomingExpirationDatesContainer {
+   border: 0.1rem solid black;
+   padding: 1rem;
+}
+
+.counter-container {
+   float: right;
+   padding-bottom: 1rem;
 }
 
 
-#supplyOverviewContainer, #upcomingExpirationDatesContainer {
-    border: 0.1rem solid black;
+
+@media screen and (max-width: 700px) {
+
+   #supplyOverviewContainer, #upcomingExpirationDatesContainer {
+      border: 0.1rem solid black;
+      padding: 1rem;
+      margin-bottom: 2rem;
+   }
+
+}
+
+
+@media screen and (min-width: 701px) {
+
+   main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 2rem;
+   }
+
+   #supplyOverviewContainer, #upcomingExpirationDatesContainer {
+      border: 0.1rem solid black;
+      padding: 1rem;
+   }
+
 }
