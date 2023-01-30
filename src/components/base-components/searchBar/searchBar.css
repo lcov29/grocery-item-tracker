@@ -4,15 +4,15 @@
 }
 
 .searchInput {
-    border: 0.1rem solid black;
+    border: .1rem solid black;
     border-right: none;
     border-radius: 25px 0px 0px 25px;
-    padding: 0.5rem;
+    padding: .5rem;
 }
 
 .SearchButton {
     width: fit-content;
-    border: 0.1rem solid black;
+    border: .1rem solid black;
     border-radius: 0px 25px 25px 0px;
-    padding: 0.5rem;
+    padding: .5rem;
 }
