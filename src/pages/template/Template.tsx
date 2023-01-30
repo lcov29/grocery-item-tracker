@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { MenuBar } from '../../components/base-components/menuBar/MenuBar';
+import { MenuGroceryOptionDropdownContent } from '../../components/application-components/menuGroceryOptionDropdownContent/MenuGroceryOptionDropdownContent';
 import homeIcon from '../../icons/homeIcon.svg';
 import groceryItemIcon from '../../icons/groceryItemIcon.svg';
 import shoppingListIcon from '../../icons/shoppingCartIcon.svg';
@@ -20,15 +21,8 @@ function Template(props: { content: ReactElement }): ReactElement {
    const menuEntryList = [
       { button: { content: createIcon(homeIcon, 'Home'), action: () => {} } },
       {
-         button: { content: createIcon(groceryItemIcon, 'Grocery Items'), action: () => {} },
-         dropdown: (
-            <>
-               <p>Supply</p>
-               <p>Add Items</p>
-               <p>Consume Items</p>
-               <p>Minimum Supply</p>
-            </>
-         )
+         button: { content: createIcon(groceryItemIcon, 'Grocery Items') },
+         dropdown: <MenuGroceryOptionDropdownContent />
       },
       { button: { content: createIcon(shoppingListIcon, 'Shopping List'), action: () => {} } },
       { button: { content: createIcon(reportsIcon, 'Reports'), action: () => {} } },

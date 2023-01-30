@@ -1,0 +1,23 @@
+.menu-grocery-dropdown-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.menu-grocery-dropdown-content-title {
+    font-weight: bold;
+}
+
+.menu-grocery-dropdown-content-suboptions {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 2rem;
+}
+
+.menu-grocery-dropdown-content-suboptions button {
+    width: 6rem;
+}
+
+.last-title {
+    margin-top: 1rem;
+}
