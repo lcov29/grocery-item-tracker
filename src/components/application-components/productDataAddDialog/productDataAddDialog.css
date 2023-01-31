@@ -1,0 +1,16 @@
+#product-data-add-form {
+   display: grid;
+   grid-template-columns: 1fr 7fr;
+   row-gap: 1rem;
+   padding: 1rem;
+}
+
+#save-button-container {
+   display: flex;
+   justify-content: flex-end;
+   grid-column: 2;
+}
+
+label {
+   font-weight: bold;
+}
