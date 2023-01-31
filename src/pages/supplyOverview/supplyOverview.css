@@ -6,6 +6,7 @@
 #supply-overview-control-bar {
    display: flex;
    justify-content: flex-end;
-   column-gap: 1rem;
+   flex-wrap: wrap;
+   gap: 1rem;
    margin-bottom: 2rem;
 }
