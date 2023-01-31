@@ -1,7 +1,7 @@
 .category-container-top-level {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .category-container-sub-level {
