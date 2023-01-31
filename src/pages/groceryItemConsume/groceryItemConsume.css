@@ -1,0 +1,14 @@
+#grocery-item-consume-container {
+   border: 1px solid black;
+   padding: 1rem;
+}
+
+#grocery-item-consume-consume-button-container {
+   display: flex;
+   justify-content: flex-end;
+   margin-top: 1rem;
+}
+
+button {
+   font-weight: bold;
+}
