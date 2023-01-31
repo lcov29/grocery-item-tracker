@@ -1,0 +1,11 @@
+#supply-overview-container {
+   border: 1px solid black;
+   padding: 1rem;
+}
+
+#supply-overview-control-bar {
+   display: flex;
+   justify-content: flex-end;
+   column-gap: 1rem;
+   margin-bottom: 2rem;
+}
