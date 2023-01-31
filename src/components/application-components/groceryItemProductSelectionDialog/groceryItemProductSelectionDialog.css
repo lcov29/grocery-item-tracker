@@ -1,0 +1,29 @@
+#product-selection-dialog {
+   display: grid;
+   grid-template-columns: 1fr 7fr;
+   row-gap: 1rem;
+}
+
+#product-name-line {
+   display: grid;
+   grid-template-columns: 10fr 1fr;   
+}
+
+#add-new-product-button {
+   margin-left: 1rem;
+}
+
+#add-button-container {
+   display: flex;
+   justify-content: flex-end;
+   margin-top: 2rem;
+}
+
+form {
+   border: 1px solid black;
+   padding: 1rem;
+}
+
+label {
+   font-weight: bold;
+}
