@@ -2,10 +2,10 @@
 import React, { ReactElement } from 'react';
 import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
 import { Counter } from '../../base-components/counter/Counter';
-import './groceryItemProductSelectionDialog.css';
+import './productSelectionDialog.css';
 
 
-function GroceryItemProductSelectionDialog(): ReactElement {
+function ProductSelectionDialog(): ReactElement {
    return (
       <div id="grocery-item-product-selection-container">
          <h2>Select Grocery Item</h2>
@@ -44,4 +44,4 @@ function GroceryItemProductSelectionDialog(): ReactElement {
 }
 
 
-export { GroceryItemProductSelectionDialog };
+export { ProductSelectionDialog };
