@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-import { Template } from '../template/Template';
 import { Category } from '../../base-components/category/Category';
 import { Table } from '../../base-components/table/Table';
 import { SearchBar } from '../../base-components/searchBar/SearchBar';
@@ -7,7 +6,7 @@ import './supplyOverview.css';
 
 
 function SupplyOverview(): ReactElement {
-   const content = (
+   return (
       <div id="supply-overview-container">
          <h2>Supply Overview</h2>
          <div id="supply-overview-control-bar">
@@ -72,7 +71,6 @@ function SupplyOverview(): ReactElement {
       </div>
    );
 
-   return <Template content={content} />;
 }
 
 

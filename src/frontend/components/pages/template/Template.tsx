@@ -1,6 +1,11 @@
 import React, { ReactElement, useState } from 'react';
 import { MenuBar } from '../../base-components/menuBar/MenuBar';
 import { MenuGroceryOptionDropdownContent } from '../../application-components/menuGroceryOptionDropdownContent/MenuGroceryOptionDropdownContent';
+import { Home } from '../home/Home';
+import { SupplyOverview } from '../supplyOverview/SupplyOverview';
+import { GroceryItemAdd } from '../groceryItemAdd/GroceryItemAdd';
+import { GroceryItemConsume } from '../groceryItemConsume/GroceryItemConsume';
+import { Settings } from '../settings/Settings';
 import homeIcon from '../../../icons/homeIcon.svg';
 import groceryItemIcon from '../../../icons/groceryItemIcon.svg';
 import shoppingListIcon from '../../../icons/shoppingCartIcon.svg';
@@ -14,13 +19,36 @@ function createIcon(src: string, alt: string): ReactElement {
 }
 
 
-function Template(props: { content: ReactElement }): ReactElement {
-   const { content } = props;
+function Template(): ReactElement {
    const [currentPageId, setCurrentPageId] = useState('Home');
 
 
    function isPageActive(pageId: string): boolean {
       return currentPageId === pageId;
+   }
+
+
+   function generateContentSection(): ReactElement | null {
+      switch (currentPageId) {
+         case 'Home':
+            return <Home />;
+         case 'GrocerySupplyOverview':
+            return <SupplyOverview />;
+         case 'GrocerySupplyMinimum':
+            return <h2>Coming Soon</h2>;
+         case 'GroceryItemAdd':
+            return <GroceryItemAdd />;
+         case 'GroceryItemConsume':
+            return <GroceryItemConsume />;
+         case 'ShoppingList':
+            return <h2>Coming Soon</h2>;
+         case 'Reports':
+            return <h2>Coming Soon</h2>;
+         case 'Settings':
+            return <Settings />;
+         default:
+            return null;
+      }
    }
 
 
@@ -74,7 +102,7 @@ function Template(props: { content: ReactElement }): ReactElement {
             <MenuBar menuEntryList={menuEntryList} />
          </header>
          <main>
-            { content }
+            { generateContentSection() }
          </main>
       </>
    );

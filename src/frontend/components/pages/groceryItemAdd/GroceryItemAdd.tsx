@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Table } from '../../base-components/table/Table';
-import { Template } from '../template/Template';
 import './groceryItemAdd.css';
 
 
 function GroceryItemAdd(): ReactElement {
-   const content = (
+   return (
       <div id="grocery-item-add-container">
          <h2>Add Grocery Items</h2>
          <div id="import-shopping-list-button-container">
@@ -57,10 +56,7 @@ function GroceryItemAdd(): ReactElement {
             </button>
          </div>
       </div>
-
    );
-
-   return <Template content={content} />;
 }
 
 

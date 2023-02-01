@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react';
 import { Category } from '../../base-components/category/Category';
 import { Table } from '../../base-components/table/Table';
 import { Counter } from '../../base-components/counter/Counter';
-import { Template } from '../template/Template';
 import './home.css';
 
 
@@ -14,7 +13,7 @@ const expirationRowList = [
 
 
 function Home(): ReactElement {
-   const content = (
+   return (
       <>
          <div id="supplyOverviewContainer">
             <h2>Supply Overview</h2>
@@ -54,7 +53,6 @@ function Home(): ReactElement {
       </>
    );
 
-   return <Template content={content} />;
 }
 
 

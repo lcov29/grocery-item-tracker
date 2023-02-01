@@ -1,12 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement } from 'react';
 import { Counter } from '../../base-components/counter/Counter';
-import { Template } from '../template/Template';
 import './settings.css';
 
 
 function Settings(): ReactElement {
-   const content = (
+   return (
       <div id="setting-page-container">
          <div>
             <h2>Settings</h2>
@@ -40,7 +39,6 @@ function Settings(): ReactElement {
       </div>
    );
 
-   return <Template content={content} />;
 }
 
 

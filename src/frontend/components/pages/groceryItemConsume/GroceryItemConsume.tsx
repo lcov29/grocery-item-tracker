@@ -1,13 +1,12 @@
 import React, { ReactElement } from 'react';
 import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
 import { Table } from '../../base-components/table/Table';
-import { Template } from '../template/Template';
 import './groceryItemConsume.css';
 
 
 function GroceryItemConsume(): ReactElement {
 
-   const content = (
+   return (
       <div id="grocery-item-consume-container">
          <h2>Consume Grocery Items</h2>
          <Table
@@ -43,7 +42,6 @@ function GroceryItemConsume(): ReactElement {
       </div>
    );
 
-   return <Template content={content} />;
 }
 
 
