@@ -6,10 +6,6 @@
     font-weight: bold;
 }
 
-.active-menu-entry {
-    border-bottom: .3rem solid red;
-}
-
 
 @media screen and (max-width: 700px) {
 
@@ -24,6 +20,10 @@
         align-items: center;
         text-align: left;
         padding: .5rem;
+    }
+
+    .active-menu-entry {
+        border-left: .3rem solid red;
     }
 
     .menu-entry-dropdown {
@@ -47,6 +47,10 @@
         column-gap: .5rem;
         text-align: left;
         padding: .5rem;
+    }
+
+    .active-menu-entry {
+        border-bottom: .3rem solid red;
     }
 
     .menu-entry-dropdown {

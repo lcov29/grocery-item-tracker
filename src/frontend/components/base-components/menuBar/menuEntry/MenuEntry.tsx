@@ -9,7 +9,6 @@ type MenuEntryCoreProps = {
    button: {
       content: string | ReactElement,
       action?: () => void,
-      datatarget?: string
    },
    dropdown?: ReactElement,
    isActive?: boolean
@@ -71,7 +70,6 @@ function MenuEntry(props: MenuEntryCoreProps & MenuEntryAdditionalProps): ReactE
             className={`menu-entry-button ${isActive ? 'active-menu-entry' : ''}`}
             onClick={handleMenuButtonClick}
             onMouseEnter={handleMenuButtonMouseEnter}
-            data-target={button.datatarget}
          >
             {button.content}
             {createIcon()}
