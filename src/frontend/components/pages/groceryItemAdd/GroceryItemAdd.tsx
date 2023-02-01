@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Table } from '../../components/base-components/table/Table';
+import { Table } from '../../base-components/table/Table';
 import { Template } from '../template/Template';
 import './groceryItemAdd.css';
 

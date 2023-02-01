@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { Template } from '../template/Template';
-import { Category } from '../../components/base-components/category/Category';
-import { Table } from '../../components/base-components/table/Table';
-import { SearchBar } from '../../components/base-components/searchBar/SearchBar';
+import { Category } from '../../base-components/category/Category';
+import { Table } from '../../base-components/table/Table';
+import { SearchBar } from '../../base-components/searchBar/SearchBar';
 import './supplyOverview.css';
 
 

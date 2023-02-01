@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import { Category } from '../../components/base-components/category/Category';
-import { Table } from '../../components/base-components/table/Table';
-import { Counter } from '../../components/base-components/counter/Counter';
+import { Category } from '../../base-components/category/Category';
+import { Table } from '../../base-components/table/Table';
+import { Counter } from '../../base-components/counter/Counter';
 import { Template } from '../template/Template';
 import './home.css';
 

@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
-import { MenuBar } from '../../components/base-components/menuBar/MenuBar';
-import { MenuGroceryOptionDropdownContent } from '../../components/application-components/menuGroceryOptionDropdownContent/MenuGroceryOptionDropdownContent';
-import homeIcon from '../../icons/homeIcon.svg';
-import groceryItemIcon from '../../icons/groceryItemIcon.svg';
-import shoppingListIcon from '../../icons/shoppingCartIcon.svg';
-import reportsIcon from '../../icons/reportIcon.svg';
-import settingsIcons from '../../icons/settingIcon.svg';
+import { MenuBar } from '../../base-components/menuBar/MenuBar';
+import { MenuGroceryOptionDropdownContent } from '../../application-components/menuGroceryOptionDropdownContent/MenuGroceryOptionDropdownContent';
+import homeIcon from '../../../icons/homeIcon.svg';
+import groceryItemIcon from '../../../icons/groceryItemIcon.svg';
+import shoppingListIcon from '../../../icons/shoppingCartIcon.svg';
+import reportsIcon from '../../../icons/reportIcon.svg';
+import settingsIcons from '../../../icons/settingIcon.svg';
 import './template.css';
 
 

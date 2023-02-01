@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement } from 'react';
-import { Counter } from '../../components/base-components/counter/Counter';
+import { Counter } from '../../base-components/counter/Counter';
 import { Template } from '../template/Template';
 import './settings.css';
 
