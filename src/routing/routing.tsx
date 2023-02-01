@@ -6,6 +6,11 @@ import { GroceryItemConsume } from '../frontend/components/pages/groceryItemCons
 import { Settings } from '../frontend/components/pages/settings/Settings';
 
 
+function addToHistory(pageId: string): void {
+   window.location.hash = pageId;
+}
+
+
 const pageId = {
    home: 'Home',
    grocerySupplyOverview: 'GrocerySupplyOverview',
@@ -18,7 +23,7 @@ const pageId = {
 };
 
 
-function routeContentSection(currentPageId: string): ReactElement | null {
+function getContentSectionFor(currentPageId: string): ReactElement | null {
    switch (currentPageId) {
       case pageId.home:
          return <Home />;
@@ -39,6 +44,12 @@ function routeContentSection(currentPageId: string): ReactElement | null {
       default:
          return null;
    }
+}
+
+
+function routeContentSection(currentPageId: string): ReactElement | null {
+   addToHistory(currentPageId);
+   return getContentSectionFor(currentPageId);
 }
 
 
