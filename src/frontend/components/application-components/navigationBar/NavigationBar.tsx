@@ -6,6 +6,7 @@ import reportsIcon from '../../../icons/reportIcon.svg';
 import settingsIcons from '../../../icons/settingIcon.svg';
 import { MenuGroceryOptionDropdownContent } from '../menuGroceryOptionDropdownContent/MenuGroceryOptionDropdownContent';
 import { MenuBar } from '../../base-components/menuBar/MenuBar';
+import { pageId } from '../../../../routing/routing';
 import './navigationBar.css';
 
 
@@ -24,51 +25,47 @@ function NavigationBar(props: NavigationBarProps): ReactElement {
    }
 
 
-   function isPageActive(pageId: string): boolean {
-      return currentPageId === pageId;
+   function isPageActive(id: string): boolean {
+      return currentPageId === id;
    }
 
 
    const menuEntryList = [
       {
          button: {
-            content: generateIcon(homeIcon, 'Home'),
-            action: () => { setCurrentPageId('Home'); },
-            datatarget: 'Home'
+            content: generateIcon(homeIcon, pageId.home),
+            action: () => { setCurrentPageId(pageId.home); },
          },
-         isActive: isPageActive('Home')
+         isActive: isPageActive(pageId.home)
       },
       {
          button: { content: generateIcon(groceryItemIcon, 'Grocery Items') },
          dropdown: <MenuGroceryOptionDropdownContent setCurrentPageId={setCurrentPageId} />,
-         isActive: isPageActive('GrocerySupplyOverview')
-                  || isPageActive('GrocerySupplyMinimum')
-                  || isPageActive('GroceryItemAdd')
-                  || isPageActive('GroceryItemConsume')
+         isActive: isPageActive(pageId.grocerySupplyOverview)
+                  || isPageActive(pageId.grocerySupplyMinimum)
+                  || isPageActive(pageId.groceryItemAdd)
+                  || isPageActive(pageId.groceryItemConsume)
       },
       {
          button: {
-            content: generateIcon(shoppingListIcon, 'Shopping List'),
-            action: () => { setCurrentPageId('ShoppingList'); },
-            datatarget: 'ShoppingList'
+            content: generateIcon(shoppingListIcon, pageId.shoppingList),
+            action: () => { setCurrentPageId(pageId.shoppingList); },
          },
-         isActive: isPageActive('ShoppingList')
+         isActive: isPageActive(pageId.shoppingList)
       },
       {
          button: {
-            content: generateIcon(reportsIcon, 'Reports'),
-            action: () => { setCurrentPageId('Reports'); },
-            datatarget: 'Reports'
+            content: generateIcon(reportsIcon, pageId.reports),
+            action: () => { setCurrentPageId(pageId.reports); },
          },
-         isActive: isPageActive('Reports')
+         isActive: isPageActive(pageId.reports)
       },
       {
          button: {
-            content: generateIcon(settingsIcons, 'Settings'),
-            action: () => { setCurrentPageId('Settings'); },
-            datatarget: 'Settings'
+            content: generateIcon(settingsIcons, pageId.settings),
+            action: () => { setCurrentPageId(pageId.settings); },
          },
-         isActive: isPageActive('Settings')
+         isActive: isPageActive(pageId.settings)
       }
    ];
 
