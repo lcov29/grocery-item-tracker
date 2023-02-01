@@ -1,0 +1,25 @@
+h2, h3, h4 {
+   margin-top: 0;
+}
+
+label {
+   font-weight: bold;
+   margin-right: 1rem;
+}
+
+#setting-page-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.setting-container {
+   border: 1px solid black;
+   padding: .5rem 1rem;
+   margin-bottom: 2rem;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   max-width: 25rem;
+}
