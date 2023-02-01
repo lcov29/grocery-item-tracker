@@ -8,9 +8,11 @@ import './menuEntry.css';
 type MenuEntryCoreProps = {
    button: {
       content: string | ReactElement,
-      action?: () => void
+      action?: () => void,
+      datatarget?: string
    },
-   dropdown?: ReactElement
+   dropdown?: ReactElement,
+   isActive?: boolean
 };
 
 
@@ -23,7 +25,7 @@ type MenuEntryAdditionalProps = {
 
 function MenuEntry(props: MenuEntryCoreProps & MenuEntryAdditionalProps): ReactElement {
 
-   const { id, button, dropdown, setIdDropdownVisible, idDropdownVisible } = props;
+   const { id, button, dropdown, setIdDropdownVisible, idDropdownVisible, isActive } = props;
 
 
    function isDropdownVisible(): boolean {
@@ -66,9 +68,10 @@ function MenuEntry(props: MenuEntryCoreProps & MenuEntryAdditionalProps): ReactE
          <button
             id={id}
             type="button"
-            className="menu-entry-button"
+            className={`menu-entry-button ${isActive ? 'active-menu-entry' : ''}`}
             onClick={handleMenuButtonClick}
             onMouseEnter={handleMenuButtonMouseEnter}
+            data-target={button.datatarget}
          >
             {button.content}
             {createIcon()}

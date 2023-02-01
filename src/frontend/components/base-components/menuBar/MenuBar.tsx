@@ -83,6 +83,7 @@ function MenuBar(props: MenuBarProps): ReactElement {
                         dropdown={entry.dropdown}
                         idDropdownVisible={idDropdownVisible}
                         setIdDropdownVisible={setIdDropdownVisible}
+                        isActive={entry.isActive}
                      />
                   ))
                }

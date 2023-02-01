@@ -6,6 +6,10 @@
     font-weight: bold;
 }
 
+.active-menu-entry {
+    border-bottom: 3px solid yellow;
+}
+
 
 @media screen and (max-width: 700px) {
 
