@@ -7,8 +7,8 @@ module.exports = {
    devtool: 'eval-source-map',
    entry: path.resolve('src', 'index.tsx'),
    output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist', 'public'),
+      filename: 'index.js',
    },
    module: {
       rules: [
