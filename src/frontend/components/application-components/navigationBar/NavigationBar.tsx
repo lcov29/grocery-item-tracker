@@ -6,7 +6,7 @@ import reportsIcon from '../../../icons/reportIcon.svg';
 import settingsIcons from '../../../icons/settingIcon.svg';
 import { MenuGroceryOptionDropdownContent } from '../menuGroceryOptionDropdownContent/MenuGroceryOptionDropdownContent';
 import { MenuBar } from '../../base-components/menuBar/MenuBar';
-import { pageId } from '../../../../routing/routing';
+import { pageId } from '../../../routing/routing';
 import './navigationBar.css';
 
 

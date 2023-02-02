@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
-import { Home } from '../frontend/components/pages/home/Home';
-import { SupplyOverview } from '../frontend/components/pages/supplyOverview/SupplyOverview';
-import { GroceryItemAdd } from '../frontend/components/pages/groceryItemAdd/GroceryItemAdd';
-import { GroceryItemConsume } from '../frontend/components/pages/groceryItemConsume/GroceryItemConsume';
-import { Settings } from '../frontend/components/pages/settings/Settings';
+import { Home } from '../components/pages/home/Home';
+import { SupplyOverview } from '../components/pages/supplyOverview/SupplyOverview';
+import { GroceryItemAdd } from '../components/pages/groceryItemAdd/GroceryItemAdd';
+import { GroceryItemConsume } from '../components/pages/groceryItemConsume/GroceryItemConsume';
+import { Settings } from '../components/pages/settings/Settings';
 
 
 function addToHistory(pageId: string): void {
