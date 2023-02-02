@@ -2,14 +2,9 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 
-module.exports = {
+const config = {
    mode: 'development',
    devtool: 'eval-source-map',
-   entry: path.resolve('src', 'index.tsx'),
-   output: {
-      path: path.resolve(__dirname, 'dist', 'public'),
-      filename: 'index.js',
-   },
    module: {
       rules: [
          {
@@ -35,11 +30,37 @@ module.exports = {
    },
    resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
+   }
+};
+
+
+const configFrontend = {
+   ...config,
+   name: 'configFrontend',
+   entry: path.resolve('src', 'frontend', 'index.tsx'),
+   output: {
+      path: path.resolve(__dirname, 'dist', 'public'),
+      filename: 'index.js',
    },
    plugins: [
       new HtmlWebPackPlugin({
-         template: path.join(__dirname, 'src', 'index.html'),
+         template: path.join(__dirname, 'src', 'frontend', 'index.html'),
          filename: 'index.html',
       }),
    ],
 };
+
+
+const configBackend = {
+   ...config,
+   name: 'configBackend',
+   target: 'node',
+   entry: path.resolve('src', 'backend', 'server.ts'),
+   output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'server.js',
+   }
+};
+
+
+module.exports = [configFrontend, configBackend];
