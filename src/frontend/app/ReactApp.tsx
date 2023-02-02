@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { routeContentSection, pageId } from '../routing/routing';
-import { NavigationBar } from '../frontend/components/application-components/navigationBar/NavigationBar';
+import { routeContentSection, pageId } from '../../routing/routing';
+import { NavigationBar } from '../components/application-components/navigationBar/NavigationBar';
 import './reactApp.css';
 
 
