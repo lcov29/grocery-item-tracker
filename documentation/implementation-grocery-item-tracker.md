@@ -74,6 +74,13 @@ erDiagram
 <br>
 <br>
 
+* query data from database in flattended form
+* save available values with custom JS methods if necessary
+* filter result set with extracted values if necessary
+
+<br>
+<br>
+
 ### **Supply Overview (Home)**
 <br>
 
