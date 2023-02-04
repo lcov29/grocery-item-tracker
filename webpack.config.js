@@ -10,26 +10,29 @@ const config = {
          {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            use: { loader: 'babel-loader' },
+            use: { loader: 'babel-loader' }
          },
          {
             test: /\.(ts|tsx)$/,
             exclude: /node_modules/,
-            use: { loader: 'ts-loader' },
+            use: { loader: 'ts-loader' }
          },
          {
             test: /\.css$/i,
             exclude: /node_modules/,
-            use: ['style-loader', 'css-loader'],
+            use: [
+               { loader: 'style-loader' },
+               { loader: 'css-loader' }
+            ]
          },
          {
             test: /\.(png|jpeg|svg)$/,
-            loader: 'file-loader',
+            use: { loader: 'file-loader' }
          }
-      ],
+      ]
    },
    resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
    }
 };
 
@@ -46,8 +49,8 @@ const configFrontend = {
       new HtmlWebPackPlugin({
          template: path.join(__dirname, 'src', 'frontend', 'index.html'),
          filename: 'index.html',
-      }),
-   ],
+      })
+   ]
 };
 
 
@@ -58,7 +61,7 @@ const configBackend = {
    entry: path.resolve('src', 'backend', 'server.ts'),
    output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'server.js',
+      filename: 'server.js'
    }
 };
 
