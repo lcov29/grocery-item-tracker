@@ -1,5 +1,5 @@
 const homeSupplyOverviewData = {
-   categoryList: [
+   data: [
       {
          name: 'Food',
          total: 34,
