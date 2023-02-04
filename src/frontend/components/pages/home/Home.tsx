@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Category } from '../../base-components/category/Category';
+import { GrocerySupplyOverviewHome, TopCategory } from '../../application-components/grocerySupplyOverviewHome/GrocerySupplyOverviewHome';
 import { Table } from '../../base-components/table/Table';
 import { Counter } from '../../base-components/counter/Counter';
 import './home.css';
@@ -13,7 +13,6 @@ const expirationRowList = [
 
 
 function Home(): ReactElement {
-
    const [supplyOverviewData, setSupplyOverviewData] = useState({});
    const [expriationData, setExpirationData] = useState({});
 
@@ -37,32 +36,10 @@ function Home(): ReactElement {
    return (
       <>
          <div id="supplyOverviewContainer">
-            <h2>Supply Overview</h2>
-            <h2>{ supplyOverviewData.response }</h2>
-            <Category
-               name="Food"
-               isTopLevel
-               contentList={[
-                  <Category
-                     name="Bread"
-                     key={1}
-                     additionalText="7 Items"
-                     contentList={[
-                        <Table
-                           headerList={['Product', 'Amount']}
-                           rowList={[
-                              ['Toast', '4'],
-                              ['Baguette', '2']
-                           ]}
-                        />
-                     ]}
-                  />,
-                  <Category
-                     name="Noodles"
-                     key={2}
-                     additionalText="2 Items"
-                  />
-               ]}
+            <GrocerySupplyOverviewHome
+               topCategoryList={
+                  ('data' in supplyOverviewData) ? supplyOverviewData.data as TopCategory[] : undefined
+               }
             />
          </div>
          <div id="upcomingExpirationDatesContainer">
