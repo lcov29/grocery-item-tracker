@@ -8,20 +8,17 @@ type CategoryProps = {
    name: string,
    additionalText?: string,
    isTopLevel?: boolean,
-   contentList?: ReactElement[]
+   contentList: ReactElement[]
 };
 
 
 function Category(props: CategoryProps): ReactElement {
-   const { name, additionalText = ' ', isTopLevel = false, contentList } = props;
+   const { name, additionalText = ' ', isTopLevel = false, contentList = [] } = props;
    const [isContentSectionCollapsed, setIsContentSectionCollapsed] = useState(true);
 
 
    function isRenderable(): boolean {
-      if (contentList) {
-         return contentList.length > 0;
-      }
-      return false;
+      return contentList.length > 0;
    }
 
 

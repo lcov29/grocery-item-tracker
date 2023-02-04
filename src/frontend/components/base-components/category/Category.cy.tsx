@@ -6,31 +6,31 @@ describe('<Category />', () => {
 
 
    it('renders', () => {
-      cy.mount(<Category name="CategoryName" />);
+      cy.mount(<Category name="CategoryName" contentList={[]} />);
    });
 
 
    it('displays user defined category name', () => {
-      cy.mount(<Category name="CategoryName" />);
+      cy.mount(<Category name="CategoryName" contentList={[]} />);
       cy.get('.category-name').should('have.text', 'CategoryName');
    });
 
 
    it('displays user defined additional text', () => {
-      cy.mount(<Category name="CategoryName" additionalText="AdditionalText" />);
+      cy.mount(<Category name="CategoryName" additionalText="AdditionalText" contentList={[]} />);
       cy.get('.additionalText').should('have.text', 'AdditionalText');
    });
 
 
    it('adds formatting style classes for top level elements', () => {
       // Top Level Category
-      cy.mount(<Category name="CategoryName" isTopLevel />);
+      cy.mount(<Category name="CategoryName" isTopLevel contentList={[]} />);
       cy.get('.category-bar').should('have.class', 'category-bar-top-level');
       cy.get('.category-bar-top-level').should('exist');
       cy.get('.category-bar-sub-level').should('not.exist');
 
       // Sub Level Category
-      cy.mount(<Category name="CategoryName" />);
+      cy.mount(<Category name="CategoryName" contentList={[]} />);
       cy.get('.category-bar').should('have.class', 'category-bar-sub-level');
       cy.get('.category-bar-top-level').should('not.exist');
       cy.get('.category-bar-sub-level').should('exist');
@@ -44,7 +44,7 @@ describe('<Category />', () => {
 
 
    it('does not render a collapse button when no user defined content is available', () => {
-      cy.mount(<Category name="CategoryName" isTopLevel />);
+      cy.mount(<Category name="CategoryName" isTopLevel contentList={[]} />);
       cy.get('.category-name').should('exist');
    });
 
