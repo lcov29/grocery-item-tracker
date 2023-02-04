@@ -78,4 +78,17 @@ const homeSupplyOverviewData = {
 };
 
 
-export { homeSupplyOverviewData };
+const expirationDateData = {
+   data: [
+      { id: 53, product: 'Cheese Cake', expirationDate: '2023-02-08' },
+      { id: 12, product: 'Spaghetti', expirationDate: '2023-02-05' },
+      { id: 45, product: 'Apples', expirationDate: '2023-02-07' },
+      { id: 76, product: 'Salad', expirationDate: '2023-02-10' },
+      { id: 80, product: 'Pizza', expirationDate: '2023-02-12' },
+      { id: 83, product: 'Steak', expirationDate: '2023-02-24' },
+      { id: 434, product: 'Salt', expirationDate: '2023-04-30' }
+   ]
+};
+
+
+export { homeSupplyOverviewData, expirationDateData };
