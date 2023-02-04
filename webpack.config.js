@@ -66,4 +66,8 @@ const configBackend = {
 };
 
 
-module.exports = [configFrontend, configBackend];
+module.exports = (env) => {
+   // returning array results in invalid configuration for component tests in cypress
+   const result = (env && env.notCypress) ? [configFrontend, configBackend] : configFrontend;
+   return result;
+};
