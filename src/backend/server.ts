@@ -1,6 +1,7 @@
 import express from 'express';
 import { createServer } from 'node:http';
 import { homeSupplyOverviewData } from './demoData';
+import { handleExpirationDataRequest } from './dataRequestHandler/ExpirationDateRequestHandler';
 
 
 const app = express();
@@ -13,7 +14,7 @@ app.use('/Home/data/supplyOverview', (request, response) => {
 });
 
 app.use('/Home/data/expirationDateOverview/:dayLimit', (request, response) => {
-   response.json({ response: `Server: Expiration Date Overview (Limit: ${request.params.dayLimit})` });
+   response.json(handleExpirationDataRequest(parseInt(request.params.dayLimit, 10)));
 });
 
 const port = 8080;
