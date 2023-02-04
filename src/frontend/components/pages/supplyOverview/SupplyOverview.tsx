@@ -60,11 +60,13 @@ function SupplyOverview(): ReactElement {
                   name="Water"
                   key={1}
                   additionalText="6 Items"
+                  contentList={[]}
                />,
                <Category
                   name="Orange Juice"
                   key={2}
                   additionalText="4 Items"
+                  contentList={[]}
                />
             ]}
          />
