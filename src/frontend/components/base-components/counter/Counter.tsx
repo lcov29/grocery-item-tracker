@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import arrowLeft from '../../../icons/arrowLeftIcon.svg';
 import arrowRight from '../../../icons/arrowRightIcon.svg';
 import './counter.css';
@@ -16,6 +16,7 @@ function isValueAboveMaximum(value: number, maximum?: number): boolean {
 
 type CounterProps = {
    value: number,
+   setValue: (value: number) => void,
    minimum?: number,
    maximum?: number,
    suffix?: string
@@ -30,15 +31,14 @@ function formatValueString(counterValue: number, suffix: string): string {
 
 function Counter(props: CounterProps): ReactElement {
 
-   const { value, minimum, maximum, suffix = '' } = props;
-   const [counterValue, setCounterValue] = useState(value);
+   const { value, setValue, minimum, maximum, suffix = '' } = props;
 
 
    function updateCounter(inputValue: number): void {
       let output = inputValue;
       output = (isValueBelowMinimum(inputValue, minimum)) ? minimum as number : output;
       output = (isValueAboveMaximum(inputValue, maximum)) ? maximum as number : output;
-      setCounterValue(output);
+      setValue(output);
    }
 
 
@@ -46,15 +46,15 @@ function Counter(props: CounterProps): ReactElement {
 
 
    function handleIncrement() {
-      if (!isValueAboveMaximum(counterValue, maximum)) {
-         updateCounter(counterValue + 1);
+      if (!isValueAboveMaximum(value, maximum)) {
+         updateCounter(value + 1);
       }
    }
 
 
    function handleDecrement() {
-      if (!isValueBelowMinimum(counterValue, minimum)) {
-         updateCounter(counterValue - 1);
+      if (!isValueBelowMinimum(value, minimum)) {
+         updateCounter(value - 1);
       }
    }
 
@@ -64,7 +64,7 @@ function Counter(props: CounterProps): ReactElement {
          <button type="button" className="button" onClick={handleDecrement}>
             <img src={arrowLeft} alt="-" />
          </button>
-         <div className="counter-value">{formatValueString(counterValue, suffix)}</div>
+         <div className="counter-value">{formatValueString(value, suffix)}</div>
          <button type="button" className="button" onClick={handleIncrement}>
             <img src={arrowRight} alt="+" />
          </button>
