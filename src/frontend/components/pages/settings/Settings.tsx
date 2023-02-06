@@ -1,17 +1,23 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Counter } from '../../base-components/counter/Counter';
 import './settings.css';
 
 
 function Settings(): ReactElement {
+   const [expirationWarningDayLimit, setExpirationWarningDayLimit] = useState(7);
    return (
       <div id="setting-page-container">
          <div>
             <h2>Settings</h2>
             <div className="setting-container">
                <label htmlFor="expiration-warning-setting">Expiration Warning Limit</label>
-               <Counter value={7} suffix="Days" minimum={1} maximum={30} />
+               <Counter
+                  value={expirationWarningDayLimit}
+                  setValue={setExpirationWarningDayLimit}
+                  minimum={1}
+                  maximum={30}
+               />
             </div>
             <div className="setting-container">
                <label htmlFor="language-setting">Language</label>
