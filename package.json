@@ -4,7 +4,8 @@
   "description": "A tool for managing grocery item supply",
   "scripts": {
     "start": "webpack serve",
-    "compile": "webpack --env notCypress"
+    "compile": "webpack --env notCypress",
+    "test": "npx cypress open"
   },
   "repository": {
     "type": "git",
