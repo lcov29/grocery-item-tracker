@@ -21,12 +21,12 @@ function ExpirationDateOverview(): ReactElement {
    }, []);
 
 
-
-   function generateTable(): ReactElement | null {
+   function generateExpirationDateTable(): ReactElement | null {
       const data = ('data' in expirationData) ? expirationData.data as ExpirationData[] : undefined;
       if (data) {
-         const rowList = data.map((row) => [`${row.id}`, row.product, row.expirationDate]);
-         return <Table headerList={['Id', 'Product', 'Expiration Date']} rowList={rowList} />;
+         const headerList = ['Id', 'Product', 'Expiration Date'];
+         const rowList = data.map((record) => [`${record.id}`, record.product, record.expirationDate]);
+         return <Table headerList={headerList} rowList={rowList} />;
       }
       return null;
    }
@@ -40,11 +40,11 @@ function ExpirationDateOverview(): ReactElement {
                value={dayLimit}
                setValue={setDayLimit}
                minimum={1}
-               maximum={14}
+               maximum={30}
                suffix="Days"
             />
          </div>
-         { generateTable() }
+         { generateExpirationDateTable() }
       </>
    );
 }
