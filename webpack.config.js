@@ -58,7 +58,7 @@ const configBackend = {
    ...config,
    name: 'configBackend',
    target: 'node',
-   entry: path.resolve('src', 'backend', 'server.ts'),
+   entry: path.resolve('src', 'backend', 'webserver', 'server.ts'),
    output: {
       path: path.resolve(__dirname, 'dist'),
       filename: 'server.js'
