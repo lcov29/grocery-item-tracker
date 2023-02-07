@@ -1,4 +1,5 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
+import { fetchData, getPageId } from '../../../utility/fetchServerData';
 import { Category } from '../../base-components/category/Category';
 import { Table } from '../../base-components/table/Table';
 
@@ -26,16 +27,12 @@ type TopCategory = {
 };
 
 
-type GrocerySupplyOverviewHomeProps = {
-   topCategoryList: TopCategory[] | undefined
-};
-
-
 function generateProductTable(productList: ProductData[] | undefined): ReactElement[] | [] {
    if (productList) {
+      const headerList = ['Product', 'Amount'];
       const rowList: string[][] = [];
       productList.forEach((product) => rowList.push([`${product.name}`, `${product.total}`]));
-      return [<Table headerList={['Product', 'Amount']} rowList={rowList} key={1} />];
+      return [<Table headerList={headerList} rowList={rowList} key={1} />];
    }
    return [];
 }
@@ -73,16 +70,34 @@ function generateTopCategory(topCategory: TopCategory, key: number): ReactElemen
 }
 
 
-function GrocerySupplyOverviewHome(props: GrocerySupplyOverviewHomeProps): ReactElement | null {
-   const { topCategoryList } = props;
-   if (topCategoryList) {
-      return (
-         <>
-            { topCategoryList.map((topCategory, index) => generateTopCategory(topCategory, index)) }
-         </>
-      );
+function GrocerySupplyOverviewHome(): ReactElement | null {
+   const [supplyOverviewData, setSupplyOverviewData] = useState({});
+
+
+   useEffect(() => {
+      fetchData(`/${getPageId()}/data/supplyOverview`, setSupplyOverviewData);
+   }, []);
+
+
+   function generateGrocerySupplyOverview(): ReactElement | null {
+      const data = ('data' in supplyOverviewData) ? supplyOverviewData.data as TopCategory[] : undefined;
+      if (data) {
+         return (
+            <>
+               { data.map((topCategory, index) => generateTopCategory(topCategory, index)) }
+            </>
+         );
+      }
+      return null;
    }
-   return null;
+
+
+   return (
+      <>
+         <h2>Grocery Item Supply</h2>
+         { generateGrocerySupplyOverview() }
+      </>
+   );
 }
 
 
