@@ -1,4 +1,4 @@
-async function fetchData(route: string, handler: (value: JSON) => void) {
+async function fetchData<T>(route: string, handler: (value: T) => void) {
    const response = await fetch(route);
    if (response.ok) {
       const data = await response.json();

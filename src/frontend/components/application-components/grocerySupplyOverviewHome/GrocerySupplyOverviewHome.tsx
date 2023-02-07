@@ -27,6 +27,11 @@ type TopCategory = {
 };
 
 
+type SupplyOverviewData = {
+   data: TopCategory[]
+};
+
+
 function generateProductTable(productList: ProductData[] | undefined): ReactElement[] | [] {
    if (productList) {
       const headerList = ['Product', 'Amount'];
@@ -71,20 +76,24 @@ function generateTopCategory(topCategory: TopCategory, key: number): ReactElemen
 
 
 function GrocerySupplyOverviewHome(): ReactElement | null {
-   const [supplyOverviewData, setSupplyOverviewData] = useState({});
+   const [supplyOverviewData, setSupplyOverviewData] = useState<SupplyOverviewData>();
 
 
    useEffect(() => {
-      fetchData(`/api/${getPageId()}/supplyOverview`, setSupplyOverviewData);
+      fetchData<SupplyOverviewData>(`/api/${getPageId()}/supplyOverview`, setSupplyOverviewData);
    }, []);
 
 
    function generateGrocerySupplyOverview(): ReactElement | null {
-      const data = ('data' in supplyOverviewData) ? supplyOverviewData.data as TopCategory[] : undefined;
-      if (data) {
+      const isDataRenderable = supplyOverviewData && supplyOverviewData.data;
+      if (isDataRenderable) {
          return (
             <>
-               { data.map((topCategory, index) => generateTopCategory(topCategory, index)) }
+               {
+                  supplyOverviewData.data.map(
+                     (topCategory, index) => generateTopCategory(topCategory, index)
+                  )
+               }
             </>
          );
       }
@@ -101,4 +110,4 @@ function GrocerySupplyOverviewHome(): ReactElement | null {
 }
 
 
-export { GrocerySupplyOverviewHome, TopCategory };
+export { GrocerySupplyOverviewHome };
