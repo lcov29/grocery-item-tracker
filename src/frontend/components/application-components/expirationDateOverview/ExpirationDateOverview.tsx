@@ -17,7 +17,7 @@ function ExpirationDateOverview(): ReactElement {
 
 
    useEffect(() => {
-      fetchData(`/${getPageId()}/data/expirationDateOverview/${dayLimit}`, setExpirationData);
+      fetchData(`/api/${getPageId()}/expirationDateOverview/${dayLimit}`, setExpirationData);
    }, []);
 
 

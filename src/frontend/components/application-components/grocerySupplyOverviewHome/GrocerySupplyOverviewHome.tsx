@@ -75,7 +75,7 @@ function GrocerySupplyOverviewHome(): ReactElement | null {
 
 
    useEffect(() => {
-      fetchData(`/${getPageId()}/data/supplyOverview`, setSupplyOverviewData);
+      fetchData(`/api/${getPageId()}/supplyOverview`, setSupplyOverviewData);
    }, []);
 
 

@@ -9,11 +9,11 @@ const server = createServer(app);
 
 app.use('/', express.static('../dist/public'));
 
-app.use('/Home/data/supplyOverview', (request, response) => {
+app.use('/api/Home/supplyOverview', (request, response) => {
    response.json(homeSupplyOverviewData);
 });
 
-app.use('/Home/data/expirationDateOverview/:dayLimit', (request, response) => {
+app.use('/api/Home/expirationDateOverview/:dayLimit', (request, response) => {
    response.json(handleExpirationDataRequest(parseInt(request.params.dayLimit, 10)));
 });
 
