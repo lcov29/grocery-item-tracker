@@ -7,15 +7,19 @@ import { handleExpirationDataRequest } from './dataRequestHandler/ExpirationDate
 const app = express();
 const server = createServer(app);
 
+
 app.use('/', express.static('../dist/public'));
 
-app.use('/api/Home/supplyOverview', (request, response) => {
+
+app.get('/api/Home/supplyOverview', (request, response) => {
    response.json(homeSupplyOverviewData);
 });
 
-app.use('/api/Home/expirationDateOverview/:dayLimit', (request, response) => {
-   response.json(handleExpirationDataRequest(parseInt(request.params.dayLimit, 10)));
+
+app.get('/api/Home/expirationDateOverview/:dayLimit', (request, response) => {
+   response.json(handleExpirationDataRequest(request.params.dayLimit));
 });
+
 
 const port = 8080;
 server.listen(port);

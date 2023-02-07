@@ -18,12 +18,17 @@ function formatDate(dateString: string): string {
 }
 
 
-function handleExpirationDataRequest(dayLimit: number) {
+function handleExpirationDataRequest(dayLimit: string) {
+   const numberOfDays = parseInt(dayLimit, 10);
+
+   if (Number.isNaN(numberOfDays)) {
+      return { data: [] };
+   }
 
    let result;
 
    result = expirationDateData.data.filter(
-      (element) => calculateDayDifference(element.expirationDate) < dayLimit
+      (element) => calculateDayDifference(element.expirationDate) < numberOfDays
    );
 
    result.sort((entry1, entry2) => compareDates(entry1.expirationDate, entry2.expirationDate));
