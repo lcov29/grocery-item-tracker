@@ -22,6 +22,15 @@
 
 ```mermaid
 erDiagram
+    Currency {
+        name string
+        symbol char
+    }
+    WeightUnits {
+        id int PK
+        unit string 
+        symbol string
+    }
     Categories {
         id int PK
         name string
@@ -30,26 +39,27 @@ erDiagram
     Products {
         id int PK
         categoryId int FK
+        weightUnitId int FK
+        weight int
         name string
-        distributor string
     }
-    Items {
+    Distributor {
+        id int PK
+        name string
+    }
+    Supply {
         id int PK
         productId int FK
+        distributorId int FK
         price double
         buyDate date
         expirationDate date
         consumptionDate date
     }
-    ShoppingListItems {
-        id int PK
-        shoppingListId int FK
-        productId int FK
-        amount int
-    }
     ShoppingList {
         id int PK
-        creationDate date
+        productId int FK
+        amount int
     }
     MinimumSupply {
         id int PK
@@ -59,9 +69,9 @@ erDiagram
     }
     Categories |o--o{ Categories : isSubcategory
     Categories ||--o{ Products : hasCategory
-    Products ||--o{ Items : isProduct
-    Products ||--o{ ShoppingListItems: isProduct
-    ShoppingListItems }o--|| ShoppingList : containsItems
+    Supply }o--|| Distributor: isDistributedBy
+    Products ||--o{ Supply : isProduct
+    Products ||--o{ ShoppingList: containsProduct
     Products }o--o| MinimumSupply : containsProduct
     Categories }o--o| MinimumSupply : containsCategory
 ```
