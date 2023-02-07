@@ -18,9 +18,13 @@ function ExpirationDateOverview(): ReactElement {
    const [expirationData, setExpirationData] = useState<ExpirationData>();
 
 
-   useEffect(() => {
+   function fetchExpirationData(): void {
       fetchData<ExpirationData>(`/api/${getPageId()}/expirationDateOverview/${dayLimit}`, setExpirationData);
-   }, []);
+   }
+
+
+   useEffect(fetchExpirationData, []);
+   useEffect(fetchExpirationData, [dayLimit]);
 
 
    function generateExpirationDateTable(): ReactElement | null {
