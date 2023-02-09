@@ -3,6 +3,9 @@
 // eslint-disable-next-line import/no-unresolved
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
+import { join } from 'node:path';
+import { URL } from 'node:url';
+import { writeFile } from 'node:fs/promises';
 import { createConnection } from 'mariadb';
 
 
@@ -428,6 +431,14 @@ try {
    read.close();
 
    console.log('\n\n\nDatabase Setup completed');
+
+   const dirname = new URL('.', import.meta.url).pathname;
+   const filePath = join(dirname, '../webserver/.env');
+   const fileContent = `DB_HOST=${host}\nDB_USER=${restrictedAppUser}\nDB_PWD=${restrictedAppUserPassword}`;
+
+   await writeFile(filePath, fileContent);
+
+   console.log('\n\n\nDatabase credentials saved to /src/backend/.env');
 
 } catch (error) {
 
