@@ -221,7 +221,7 @@ try {
 
    await dbConnection.query(
       `create view grocery_item_manager.GrocerySupplyOverview as
-      select c2.name as topcategory, c1.name as subcategory, p.name as product, cast(s.amount as char) as amount
+      select c2.name as topcategory, c1.name as subcategory, p.name as product, s.amount
       from (select productId, count(distinct id) as amount 
             from grocery_item_manager.Supply 
             where consumptionDate is null
