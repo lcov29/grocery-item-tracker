@@ -5,6 +5,36 @@ import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { createConnection } from 'mariadb';
 
+
+function getRandomIntegerBetweenInclusive(minInt, maxInt) {
+   return Math.floor(minInt + (maxInt - minInt + 1) * Math.random());
+}
+
+
+function generateBuyDate() {
+   const currentDate = Date.now();
+   const dateFourMonthsAgo = new Date();
+   dateFourMonthsAgo.setMonth(dateFourMonthsAgo.getMonth() - 3);
+   return new Date(getRandomIntegerBetweenInclusive(currentDate, dateFourMonthsAgo));
+}
+
+
+function generateExpirationDate(buyDate) {
+   const maximumExpirationDate = new Date(buyDate.getTime());
+   maximumExpirationDate.setMonth(maximumExpirationDate.getMonth() + 9);
+   return new Date(getRandomIntegerBetweenInclusive(buyDate.getTime(), maximumExpirationDate));
+}
+
+
+function generateBuyAndExpirationData() {
+   let buyDate = generateBuyDate();
+   let expirationDate = generateExpirationDate(buyDate);
+   buyDate = buyDate.toISOString().replaceAll(/T[0-9:.]*Z/g, '');
+   expirationDate = expirationDate.toISOString().replaceAll(/T[0-9:.]*Z/g, '');
+   return `"${buyDate}", "${expirationDate}"`;
+}
+
+
 const read = readline.createInterface({ input, output });
 
 
@@ -39,13 +69,13 @@ let appAdminUserPassword = '';
 
 
 while (!isValidConnectionOptions) {
-   host = await read.question('Host:\t');
+   host = await read.question('Host:\t\t');
 
    const answerDefaultPort = await read.question('\nIs your server listening to the default port 3306 (y/n)?\t');
    const isDefaultPort = ['y', 'Y'].includes(answerDefaultPort);
    const port = (isDefaultPort) ? 3306 : await read.question('Port:\t');
 
-   const user = await read.question('\nUser:\t');
+   const user = await read.question('\nUser:\t\t');
    const password = await read.question('\nPassword:\t');
 
    try {
@@ -64,8 +94,8 @@ try {
 
    console.log('\n\n\n=== Create Database \n');
 
-   await dbConnection.query('create database GroceryItemManager;');
-   console.log('\nSuccessfully created database "GroceryItemManager"');
+   await dbConnection.query('create database grocery_item_manager;');
+   console.log('\nSuccessfully created database "grocery_item_manager"');
 
 
 
@@ -75,7 +105,7 @@ try {
    const tableList = [];
 
    await dbConnection.query(
-      `create table GroceryItemManager.Currency (
+      `create table grocery_item_manager.Currency (
          name varchar(100) not null,
          symbol char(1) not null
       );`
@@ -84,7 +114,7 @@ try {
 
 
    await dbConnection.query(
-      `create table GroceryItemManager.WeightUnits (
+      `create table grocery_item_manager.WeightUnits (
          id int auto_increment,
          unit varchar(100) not null,
          symbol varchar(10) not null,
@@ -95,7 +125,7 @@ try {
 
 
    await dbConnection.query(
-      `create table GroceryItemManager.Distributor (
+      `create table grocery_item_manager.Distributor (
          id int auto_increment,
          name varchar(250) not null,
          primary key(id)
@@ -105,7 +135,7 @@ try {
 
 
    await dbConnection.query(
-      `create table GroceryItemManager.Categories (
+      `create table grocery_item_manager.Categories (
          id int auto_increment,
          name varchar(250) not null,
          parentCategoryId int default null,
@@ -117,7 +147,7 @@ try {
 
 
    await dbConnection.query(
-      `create table GroceryItemManager.Products (
+      `create table grocery_item_manager.Products (
          id int auto_increment,
          categoryId int not null,
          weightUnitId int,
@@ -133,7 +163,7 @@ try {
 
 
    await dbConnection.query(
-      `create table GroceryItemManager.ShoppingList (
+      `create table grocery_item_manager.ShoppingList (
          id int auto_increment,
          productId int not null,
          amount int not null,
@@ -147,7 +177,7 @@ try {
 
 
    await dbConnection.query(
-      `create table GroceryItemManager.Supply (
+      `create table grocery_item_manager.Supply (
          id int auto_increment,
          productId int not null,
          distributorId int not null,
@@ -165,7 +195,7 @@ try {
 
 
    await dbConnection.query(
-      `create table GroceryItemManager.MinimumSupply (
+      `create table grocery_item_manager.MinimumSupply (
          id int auto_increment,
          productId int,
          categoryId int,
@@ -186,26 +216,105 @@ try {
    // Create Views
 
    await dbConnection.query(
-      `create view GroceryItemManager.GrocerySupplyOverview as
+      `create view grocery_item_manager.GrocerySupplyOverview as
       select c2.name as topcategory, c1.name as subcategory, p.name as product, s.amount
       from (select productId, count(distinct id) as amount 
-            from GroceryItemManager.Supply 
+            from grocery_item_manager.Supply 
             where consumptionDate is null
             group by productId) as s 
-            inner join GroceryItemManager.Products as p on s.productId = p.id
-            inner join GroceryItemManager.Categories as c1 on p.categoryId = c1.id
-            inner join GroceryItemManager.Categories as c2 on c1.parentCategoryId = c2.id
+            inner join grocery_item_manager.Products as p on s.productId = p.id
+            inner join grocery_item_manager.Categories as c1 on p.categoryId = c1.id
+            inner join grocery_item_manager.Categories as c2 on c1.parentCategoryId = c2.id
       order by c2.id asc, c1.id asc;`
    );
 
 
    await dbConnection.query(
-      `create view GroceryItemManager.UpcomingExpirationDates as
+      `create view grocery_item_manager.UpcomingExpirationDates as
       select s.id, p.name as product, s.expirationDate
-      from (select id, productId, expirationDate from GroceryItemManager.Supply where consumptionDate is null) as s
-            inner join GroceryItemManager.Products as p on s.productId = p.id
+      from (select id, productId, expirationDate from grocery_item_manager.Supply where consumptionDate is null) as s
+            inner join grocery_item_manager.Products as p on s.productId = p.id
       order by s.expirationDate asc;`
    );
+
+
+
+   // Insert Demo Data If Requested
+
+   const answerCreateDemoData = await read.question('\n\n\nInsert demo data in the app database (y/n)?\t');
+   const isDemoDataRequired = ['Y', 'y'].includes(answerCreateDemoData);
+
+   if (isDemoDataRequired) {
+      try {
+
+         await dbConnection.query('insert into grocery_item_manager.Currency values ("Euro", "€");');
+
+         await dbConnection.query(
+            `insert into grocery_item_manager.WeightUnits (unit, symbol)
+            values ("milliliter", "ml"), ("gramm", 'g');`
+         );
+
+         await dbConnection.query(
+            `insert into grocery_item_manager.Distributor(name)
+            values ("Aldi"), ("Netto"), ("Super U"), ("Walmart");`
+         );
+
+         await dbConnection.query(
+            `insert into grocery_item_manager.Categories(name, parentCategoryid) 
+            values ("Food", null), ("Beverages", null), ("Canned Food", 1), 
+            ("Instant Meal", 1), ("Bread", 1), ("Mineral Water", 2),
+            ("Coffee", 2), ("Milk", 2);`
+         );
+
+         await dbConnection.query(
+            `insert into grocery_item_manager.Products (categoryId, weightUnitId, weight, name)
+            values 
+            (3, 2, 800, "Chicken Soup"),
+            (3, 1, 400, "Tomato Soup"),
+            (4, 2, 250, "Noodle In Tomato Sauce"),
+            (4, 2, 252, "Noodle In Cheese Sauce"),
+            (5, 2, 300, "Baguette"),
+            (5, 2, 500, "Toast"),
+            (5, 2, 400, "Croissant"),
+            (6, 1, 9000, "Mineral Water (6 x 1,5 Liter)"), 
+            (6, 1, 9000, "Sparkling Mineral Water (6 x 1,5 Liter)"),
+            (7, 1, 1000, "Espresso"),
+            (7, 1, 500, "Standard Coffee"),
+            (8, 1, 1000, "Milk (fat free)"),
+            (8, 1, 1000, "Milk (standard fat)");`
+         );
+
+         await dbConnection.query(
+            `insert into grocery_item_manager.Supply (productId, distributorId, price, buyDate, expirationDate, consumptionDate)
+            values
+            (1, 1, 2.50, ${generateBuyAndExpirationData()}, null),
+            (1, 1, 2.24, ${generateBuyAndExpirationData()}, null),
+            (1, 1, 2.65, ${generateBuyAndExpirationData()}, null),
+            (1, 1, 2.50, ${generateBuyAndExpirationData()}, null),
+            (2, 2, 0.90, ${generateBuyAndExpirationData()}, null),
+            (2, 2, 0.56, ${generateBuyAndExpirationData()}, null),
+            (3, 4, 1.50, ${generateBuyAndExpirationData()}, null),
+            (3, 4, 1.40, ${generateBuyAndExpirationData()}, null),
+            (4, 3, 1.70, ${generateBuyAndExpirationData()}, null),
+            (5, 1, 3.75, ${generateBuyAndExpirationData()}, null),
+            (5, 1, 3.36, ${generateBuyAndExpirationData()}, null),
+            (6, 3, 2.50, ${generateBuyAndExpirationData()}, null),
+            (6, 3, 2.22, ${generateBuyAndExpirationData()}, null),
+            (7, 2, 1.95, ${generateBuyAndExpirationData()}, null),
+            (7, 2, 1.75, ${generateBuyAndExpirationData()}, null),
+            (8, 1, 9.45, ${generateBuyAndExpirationData()}, null),
+            (8, 2, 7.23, ${generateBuyAndExpirationData()}, null),
+            (9, 3, 5.89, ${generateBuyAndExpirationData()}, null),
+            (10, 2, 10.25, ${generateBuyAndExpirationData()}, null),
+            (11, 2, 06.43, ${generateBuyAndExpirationData()}, null),
+            (12, 3, 5.25, ${generateBuyAndExpirationData()}, null),
+            (13, 3, 2.60, ${generateBuyAndExpirationData()}, null);`
+         );
+
+      } catch (error) {
+         console.log(`Failed to insert demo data:\n${error}`);
+      }
+   }
 
 
 
@@ -219,7 +328,7 @@ try {
 
    while (!isValidAppUser) {
       restrictedAppUser = await read.question('Application User:\t');
-      restrictedAppUserPassword = await read.question('Password:\t');
+      restrictedAppUserPassword = await read.question('Password:\t\t');
 
       try {
          await dbConnection.query(
@@ -233,13 +342,13 @@ try {
 
          await dbConnection.query(
             `grant select 
-            on GroceryItemManager.UpcomingExpirationDates
+            on grocery_item_manager.UpcomingExpirationDates
             to groceryItemManagerUserRole;`
          );
 
          await dbConnection.query(
             `grant select 
-            on GroceryItemManager.GrocerySupplyOverview
+            on grocery_item_manager.GrocerySupplyOverview
             to groceryItemManagerUserRole;`
          );
 
@@ -265,9 +374,10 @@ try {
    }
 
 
+
    // Create Optional Admin User And Add Privileges
 
-   const answerAdminUserRequired = await read.question('\n\n\nCreate admin user with full rights to the app database (y/n)?');
+   const answerAdminUserRequired = await read.question('\n\n\nCreate admin user with full rights to the app database (y/n)?\t');
    const isAppAdminUserRequired = ['Y', 'y'].includes(answerAdminUserRequired);
 
    if (isAppAdminUserRequired) {
@@ -279,7 +389,7 @@ try {
 
       while (!isValidAppAdminUser) {
          appAdminUser = await read.question('Application Admin User:\t');
-         appAdminUserPassword = await read.question('Password:\t');
+         appAdminUserPassword = await read.question('Password:\t\t');
 
          try {
 
@@ -292,7 +402,7 @@ try {
 
             await dbConnection.query('create role "groceryItemManagerAdminRole";');
 
-            await dbConnection.query('grant all on GroceryItemManager.* to "groceryItemManagerAdminRole";');
+            await dbConnection.query('grant all on grocery_item_manager.* to "groceryItemManagerAdminRole";');
 
             await dbConnection.query(
                `grant groceryItemManagerAdminRole
@@ -317,7 +427,7 @@ try {
 
    read.close();
 
-   console.log('Database Setup completed');
+   console.log('\n\n\nDatabase Setup completed');
 
 } catch (error) {
 
@@ -328,10 +438,10 @@ try {
    console.log('\n\nResetting created entities...');
 
    try {
-      await dbConnection.query('drop database GroceryItemManager');
-      console.log('Dropped database GroceryItemManager');
+      await dbConnection.query('drop database grocery_item_manager');
+      console.log('Dropped database grocery_item_manager');
    } catch (error2) {
-      console.log(`Failed to drop database GroceryItemManager\n\n${error}`);
+      console.log(`Failed to drop database grocery_item_manager\n\n${error}`);
    }
 
    try {
