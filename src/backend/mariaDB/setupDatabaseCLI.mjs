@@ -65,6 +65,7 @@ console.log('\n\n\n=== MariaDB Server Connection Information\n');
 let isValidConnectionOptions = false;
 let dbConnection = null;
 let host = '';
+let port = '';
 let restrictedAppUser = '';
 let restrictedAppUserPassword = '';
 let appAdminUser = '';
@@ -76,7 +77,7 @@ while (!isValidConnectionOptions) {
 
    const answerDefaultPort = await read.question('\nIs your server listening to the default port 3306 (y/n)?\t');
    const isDefaultPort = ['y', 'Y'].includes(answerDefaultPort);
-   const port = (isDefaultPort) ? 3306 : await read.question('Port:\t');
+   port = (isDefaultPort) ? 3306 : await read.question('Port:\t');
 
    const user = await read.question('\nUser:\t\t');
    const password = await read.question('\nPassword:\t');
@@ -220,7 +221,7 @@ try {
 
    await dbConnection.query(
       `create view grocery_item_manager.GrocerySupplyOverview as
-      select c2.name as topcategory, c1.name as subcategory, p.name as product, s.amount
+      select c2.name as topcategory, c1.name as subcategory, p.name as product, cast(s.amount as char) as amount
       from (select productId, count(distinct id) as amount 
             from grocery_item_manager.Supply 
             where consumptionDate is null
@@ -433,12 +434,12 @@ try {
    console.log('\n\n\nDatabase Setup completed');
 
    const dirname = new URL('.', import.meta.url).pathname;
-   const filePath = join(dirname, '../webserver/.env');
-   const fileContent = `DB_HOST=${host}\nDB_USER=${restrictedAppUser}\nDB_PWD=${restrictedAppUserPassword}`;
+   const filePath = join(dirname, '../../../dist/.env');
+   const fileContent = `DB_HOST=${host}\nDB_PORT=${port}\nDB_USER=${restrictedAppUser}\nDB_PWD=${restrictedAppUserPassword}`;
 
    await writeFile(filePath, fileContent);
 
-   console.log('\n\n\nDatabase credentials saved to /src/backend/.env');
+   console.log('\n\n\nDatabase credentials saved to dist/.env');
 
 } catch (error) {
 
