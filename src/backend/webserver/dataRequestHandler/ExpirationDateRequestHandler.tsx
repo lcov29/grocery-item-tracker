@@ -1,46 +1,33 @@
-import { expirationDateData } from '../demoData';
+import { Request } from 'express';
+import { PoolConnection } from 'mariadb';
+import { ExpirationDateDatabaseRecord, ExpirationDateFrontendData } from '../../../tsDataTypes/tsTypeExpirationDateOverview';
 
 
-function calculateDayDifference(dateString: string): number {
-   const millisecondsDifference = new Date(dateString).getTime() - Date.now();
-   const millisecondsPerDay = 1000 * 60 * 60 * 24;
-   return Math.round(millisecondsDifference / millisecondsPerDay);
+function parseResultSet(data: ExpirationDateDatabaseRecord[]): ExpirationDateFrontendData {
+   return { data };
 }
 
 
-function compareDates(dateString1: string, dateString2: string): number {
-   return new Date(dateString1).getTime() - new Date(dateString2).getTime();
-}
+async function handleExpirationDateRequest(
+   request: Request,
+   dbConnection: PoolConnection,
+   argumentList: string[]
+): Promise<ExpirationDateFrontendData> {
 
+   const dayLimit = argumentList[0];
 
-function formatDate(dateString: string): string {
-   return new Date(dateString).toLocaleDateString('de-DE');
-}
-
-
-function handleExpirationDataRequest(dayLimit: string) {
-   const numberOfDays = parseInt(dayLimit, 10);
-
-   if (Number.isNaN(numberOfDays)) {
-      return { data: [] };
-   }
-
-   let result;
-
-   result = expirationDateData.data.filter(
-      (element) => calculateDayDifference(element.expirationDate) < numberOfDays
+   let resultSet: ExpirationDateDatabaseRecord[];
+   resultSet = await dbConnection.query(
+      `select * 
+      from UpcomingExpirationDates
+      where datediff(expirationDate, now()) <= ?;`,
+      [dayLimit]
    );
 
-   result.sort((entry1, entry2) => compareDates(entry1.expirationDate, entry2.expirationDate));
-
-   result = result.map(
-      (element) => ({ ...element, expirationDate: formatDate(element.expirationDate) })
-   );
-
-   result = { data: result };
-
-   return result;
+   resultSet = resultSet.slice();
+   console.log(resultSet);
+   return parseResultSet(resultSet);
 }
 
 
-export { handleExpirationDataRequest };
+export { handleExpirationDateRequest };
