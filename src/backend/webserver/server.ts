@@ -47,7 +47,6 @@ async function handleRequest(param: HandleRequestParam): Promise<void> {
       await dbConnection.release();
    } catch (error) {
       await dbConnection?.release();
-      console.log(error);
    }
 }
 
