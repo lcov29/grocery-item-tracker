@@ -2,6 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { Counter } from '../../base-components/counter/Counter';
 import { Table } from '../../base-components/table/Table';
 import { fetchData, getPageId } from '../../../utility/fetchServerData';
+import './expirationDateOverview.css';
 
 
 type ExpirationData = {
@@ -32,7 +33,7 @@ function ExpirationDateOverview(): ReactElement {
       if (isDataRenderable) {
          const headerList = ['Id', 'Product', 'Expiration Date'];
          const rowList = expirationData.data.map(
-            (record) => [`${record.id}`, record.product, record.expirationDate]
+            (record) => [`${record.id}`, record.product, new Date(record.expirationDate).toLocaleDateString('de-DE')]
          );
          return <Table headerList={headerList} rowList={rowList} />;
       }
