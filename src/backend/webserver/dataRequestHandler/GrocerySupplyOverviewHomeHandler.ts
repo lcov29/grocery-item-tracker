@@ -9,17 +9,17 @@ type SupplyOverviewRecord = {
    amount: string
 };
 
-type PropertyName = 'topcategory' | 'subcategory';
+type CategoryName = 'topcategory' | 'subcategory';
 
 
-function getUniquePropertyValueList(resultSet: SupplyOverviewRecord[], propertyName: PropertyName):
+function getUniquePropertyValueList(resultSet: SupplyOverviewRecord[], categoryName: CategoryName):
 string[] {
    const topCategoryList = [] as string[];
 
    const uniqueValueFn = (element: SupplyOverviewRecord) => {
-      const isCategoryInList = topCategoryList.includes(element[propertyName]);
+      const isCategoryInList = topCategoryList.includes(element[categoryName]);
       if (!isCategoryInList) {
-         topCategoryList.push(element[propertyName]);
+         topCategoryList.push(element[categoryName]);
       }
    };
 
@@ -60,7 +60,7 @@ SupplyOverviewRecord[][] {
 }
 
 
-function parseResultSet(resultSet: SupplyOverviewRecord[]): any[] {
+function parseResultSet(resultSet: SupplyOverviewRecord[]): { data: any[] } {
    const parsedTopCategoryList = [];
    const topCategoryList = splitResultSetByTopCategory(resultSet);
 
@@ -100,17 +100,16 @@ function parseResultSet(resultSet: SupplyOverviewRecord[]): any[] {
 
    });
 
-   return parsedTopCategoryList;
+   return { data: parsedTopCategoryList };
 }
 
 
 async function handleSupplyOverviewHomeRequest(request: Request, dbConnection: PoolConnection):
-Promise<any[]> {
+Promise<{ data: any[] }> {
 
    let resultSet: SupplyOverviewRecord[] = await dbConnection.query('select * from GrocerySupplyOverview;');
    resultSet = resultSet.slice();
-   resultSet = parseResultSet(resultSet);
-   return resultSet;
+   return parseResultSet(resultSet);
 }
 
 
