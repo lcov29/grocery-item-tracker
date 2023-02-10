@@ -22,14 +22,20 @@
 
 ```mermaid
 erDiagram
-    Currency {
-        name string
-        symbol char
-    }
-    WeightUnits {
+    Localization {
         id int PK
-        unit string 
-        symbol string
+        language string
+        currencySymbol string
+        localeCode string
+    }
+    MeasurementUnits {
+        id int PK
+        unitName string
+        unitSymbol string
+    }
+    MeasurementUnitsMap {
+        localizationId int FK
+        measurementUnitId int FK
     }
     Categories {
         id int PK
@@ -39,7 +45,7 @@ erDiagram
     Products {
         id int PK
         categoryId int FK
-        weightUnitId int FK
+        measurementUnitId int FK
         weight int
         name string
     }
@@ -73,6 +79,9 @@ erDiagram
     Products ||--o{ Supply : isProduct
     Products ||--o{ ShoppingList: containsProduct
     Products }o--o| MinimumSupply : containsProduct
+    Products }o--|| MeasurementUnits: isMeasurement
+    MeasurementUnits ||--o{ MeasurementUnitsMap: isUnit
+    MeasurementUnitsMap }o--|| Localization: isLocalization
     Categories }o--o| MinimumSupply : containsCategory
 ```
 
