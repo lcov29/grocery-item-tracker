@@ -25,7 +25,6 @@ async function handleExpirationDateRequest(
    );
 
    resultSet = resultSet.slice();
-   console.log(resultSet);
    return parseResultSet(resultSet);
 }
 
