@@ -1,22 +1,23 @@
 import { Request } from 'express';
 import { PoolConnection } from 'mariadb';
+import {
+   SupplyOverviewDatabaseRecord,
+   CategoryName,
+   SupplyOverviewFrontendData,
+   TopCategory,
+   SubCategory,
+   ProductData
+} from '../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
 
 
-type SupplyOverviewRecord = {
-   topcategory: string,
-   subcategory: string,
-   product: string,
-   amount: string
-};
+function getUniquePropertyValueList(
+   resultSet: SupplyOverviewDatabaseRecord[],
+   categoryName: CategoryName
+): string[] {
 
-type CategoryName = 'topcategory' | 'subcategory';
-
-
-function getUniquePropertyValueList(resultSet: SupplyOverviewRecord[], categoryName: CategoryName):
-string[] {
    const topCategoryList = [] as string[];
 
-   const uniqueValueFn = (element: SupplyOverviewRecord) => {
+   const uniqueValueFn = (element: SupplyOverviewDatabaseRecord) => {
       const isCategoryInList = topCategoryList.includes(element[categoryName]);
       if (!isCategoryInList) {
          topCategoryList.push(element[categoryName]);
@@ -28,9 +29,12 @@ string[] {
 }
 
 
-function splitResultSetByTopCategory(resultSet: SupplyOverviewRecord[]): SupplyOverviewRecord[][] {
+function splitResultSetByTopCategory(
+   resultSet: SupplyOverviewDatabaseRecord[]
+): SupplyOverviewDatabaseRecord[][] {
+
    const topCategoryNameList = getUniquePropertyValueList(resultSet, 'topcategory');
-   const outputList = [] as SupplyOverviewRecord[][];
+   const outputList = [] as SupplyOverviewDatabaseRecord[][];
 
    topCategoryNameList.forEach((topCategoryName) => {
       const topCategoryRecordList = resultSet.filter(
@@ -43,10 +47,10 @@ function splitResultSetByTopCategory(resultSet: SupplyOverviewRecord[]): SupplyO
 }
 
 
-function splitResultSetBySubCategory(topCategoryRecordSet: SupplyOverviewRecord[]):
-SupplyOverviewRecord[][] {
+function splitResultSetBySubCategory(topCategoryRecordSet: SupplyOverviewDatabaseRecord[]):
+SupplyOverviewDatabaseRecord[][] {
 
-   const outputList = [] as SupplyOverviewRecord[][];
+   const outputList = [] as SupplyOverviewDatabaseRecord[][];
    const subCategoryNameList = getUniquePropertyValueList(topCategoryRecordSet, 'subcategory');
 
    subCategoryNameList.forEach((subCategoryName) => {
@@ -60,8 +64,8 @@ SupplyOverviewRecord[][] {
 }
 
 
-function parseResultSet(resultSet: SupplyOverviewRecord[]): { data: any[] } {
-   const parsedTopCategoryList = [];
+function parseResultSet(resultSet: SupplyOverviewDatabaseRecord[]): SupplyOverviewFrontendData {
+   const parsedTopCategoryList: TopCategory[] = [];
    const topCategoryList = splitResultSetByTopCategory(resultSet);
 
    topCategoryList.forEach((topCategory) => {
@@ -69,13 +73,13 @@ function parseResultSet(resultSet: SupplyOverviewRecord[]): { data: any[] } {
       const topCategoryObj = {
          name: topCategory[0].topcategory,
          total: topCategory.reduce((sum, curVal) => sum + parseInt(curVal.amount, 10), 0),
-         subCategoryList: [] as any[]
+         subCategoryList: [] as SubCategory[]
       };
 
       parsedTopCategoryList.push(topCategoryObj);
 
 
-      const parsedSubCategoryList = [];
+      const parsedSubCategoryList: SubCategory[] = [];
       const subCategoryList = splitResultSetBySubCategory(topCategory);
 
       subCategoryList.forEach((subCategory) => {
@@ -83,11 +87,11 @@ function parseResultSet(resultSet: SupplyOverviewRecord[]): { data: any[] } {
          const subCategoryObj = {
             name: subCategory[0].subcategory,
             total: subCategory.reduce((sum, curVal) => sum + parseInt(curVal.amount, 10), 0),
-            productList: [] as any[]
+            productList: [] as ProductData[]
          };
 
-         const parsedProductList = subCategory.map((element) => (
-            { name: element.product, total: element.amount }
+         const parsedProductList: ProductData[] = subCategory.map((element) => (
+            { name: element.product, total: parseInt(element.amount, 10) }
          ));
 
          subCategoryObj.productList = parsedProductList;
@@ -107,7 +111,7 @@ function parseResultSet(resultSet: SupplyOverviewRecord[]): { data: any[] } {
 async function handleSupplyOverviewHomeRequest(request: Request, dbConnection: PoolConnection):
 Promise<{ data: any[] }> {
 
-   let resultSet: SupplyOverviewRecord[] = await dbConnection.query('select * from GrocerySupplyOverview;');
+   let resultSet: SupplyOverviewDatabaseRecord[] = await dbConnection.query('select * from GrocerySupplyOverview;');
    resultSet = resultSet.slice();
    return parseResultSet(resultSet);
 }

@@ -2,34 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { fetchData, getPageId } from '../../../utility/fetchServerData';
 import { Category } from '../../base-components/category/Category';
 import { Table } from '../../base-components/table/Table';
-
-
-type ProductData = {
-   name: string,
-   total: number,
-   minimum?: number
-};
-
-
-type SubCategory = {
-   name: string,
-   total: number,
-   minimum?: number,
-   productList?: ProductData[]
-};
-
-
-type TopCategory = {
-   name: string,
-   total: number,
-   minimum?: number,
-   subCategoryList?: SubCategory[]
-};
-
-
-type SupplyOverviewData = {
-   data: TopCategory[]
-};
+import { ProductData, SubCategory, TopCategory, SupplyOverviewFrontendData } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
 
 
 function generateProductTable(productList: ProductData[] | undefined): ReactElement[] | [] {
@@ -76,11 +49,11 @@ function generateTopCategory(topCategory: TopCategory, key: number): ReactElemen
 
 
 function GrocerySupplyOverviewHome(): ReactElement | null {
-   const [supplyOverviewData, setSupplyOverviewData] = useState<SupplyOverviewData>();
+   const [supplyOverviewData, setSupplyOverviewData] = useState<SupplyOverviewFrontendData>();
 
 
    useEffect(() => {
-      fetchData<SupplyOverviewData>(`/api/${getPageId()}/supplyOverview`, setSupplyOverviewData);
+      fetchData<SupplyOverviewFrontendData>(`/api/${getPageId()}/supplyOverview`, setSupplyOverviewData);
    }, []);
 
 
