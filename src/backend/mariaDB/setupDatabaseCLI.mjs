@@ -7,7 +7,6 @@ import { join } from 'node:path';
 import { URL } from 'node:url';
 import { writeFile } from 'node:fs/promises';
 import { createConnection } from 'mariadb';
-import { table } from 'node:console';
 
 
 function getRandomIntegerBetweenInclusive(minInt, maxInt) {
@@ -112,18 +111,25 @@ try {
 
    await dbConnection.query(
       `create table grocery_item_manager.Localization (
-         id int,
+         id int auto_increment,
          language varchar(100) not null,
          currencySymbol varchar(10) not null,
          localeCode varchar(50) not null,
-         volumeUnitName varchar(100) not null,
-         volumeUnitSymbol varchar(10) not null,
-         weightUnitName varchar(100) not null,
-         weightUnitSymbol varchar(100) not null,
          primary key(id)
       );`
    );
    tableList.push({ table: 'Localization' });
+
+
+   await dbConnection.query(
+      `create table grocery_item_manager.MeasurementUnits (
+         id int auto_increment,
+         unitName varchar(50),
+         unitSymbol varchar(10),
+         primary key(id) 
+      );`
+   );
+   tableList.push({ table: 'MeasurementUnits' });
 
 
    await dbConnection.query(
@@ -134,6 +140,18 @@ try {
       );`
    );
    tableList.push({ table: 'Distributor' });
+
+
+   await dbConnection.query(
+      `create table grocery_item_manager.MeasurementUnitsMap (
+         localizationId int not null,
+         measurementUnitId int not null,
+         primary key(localizationId, measurementUnitId),
+         foreign key(localizationId) references Localization(id) on update cascade,
+         foreign key(measurementUnitId) references MeasurementUnits(id) on update cascade
+      );`
+   );
+   tableList.push({ table: 'MeasurementUnitsMap' });
 
 
    await dbConnection.query(
@@ -152,12 +170,12 @@ try {
       `create table grocery_item_manager.Products (
          id int auto_increment,
          categoryId int not null,
-         weightUnitId int,
+         measurementUnitId int,
          weight int not null,
          name varchar(250) not null,
          constraint constrWeight check(weight > 0),
          primary key(id),
-         foreign key(weightUnitId) references WeightUnits(id) on update cascade,
+         foreign key(measurementUnitId) references MeasurementUnits(id) on update cascade,
          foreign key(categoryId) references Categories(id) on update cascade
       );`
    );
@@ -241,6 +259,28 @@ try {
 
 
 
+   // Insert Standard Data
+
+   await dbConnection.query(
+      `insert into grocery_item_manager.Localization (language, currencySymbol, localeCode)
+      values ("USA", "$", "en-US"), ("UK", "£", "en-GB" ), ("France", "€", "fr-FR"),
+             ("Germany", "€", "de-DE"), ("Spain", "€", "es-ES");`
+   );
+
+
+   await dbConnection.query(
+      `insert into grocery_item_manager.MeasurementUnits (unitName, unitSymbol)
+      values ("gallon", "gal"), ("pound", "lb"), ("liter", "L"), ("gramm", 'g');`
+   );
+
+
+   await dbConnection.query(
+      `insert into grocery_item_manager.MeasurementUnitsMap
+      values (1, 1), (1, 2), (2, 1), (2, 2), (3, 3), (3, 4), (4, 3), (4, 4), (5, 3), (5, 4);`
+   );
+
+
+
    // Insert Demo Data If Requested
 
    const answerCreateDemoData = await read.question('\n\n\nInsert demo data in the app database (y/n)?\t');
@@ -249,17 +289,11 @@ try {
    if (isDemoDataRequired) {
       try {
 
-         await dbConnection.query('insert into grocery_item_manager.Currency values ("Euro", "€");');
-
-         await dbConnection.query(
-            `insert into grocery_item_manager.WeightUnits (unit, symbol)
-            values ("milliliter", "ml"), ("gramm", 'g');`
-         );
-
          await dbConnection.query(
             `insert into grocery_item_manager.Distributor(name)
             values ("Aldi"), ("Netto"), ("Super U"), ("Walmart");`
          );
+
 
          await dbConnection.query(
             `insert into grocery_item_manager.Categories(name, parentCategoryid) 
@@ -268,8 +302,9 @@ try {
             ("Coffee", 2), ("Milk", 2);`
          );
 
+
          await dbConnection.query(
-            `insert into grocery_item_manager.Products (categoryId, weightUnitId, weight, name)
+            `insert into grocery_item_manager.Products (categoryId, measurementUnitId, weight, name)
             values 
             (3, 2, 800, "Chicken Soup"),
             (3, 1, 400, "Tomato Soup"),
@@ -285,6 +320,7 @@ try {
             (8, 1, 1000, "Milk (fat free)"),
             (8, 1, 1000, "Milk (standard fat)");`
          );
+
 
          await dbConnection.query(
             `insert into grocery_item_manager.Supply (productId, distributorId, price, buyDate, expirationDate, consumptionDate)
@@ -333,6 +369,7 @@ try {
       restrictedAppUserPassword = await read.question('Password:\t\t');
 
       try {
+
          await dbConnection.query(
             `create user ?@?
                identified by ?
@@ -340,7 +377,9 @@ try {
             [restrictedAppUser, host, restrictedAppUserPassword]
          );
 
+
          await dbConnection.query('create role groceryItemManagerUserRole;');
+
 
          await dbConnection.query(
             `grant select 
@@ -348,17 +387,20 @@ try {
             to groceryItemManagerUserRole;`
          );
 
+
          await dbConnection.query(
             `grant select 
             on grocery_item_manager.GrocerySupplyOverview
             to groceryItemManagerUserRole;`
          );
 
+
          await dbConnection.query(
             `grant groceryItemManagerUserRole
             to ?@?;`,
             [restrictedAppUser, host]
          );
+
 
          await dbConnection.query(
             `set default role groceryItemManagerUserRole 
@@ -402,15 +444,19 @@ try {
                [appAdminUser, host, appAdminUserPassword]
             );
 
+
             await dbConnection.query('create role "groceryItemManagerAdminRole";');
 
+
             await dbConnection.query('grant all on grocery_item_manager.* to "groceryItemManagerAdminRole";');
+
 
             await dbConnection.query(
                `grant groceryItemManagerAdminRole
                to ?@?;`,
                [appAdminUser, host]
             );
+
 
             await dbConnection.query(
                `set default role groceryItemManagerAdminRole 
