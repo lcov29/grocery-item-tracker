@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import { URL } from 'node:url';
 import { writeFile } from 'node:fs/promises';
 import { createConnection } from 'mariadb';
+import { table } from 'node:console';
 
 
 function getRandomIntegerBetweenInclusive(minInt, maxInt) {
@@ -108,24 +109,21 @@ try {
    console.log('\n\n\n=== Create Tables \n');
    const tableList = [];
 
-   await dbConnection.query(
-      `create table grocery_item_manager.Currency (
-         name varchar(100) not null,
-         symbol char(1) not null
-      );`
-   );
-   tableList.push({ table: 'Currency' });
-
 
    await dbConnection.query(
-      `create table grocery_item_manager.WeightUnits (
-         id int auto_increment,
-         unit varchar(100) not null,
-         symbol varchar(10) not null,
+      `create table grocery_item_manager.Localization (
+         id int,
+         language varchar(100) not null,
+         currencySymbol varchar(10) not null,
+         localeCode varchar(50) not null,
+         volumeUnitName varchar(100) not null,
+         volumeUnitSymbol varchar(10) not null,
+         weightUnitName varchar(100) not null,
+         weightUnitSymbol varchar(100) not null,
          primary key(id)
       );`
    );
-   tableList.push({ table: 'WeightUnits' });
+   tableList.push({ table: 'Localization' });
 
 
    await dbConnection.query(
