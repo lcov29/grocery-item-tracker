@@ -109,9 +109,9 @@ function parseResultSet(resultSet: SupplyOverviewDatabaseRecord[]): SupplyOvervi
 
 
 async function handleSupplyOverviewHomeRequest(request: Request, dbConnection: PoolConnection):
-Promise<{ data: any[] }> {
-
-   let resultSet: SupplyOverviewDatabaseRecord[] = await dbConnection.query('select * from GrocerySupplyOverview;');
+Promise<SupplyOverviewFrontendData> {
+   let resultSet: SupplyOverviewDatabaseRecord[];
+   resultSet = await dbConnection.query('select * from GrocerySupplyOverview;');
    resultSet = resultSet.slice();
    return parseResultSet(resultSet);
 }
