@@ -97,7 +97,6 @@ try {
    // Create Database
 
    console.log('\n\n\n=== Create Database \n');
-
    await dbConnection.query('create database grocery_item_manager;');
    console.log('\nSuccessfully created database "grocery_item_manager"');
 
