@@ -53,7 +53,9 @@ function ExpirationDateOverview(): ReactElement {
                suffix="Days"
             />
          </div>
-         { generateExpirationDateTable() }
+         <div className="expiration-date-table">
+            { generateExpirationDateTable() }
+         </div>
       </>
    );
 }
