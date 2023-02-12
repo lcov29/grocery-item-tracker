@@ -15,8 +15,10 @@ function ProductDataAddDialog(): ReactElement {
             <SearchableDropdown id="input-category-name" optionList={['Category 1', 'Category 2']} />
             <label htmlFor="input-subcategory-name">Subcategory</label>
             <SearchableDropdown id="input-subcategory-name" optionList={['Subcategory 1', 'Subcategory 2']} />
-            <label htmlFor="input-distributor">Distributor</label>
-            <SearchableDropdown id="input-distributor" optionList={['Distributor 1', 'Distributor 2']} />
+            <label htmlFor="input-weight">Weight</label>
+            <input type="number" id="input-weight" />
+            <label htmlFor="input-unit">Unit</label>
+            <SearchableDropdown id="input-unit" optionList={['g', 'L']} />
             <div id="save-button-container">
                <button type="button" onClick={() => {}}>Save</button>
             </div>
