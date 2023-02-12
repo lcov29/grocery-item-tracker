@@ -1,60 +1,45 @@
-import React, { ReactElement } from 'react';
-import { Table } from '../../base-components/table/Table';
+import React, { ReactElement, useState } from 'react';
+import { GrocerySupplyAddItemDialog } from '../../application-components/grocerySupplyAddItemDialog/GrocerySupplyAddItemDialog';
+import { ProductDataAddDialog } from '../../application-components/productDataAddDialog/ProductDataAddDialog';
+import { ProductSelectionDialog } from '../../application-components/productSelectionDialog/ProductSelectionDialog';
 import './groceryItemAdd.css';
 
 
+type PageState = 'TopLevelState' | 'ItemAddState' | 'ProductInformationAddState';
+
+type GroceryItemRecord = {
+   productId: number,
+   distributorId: number,
+   price: number,
+   buyDate: Date,
+   expirationDate: Date
+};
+
+
 function GroceryItemAdd(): ReactElement {
+
+   // const [pageState, setPageState] = useState<PageState>('TopLevelState');
+   const [pageState, setPageState] = useState<PageState>('ProductInformationAddState');
+   const [groceryItemList, setGroceryItemList] = useState<GroceryItemRecord[]>();
+
+
+   function renderDialog(): ReactElement | null {
+      switch (pageState) {
+         case 'TopLevelState':
+            return <GrocerySupplyAddItemDialog />;
+         case 'ItemAddState':
+            return <ProductSelectionDialog />;
+         case 'ProductInformationAddState':
+            return <ProductDataAddDialog />;
+         default:
+            return null;
+      }
+   }
+
+
    return (
       <div id="grocery-item-add-container">
-         <h2>Add Grocery Items</h2>
-         <div id="import-shopping-list-button-container">
-            <button type="button" onClick={() => {}}>
-               Import Shopping List
-            </button>
-         </div>
-         <Table
-            headerList={['Id', 'Product', '']}
-            rowList={[
-               [
-                  '123',
-                  'Spaghetti',
-                  <button
-                     type="button"
-                     className="item-remove-button"
-                     onClick={() => {}}
-                  >
-                     Remove
-                  </button>
-               ],
-               [
-                  '754',
-                  'Banana',
-                  <button
-                     type="button"
-                     className="item-remove-button"
-                     onClick={() => {}}
-                  >
-                     Remove
-                  </button>
-               ],
-               [
-                  '',
-                  '',
-                  <button
-                     type="button"
-                     className="item-add-button"
-                     onClick={() => {}}
-                  >
-                     Add Item
-                  </button>
-               ],
-            ]}
-         />
-         <div id="save-button-container">
-            <button type="button" onClick={() => {}}>
-               Save
-            </button>
-         </div>
+         { renderDialog() }
       </div>
    );
 }
