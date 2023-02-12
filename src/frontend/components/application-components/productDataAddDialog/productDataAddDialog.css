@@ -1,3 +1,17 @@
+#input-weight {
+   padding: .5rem;
+}
+
+#input-weight-container {
+   display: flex;
+   justify-content: space-between;
+   column-gap: .5rem;
+}
+
+#input-product-name {
+   padding: .5rem;
+}
+
 #product-data-add-form {
    display: grid;
    grid-template-columns: 1fr 7fr;
