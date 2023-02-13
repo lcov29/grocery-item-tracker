@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import * as dotenv from 'dotenv';
 import { handleSupplyOverviewHomeRequest } from './dataRequestHandler/GrocerySupplyOverviewHomeHandler';
 import { handleExpirationDateRequest } from './dataRequestHandler/ExpirationDateRequestHandler';
+import { handleCategoryDataRequest } from './dataRequestHandler/CategoryRequestHandler';
 
 
 dotenv.config();
@@ -71,6 +72,17 @@ app.get('/api/Home/expirationDateOverview/:dayLimit', async (request, response) 
       response,
       handler: handleExpirationDateRequest,
       argumentList: [request.params.dayLimit]
+   };
+   await handleRequest(param);
+});
+
+
+app.get('/api/GroceryItemAdd/categoryData', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleCategoryDataRequest,
+      argumentList: [] as string[]
    };
    await handleRequest(param);
 });
