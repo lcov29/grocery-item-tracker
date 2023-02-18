@@ -11,7 +11,7 @@ type SearchableDropdownProps = {
 
 function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
    const { id, placeholderText = '', optionList } = props;
-   const inputId = `${id}-input`;
+   const inputId = id;
    const datalistId = `${id}-list`;
 
 
