@@ -1,10 +1,12 @@
 import express, { Request, Response } from 'express';
 import { createPool, PoolConnection } from 'mariadb';
+import bodyParser from 'body-parser';
 import { createServer } from 'node:http';
 import * as dotenv from 'dotenv';
 import { handleSupplyOverviewHomeRequest } from './dataRequestHandler/GrocerySupplyOverviewHomeHandler';
 import { handleExpirationDateRequest } from './dataRequestHandler/ExpirationDateRequestHandler';
 import { handleCategoryDataRequest } from './dataRequestHandler/CategoryRequestHandler';
+import { handleMeasurementUnitRequest } from './dataRequestHandler/MeasurementUnitRequestHandler';
 
 
 dotenv.config();
@@ -55,6 +57,9 @@ async function handleRequest(param: HandleRequestParam): Promise<void> {
 app.use('/', express.static('../dist/public'));
 
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 app.get('/api/Home/supplyOverview', async (request, response) => {
    const param = {
       request,
@@ -85,6 +90,23 @@ app.get('/api/GroceryItemAdd/categoryData', async (request, response) => {
       argumentList: [] as string[]
    };
    await handleRequest(param);
+});
+
+
+app.get('/api/GroceryItemAdd/measurementUnitData', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleMeasurementUnitRequest,
+      argumentList: [] as string[]
+   };
+   await handleRequest(param);
+});
+
+
+app.post('/api/GroceryItemAdd/addCategoryData', async (request, response) => {
+   console.log('Post request received');
+   console.log(request.body);
 });
 
 
