@@ -4,13 +4,14 @@ import './searchableDropdown.css';
 
 type SearchableDropdownProps = {
    id: string,
+   optionList: string[],
    placeholderText?: string,
-   optionList: string[]
+   inputHandler?: (a: string) => void,
 };
 
 
 function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
-   const { id, placeholderText = '', optionList } = props;
+   const { id, placeholderText = '', optionList, inputHandler } = props;
    const inputId = id;
    const datalistId = `${id}-list`;
 
@@ -23,12 +24,24 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
       if (isUserInputFilled && !isUserInputInOptionList) {
          target.value = '';
       }
+
+      if (inputHandler) {
+         inputHandler(target.value);
+      }
    }
 
 
    return (
       <>
-         <input id={inputId} name={inputId} className="searchable-dropdown" type="search" placeholder={placeholderText} list={datalistId} onBlur={handleUserInput} />
+         <input
+            id={inputId}
+            name={inputId}
+            className="searchable-dropdown"
+            type="search"
+            placeholder={placeholderText}
+            list={datalistId}
+            onBlur={handleUserInput}
+         />
          <datalist id={datalistId}>
             {optionList.map((option) => <option key={option} value={option} />)}
          </datalist>
