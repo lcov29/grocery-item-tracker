@@ -18,11 +18,6 @@ function ProductDataAddDialog(): ReactElement {
    }, []);
 
 
-   useEffect(() => {
-      console.log(selectedTopCategory);
-   }, [selectedTopCategory]);
-
-
    function processTopCategoryData(categoryDataList: CategoryData[]): string[] {
       const filteredTopCategoryData = categoryDataList.filter(
          (element) => element.parentCategoryId === null
