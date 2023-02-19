@@ -382,14 +382,7 @@ try {
 
          await dbConnection.query(
             `grant select 
-            on grocery_item_manager.UpcomingExpirationDates
-            to groceryItemManagerUserRole;`
-         );
-
-
-         await dbConnection.query(
-            `grant select 
-            on grocery_item_manager.GrocerySupplyOverview
+            on grocery_item_manager.*
             to groceryItemManagerUserRole;`
          );
 
