@@ -30,3 +30,13 @@
    font-weight: bold;
    padding: .5rem 0;
 }
+
+.category-input {
+   width: 85%;
+}
+
+.category-add-button {
+   width: 10%;
+   margin-left: 5%;
+   height: 95%;
+}

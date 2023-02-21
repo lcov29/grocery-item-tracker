@@ -77,11 +77,15 @@ function ProductDataAddDialog(): ReactElement {
             <label htmlFor="categoryName" className="product-data-label">
                Category
             </label>
-            <SearchableDropdown
-               id="categoryName"
-               optionList={optionList}
-               inputHandler={setSelectedTopCategory}
-            />
+            <div>
+               <SearchableDropdown
+                  id="categoryName"
+                  className="category-input"
+                  optionList={optionList}
+                  inputHandler={setSelectedTopCategory}
+               />
+               <button type="button" className="category-add-button">+</button>
+            </div>
          </>
       );
    }
@@ -95,7 +99,10 @@ function ProductDataAddDialog(): ReactElement {
             <label htmlFor="subcategoryName" className="product-data-label">
                Subcategory
             </label>
-            <SearchableDropdown id="subcategoryName" optionList={optionList} />
+            <div>
+               <SearchableDropdown id="subcategoryName" className="category-input" optionList={optionList} />
+               <button type="button" className="category-add-button">+</button>
+            </div>
          </>
       );
    }
