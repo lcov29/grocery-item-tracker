@@ -388,6 +388,13 @@ try {
 
 
          await dbConnection.query(
+            `grant insert
+            on grocery_item_manager.*
+            to groceryItemManagerUserRole;`
+         );
+
+
+         await dbConnection.query(
             `grant groceryItemManagerUserRole
             to ?@?;`,
             [restrictedAppUser, host]
