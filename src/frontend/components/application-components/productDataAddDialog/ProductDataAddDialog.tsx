@@ -104,7 +104,6 @@ function ProductDataAddDialog(): ReactElement {
 
    function generateMeasurementUnitDropdown(): ReactElement {
       const measurementDataList = measurementData || [{ id: 1, unitName: '', unitSymbol: '' }];
-
       return (
          <>
             <label htmlFor="input-weight" className="product-data-label">Weight</label>
