@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
-import { fetchData, getPageId } from '../../../utility/fetchServerData';
+import { fetchData, sendData, getPageId } from '../../../utility/fetchServerData';
 import { MeasurementData, CategoryData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import './productDataAddDialog.css';
 
@@ -18,38 +19,66 @@ function ProductDataAddDialog(): ReactElement {
    }, []);
 
 
-   function processTopCategoryData(categoryDataList: CategoryData[]): string[] {
-      const filteredTopCategoryData = categoryDataList.filter(
+   function buildTopCategoryNameList(categoryDataList: CategoryData[]): string[] {
+      const topCategoryList = categoryDataList.filter(
          (element) => element.parentCategoryId === null
       );
-      const output = filteredTopCategoryData.map(
+
+      return topCategoryList.map(
          (element) => element.name
       );
-      return output;
    }
 
 
-   function processSubCategoryData(categoryDataList: CategoryData[]):
+   function buildMappedSubcategoryNameList(categoryDataList: CategoryData[]):
    string[] {
-      const topCategoryId = categoryDataList.filter(
+      const selectedCategory = categoryDataList.filter(
          (element) => element.name === selectedTopCategory
-      )[0].id;
-
-      const filteredSubCategoryData = categoryDataList.filter(
-         (element) => element.parentCategoryId === topCategoryId
       );
 
-      const output = filteredSubCategoryData.map(
+      const isSelectedCategoryNew = selectedCategory.length === 0;
+      if (isSelectedCategoryNew) {
+         return [];
+      }
+
+      const mappedSubCategoryList = categoryDataList.filter(
+         (element) => element.parentCategoryId === selectedCategory[0].id
+      );
+
+      return mappedSubCategoryList.map(
          (element) => element.name
       );
-
-      return output;
    }
 
 
-   function processMeasurementUnitData(measurementUnitDataList: MeasurementData[]):
+   function buildMeasurementUnitSymbolList(measurementUnitDataList: MeasurementData[]):
    string[] {
       return measurementUnitDataList.map((element) => element.unitSymbol);
+   }
+
+
+   async function handleCategoryInput(categoryInput: string): Promise<void> {
+      if (!categoryData) { return; }
+
+      const isCategoryInputEmpty = categoryInput === '';
+      const selectedCategoryData = categoryData.filter((element) => element.name === categoryInput);
+      const isInputExistingCategory = selectedCategoryData.length > 0;
+
+      if (isCategoryInputEmpty || isInputExistingCategory) {
+         setSelectedTopCategory(categoryInput);
+         return;
+      }
+
+      const isDatabaseUpdateNecessary = window.confirm(`Add new category "${categoryInput}" to database?`);
+      if (isDatabaseUpdateNecessary) {
+         await sendData<{ category: string }>(`/api/${getPageId()}/addCategoryData`, { category: categoryInput });
+         await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+      } else {
+         const categoryInputElement = document.getElementById('categoryName') as HTMLInputElement;
+         categoryInputElement.value = '';
+         setSelectedTopCategory('');
+      }
+
    }
 
 
@@ -69,7 +98,7 @@ function ProductDataAddDialog(): ReactElement {
 
 
    function generateCategoryDropdown(): ReactElement {
-      const optionList = (categoryData) ? processTopCategoryData(categoryData) : [];
+      const optionList = (categoryData) ? buildTopCategoryNameList(categoryData) : [];
       return (
          <>
             <label htmlFor="categoryName" className="product-data-label">Category</label>
@@ -78,7 +107,8 @@ function ProductDataAddDialog(): ReactElement {
                   id="categoryName"
                   className="category-input"
                   optionList={optionList}
-                  inputHandler={setSelectedTopCategory}
+                  inputHandler={handleCategoryInput}
+                  isNonListedUserInputAllowed
                />
                <button type="button" className="category-add-button">+</button>
             </div>
@@ -89,7 +119,7 @@ function ProductDataAddDialog(): ReactElement {
 
    function generateSubCategoryDropdown(): ReactElement {
       const isCategoryDataValid = selectedTopCategory && categoryData;
-      const optionList = (isCategoryDataValid) ? processSubCategoryData(categoryData) : [];
+      const optionList = (isCategoryDataValid) ? buildMappedSubcategoryNameList(categoryData) : [];
       return (
          <>
             <label htmlFor="subcategoryName" className="product-data-label">Subcategory</label>
@@ -109,7 +139,7 @@ function ProductDataAddDialog(): ReactElement {
             <label htmlFor="input-weight" className="product-data-label">Weight</label>
             <div id="input-weight-container">
                <input type="number" id="input-weight" name="weight" />
-               <SearchableDropdown id="unit" optionList={processMeasurementUnitData(measurementDataList)} />
+               <SearchableDropdown id="unit" optionList={buildMeasurementUnitSymbolList(measurementDataList)} />
             </div>
          </>
       );
@@ -119,7 +149,7 @@ function ProductDataAddDialog(): ReactElement {
    return (
       <>
          <h2>Add New Product</h2>
-         <form id="product-data-add-form" action="/api/GroceryItemAdd/addCategoryData" method="POST">
+         <form id="product-data-add-form" action="/api/GroceryItemAdd/addNewProduct" method="POST">
             { generateProductInput() }
             { generateCategoryDropdown() }
             { generateSubCategoryDropdown() }
