@@ -56,9 +56,7 @@ function ProductDataAddDialog(): ReactElement {
    function generateProductInput(): ReactElement {
       return (
          <>
-            <label htmlFor="input-product-name" className="product-data-label">
-               Product
-            </label>
+            <label htmlFor="input-product-name" className="product-data-label">Product</label>
             <input
                type="text"
                id="input-product-name"
@@ -74,9 +72,7 @@ function ProductDataAddDialog(): ReactElement {
       const optionList = (categoryData) ? processTopCategoryData(categoryData) : [];
       return (
          <>
-            <label htmlFor="categoryName" className="product-data-label">
-               Category
-            </label>
+            <label htmlFor="categoryName" className="product-data-label">Category</label>
             <div>
                <SearchableDropdown
                   id="categoryName"
@@ -96,9 +92,7 @@ function ProductDataAddDialog(): ReactElement {
       const optionList = (isCategoryDataValid) ? processSubCategoryData(categoryData) : [];
       return (
          <>
-            <label htmlFor="subcategoryName" className="product-data-label">
-               Subcategory
-            </label>
+            <label htmlFor="subcategoryName" className="product-data-label">Subcategory</label>
             <div>
                <SearchableDropdown id="subcategoryName" className="category-input" optionList={optionList} />
                <button type="button" className="category-add-button">+</button>
@@ -113,9 +107,7 @@ function ProductDataAddDialog(): ReactElement {
 
       return (
          <>
-            <label htmlFor="input-weight" className="product-data-label">
-               Weight
-            </label>
+            <label htmlFor="input-weight" className="product-data-label">Weight</label>
             <div id="input-weight-container">
                <input type="number" id="input-weight" name="weight" />
                <SearchableDropdown id="unit" optionList={processMeasurementUnitData(measurementDataList)} />
