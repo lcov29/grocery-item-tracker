@@ -16,13 +16,13 @@ describe('<SearchableDropdown />', () => {
 
 
    it('displays user defined placeholder text', () => {
-      cy.get('#foodItemDropdown-input').invoke('attr', 'placeholder').should('eq', 'Food Item');
+      cy.get('#foodItemDropdown').invoke('attr', 'placeholder').should('eq', 'Food Item');
    });
 
 
    it('does not display placeholder text if not specified', () => {
       cy.mount(<SearchableDropdown id="foodItemDropdown" optionList={['A']} />);
-      cy.get('#foodItemDropdown-input').invoke('attr', 'placeholder').should('eq', '');
+      cy.get('#foodItemDropdown').invoke('attr', 'placeholder').should('eq', '');
    });
 
 
@@ -45,7 +45,7 @@ describe('<SearchableDropdown />', () => {
 
 
    it('accepts user input matching at least one available option', () => {
-      cy.get('#foodItemDropdown-input')
+      cy.get('#foodItemDropdown')
          .type('Cornflakes')
          .blur()
          .should('have.value', 'Cornflakes');
@@ -53,7 +53,7 @@ describe('<SearchableDropdown />', () => {
 
 
    it('rejects user input that is not matching any available option', () => {
-      cy.get('#foodItemDropdown-input')
+      cy.get('#foodItemDropdown')
          .type('CornflaKes')
          .blur()
          .should('have.value', '');
