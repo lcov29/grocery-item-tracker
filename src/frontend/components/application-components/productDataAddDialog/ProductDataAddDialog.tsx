@@ -11,6 +11,7 @@ function ProductDataAddDialog(): ReactElement {
    const [selectedTopCategory, setSelectedTopCategory] = useState('');
    const [measurementData, setMeasurementData] = useState<MeasurementData[]>();
    const [categoryData, setCategoryData] = useState<CategoryData[]>();
+   const [displayNewCategoryDialog, setDisplayNewCategoryDialog] = useState(false);
 
 
    useEffect(() => {
@@ -57,7 +58,7 @@ function ProductDataAddDialog(): ReactElement {
    }
 
 
-   async function handleCategoryInput(categoryInput: string): Promise<void> {
+   function handleCategoryInput(categoryInput: string): void {
       if (!categoryData) { return; }
 
       const isCategoryInputEmpty = categoryInput === '';
@@ -66,19 +67,16 @@ function ProductDataAddDialog(): ReactElement {
 
       if (isCategoryInputEmpty || isInputExistingCategory) {
          setSelectedTopCategory(categoryInput);
-         return;
-      }
-
-      const isDatabaseUpdateNecessary = window.confirm(`Add new category "${categoryInput}" to database?`);
-      if (isDatabaseUpdateNecessary) {
-         await sendData<{ category: string }>(`/api/${getPageId()}/addCategoryData`, { category: categoryInput });
-         await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
       } else {
          const categoryInputElement = document.getElementById('categoryName') as HTMLInputElement;
          categoryInputElement.value = '';
-         setSelectedTopCategory('');
       }
+   }
 
+
+   async function handleAddingNewCategory(categoryInput: string): Promise<void> {
+      await sendData<{ category: string }>(`/api/${getPageId()}/addCategoryData`, { category: categoryInput });
+      await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
    }
 
 
@@ -90,7 +88,7 @@ function ProductDataAddDialog(): ReactElement {
                type="text"
                id="input-product-name"
                name="productName"
-               className="input-product-data-add-product-name"
+               className="product-add-dialog-input-field"
             />
          </>
       );
@@ -110,7 +108,13 @@ function ProductDataAddDialog(): ReactElement {
                   inputHandler={handleCategoryInput}
                   isNonListedUserInputAllowed
                />
-               <button type="button" className="category-add-button">+</button>
+               <button
+                  type="button"
+                  className="category-add-button"
+                  onClick={() => { setDisplayNewCategoryDialog(true); }}
+               >
+                  +
+               </button>
             </div>
          </>
       );
@@ -138,11 +142,59 @@ function ProductDataAddDialog(): ReactElement {
          <>
             <label htmlFor="input-weight" className="product-data-label">Weight</label>
             <div id="input-weight-container">
-               <input type="number" id="input-weight" name="weight" />
+               <input type="number" id="input-weight" name="weight" className="product-add-dialog-input-field" />
                <SearchableDropdown id="unit" optionList={buildMeasurementUnitSymbolList(measurementDataList)} />
             </div>
          </>
       );
+   }
+
+
+   function generateNewCategoryDialog(): ReactElement | null {
+      if (displayNewCategoryDialog) {
+         return (
+            <>
+               <div className="product-add-dialog-modal-overlay">&nbsp;</div>
+               <div id="product-add-dialog-new-category-modal-window">
+                  <h3>Add New Category</h3>
+                  <label htmlFor="product-add-dialog-new-category-input" className="product-data-label">
+                     Category Name
+                  </label>
+                  <input
+                     type="text"
+                     id="product-add-dialog-new-category-input"
+                     name="categoryName"
+                     className="product-add-dialog-input-field"
+                  />
+                  <br />
+                  <div className="product-add-dialog-modal-window-control-bar">
+                     <button
+                        type="button"
+                        onClick={() => { setDisplayNewCategoryDialog(false); }}
+                     >
+                        Cancel
+                     </button>
+                     <button
+                        type="button"
+                        onClick={() => {
+                           const categoryInput = document.getElementById('product-add-dialog-new-category-input') as HTMLInputElement;
+                           const isCategoryInputValid = categoryInput.value !== '';
+
+                           if (isCategoryInputValid) {
+                              handleAddingNewCategory(categoryInput.value);
+                              setDisplayNewCategoryDialog(false);
+                           }
+                        }}
+                     >
+                        Save
+                     </button>
+                  </div>
+
+               </div>
+            </>
+         );
+      }
+      return null;
    }
 
 
@@ -158,6 +210,7 @@ function ProductDataAddDialog(): ReactElement {
                <input type="submit" value="Save" />
             </div>
          </form>
+         { generateNewCategoryDialog() }
       </>
    );
 }
