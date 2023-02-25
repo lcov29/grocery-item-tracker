@@ -8,6 +8,7 @@ import { handleExpirationDateRequest } from './dataRequestHandler/GetExpirationD
 import { handleCategoryDataRequest } from './dataRequestHandler/GetCategoryRequestHandler';
 import { handleMeasurementUnitRequest } from './dataRequestHandler/GetMeasurementUnitRequestHandler';
 import { handleNewTopCategoryPostRequest } from './dataRequestHandler/PostNewTopCategoryRequestHandler';
+import { handleNewSubCategoryPostRequest } from './dataRequestHandler/PostNewSubCategoryRequestHandler';
 
 
 dotenv.config();
@@ -106,11 +107,22 @@ app.get('/api/GroceryItemAdd/measurementUnitData', async (request, response) => 
 });
 
 
-app.post('/api/GroceryItemAdd/addCategoryData', async (request, response) => {
+app.post('/api/GroceryItemAdd/addTopCategoryData', async (request, response) => {
    const param = {
       request,
       response,
       handler: handleNewTopCategoryPostRequest,
+      argumentList: [] as string[]
+   };
+   await handleRequest(param);
+});
+
+
+app.post('/api/GroceryItemAdd/addSubCategoryData', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleNewSubCategoryPostRequest,
       argumentList: [] as string[]
    };
    await handleRequest(param);
