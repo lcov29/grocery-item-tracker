@@ -2,7 +2,8 @@
    padding: .5rem;
 }
 
-#product-add-dialog-new-category-input {
+#product-add-dialog-new-category-input,
+#product-add-dialog-new-subcategory-input {
    margin-top: 1rem;
    margin-bottom: 2.5rem;
 }
