@@ -58,22 +58,6 @@ function ProductDataAddDialog(): ReactElement {
    }
 
 
-   function handleCategoryInput(categoryInput: string): void {
-      if (!categoryData) { return; }
-
-      const isCategoryInputEmpty = categoryInput === '';
-      const selectedCategoryData = categoryData.filter((element) => element.name === categoryInput);
-      const isInputExistingCategory = selectedCategoryData.length > 0;
-
-      if (isCategoryInputEmpty || isInputExistingCategory) {
-         setSelectedTopCategory(categoryInput);
-      } else {
-         const categoryInputElement = document.getElementById('categoryName') as HTMLInputElement;
-         categoryInputElement.value = '';
-      }
-   }
-
-
    async function handleAddingNewCategory(categoryInput: string): Promise<void> {
       await sendData<{ category: string }>(`/api/${getPageId()}/addCategoryData`, { category: categoryInput });
       await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
@@ -105,8 +89,7 @@ function ProductDataAddDialog(): ReactElement {
                   id="categoryName"
                   className="category-input"
                   optionList={optionList}
-                  inputHandler={handleCategoryInput}
-                  isNonListedUserInputAllowed
+                  inputHandler={setSelectedTopCategory}
                />
                <button
                   type="button"
