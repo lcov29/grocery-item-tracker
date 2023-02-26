@@ -84,9 +84,21 @@ function ProductDataAddDialog(): ReactElement {
                id="input-product-name"
                name="productName"
                className="product-add-dialog-input-field"
+               required
             />
          </>
       );
+   }
+
+
+   function handleCategoryInput(category: string): void {
+      const hasCategoryChanged = category !== selectedTopCategory;
+
+      if (hasCategoryChanged) {
+         setSelectedTopCategory(category);
+         const subCategoryInput = document.getElementById('subcategoryName') as HTMLInputElement;
+         subCategoryInput.value = '';
+      }
    }
 
 
@@ -100,7 +112,8 @@ function ProductDataAddDialog(): ReactElement {
                   id="categoryName"
                   className="category-input"
                   optionList={optionList}
-                  inputHandler={setSelectedTopCategory}
+                  inputHandler={handleCategoryInput}
+                  inputRequired
                />
                <button
                   type="button"
@@ -133,7 +146,12 @@ function ProductDataAddDialog(): ReactElement {
          <>
             <label htmlFor="subcategoryName" className="product-data-label">Subcategory</label>
             <div>
-               <SearchableDropdown id="subcategoryName" className="category-input" optionList={optionList} />
+               <SearchableDropdown
+                  id="subcategoryName"
+                  className="category-input"
+                  optionList={optionList}
+                  inputRequired
+               />
                { addButton }
             </div>
          </>
@@ -147,8 +165,20 @@ function ProductDataAddDialog(): ReactElement {
          <>
             <label htmlFor="input-weight" className="product-data-label">Weight</label>
             <div id="input-weight-container">
-               <input type="number" id="input-weight" name="weight" className="product-add-dialog-input-field" />
-               <SearchableDropdown id="unit" optionList={buildMeasurementUnitSymbolList(measurementDataList)} />
+               <input
+                  type="number"
+                  id="input-weight"
+                  name="weight"
+                  className="product-add-dialog-input-field"
+                  min={0}
+                  max={1_000_000}
+                  required
+               />
+               <SearchableDropdown
+                  id="unit"
+                  optionList={buildMeasurementUnitSymbolList(measurementDataList)}
+                  inputRequired
+               />
             </div>
          </>
       );
