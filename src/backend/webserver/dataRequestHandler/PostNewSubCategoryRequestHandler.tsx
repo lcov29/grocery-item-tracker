@@ -5,20 +5,17 @@ import { CategoryData } from '../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 async function handleNewSubCategoryPostRequest(request: Request, dbConnection: PoolConnection):
 Promise<void> {
-   const topCategoryName: string = request.body?.topCategoryName;
-   const subCategoryName: string = request.body?.subCategoryName;
-
    try {
       const topCategory: CategoryData[] = await dbConnection.query(
          'select id from Categories where name = ?;',
-         [topCategoryName]
+         [request.body?.category]
       );
 
       const topCategoryId = topCategory[0].id;
 
       const resultSet = await dbConnection.query(
          'Insert into Categories (name, parentCategoryId) values (?, ?)',
-         [subCategoryName, topCategoryId]
+         [request.body?.subCategory, topCategoryId]
       );
       console.log(resultSet);
    } catch (error) {
