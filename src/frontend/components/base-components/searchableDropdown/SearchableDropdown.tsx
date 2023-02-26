@@ -7,7 +7,8 @@ type SearchableDropdownProps = {
    optionList: string[],
    className?: string,
    placeholderText?: string,
-   isNonListedUserInputAllowed?: boolean,
+   nonListedUserInputAllowed?: boolean,
+   inputRequired?: boolean,
    inputHandler?: (a: string) => void,
 };
 
@@ -18,7 +19,8 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
       optionList,
       className = '',
       placeholderText = '',
-      isNonListedUserInputAllowed = false,
+      nonListedUserInputAllowed = false,
+      inputRequired = false,
       inputHandler
    } = props;
    const inputId = id;
@@ -30,7 +32,7 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
 
       const isUserInputFilled = target.value !== '';
       const isUserInputInOptionList = optionList.includes(target.value);
-      const isUserInputValid = isUserInputInOptionList || isNonListedUserInputAllowed;
+      const isUserInputValid = isUserInputInOptionList || nonListedUserInputAllowed;
 
       if (isUserInputFilled && !isUserInputValid) {
          target.value = '';
@@ -42,8 +44,23 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
    }
 
 
-   return (
-      <>
+   function generateInput(): ReactElement {
+      if (inputRequired) {
+         return (
+            <input
+               id={inputId}
+               name={inputId}
+               className={`searchable-dropdown ${className}`}
+               type="search"
+               placeholder={placeholderText}
+               list={datalistId}
+               onBlur={handleUserInput}
+               required
+            />
+         );
+      }
+
+      return (
          <input
             id={inputId}
             name={inputId}
@@ -53,6 +70,13 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
             list={datalistId}
             onBlur={handleUserInput}
          />
+      );
+   }
+
+
+   return (
+      <>
+         { generateInput() }
          <datalist id={datalistId}>
             {optionList.map((option) => <option key={option} value={option} />)}
          </datalist>
