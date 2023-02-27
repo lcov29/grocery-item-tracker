@@ -1,10 +1,9 @@
-/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
 import { fetchData, getPageId } from '../../../utility/fetchServerData';
 import { MeasurementData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { ProductDataAddDialogCategoryInput } from './productDataAddDialogCategoryInput/ProductDataAddDialogCategoryInput';
+import { ProductDataAddDialogCategoryInput } from './categoryInput/ProductDataAddDialogCategoryInput';
 import './productDataAddDialog.css';
 
 

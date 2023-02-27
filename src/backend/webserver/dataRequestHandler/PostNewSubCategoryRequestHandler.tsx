@@ -8,7 +8,7 @@ Promise<void> {
    try {
       const topCategory: CategoryData[] = await dbConnection.query(
          'select id from Categories where name = ?;',
-         [request.body?.category]
+         [request.body?.topCategory]
       );
 
       const topCategoryId = topCategory[0].id;

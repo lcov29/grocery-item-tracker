@@ -4,7 +4,8 @@ import React, { useEffect, useState, ReactElement } from 'react';
 import { SearchableDropdown } from '../../../base-components/searchableDropdown/SearchableDropdown';
 import { fetchData, sendData, getPageId } from '../../../../utility/fetchServerData';
 import { CategoryData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { setInputValue, getInputValue } from '../../../../utility/inputValue';
+import { getInputValue, setInputValue } from '../../../../utility/inputValue';
+import { AddNewCategoryDialog } from '../addNewCategoryDialog/AddNewCategoryDialog';
 import './productDataAddDialogCategoryInput.css';
 
 
@@ -49,17 +50,29 @@ function ProductDataAddDialogCategoryInput(): ReactElement {
 
 
    async function handleAddingNewCategory(category: string): Promise<void> {
-      await sendData<{ category: string }>(`/api/${getPageId()}/addTopCategoryData`, { category });
-      await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+      const isInputValid = category !== '';
+
+      if (isInputValid) {
+         await sendData<{ category: string }>(`/api/${getPageId()}/addTopCategoryData`, { category });
+         await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+         setDisplayNewCategoryDialog(false);
+      }
    }
 
 
-   async function handleAddingNewSubcategory(category: string, subCategory: string): Promise<void> {
-      await sendData<{ category: string, subCategory: string }>(
-         `/api/${getPageId()}/addSubCategoryData`,
-         { category, subCategory }
-      );
-      await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+   async function handleAddingNewSubcategory(subCategory: string): Promise<void> {
+      const topCategory = getInputValue('categoryName');
+      const isTopCategoryInputValid = topCategory !== '';
+      const isSubcategoryInputValid = subCategory !== '';
+
+      if (isTopCategoryInputValid && isSubcategoryInputValid) {
+         await sendData<{ topCategory: string, subCategory: string }>(
+            `/api/${getPageId()}/addSubCategoryData`,
+            { topCategory, subCategory }
+         );
+         await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+         setDisplayNewSubCategoryDialog(false);
+      }
    }
 
 
@@ -133,45 +146,12 @@ function ProductDataAddDialogCategoryInput(): ReactElement {
    function generateNewCategoryDialog(): ReactElement | null {
       if (displayNewCategoryDialog) {
          return (
-            <>
-               <div className="product-add-dialog-modal-overlay">&nbsp;</div>
-               <div id="product-add-dialog-new-category-modal-window">
-                  <h3>Add New Category</h3>
-                  <label htmlFor="product-add-dialog-new-category-input" className="product-data-label">
-                     Category Name
-                  </label>
-                  <input
-                     type="text"
-                     id="product-add-dialog-new-category-input"
-                     name="categoryName"
-                     className="product-add-dialog-input-field"
-                  />
-                  <br />
-                  <div className="product-add-dialog-modal-window-control-bar">
-                     <button
-                        type="button"
-                        onClick={() => { setDisplayNewCategoryDialog(false); }}
-                     >
-                        Cancel
-                     </button>
-                     <button
-                        type="button"
-                        onClick={() => {
-                           const category = getInputValue('product-add-dialog-new-category-input');
-                           const isCategoryInputValid = category !== '';
-
-                           if (isCategoryInputValid) {
-                              handleAddingNewCategory(category);
-                              setDisplayNewCategoryDialog(false);
-                           }
-                        }}
-                     >
-                        Save
-                     </button>
-                  </div>
-
-               </div>
-            </>
+            <AddNewCategoryDialog
+               displayDialog={setDisplayNewCategoryDialog}
+               titleText="Add New Category"
+               labelText="Category Name"
+               handleSave={handleAddingNewCategory}
+            />
          );
       }
       return null;
@@ -181,47 +161,12 @@ function ProductDataAddDialogCategoryInput(): ReactElement {
    function generateNewSubCategoryDialog(): ReactElement | null {
       if (displayNewSubCategoryDialog) {
          return (
-            <>
-               <div className="product-add-dialog-modal-overlay">&nbsp;</div>
-               <div id="product-add-dialog-new-category-modal-window">
-                  <h3>Add New Subcategory</h3>
-                  <label htmlFor="product-add-dialog-new-subcategory-input" className="product-data-label">
-                     Subcategory Name
-                  </label>
-                  <input
-                     type="text"
-                     id="product-add-dialog-new-subcategory-input"
-                     name="subcategoryName"
-                     className="product-add-dialog-input-field"
-                  />
-                  <br />
-                  <div className="product-add-dialog-modal-window-control-bar">
-                     <button
-                        type="button"
-                        onClick={() => { setDisplayNewSubCategoryDialog(false); }}
-                     >
-                        Cancel
-                     </button>
-                     <button
-                        type="button"
-                        onClick={() => {
-                           const topCategory = getInputValue('categoryName');
-                           const subCategory = getInputValue('product-add-dialog-new-subcategory-input');
-                           const isTopCategoryInputValid = topCategory !== '';
-                           const isSubcategoryInputValid = subCategory !== '';
-
-                           if (isTopCategoryInputValid && isSubcategoryInputValid) {
-                              handleAddingNewSubcategory(topCategory, subCategory);
-                              setDisplayNewSubCategoryDialog(false);
-                           }
-                        }}
-                     >
-                        Save
-                     </button>
-                  </div>
-
-               </div>
-            </>
+            <AddNewCategoryDialog
+               displayDialog={setDisplayNewSubCategoryDialog}
+               titleText="Add New Subcategory"
+               labelText="Subcategory Name"
+               handleSave={handleAddingNewSubcategory}
+            />
          );
       }
       return null;
@@ -236,8 +181,6 @@ function ProductDataAddDialogCategoryInput(): ReactElement {
          { generateNewSubCategoryDialog() }
       </>
    );
-
-
 }
 
 
