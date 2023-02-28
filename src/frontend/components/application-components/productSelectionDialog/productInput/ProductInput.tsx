@@ -18,7 +18,7 @@ function ProductInput(props: ProductInputProps): ReactElement {
 
    useEffect(() => {
       fetchData(`/api/${getPageId()}/productNameList`, setProductData);
-   });
+   }, []);
 
 
    function buildProductNameList(productNameListData: ProductNameListData[]): string[] {
