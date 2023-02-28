@@ -1,3 +1,12 @@
+type GroceryItemData = {
+   productName: string,
+   distributor: string,
+   amount: number,
+   pricePerUnit: number,
+   expirationDate: string
+};
+
+
 type ProductData = {
    productName: string,
    weight: number,
@@ -30,4 +39,11 @@ type DistributorNameList = {
 };
 
 
-export { ProductData, MeasurementData, CategoryData, ProductNameListData, DistributorNameList };
+export {
+   GroceryItemData,
+   ProductData,
+   MeasurementData,
+   CategoryData,
+   ProductNameListData,
+   DistributorNameList
+};
