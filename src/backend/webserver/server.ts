@@ -10,6 +10,7 @@ import { handleMeasurementUnitRequest } from './dataRequestHandler/GetMeasuremen
 import { handleNewTopCategoryPostRequest } from './dataRequestHandler/PostNewTopCategoryRequestHandler';
 import { handleNewSubCategoryPostRequest } from './dataRequestHandler/PostNewSubCategoryRequestHandler';
 import { handleAddNewProductPostRequest } from './dataRequestHandler/PostAddProductDataRequestHandler';
+import { handleProductNameListRequest } from './dataRequestHandler/GetProductNameListRequestHandler';
 
 
 dotenv.config();
@@ -102,6 +103,17 @@ app.get('/api/GroceryItemAdd/measurementUnitData', async (request, response) => 
       request,
       response,
       handler: handleMeasurementUnitRequest,
+      argumentList: [] as string[]
+   };
+   await handleRequest(param);
+});
+
+
+app.get('/api/GroceryItemAdd/productNameList', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleProductNameListRequest,
       argumentList: [] as string[]
    };
    await handleRequest(param);
