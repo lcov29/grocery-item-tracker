@@ -25,4 +25,9 @@ type ProductNameListData = {
 };
 
 
-export { ProductData, MeasurementData, CategoryData, ProductNameListData };
+type DistributorNameList = {
+   name: string
+};
+
+
+export { ProductData, MeasurementData, CategoryData, ProductNameListData, DistributorNameList };

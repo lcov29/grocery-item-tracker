@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState } from 'react';
-import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
 import { Counter } from '../../base-components/counter/Counter';
-import { ProductInput } from './productInput/productInput';
+import { ProductInput } from './productInput/ProductInput';
+import { DistributorInput } from './distributorInput/DistributorInput';
 import './productSelectionDialog.css';
 
 
@@ -20,16 +20,7 @@ function ProductSelectionDialog(props: ProductSelectionDialogProps): ReactElemen
          <h2>Select Grocery Item</h2>
          <form id="product-selection-dialog" onSubmit={() => {}}>
             <ProductInput openProductAddDialog={openProductAddDialog} />
-            <label htmlFor="input-distributor" className="product-selection-dialog-label">Distributor</label>
-            <div>
-               <SearchableDropdown
-                  id="distributor"
-                  className="product-selection-dialog-dropdown-input"
-                  optionList={['Aldi', 'Rewe']}
-                  inputRequired
-               />
-               <button className="product-selection-dialog-add-button" type="button" onClick={() => {}}>+</button>
-            </div>
+            <DistributorInput />
             <label htmlFor="input-amount">Amount</label>
             <Counter value={amount} setValue={setAmount} />
             <label htmlFor="input-price-per-unit" className="product-selection-dialog-label">Unit Price</label>
