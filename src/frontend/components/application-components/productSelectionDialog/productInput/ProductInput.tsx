@@ -31,7 +31,7 @@ function ProductInput(props: ProductInputProps): ReactElement {
          <label htmlFor="input-product-name" className="product-selection-dialog-label">Product</label>
          <div>
             <SearchableDropdown
-               id="input-product-name"
+               id="productName"
                className="product-selection-dialog-dropdown-input"
                optionList={buildProductNameList(productData)}
                inputRequired

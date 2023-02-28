@@ -3,25 +3,23 @@ import React, { ReactElement, useState } from 'react';
 import { GrocerySupplyAddItemDialog } from '../../application-components/grocerySupplyAddItemDialog/GrocerySupplyAddItemDialog';
 import { ProductDataAddDialog } from '../../application-components/productDataAddDialog/ProductDataAddDialog';
 import { ProductSelectionDialog } from '../../application-components/productSelectionDialog/ProductSelectionDialog';
+import { GroceryItemData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import './groceryItemAdd.css';
 
 
 type PageState = 'ItemAddOverview' | 'ItemAddState' | 'ProductAddState';
-
-type GroceryItemRecord = {
-   productId: number,
-   distributorId: number,
-   price: number,
-   buyDate: Date,
-   expirationDate: Date
-};
 
 
 function GroceryItemAdd(): ReactElement {
 
    const [pageState, setPageState] = useState<PageState>('ItemAddState');
    // const [pageState, setPageState] = useState<PageState>('ProductInformationAddState');
-   const [groceryItemList, setGroceryItemList] = useState<GroceryItemRecord[]>();
+   const [groceryItemList, setGroceryItemList] = useState<GroceryItemData[]>([]);
+
+
+   function addGroceryItemToList(item: GroceryItemData): void {
+      setGroceryItemList([...groceryItemList, item]);
+   }
 
 
    function openItemAddOverview() {
@@ -44,7 +42,13 @@ function GroceryItemAdd(): ReactElement {
          case 'ItemAddOverview':
             return <GrocerySupplyAddItemDialog />;
          case 'ItemAddState':
-            return <ProductSelectionDialog openProductAddDialog={openProductAddDialog} />;
+            return (
+               <ProductSelectionDialog
+                  addGroceryItemData={addGroceryItemToList}
+                  openProductAddDialog={openProductAddDialog}
+                  openItemAddOverview={openItemAddOverview}
+               />
+            );
          case 'ProductAddState':
             return <ProductDataAddDialog openItemAddDialog={openItemAddDialog} />;
          default:
