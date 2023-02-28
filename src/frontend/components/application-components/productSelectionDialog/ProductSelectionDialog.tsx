@@ -6,14 +6,20 @@ import { ProductInput } from './productInput/productInput';
 import './productSelectionDialog.css';
 
 
-function ProductSelectionDialog(): ReactElement {
+type ProductSelectionDialogProps = {
+   openProductAddDialog: () => void
+};
+
+
+function ProductSelectionDialog(props: ProductSelectionDialogProps): ReactElement {
+   const { openProductAddDialog } = props;
    const [amount, setAmount] = useState(1);
 
    return (
       <div id="grocery-item-product-selection-container">
          <h2>Select Grocery Item</h2>
          <form id="product-selection-dialog" onSubmit={() => {}}>
-            <ProductInput />
+            <ProductInput openProductAddDialog={openProductAddDialog} />
             <label htmlFor="input-distributor" className="product-selection-dialog-label">Distributor</label>
             <div>
                <SearchableDropdown

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { ReactElement, useState } from 'react';
 import { GrocerySupplyAddItemDialog } from '../../application-components/grocerySupplyAddItemDialog/GrocerySupplyAddItemDialog';
 import { ProductDataAddDialog } from '../../application-components/productDataAddDialog/ProductDataAddDialog';
@@ -5,7 +6,7 @@ import { ProductSelectionDialog } from '../../application-components/productSele
 import './groceryItemAdd.css';
 
 
-type PageState = 'TopLevelState' | 'ItemAddState' | 'ProductInformationAddState';
+type PageState = 'ItemAddOverview' | 'ItemAddState' | 'ProductAddState';
 
 type GroceryItemRecord = {
    productId: number,
@@ -18,19 +19,34 @@ type GroceryItemRecord = {
 
 function GroceryItemAdd(): ReactElement {
 
-   // const [pageState, setPageState] = useState<PageState>('TopLevelState');
-   const [pageState, setPageState] = useState<PageState>('ProductInformationAddState');
+   const [pageState, setPageState] = useState<PageState>('ItemAddState');
+   // const [pageState, setPageState] = useState<PageState>('ProductInformationAddState');
    const [groceryItemList, setGroceryItemList] = useState<GroceryItemRecord[]>();
+
+
+   function openItemAddOverview() {
+      setPageState('ItemAddOverview');
+   }
+
+
+   function openItemAddDialog() {
+      setPageState('ItemAddState');
+   }
+
+
+   function openProductAddDialog() {
+      setPageState('ProductAddState');
+   }
 
 
    function renderDialog(): ReactElement | null {
       switch (pageState) {
-         case 'TopLevelState':
+         case 'ItemAddOverview':
             return <GrocerySupplyAddItemDialog />;
          case 'ItemAddState':
-            return <ProductSelectionDialog />;
-         case 'ProductInformationAddState':
-            return <ProductDataAddDialog />;
+            return <ProductSelectionDialog openProductAddDialog={openProductAddDialog} />;
+         case 'ProductAddState':
+            return <ProductDataAddDialog openItemAddDialog={openItemAddDialog} />;
          default:
             return null;
       }

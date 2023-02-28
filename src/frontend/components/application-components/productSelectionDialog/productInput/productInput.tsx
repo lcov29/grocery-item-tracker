@@ -5,8 +5,14 @@ import { fetchData, getPageId } from '../../../../utility/fetchServerData';
 import { ProductNameListData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
-function ProductInput(): ReactElement {
+type ProductInputProps = {
+   openProductAddDialog: () => void
+};
 
+
+function ProductInput(props: ProductInputProps): ReactElement {
+
+   const { openProductAddDialog } = props;
    const [productData, setProductData] = useState<ProductNameListData[]>([]);
 
 
@@ -30,7 +36,7 @@ function ProductInput(): ReactElement {
                optionList={buildProductNameList(productData)}
                inputRequired
             />
-            <button className="product-selection-dialog-add-button" type="button" onClick={() => {}}>+</button>
+            <button className="product-selection-dialog-add-button" type="button" onClick={openProductAddDialog}>+</button>
          </div>
       </>
    );
