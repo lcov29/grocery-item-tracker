@@ -7,12 +7,12 @@ import { GroceryItemData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import './groceryItemAdd.css';
 
 
-type PageState = 'ItemAddOverviewState' | 'ItemAddState' | 'ProductAddState';
+type PageState = 'ReceiptItemsAddedState' | 'ItemAddPreviewState' | 'ItemAddState' | 'ProductAddState';
 
 
 function GroceryItemAdd(): ReactElement {
 
-   const [pageState, setPageState] = useState<PageState>('ItemAddOverviewState');
+   const [pageState, setPageState] = useState<PageState>('ItemAddPreviewState');
    const [groceryItemList, setGroceryItemList] = useState<GroceryItemData[]>([]);
 
 
@@ -22,7 +22,7 @@ function GroceryItemAdd(): ReactElement {
 
 
    function openItemAddOverview() {
-      setPageState('ItemAddOverviewState');
+      setPageState('ItemAddPreviewState');
    }
 
 
@@ -38,7 +38,7 @@ function GroceryItemAdd(): ReactElement {
 
    function renderDialog(): ReactElement | null {
       switch (pageState) {
-         case 'ItemAddOverviewState':
+         case 'ItemAddPreviewState':
             return (
                <GrocerySupplyAddItemDialog
                   openItemAddDialog={openItemAddDialog}

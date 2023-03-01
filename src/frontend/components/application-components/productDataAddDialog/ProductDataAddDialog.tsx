@@ -77,8 +77,9 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
             { generateProductInput() }
             <ProductDataAddDialogCategoryInput />
             { generateMeasurementUnitDropdown() }
+            <button type="button" onClick={openItemAddDialog}>Back</button>
             <div id="product-data-save-button-container">
-               <input type="submit" value="Save" onClick={openItemAddDialog} />
+               <button type="submit">Save</button>
             </div>
          </form>
       </>

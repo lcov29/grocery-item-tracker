@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Table } from '../../base-components/table/Table';
 import { GroceryItemData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { sendData } from '../../../utility/fetchServerData';
 
 
 type GrocerySupplyAddItemProps = {
@@ -28,6 +29,19 @@ function GrocerySupplyAddItemDialog(props: GrocerySupplyAddItemProps): ReactElem
    }
 
 
+   async function addItemsToSupply(): Promise<void> {
+      const isGroceryItemListFilled = groceryItemDataList.length > 0;
+
+      if (isGroceryItemListFilled) {
+         const response = await sendData<{ data: GroceryItemData[] }>(
+            '/api/GroceryItemAdd/addItemsToSupply',
+            { data: groceryItemDataList }
+         );
+         console.log(response);
+      }
+   }
+
+
    return (
       <>
          <h2>Add Grocery Items</h2>
@@ -39,7 +53,7 @@ function GrocerySupplyAddItemDialog(props: GrocerySupplyAddItemProps): ReactElem
             rowList={buildRowList()}
          />
          <div id="save-button-container">
-            <button type="button" onClick={() => {}}>Save</button>
+            <button type="button" onClick={addItemsToSupply}>Save</button>
          </div>
       </>
    );

@@ -1,3 +1,11 @@
+type AddedItemReceiptData = {
+   id: number,
+   productName: string,
+   distributor: string,
+   expirationDate: string
+};
+
+
 type GroceryItemData = {
    productName: string,
    distributor: string,
@@ -40,6 +48,7 @@ type DistributorNameList = {
 
 
 export {
+   AddedItemReceiptData,
    GroceryItemData,
    ProductData,
    MeasurementData,
