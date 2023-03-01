@@ -7,13 +7,12 @@ import { GroceryItemData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import './groceryItemAdd.css';
 
 
-type PageState = 'ItemAddOverview' | 'ItemAddState' | 'ProductAddState';
+type PageState = 'ItemAddOverviewState' | 'ItemAddState' | 'ProductAddState';
 
 
 function GroceryItemAdd(): ReactElement {
 
-   const [pageState, setPageState] = useState<PageState>('ItemAddState');
-   // const [pageState, setPageState] = useState<PageState>('ProductInformationAddState');
+   const [pageState, setPageState] = useState<PageState>('ItemAddOverviewState');
    const [groceryItemList, setGroceryItemList] = useState<GroceryItemData[]>([]);
 
 
@@ -23,7 +22,7 @@ function GroceryItemAdd(): ReactElement {
 
 
    function openItemAddOverview() {
-      setPageState('ItemAddOverview');
+      setPageState('ItemAddOverviewState');
    }
 
 
@@ -39,8 +38,13 @@ function GroceryItemAdd(): ReactElement {
 
    function renderDialog(): ReactElement | null {
       switch (pageState) {
-         case 'ItemAddOverview':
-            return <GrocerySupplyAddItemDialog />;
+         case 'ItemAddOverviewState':
+            return (
+               <GrocerySupplyAddItemDialog
+                  openItemAddDialog={openItemAddDialog}
+                  groceryItemDataList={groceryItemList}
+               />
+            );
          case 'ItemAddState':
             return (
                <ProductSelectionDialog
