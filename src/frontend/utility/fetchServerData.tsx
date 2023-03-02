@@ -13,8 +13,8 @@ async function sendData<T>(route: string, payload: T) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
    };
-
-   const response = await fetch(route, options);
+   let response = await fetch(route, options);
+   response = await response.json();
    return response;
 }
 
