@@ -4,6 +4,12 @@ import { PoolConnection } from 'mariadb';
 import { GroceryItemData, AddedItemReceiptData } from '../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
+type PostResponseType = {
+   ok: number,
+   data?: AddedItemReceiptData[]
+};
+
+
 function getCurrentDateString(): string {
    const date = new Date().toISOString();
    return date.replaceAll(/T[0-9:.]*Z/g, '');
@@ -11,12 +17,14 @@ function getCurrentDateString(): string {
 
 
 async function handleAddItemsToSupplyPostRequest(request: Request, dbConnection: PoolConnection):
-Promise<{ data: AddedItemReceiptData[] } | undefined> {
+Promise<PostResponseType> {
    try {
       const groceryItemDataList = request.body?.data as GroceryItemData[];
       const responseData: AddedItemReceiptData[] = [];
 
-      groceryItemDataList.forEach(async (item) => {
+      for (let j = 0; j < groceryItemDataList.length; j++) {
+
+         const item = groceryItemDataList[j];
 
          const product: { id: number }[] = await dbConnection.query(
             'select id from Products where name = ?;',
@@ -40,20 +48,19 @@ Promise<{ data: AddedItemReceiptData[] } | undefined> {
                   item.expirationDate
                ]
             );
-            responseData.push(
-               {
-                  id: result.insertId as number,
-                  productName: item.productName,
-                  distributor: item.distributor,
-                  expirationDate: item.expirationDate
-               }
-            );
-         }
-      });
 
-      return { data: responseData };
+            responseData.push({
+               id: result.insertId.toString(),
+               productName: item.productName,
+               distributor: item.distributor,
+               expirationDate: item.expirationDate
+            });
+         }
+      }
+      return { ok: 200, data: responseData };
    } catch (error) {
       console.log(error);
+      return { ok: 500 };
    }
 }
 

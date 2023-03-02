@@ -1,5 +1,5 @@
 type AddedItemReceiptData = {
-   id: number,
+   id: string,
    productName: string,
    distributor: string,
    expirationDate: string
