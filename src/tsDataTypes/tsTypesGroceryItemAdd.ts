@@ -1,3 +1,9 @@
+type AddItemToSupplyResponse = {
+   ok: number,
+   data?: AddedItemReceiptData[]
+};
+
+
 type AddedItemReceiptData = {
    id: string,
    productName: string,
@@ -48,6 +54,7 @@ type DistributorNameList = {
 
 
 export {
+   AddItemToSupplyResponse,
    AddedItemReceiptData,
    GroceryItemData,
    ProductData,

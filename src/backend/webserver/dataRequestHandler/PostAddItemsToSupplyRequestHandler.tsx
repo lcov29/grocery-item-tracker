@@ -1,13 +1,7 @@
 /* eslint-disable no-await-in-loop */
 import { Request } from 'express';
 import { PoolConnection } from 'mariadb';
-import { GroceryItemData, AddedItemReceiptData } from '../../../tsDataTypes/tsTypesGroceryItemAdd';
-
-
-type PostResponseType = {
-   ok: number,
-   data?: AddedItemReceiptData[]
-};
+import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
 function getCurrentDateString(): string {
@@ -17,7 +11,7 @@ function getCurrentDateString(): string {
 
 
 async function handleAddItemsToSupplyPostRequest(request: Request, dbConnection: PoolConnection):
-Promise<PostResponseType> {
+Promise<AddItemToSupplyResponse> {
    try {
       const groceryItemDataList = request.body?.data as GroceryItemData[];
       const responseData: AddedItemReceiptData[] = [];

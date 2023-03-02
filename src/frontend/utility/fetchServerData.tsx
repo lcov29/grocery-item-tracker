@@ -7,7 +7,7 @@ async function fetchData<T>(route: string, handler: (value: T) => void) {
 }
 
 
-async function sendData<T>(route: string, payload: T) {
+async function sendData<T, R = Response>(route: string, payload: T): Promise<R> {
    const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -15,7 +15,7 @@ async function sendData<T>(route: string, payload: T) {
    };
    let response = await fetch(route, options);
    response = await response.json();
-   return response;
+   return response as R;
 }
 
 

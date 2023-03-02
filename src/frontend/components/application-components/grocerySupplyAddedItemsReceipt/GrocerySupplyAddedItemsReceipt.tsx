@@ -1,8 +1,42 @@
 import React, { ReactElement } from 'react';
+import { AddedItemReceiptData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { Table } from '../../base-components/table/Table';
 
 
-function GrocerySupplyAddedItemsReceipt(): ReactElement {
-   return <p>Test</p>;
+type Props = {
+   addedItemsReceiptDataList: AddedItemReceiptData[]
+};
+
+
+function GrocerySupplyAddedItemsReceipt(props: Props): ReactElement {
+   const { addedItemsReceiptDataList } = props;
+
+
+   function buildRowList(): string[][] {
+      const output = addedItemsReceiptDataList.map((item) => [
+         item.id,
+         item.productName,
+         item.distributor,
+         item.expirationDate
+      ]);
+      return output;
+   }
+
+
+   return (
+      <>
+         <h2>Added Grocery Items</h2>
+         <p>Successfully added the following items to the supply.</p>
+         <p>
+            Please mark the physical items with the assigned id.
+            This id is used to consume specific items of your supply.
+         </p>
+         <Table
+            headerList={['Id', 'Product', 'Distributor', 'Expiration Date']}
+            rowList={buildRowList()}
+         />
+      </>
+   );
 }
 
 

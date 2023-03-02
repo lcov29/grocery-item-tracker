@@ -1,17 +1,24 @@
 import React, { ReactElement } from 'react';
 import { Table } from '../../base-components/table/Table';
-import { GroceryItemData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import { sendData } from '../../../utility/fetchServerData';
 
 
 type GrocerySupplyAddItemProps = {
-   openItemAddDialog: () => void;
+   setAddedItemsReceiptList: (a: AddedItemReceiptData[]) => void,
+   openItemAddDialog: () => void,
+   openAddedItemsReceipt: () => void,
    groceryItemDataList: GroceryItemData[]
 };
 
 
 function GrocerySupplyAddItemDialog(props: GrocerySupplyAddItemProps): ReactElement {
-   const { openItemAddDialog, groceryItemDataList } = props;
+   const {
+      setAddedItemsReceiptList,
+      openItemAddDialog,
+      openAddedItemsReceipt,
+      groceryItemDataList
+   } = props;
 
 
    function buildRowList(): (string | ReactElement)[][] {
@@ -33,11 +40,14 @@ function GrocerySupplyAddItemDialog(props: GrocerySupplyAddItemProps): ReactElem
       const isGroceryItemListFilled = groceryItemDataList.length > 0;
 
       if (isGroceryItemListFilled) {
-         const response = await sendData<{ data: GroceryItemData[] }>(
+         const response = await sendData<{ data: GroceryItemData[] }, AddItemToSupplyResponse>(
             '/api/GroceryItemAdd/addItemsToSupply',
             { data: groceryItemDataList }
          );
-         console.log(response);
+         if (response.ok === 200 && response.data) {
+            setAddedItemsReceiptList(response.data);
+         }
+         openAddedItemsReceipt();
       }
    }
 
