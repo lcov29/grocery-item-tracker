@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { ReactElement, useState } from 'react';
-import { GrocerySupplyAddItemDialog } from '../../application-components/grocerySupplyAddItemDialog/GrocerySupplyAddItemDialog';
-import { ProductDataAddDialog } from '../../application-components/productDataAddDialog/ProductDataAddDialog';
-import { ProductSelectionDialog } from '../../application-components/productSelectionDialog/ProductSelectionDialog';
-import { GrocerySupplyAddedItemsReceipt } from '../../application-components/grocerySupplyAddedItemsReceipt/GrocerySupplyAddedItemsReceipt';
+import { SupplyAddItemDialog } from '../../application-components/supplyAddItemDialog/supplyAddItemDialog/SupplyAddItemDialog';
+import { ProductDataAddDialog } from '../../application-components/supplyAddItemDialog/productDataAddDialog/ProductDataAddDialog';
+import { ProductSelectionDialog } from '../../application-components/supplyAddItemDialog/productSelectionDialog/ProductSelectionDialog';
+import { SupplyAddedItemsReceipt } from '../../application-components/supplyAddItemDialog/supplyAddedItemsReceipt/SupplyAddedItemsReceipt';
 import { GroceryItemData, AddedItemReceiptData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import './groceryItemAdd.css';
 
@@ -57,13 +57,13 @@ function GroceryItemAdd(): ReactElement {
       switch (pageState) {
          case 'ReceiptItemsAddedState':
             return (
-               <GrocerySupplyAddedItemsReceipt
+               <SupplyAddedItemsReceipt
                   addedItemsReceiptDataList={addedItemsReceiptList}
                />
             );
          case 'ItemAddPreviewState':
             return (
-               <GrocerySupplyAddItemDialog
+               <SupplyAddItemDialog
                   setAddedItemsReceiptList={setAddedItemsReceiptList}
                   openItemAddDialog={openItemAddDialog}
                   openAddedItemsReceipt={openAddedItemsReceipt}

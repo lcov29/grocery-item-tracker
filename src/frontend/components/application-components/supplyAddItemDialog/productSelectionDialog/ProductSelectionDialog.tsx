@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState } from 'react';
-import { Counter } from '../../base-components/counter/Counter';
+import { Counter } from '../../../base-components/counter/Counter';
 import { ProductInput } from './productInput/ProductInput';
 import { DistributorInput } from './distributorInput/DistributorInput';
-import { GroceryItemData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { getInputValue } from '../../../utility/inputValue';
+import { GroceryItemData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { getInputValue } from '../../../../utility/inputValue';
 import './productSelectionDialog.css';
 
 

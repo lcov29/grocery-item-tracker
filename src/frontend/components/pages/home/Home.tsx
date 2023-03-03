@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { GrocerySupplyOverviewHome } from '../../application-components/grocerySupplyOverviewHome/GrocerySupplyOverviewHome';
+import { SupplyOverviewHome } from '../../application-components/supplyOverviewHome/SupplyOverviewHome';
 import { ExpirationDateOverview } from '../../application-components/expirationDateOverview/ExpirationDateOverview';
 import './home.css';
 
@@ -8,7 +8,7 @@ function Home(): ReactElement {
    return (
       <>
          <div id="supplyOverviewContainer">
-            <GrocerySupplyOverviewHome />
+            <SupplyOverviewHome />
          </div>
          <div id="upcomingExpirationDatesContainer">
             <ExpirationDateOverview />

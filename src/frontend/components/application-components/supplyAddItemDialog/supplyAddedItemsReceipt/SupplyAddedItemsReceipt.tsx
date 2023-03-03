@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { AddedItemReceiptData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { Table } from '../../base-components/table/Table';
+import { AddedItemReceiptData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { Table } from '../../../base-components/table/Table';
 
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 
-function GrocerySupplyAddedItemsReceipt(props: Props): ReactElement {
+function SupplyAddedItemsReceipt(props: Props): ReactElement {
    const { addedItemsReceiptDataList } = props;
 
 
@@ -40,4 +40,4 @@ function GrocerySupplyAddedItemsReceipt(props: Props): ReactElement {
 }
 
 
-export { GrocerySupplyAddedItemsReceipt };
+export { SupplyAddedItemsReceipt };

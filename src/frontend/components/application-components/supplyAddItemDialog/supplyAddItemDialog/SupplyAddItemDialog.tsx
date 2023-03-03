@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
-import { Table } from '../../base-components/table/Table';
-import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { sendData } from '../../../utility/fetchServerData';
+import { Table } from '../../../base-components/table/Table';
+import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { sendData } from '../../../../utility/fetchServerData';
 
 
-type GrocerySupplyAddItemProps = {
+type Props = {
    setAddedItemsReceiptList: (a: AddedItemReceiptData[]) => void,
    openItemAddDialog: () => void,
    openAddedItemsReceipt: () => void,
@@ -13,7 +13,7 @@ type GrocerySupplyAddItemProps = {
 };
 
 
-function GrocerySupplyAddItemDialog(props: GrocerySupplyAddItemProps): ReactElement {
+function SupplyAddItemDialog(props: Props): ReactElement {
    const {
       setAddedItemsReceiptList,
       openItemAddDialog,
@@ -72,4 +72,4 @@ function GrocerySupplyAddItemDialog(props: GrocerySupplyAddItemProps): ReactElem
 }
 
 
-export { GrocerySupplyAddItemDialog };
+export { SupplyAddItemDialog };

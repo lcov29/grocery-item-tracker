@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement } from 'react';
-import { getInputValue } from '../../../../utility/inputValue';
+import { getInputValue } from '../../../../../utility/inputValue';
 import './addNewCategoryDialog.css';
 
 

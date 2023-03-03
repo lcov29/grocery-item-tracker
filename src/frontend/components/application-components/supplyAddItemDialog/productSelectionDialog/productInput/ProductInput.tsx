@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState, useEffect } from 'react';
-import { SearchableDropdown } from '../../../base-components/searchableDropdown/SearchableDropdown';
-import { fetchData, getPageId } from '../../../../utility/fetchServerData';
-import { ProductNameListData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
+import { fetchData, getPageId } from '../../../../../utility/fetchServerData';
+import { ProductNameListData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
 type ProductInputProps = {

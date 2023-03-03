@@ -48,7 +48,7 @@ function generateTopCategory(topCategory: TopCategory, key: number): ReactElemen
 }
 
 
-function GrocerySupplyOverviewHome(): ReactElement | null {
+function SupplyOverviewHome(): ReactElement | null {
    const [supplyOverviewData, setSupplyOverviewData] = useState<SupplyOverviewFrontendData>();
 
 
@@ -83,4 +83,4 @@ function GrocerySupplyOverviewHome(): ReactElement | null {
 }
 
 
-export { GrocerySupplyOverviewHome };
+export { SupplyOverviewHome };
