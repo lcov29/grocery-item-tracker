@@ -1,8 +1,8 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
+import { UnconsumedItemId } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
 import { fetchData } from '../../../utility/fetchServerData';
 import { Table } from '../../base-components/table/Table';
-import { UnconsumedItemId } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
 import './groceryItemConsume.css';
 
 
@@ -17,7 +17,7 @@ function GroceryItemConsume(): ReactElement {
 
 
    function buildUnconsumedItemIdList(): string[] {
-      return idList.map((element) => element.id.toString(), 10);
+      return idList.map((element) => element.id.toString());
    }
 
 
