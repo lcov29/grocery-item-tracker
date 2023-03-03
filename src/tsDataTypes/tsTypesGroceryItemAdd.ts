@@ -13,6 +13,7 @@ type AddedItemReceiptData = {
 
 
 type GroceryItemData = {
+   id: number,
    productName: string,
    distributor: string,
    amount: number,

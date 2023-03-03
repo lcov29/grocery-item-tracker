@@ -21,11 +21,12 @@ function ProductSelectionDialog(props: ProductSelectionDialogProps): ReactElemen
 
 
    function addGroceryItemDataToList(): void {
+      const id = -1;
       const productName = getInputValue('productName');
       const distributor = getInputValue('distributor');
       const pricePerUnit = Number.parseInt(getInputValue('input-price-per-unit'), 10);
       const expirationDate = getInputValue('input-expiration-date');
-      addGroceryItemData({ productName, distributor, amount, pricePerUnit, expirationDate });
+      addGroceryItemData({ id, productName, distributor, amount, pricePerUnit, expirationDate });
       openItemAddOverview();
    }
 

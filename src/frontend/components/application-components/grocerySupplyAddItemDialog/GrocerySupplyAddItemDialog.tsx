@@ -8,6 +8,7 @@ type GrocerySupplyAddItemProps = {
    setAddedItemsReceiptList: (a: AddedItemReceiptData[]) => void,
    openItemAddDialog: () => void,
    openAddedItemsReceipt: () => void,
+   removeGroceryItemFromList: (a: number) => void,
    groceryItemDataList: GroceryItemData[]
 };
 
@@ -17,6 +18,7 @@ function GrocerySupplyAddItemDialog(props: GrocerySupplyAddItemProps): ReactElem
       setAddedItemsReceiptList,
       openItemAddDialog,
       openAddedItemsReceipt,
+      removeGroceryItemFromList,
       groceryItemDataList
    } = props;
 
@@ -27,7 +29,7 @@ function GrocerySupplyAddItemDialog(props: GrocerySupplyAddItemProps): ReactElem
          item.productName,
          item.distributor,
          item.expirationDate,
-         <button type="button">x</button>
+         <button type="button" onClick={() => { removeGroceryItemFromList(item.id); }}>x</button>
       ]);
 
       // Add last row with add item button

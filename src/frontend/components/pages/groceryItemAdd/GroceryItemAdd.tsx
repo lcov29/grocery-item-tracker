@@ -15,11 +15,21 @@ function GroceryItemAdd(): ReactElement {
 
    const [pageState, setPageState] = useState<PageState>('ItemAddPreviewState');
    const [groceryItemList, setGroceryItemList] = useState<GroceryItemData[]>([]);
+   const [unusedGroceryItemId, setUnusedGroceryItemId] = useState(1);
    const [addedItemsReceiptList, setAddedItemsReceiptList] = useState<AddedItemReceiptData[]>([]);
 
 
    function addGroceryItemToList(item: GroceryItemData): void {
-      setGroceryItemList([...groceryItemList, item]);
+      const newItem = item;
+      newItem.id = unusedGroceryItemId;
+      setUnusedGroceryItemId((value) => value + 1);
+      setGroceryItemList([...groceryItemList, newItem]);
+   }
+
+
+   function removeGroceryItemFromList(id: number): void {
+      const newList = groceryItemList.filter((item) => item.id !== id);
+      setGroceryItemList(newList);
    }
 
 
@@ -57,6 +67,7 @@ function GroceryItemAdd(): ReactElement {
                   setAddedItemsReceiptList={setAddedItemsReceiptList}
                   openItemAddDialog={openItemAddDialog}
                   openAddedItemsReceipt={openAddedItemsReceipt}
+                  removeGroceryItemFromList={removeGroceryItemFromList}
                   groceryItemDataList={groceryItemList}
                />
             );
