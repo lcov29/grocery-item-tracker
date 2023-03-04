@@ -2,4 +2,11 @@ type UnconsumedItemId = {
    id: number
 };
 
-export { UnconsumedItemId };
+type PreviewConsumedItem = {
+   id: number,
+   productName: string,
+   amount: string,
+   expirationDate: string
+};
+
+export { UnconsumedItemId, PreviewConsumedItem };

@@ -8,16 +8,16 @@ import './groceryItemConsume.css';
 
 function GroceryItemConsume(): ReactElement {
 
-   const [idList, setIdList] = useState<UnconsumedItemId[]>([]);
+   const [idDropdownContent, setIdDropdownContent] = useState<UnconsumedItemId[]>([]);
 
 
    useEffect(() => {
-      fetchData<UnconsumedItemId[]>('/api/GroceryItemConsume/unconsumedItemIdList', setIdList);
+      fetchData<UnconsumedItemId[]>('/api/GroceryItemConsume/unconsumedItemIdList', setIdDropdownContent);
    }, []);
 
 
-   function buildUnconsumedItemIdList(): string[] {
-      return idList.map((element) => element.id.toString());
+   function buildIdDropdownContent(): string[] {
+      return idDropdownContent.map((element) => element.id.toString());
    }
 
 
@@ -25,7 +25,7 @@ function GroceryItemConsume(): ReactElement {
       <div id="grocery-item-consume-container">
          <h2>Consume Grocery Items</h2>
          <Table
-            headerList={['Id', 'Product Name', 'Expiration Date', 'Amount', '']}
+            headerList={['Id', 'Product Name', 'Amount', 'Expiration Date', '']}
             rowList={[
                [
                   '123',
@@ -45,7 +45,7 @@ function GroceryItemConsume(): ReactElement {
                   <SearchableDropdown
                      id="grocery-item-consume-searchbar"
                      placeholderText="Unconsumed Product Id"
-                     optionList={buildUnconsumedItemIdList()}
+                     optionList={buildIdDropdownContent()}
                   />,
                   '',
                   '',
