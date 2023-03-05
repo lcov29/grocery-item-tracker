@@ -1,8 +1,8 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
-import { UnconsumedItemId, PreviewConsumedItem } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
+import { UnconsumedItemId, PreviewConsumedItem, ConsumeItemsFromSupplyResponse } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
 import { getInputValue } from '../../../utility/inputValue';
-import { fetchData } from '../../../utility/fetchServerData';
+import { fetchData, sendData } from '../../../utility/fetchServerData';
 import { Table } from '../../base-components/table/Table';
 import './groceryItemConsume.css';
 
@@ -73,6 +73,31 @@ function GroceryItemConsume(): ReactElement {
    }
 
 
+   function buildIdListString(): string[] {
+      return previewItemList.map((item) => item.id.toString());
+   }
+
+
+   async function handleSaveButtonClick(): Promise<void> {
+      const isItemListEmpty = previewItemList.length === 0;
+      if (isItemListEmpty) {
+         console.log('abort handling of save button click');
+         return;
+      }
+
+      const response = await sendData<{ idListString: string[] }, ConsumeItemsFromSupplyResponse>(
+         '/api/GroceryItemConsume/consumeItems',
+         { idListString: buildIdListString() }
+      );
+
+      if (response.ok === 200) {
+         console.log('Items consumed');
+      } else {
+         console.log('Items not consumed');
+      }
+   }
+
+
    return (
       <div id="grocery-item-consume-container">
          <h2>Consume Grocery Items</h2>
@@ -81,7 +106,7 @@ function GroceryItemConsume(): ReactElement {
             rowList={buildConsumedItemsPreview()}
          />
          <div id="grocery-item-consume-consume-button-container">
-            <button type="button" onClick={() => {}}>Consume</button>
+            <button type="button" onClick={handleSaveButtonClick}>Consume</button>
          </div>
       </div>
    );

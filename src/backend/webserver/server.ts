@@ -16,6 +16,7 @@ import { handleNewDistributorPostRequest } from './dataRequestHandler/PostNewDis
 import { handleAddItemsToSupplyPostRequest } from './dataRequestHandler/PostAddItemsToSupplyRequestHandler';
 import { handleUnconsumedItemIdListRequest } from './dataRequestHandler/GetUnconsumedItemIdListRequestHandler';
 import { handleInformationForIdRequest } from './dataRequestHandler/GetItemInformationForId';
+import { handleConsumeItemsPostRequest } from './dataRequestHandler/PostConsumeItemsRequestHandler';
 
 dotenv.config();
 
@@ -206,6 +207,17 @@ app.post('/api/GroceryItemAdd/addItemsToSupply', async (request, response) => {
       request,
       response,
       handler: handleAddItemsToSupplyPostRequest,
+      argumentList: [] as string[]
+   };
+   await handleRequest(param);
+});
+
+
+app.post('/api/GroceryItemConsume/consumeItems', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleConsumeItemsPostRequest,
       argumentList: [] as string[]
    };
    await handleRequest(param);

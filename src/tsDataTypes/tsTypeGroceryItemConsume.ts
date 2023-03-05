@@ -1,3 +1,7 @@
+type ConsumeItemsFromSupplyResponse = {
+   ok: number
+};
+
 type UnconsumedItemId = {
    id: number
 };
@@ -9,4 +13,4 @@ type PreviewConsumedItem = {
    expirationDate: string
 };
 
-export { UnconsumedItemId, PreviewConsumedItem };
+export { ConsumeItemsFromSupplyResponse, UnconsumedItemId, PreviewConsumedItem };
