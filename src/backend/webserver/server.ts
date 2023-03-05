@@ -15,7 +15,7 @@ import { handleDistributorNameListRequest } from './dataRequestHandler/GetDistri
 import { handleNewDistributorPostRequest } from './dataRequestHandler/PostNewDistributorRequestHandler';
 import { handleAddItemsToSupplyPostRequest } from './dataRequestHandler/PostAddItemsToSupplyRequestHandler';
 import { handleUnconsumedItemIdListRequest } from './dataRequestHandler/GetUnconsumedItemIdListRequestHandler';
-
+import { handleInformationForIdRequest } from './dataRequestHandler/GetItemInformationForId';
 
 dotenv.config();
 
@@ -141,6 +141,17 @@ app.get('/api/GroceryItemConsume/unconsumedItemIdList', async (request, response
       response,
       handler: handleUnconsumedItemIdListRequest,
       argumentList: [] as string[]
+   };
+   await handleRequest(param);
+});
+
+
+app.get('/api/GroceryItemConsume/itemInformationForId/:id', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleInformationForIdRequest,
+      argumentList: [request.params.id]
    };
    await handleRequest(param);
 });
