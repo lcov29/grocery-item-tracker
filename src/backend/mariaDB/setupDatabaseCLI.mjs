@@ -395,6 +395,13 @@ try {
 
 
          await dbConnection.query(
+            `grant update
+            on grocery_item_manager.Supply
+            to groceryItemManagerUserRole;`
+         );
+
+
+         await dbConnection.query(
             `grant groceryItemManagerUserRole
             to ?@?;`,
             [restrictedAppUser, host]
