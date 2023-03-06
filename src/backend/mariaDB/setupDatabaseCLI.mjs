@@ -253,7 +253,7 @@ try {
       select s.id, p.name as product, s.expirationDate
       from (select id, productId, expirationDate from grocery_item_manager.Supply where consumptionDate is null) as s
             inner join grocery_item_manager.Products as p on s.productId = p.id
-      order by s.expirationDate asc;`
+      order by s.expirationDate asc, s.id asc;`
    );
 
 
