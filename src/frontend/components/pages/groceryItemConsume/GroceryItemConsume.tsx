@@ -7,8 +7,12 @@ import { Table } from '../../base-components/table/Table';
 import './groceryItemConsume.css';
 
 
+type PageState = 'ConsumedItemSelectionState' | 'ConsumedItemConfirmationState';
+
+
 function GroceryItemConsume(): ReactElement {
 
+   const [pageState, setPageState] = useState<PageState>('ConsumedItemSelectionState');
    const [idDropdownContent, setIdDropdownContent] = useState<UnconsumedItemId[]>([]);
    const [previewItemList, setPreviewItemList] = useState<PreviewConsumedItem[]>([]);
 
@@ -34,8 +38,26 @@ function GroceryItemConsume(): ReactElement {
    }
 
 
+   async function handleAddItem(): Promise<void> {
+      const inputId = getInputValue('grocery-item-consume-searchbar');
+      const isInputEmpty = inputId === '';
+      if (isInputEmpty) { return; }
+
+      const id = parseInt(inputId, 10);
+      const isNewId = previewItemList.filter((item) => item.id === id).length === 0;
+
+      if (isNewId) {
+         await addToPreviewItemList(id);
+      }
+   }
+
+
    function buildIdDropdownContent(): string[] {
-      return idDropdownContent.map((element) => element.id.toString());
+      const idInPreviewList = previewItemList.map((element) => element.id);
+      const contentList = idDropdownContent.filter(
+         (element) => !idInPreviewList.includes(element.id)
+      );
+      return contentList.map((element) => element.id.toString());
    }
 
 
@@ -58,13 +80,7 @@ function GroceryItemConsume(): ReactElement {
                placeholderText="Unconsumed Product Id"
                optionList={buildIdDropdownContent()}
             />
-            <button
-               type="button"
-               onClick={async () => {
-                  const id = parseInt(getInputValue('grocery-item-consume-searchbar'), 10);
-                  await addToPreviewItemList(id);
-               }}
-            >
+            <button type="button" onClick={handleAddItem}>
                +
             </button>
          </>, '', '', '', ''
@@ -80,10 +96,7 @@ function GroceryItemConsume(): ReactElement {
 
    async function handleSaveButtonClick(): Promise<void> {
       const isItemListEmpty = previewItemList.length === 0;
-      if (isItemListEmpty) {
-         console.log('abort handling of save button click');
-         return;
-      }
+      if (isItemListEmpty) { return; }
 
       const response = await sendData<{ idListString: string[] }, ConsumeItemsFromSupplyResponse>(
          '/api/GroceryItemConsume/consumeItems',
@@ -91,9 +104,43 @@ function GroceryItemConsume(): ReactElement {
       );
 
       if (response.ok === 200) {
-         console.log('Items consumed');
+         setPageState('ConsumedItemConfirmationState');
+         setPreviewItemList([]);
+         await fetchData<UnconsumedItemId[]>(
+            '/api/GroceryItemConsume/unconsumedItemIdList',
+            setIdDropdownContent
+         );
       } else {
          console.log('Items not consumed');
+      }
+   }
+
+
+   function generatePageContent(): ReactElement | null {
+      switch (pageState) {
+         case 'ConsumedItemSelectionState':
+            return (
+               <>
+                  <Table
+                     headerList={['Id', 'Product Name', 'Amount', 'Expiration Date', '']}
+                     rowList={buildConsumedItemsPreview()}
+                  />
+                  <div id="grocery-item-consume-consume-button-container">
+                     <button type="button" onClick={handleSaveButtonClick}>Consume</button>
+                  </div>
+               </>
+            );
+         case 'ConsumedItemConfirmationState':
+            return (
+               <>
+                  <p>Successfully marked selected items as consumed</p>
+                  <button type="button" onClick={() => setPageState('ConsumedItemSelectionState')}>
+                     Ok
+                  </button>
+               </>
+            );
+         default:
+            return null;
       }
    }
 
@@ -101,13 +148,7 @@ function GroceryItemConsume(): ReactElement {
    return (
       <div id="grocery-item-consume-container">
          <h2>Consume Grocery Items</h2>
-         <Table
-            headerList={['Id', 'Product Name', 'Amount', 'Expiration Date', '']}
-            rowList={buildConsumedItemsPreview()}
-         />
-         <div id="grocery-item-consume-consume-button-container">
-            <button type="button" onClick={handleSaveButtonClick}>Consume</button>
-         </div>
+         { generatePageContent() }
       </div>
    );
 
