@@ -68,9 +68,7 @@ function GroceryItemConsume(): ReactElement {
             element.productName,
             element.amount,
             element.expirationDate,
-            <button type="button" onClick={() => { removeFromPreviewItemList(element.id); }}>
-               x
-            </button>
+            <button type="button" onClick={() => { removeFromPreviewItemList(element.id); }}>x</button>
          ]
       );
       result.push([
@@ -80,9 +78,7 @@ function GroceryItemConsume(): ReactElement {
                placeholderText="Unconsumed Product Id"
                optionList={buildIdDropdownContent()}
             />
-            <button type="button" onClick={handleAddItem}>
-               +
-            </button>
+            <button type="button" onClick={handleAddItem}>+</button>
          </>, '', '', '', ''
       ]);
       return result;
@@ -134,9 +130,7 @@ function GroceryItemConsume(): ReactElement {
             return (
                <>
                   <p>Successfully marked selected items as consumed</p>
-                  <button type="button" onClick={() => setPageState('ConsumedItemSelectionState')}>
-                     Ok
-                  </button>
+                  <button type="button" onClick={() => setPageState('ConsumedItemSelectionState')}>Ok</button>
                </>
             );
          default:
