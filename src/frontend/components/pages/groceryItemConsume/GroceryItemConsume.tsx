@@ -85,8 +85,15 @@ function GroceryItemConsume(): ReactElement {
    }
 
 
+   /*
    function buildIdListString(): string[] {
       return previewItemList.map((item) => item.id.toString());
+   }
+   */
+
+
+   function buildIdListString(): number[] {
+      return previewItemList.map((item) => item.id);
    }
 
 
@@ -94,9 +101,9 @@ function GroceryItemConsume(): ReactElement {
       const isItemListEmpty = previewItemList.length === 0;
       if (isItemListEmpty) { return; }
 
-      const response = await sendData<{ idListString: string[] }, ConsumeItemsFromSupplyResponse>(
+      const response = await sendData<{ idList: number[] }, ConsumeItemsFromSupplyResponse>(
          '/api/GroceryItemConsume/consumeItems',
-         { idListString: buildIdListString() }
+         { idList: buildIdListString() }
       );
 
       if (response.ok === 200) {
