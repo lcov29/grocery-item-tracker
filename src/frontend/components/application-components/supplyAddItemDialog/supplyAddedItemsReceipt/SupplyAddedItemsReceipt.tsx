@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { AddedItemReceiptData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { parseDatabaseDate } from '../../../../utility/parseDate';
 import { Table } from '../../../base-components/table/Table';
 
 
@@ -17,7 +18,7 @@ function SupplyAddedItemsReceipt(props: Props): ReactElement {
          item.id,
          item.productName,
          item.distributor,
-         item.expirationDate
+         parseDatabaseDate(item.expirationDate)
       ]);
       return output;
    }

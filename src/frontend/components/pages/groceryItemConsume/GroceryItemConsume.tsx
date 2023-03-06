@@ -3,6 +3,7 @@ import { SearchableDropdown } from '../../base-components/searchableDropdown/Sea
 import { UnconsumedItemId, PreviewConsumedItem, ConsumeItemsFromSupplyResponse } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
 import { getInputValue } from '../../../utility/inputValue';
 import { fetchData, sendData } from '../../../utility/fetchServerData';
+import { parseDatabaseDate } from '../../../utility/parseDate';
 import { Table } from '../../base-components/table/Table';
 import './groceryItemConsume.css';
 
@@ -67,7 +68,7 @@ function GroceryItemConsume(): ReactElement {
             element.id.toString(),
             element.productName,
             element.amount,
-            element.expirationDate,
+            parseDatabaseDate(element.expirationDate),
             <button type="button" onClick={() => { removeFromPreviewItemList(element.id); }}>x</button>
          ]
       );

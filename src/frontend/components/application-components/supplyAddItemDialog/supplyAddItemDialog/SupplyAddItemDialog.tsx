@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Table } from '../../../base-components/table/Table';
 import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { parseDatabaseDate } from '../../../../utility/parseDate';
 import { sendData } from '../../../../utility/fetchServerData';
 
 
@@ -28,7 +29,7 @@ function SupplyAddItemDialog(props: Props): ReactElement {
          item.amount.toString(),
          item.productName,
          item.distributor,
-         item.expirationDate,
+         parseDatabaseDate(item.expirationDate),
          <button type="button" onClick={() => { removeGroceryItemFromList(item.id); }}>x</button>
       ]);
 

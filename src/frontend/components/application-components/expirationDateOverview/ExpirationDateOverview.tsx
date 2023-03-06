@@ -1,7 +1,8 @@
 import React, { ReactElement, useState, useEffect } from 'react';
+import { fetchData, getPageId } from '../../../utility/fetchServerData';
+import { parseDatabaseDate } from '../../../utility/parseDate';
 import { Counter } from '../../base-components/counter/Counter';
 import { Table } from '../../base-components/table/Table';
-import { fetchData, getPageId } from '../../../utility/fetchServerData';
 import './expirationDateOverview.css';
 
 
@@ -33,7 +34,7 @@ function ExpirationDateOverview(): ReactElement {
       if (isDataRenderable) {
          const headerList = ['Id', 'Product', 'Expiration Date'];
          const rowList = expirationData.data.map(
-            (record) => [`${record.id}`, record.product, new Date(record.expirationDate).toLocaleDateString('de-DE')]
+            (record) => [`${record.id}`, record.product, parseDatabaseDate(record.expirationDate)]
          );
          return <Table headerList={headerList} rowList={rowList} />;
       }
