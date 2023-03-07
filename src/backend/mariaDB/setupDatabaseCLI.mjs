@@ -249,7 +249,7 @@ try {
 
 
    await dbConnection.query(
-      `create view grocery_item_manager.GrocerySupplyItemList as 
+      `create view grocery_item_manager.GrocerySupplyList as 
       select c2.name as topcategory,
              c1.name as subcategory,
              concat(p.name, ' (', p.weight, m.unitSymbol, ')')  as product,
