@@ -249,6 +249,25 @@ try {
 
 
    await dbConnection.query(
+      `create view grocery_item_manager.GrocerySupplyItemList as 
+      select c2.name as topcategory,
+             c1.name as subcategory,
+             concat(p.name, ' (', p.weight, m.unitSymbol, ')')  as product,
+             s.id,
+             d.name as distributor,
+             s.buyDate,
+             s.expirationDate
+      from (select * from grocery_item_manager.Supply where consumptionDate is null) as s
+            inner join grocery_item_manager.Products as p on s.productId = p.id
+            inner join grocery_item_manager.MeasurementUnits as m on p.measurementUnitId = m.id
+            inner join grocery_item_manager.Distributor as d on s.distributorId = d.id
+            inner join grocery_item_manager.Categories as c1 on p.categoryId = c1.id
+            inner join grocery_item_manager.Categories as c2 on c1.parentCategoryId = c2.id
+      order by c2.id asc, c1.id asc, s.productId asc, s.id asc;`
+   );
+
+
+   await dbConnection.query(
       `create view grocery_item_manager.UpcomingExpirationDates as
       select s.id, p.name as product, s.expirationDate
       from (select id, productId, expirationDate from grocery_item_manager.Supply where consumptionDate is null) as s
