@@ -4,6 +4,7 @@ import { Table } from '../../base-components/table/Table';
 import { SearchBar } from '../../base-components/searchBar/SearchBar';
 import { ItemData, Product, SubCategory, TopCategory, SupplyListFrontendData } from '../../../../tsDataTypes/tsTypesGrocerySupply';
 import { fetchData } from '../../../utility/fetchServerData';
+import { parseDatabaseDate } from '../../../utility/parseDate';
 import './supplyList.css';
 
 
@@ -14,7 +15,12 @@ function generateItemTable(itemList?: ItemData[]): ReactElement[] | [] {
    const rowList: string[][] = [];
    itemList.forEach(
       (item) => rowList.push(
-         [item.id.toString(), item.buyDate, item.distributor, item.expirationDate]
+         [
+            item.id.toString(),
+            parseDatabaseDate(item.buyDate),
+            item.distributor,
+            parseDatabaseDate(item.expirationDate)
+         ]
       )
    );
    return [<Table headerList={headerList} rowList={rowList} key={1} />];
