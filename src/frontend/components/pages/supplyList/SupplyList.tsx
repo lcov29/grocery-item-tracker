@@ -51,7 +51,6 @@ function generateSubCategory(subCategory: SubCategory, key: number): ReactElemen
          name={subCategory.name}
          additionalText={`${subCategory.total} Items`}
          contentList={contentList}
-         isTopLevel
          key={key}
       />
    );
