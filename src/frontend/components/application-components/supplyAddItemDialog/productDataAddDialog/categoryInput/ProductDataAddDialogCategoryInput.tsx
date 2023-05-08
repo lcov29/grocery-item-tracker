@@ -50,29 +50,28 @@ function ProductDataAddDialogCategoryInput(): ReactElement {
 
 
    async function handleAddingNewCategory(category: string): Promise<void> {
-      const isInputValid = category !== '';
+      const isInputInvalid = category === '';
+      if (isInputInvalid) return;
 
-      if (isInputValid) {
-         await sendData<{ category: string }>(`/api/${getPageId()}/addTopCategoryData`, { category });
-         await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
-         setDisplayNewCategoryDialog(false);
-      }
+      await sendData<{ category: string }>(`/api/${getPageId()}/addTopCategoryData`, { category });
+      await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+      setDisplayNewCategoryDialog(false);
    }
 
 
    async function handleAddingNewSubcategory(subCategory: string): Promise<void> {
       const topCategory = getInputValue('categoryName');
-      const isTopCategoryInputValid = topCategory !== '';
-      const isSubcategoryInputValid = subCategory !== '';
+      const isTopCategoryInputInvalid = topCategory === '';
+      const isSubcategoryInputInvalid = subCategory === '';
 
-      if (isTopCategoryInputValid && isSubcategoryInputValid) {
-         await sendData<{ topCategory: string, subCategory: string }>(
-            `/api/${getPageId()}/addSubCategoryData`,
-            { topCategory, subCategory }
-         );
-         await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
-         setDisplayNewSubCategoryDialog(false);
-      }
+      if (isTopCategoryInputInvalid || isSubcategoryInputInvalid) return;
+
+      await sendData<{ topCategory: string, subCategory: string }>(
+         `/api/${getPageId()}/addSubCategoryData`,
+         { topCategory, subCategory }
+      );
+      await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+      setDisplayNewSubCategoryDialog(false);
    }
 
 
