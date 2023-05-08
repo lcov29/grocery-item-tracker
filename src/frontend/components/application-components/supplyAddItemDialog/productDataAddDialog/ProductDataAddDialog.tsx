@@ -88,6 +88,7 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
          weight: weightInput,
          unit: unitInput
       };
+      openItemAddDialog();
       await sendData('/api/GroceryItemAdd/addNewProduct', payload);
    }
 
