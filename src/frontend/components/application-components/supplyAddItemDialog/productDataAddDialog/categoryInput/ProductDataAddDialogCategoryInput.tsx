@@ -9,7 +9,15 @@ import { AddNewCategoryDialog } from '../addNewCategoryDialog/AddNewCategoryDial
 import './productDataAddDialogCategoryInput.css';
 
 
-function ProductDataAddDialogCategoryInput(): ReactElement {
+type Props = {
+   setCategoryInput: (e: string) => void,
+   setSubCategoryInput: (e: string) => void
+};
+
+
+function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
+   const { setCategoryInput, setSubCategoryInput } = props;
+
    const [selectedTopCategory, setSelectedTopCategory] = useState('');
    const [categoryData, setCategoryData] = useState<CategoryData[]>();
    const [displayNewCategoryDialog, setDisplayNewCategoryDialog] = useState(false);
@@ -81,6 +89,7 @@ function ProductDataAddDialogCategoryInput(): ReactElement {
       if (hasCategoryChanged) {
          setSelectedTopCategory(category);
          setInputValue('subcategoryName', '');
+         setCategoryInput(category);
       }
    }
 
@@ -133,6 +142,7 @@ function ProductDataAddDialogCategoryInput(): ReactElement {
                   id="subcategoryName"
                   className="category-input"
                   optionList={optionList}
+                  inputHandler={setSubCategoryInput}
                   inputRequired
                />
                { addButton }

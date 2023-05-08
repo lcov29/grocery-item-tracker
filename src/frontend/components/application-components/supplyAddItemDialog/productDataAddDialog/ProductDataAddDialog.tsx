@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../../base-components/searchableDropdown/SearchableDropdown';
-import { fetchData, getPageId } from '../../../../utility/fetchServerData';
+import { fetchData, sendData, getPageId } from '../../../../utility/fetchServerData';
 import { MeasurementData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import { ProductDataAddDialogCategoryInput } from './categoryInput/ProductDataAddDialogCategoryInput';
 import './productDataAddDialog.css';
@@ -15,6 +15,11 @@ type ProductDataAddDialogProps = {
 function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
    const { openItemAddDialog } = props;
    const [measurementData, setMeasurementData] = useState<MeasurementData[]>();
+   const [productInput, setProductInput] = useState('');
+   const [categoryInput, setCategoryInput] = useState('');
+   const [subCategoryInput, setSubCategoryInput] = useState('');
+   const [weightInput, setWeightInput] = useState(0);
+   const [unitInput, setUnitInput] = useState('');
 
 
    useEffect(() => {
@@ -37,6 +42,8 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
                id="input-product-name"
                name="productName"
                className="product-add-dialog-input-field"
+               value={productInput}
+               onChange={(e) => setProductInput(e.target.value)}
                required
             />
          </>
@@ -57,11 +64,14 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
                   className="product-add-dialog-input-field"
                   min={0}
                   max={1_000_000}
+                  value={weightInput}
+                  onChange={(e) => setWeightInput(Number.parseInt(e.target.value, 10))}
                   required
                />
                <SearchableDropdown
                   id="unit"
                   optionList={buildMeasurementUnitSymbolList(measurementDataList)}
+                  inputHandler={setUnitInput}
                   inputRequired
                />
             </div>
@@ -70,16 +80,31 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
    }
 
 
+   async function submitFormData(): Promise<void> {
+      const payload = {
+         productName: productInput,
+         categoryName: categoryInput,
+         subcategoryName: subCategoryInput,
+         weight: weightInput,
+         unit: unitInput
+      };
+      await sendData('/api/GroceryItemAdd/addNewProduct', payload);
+   }
+
+
    return (
       <>
          <h2>Add New Product</h2>
-         <form id="product-data-add-form" action="/api/GroceryItemAdd/addNewProduct" method="POST">
+         <form id="product-data-add-form">
             { generateProductInput() }
-            <ProductDataAddDialogCategoryInput />
+            <ProductDataAddDialogCategoryInput
+               setCategoryInput={setCategoryInput}
+               setSubCategoryInput={setSubCategoryInput}
+            />
             { generateMeasurementUnitDropdown() }
             <button type="button" onClick={openItemAddDialog}>Back</button>
             <div id="product-data-save-button-container">
-               <button type="submit">Save</button>
+               <button type="button" onClick={submitFormData}>Save</button>
             </div>
          </form>
       </>
