@@ -4,7 +4,7 @@ import { CategoryData } from '../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
 async function handleNewSubCategoryPostRequest(request: Request, dbConnection: PoolConnection):
-Promise<void> {
+Promise<{ ok: number }> {
    try {
       const topCategory: CategoryData[] = await dbConnection.query(
          'select id from Categories where name = ?;',
@@ -18,8 +18,12 @@ Promise<void> {
          [request.body?.subCategory, topCategoryId]
       );
       console.log(resultSet);
+
+      const isInsertionSuccessful = resultSet.affectedRows === 1;
+      const statusCode = (isInsertionSuccessful) ? 200 : 500;
+      return { ok: statusCode };
    } catch (error) {
-      console.log(error);
+      return { ok: 500 };
    }
 }
 
