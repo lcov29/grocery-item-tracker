@@ -1,3 +1,4 @@
-.expiration-date-table td:last-child {
+.expiration-date-table td:last-child,
+.expiration-date-table th:last-child {
     text-align: right;
 }
