@@ -3,6 +3,7 @@ import { fetchData, getPageId } from '../../../utility/fetchServerData';
 import { Category } from '../../base-components/category/Category';
 import { Table } from '../../base-components/table/Table';
 import { ProductData, SubCategory, TopCategory, SupplyOverviewFrontendData } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
+import './supplyOverviewHome.css';
 
 
 function generateProductTable(productList: ProductData[] | undefined): ReactElement[] | [] {

@@ -1,0 +1,9 @@
+.category-container-sub-level .content-section {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+.category-container-sub-level .itemTable {
+    width: 95%;
+}
