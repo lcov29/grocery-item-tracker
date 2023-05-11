@@ -9,7 +9,7 @@ function generateProductTable(productList: ProductData[] | undefined): ReactElem
    if (productList) {
       const headerList = ['Product', 'Amount'];
       const rowList: string[][] = [];
-      productList.forEach((product) => rowList.push([`${product.name}`, `${product.total}`]));
+      productList.forEach((product) => rowList.push([product.name, `${product.total}`]));
       return [<Table headerList={headerList} rowList={rowList} key={1} />];
    }
    return [];
