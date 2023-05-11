@@ -49,6 +49,7 @@ const configFrontend = {
       new HtmlWebPackPlugin({
          template: path.join(__dirname, 'src', 'frontend', 'index.html'),
          filename: 'index.html',
+         favicon: path.join(__dirname, 'src', 'frontend', 'icons', 'groceryItemIcon.svg')
       })
    ]
 };
