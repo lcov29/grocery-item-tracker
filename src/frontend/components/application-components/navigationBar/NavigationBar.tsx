@@ -20,8 +20,8 @@ function NavigationBar(props: NavigationBarProps): ReactElement {
    const { currentPageId, setCurrentPageId } = props;
 
 
-   function generateIcon(src: string, alt: string): ReactElement {
-      return <img src={src} alt={alt} width="35px" height="35px" />;
+   function generateIcon(src: string, alt: string, title: string): ReactElement {
+      return <img src={src} alt={alt} title={title} width="35px" height="35px" />;
    }
 
 
@@ -33,13 +33,13 @@ function NavigationBar(props: NavigationBarProps): ReactElement {
    const menuEntryList = [
       {
          button: {
-            content: generateIcon(homeIcon, pageId.home),
+            content: generateIcon(homeIcon, pageId.home, 'Home'),
             action: () => { setCurrentPageId(pageId.home); },
          },
          isActive: isPageActive(pageId.home)
       },
       {
-         button: { content: generateIcon(groceryItemIcon, 'Grocery Items') },
+         button: { content: generateIcon(groceryItemIcon, 'Grocery Items', 'Supply') },
          dropdown: <MenuGroceryOptionDropdownContent setCurrentPageId={setCurrentPageId} />,
          isActive: isPageActive(pageId.grocerySupplyOverview)
                   || isPageActive(pageId.grocerySupplyMinimum)
@@ -48,21 +48,21 @@ function NavigationBar(props: NavigationBarProps): ReactElement {
       },
       {
          button: {
-            content: generateIcon(shoppingListIcon, pageId.shoppingList),
+            content: generateIcon(shoppingListIcon, pageId.shoppingList, 'Shopping List'),
             action: () => { setCurrentPageId(pageId.shoppingList); },
          },
          isActive: isPageActive(pageId.shoppingList)
       },
       {
          button: {
-            content: generateIcon(reportsIcon, pageId.reports),
+            content: generateIcon(reportsIcon, pageId.reports, 'Reports'),
             action: () => { setCurrentPageId(pageId.reports); },
          },
          isActive: isPageActive(pageId.reports)
       },
       {
          button: {
-            content: generateIcon(settingsIcons, pageId.settings),
+            content: generateIcon(settingsIcons, pageId.settings, 'Settings'),
             action: () => { setCurrentPageId(pageId.settings); },
          },
          isActive: isPageActive(pageId.settings)
