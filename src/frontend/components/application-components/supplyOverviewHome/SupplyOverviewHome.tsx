@@ -77,7 +77,7 @@ function SupplyOverviewHome(): ReactElement | null {
 
    return (
       <>
-         <h2>Grocery Item Supply</h2>
+         <h2>Supply Overview</h2>
          { generateGrocerySupplyOverview() }
       </>
    );
