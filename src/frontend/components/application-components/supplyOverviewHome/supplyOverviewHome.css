@@ -11,5 +11,5 @@
 
 .content-section table td:last-child,
 .content-section table th:last-child {
-    float: right;
+    text-align: right;
 }
