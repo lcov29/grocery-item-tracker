@@ -107,9 +107,8 @@ function SupplyList(): ReactElement {
 
    return (
       <div id="supply-overview-container">
-         <h2>Supply Overview</h2>
-         <div id="supply-overview-control-bar">
-            <button type="button">Filter</button>
+         <div id="supply-overview-header">
+            <h2>Supply Overview</h2>
             <SearchBar
                id="supply-overview-search-bar"
                placeholderText="Enter Text..."

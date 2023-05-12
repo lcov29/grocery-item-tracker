@@ -3,10 +3,8 @@
    padding: 1rem;
 }
 
-#supply-overview-control-bar {
+#supply-overview-header {
    display: flex;
-   justify-content: flex-end;
-   flex-wrap: wrap;
-   gap: 1rem;
-   margin-bottom: 2rem;
+   justify-content: space-between;
+   margin-bottom: 1rem;
 }
