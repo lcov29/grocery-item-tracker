@@ -14,9 +14,14 @@ type SearchBarProps = {
 function SearchBar(props: SearchBarProps): ReactElement {
    const { id, placeholderText, optionList, action } = props;
    return (
-      <div className="searchBarContainer">
-         <SearchableDropdown id={id} placeholderText={placeholderText} optionList={optionList} />
-         <button type="button" className="SearchButton" onClick={action}>Search</button>
+      <div>
+         <SearchableDropdown
+            id={id}
+            className="search-input"
+            placeholderText={placeholderText}
+            optionList={optionList}
+         />
+         <button type="button" className="search-button" onClick={action}>Search</button>
       </div>
    );
 }
