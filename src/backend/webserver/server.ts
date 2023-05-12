@@ -3,7 +3,7 @@ import { createPool, PoolConnection } from 'mariadb';
 import bodyParser from 'body-parser';
 import { createServer } from 'node:http';
 import * as dotenv from 'dotenv';
-import { handleSupplyOverviewHomeRequest } from './dataRequestHandler/GetGrocerySupplyOverviewHomeHandler';
+import { handleSupplyOverviewRequest } from './dataRequestHandler/GetSupplyOverviewHandler';
 import { handleExpirationDateRequest } from './dataRequestHandler/GetExpirationDateRequestHandler';
 import { handleCategoryDataRequest } from './dataRequestHandler/GetCategoryRequestHandler';
 import { handleMeasurementUnitRequest } from './dataRequestHandler/GetMeasurementUnitRequestHandler';
@@ -76,7 +76,7 @@ app.get('/api/supplyOverview', async (request, response) => {
    const param = {
       request,
       response,
-      handler: handleSupplyOverviewHomeRequest,
+      handler: handleSupplyOverviewRequest,
       argumentList: [] as string[]
    };
    await handleRequest(param);
