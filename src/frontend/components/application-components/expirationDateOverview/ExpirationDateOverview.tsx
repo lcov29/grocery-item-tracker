@@ -44,8 +44,8 @@ function ExpirationDateOverview(): ReactElement {
 
    return (
       <>
-         <h2>Upcoming Expiration Dates</h2>
-         <div className="counter-container">
+         <div id="expiration-date-header">
+            <h2>Upcoming Expiration Dates</h2>
             <Counter
                value={dayLimit}
                setValue={setDayLimit}
@@ -54,9 +54,7 @@ function ExpirationDateOverview(): ReactElement {
                suffix="Days"
             />
          </div>
-         <div className="expiration-date-table">
-            { generateExpirationDateTable() }
-         </div>
+         { generateExpirationDateTable() }
       </>
    );
 }
