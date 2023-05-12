@@ -6,14 +6,14 @@ import './home.css';
 
 function Home(): ReactElement {
    return (
-      <>
-         <div id="supplyOverviewContainer">
+      <main id="home-main">
+         <div className="home-container">
             <SupplyOverview />
          </div>
-         <div id="upcomingExpirationDatesContainer">
+         <div className="home-container">
             <ExpirationDateOverview />
          </div>
-      </>
+      </main>
    );
 
 }

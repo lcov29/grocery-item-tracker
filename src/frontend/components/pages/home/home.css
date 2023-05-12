@@ -1,13 +1,11 @@
-#supplyOverviewContainer, #upcomingExpirationDatesContainer {
-   border: 0.1rem solid black;
-   padding: 1rem;
+#home-main {
+   margin: 2rem;
 }
 
 
 @media screen and (max-width: 800px) {
 
-   #supplyOverviewContainer,
-   #upcomingExpirationDatesContainer {
+   .home-container {
       border: 0.1rem solid black;
       padding: 1rem;
       margin-bottom: 2rem;
@@ -18,14 +16,13 @@
 
 @media screen and (min-width: 801px) {
 
-   main {
+   #home-main {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 2rem;
    }
 
-   #supplyOverviewContainer,
-   #upcomingExpirationDatesContainer {
+   .home-container {
       border: 0.1rem solid black;
       padding: 1rem;
       overflow-y: auto;
