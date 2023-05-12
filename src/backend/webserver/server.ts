@@ -72,7 +72,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.get('/api/Home/supplyOverview', async (request, response) => {
+app.get('/api/supplyOverview', async (request, response) => {
    const param = {
       request,
       response,
