@@ -49,6 +49,11 @@ type SupplyListFrontendData = {
 };
 
 
+type SupplyProductsFrontendData = {
+   data: string[]
+};
+
+
 export {
    SupplyListDatabaseRecord,
    PropertyName,
@@ -56,5 +61,6 @@ export {
    Product,
    SubCategory,
    TopCategory,
-   SupplyListFrontendData
+   SupplyListFrontendData,
+   SupplyProductsFrontendData
 };
