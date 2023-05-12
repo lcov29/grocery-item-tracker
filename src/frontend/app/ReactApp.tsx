@@ -28,9 +28,7 @@ function ReactApp(): ReactElement {
    return (
       <>
          <NavigationBar currentPageId={currentPageId} setCurrentPageId={setCurrentPageId} />
-         <main>
-            {routeContentSection(currentPageId)}
-         </main>
+         {routeContentSection(currentPageId)}
       </>
    );
 }
