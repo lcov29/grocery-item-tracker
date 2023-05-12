@@ -22,9 +22,6 @@
 .button {
     border: var(--border);
     background: none;
-    width: 1.5rem;
-    height: 1.5rem;
-    padding: 0;
 }
 
 .button:hover {
