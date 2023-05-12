@@ -3,7 +3,7 @@ import { fetchData, getPageId } from '../../../utility/fetchServerData';
 import { Category } from '../../base-components/category/Category';
 import { Table } from '../../base-components/table/Table';
 import { ProductData, SubCategory, TopCategory, SupplyOverviewFrontendData } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
-import './supplyOverviewHome.css';
+import './supplyOverview.css';
 
 
 function generateProductTable(productList: ProductData[] | undefined): ReactElement[] | [] {
@@ -50,7 +50,7 @@ function generateTopCategory(topCategory: TopCategory, key: number): ReactElemen
 }
 
 
-function SupplyOverviewHome(): ReactElement | null {
+function SupplyOverview(): ReactElement | null {
    const [supplyOverviewData, setSupplyOverviewData] = useState<SupplyOverviewFrontendData>();
 
 
@@ -85,4 +85,4 @@ function SupplyOverviewHome(): ReactElement | null {
 }
 
 
-export { SupplyOverviewHome };
+export { SupplyOverview };
