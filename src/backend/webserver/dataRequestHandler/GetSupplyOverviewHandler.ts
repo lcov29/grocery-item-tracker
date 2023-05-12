@@ -108,7 +108,7 @@ function parseResultSet(resultSet: SupplyOverviewDatabaseRecord[]): SupplyOvervi
 }
 
 
-async function handleSupplyOverviewHomeRequest(request: Request, dbConnection: PoolConnection):
+async function handleSupplyOverviewRequest(request: Request, dbConnection: PoolConnection):
 Promise<SupplyOverviewFrontendData> {
    let resultSet: SupplyOverviewDatabaseRecord[];
    resultSet = await dbConnection.query('select * from GrocerySupplyOverview;');
@@ -117,4 +117,4 @@ Promise<SupplyOverviewFrontendData> {
 }
 
 
-export { handleSupplyOverviewHomeRequest };
+export { handleSupplyOverviewRequest };
