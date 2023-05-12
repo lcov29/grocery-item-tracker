@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { fetchData, getPageId } from '../../../utility/fetchServerData';
+import { fetchData } from '../../../utility/fetchServerData';
 import { Category } from '../../base-components/category/Category';
 import { Table } from '../../base-components/table/Table';
 import { ProductData, SubCategory, TopCategory, SupplyOverviewFrontendData } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
@@ -55,7 +55,7 @@ function SupplyOverview(): ReactElement | null {
 
 
    useEffect(() => {
-      fetchData<SupplyOverviewFrontendData>(`/api/${getPageId()}/supplyOverview`, setSupplyOverviewData);
+      fetchData<SupplyOverviewFrontendData>('/api/supplyOverview', setSupplyOverviewData);
    }, []);
 
 
