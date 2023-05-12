@@ -1,6 +1,7 @@
 .category-container-sub-level .content-section {
     display: flex;
     flex-direction: row-reverse;
+    margin-bottom: .5rem;
 }
 
 
