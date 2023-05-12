@@ -9,21 +9,23 @@ import './supplyList.css';
 
 
 function generateItemTable(itemList?: ItemData[]): ReactElement[] | [] {
-   if (!itemList) { return []; }
+   if (itemList) {
+      const headerList = ['Id', 'Buy Date', 'Distributor', 'Expiration Date'];
+      const rowList: string[][] = [];
+      itemList.forEach(
+         (item) => rowList.push(
+            [
+               item.id.toString(),
+               parseDatabaseDate(item.buyDate),
+               item.distributor,
+               parseDatabaseDate(item.expirationDate)
+            ]
+         )
+      );
+      return [<Table headerList={headerList} rowList={rowList} key={1} />];
+   }
 
-   const headerList = ['Id', 'Buy Date', 'Distributor', 'Expiration Date'];
-   const rowList: string[][] = [];
-   itemList.forEach(
-      (item) => rowList.push(
-         [
-            item.id.toString(),
-            parseDatabaseDate(item.buyDate),
-            item.distributor,
-            parseDatabaseDate(item.expirationDate)
-         ]
-      )
-   );
-   return [<Table headerList={headerList} rowList={rowList} key={1} />];
+   return [];
 }
 
 
