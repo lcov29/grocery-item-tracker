@@ -33,6 +33,7 @@ function generateProductCategory(product: Product, key: number): ReactElement {
          name={product.name}
          additionalText={`${product.total} Items`}
          contentList={generateItemTable(product.itemList)}
+         isContentLevel
          key={key}
       />
    );
