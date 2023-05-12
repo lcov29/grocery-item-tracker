@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Home } from '../components/pages/home/Home';
-import { SupplyList } from '../components/pages/supplyList/SupplyList';
+import { GrocerySupplyOverview } from '../components/pages/grocerySupplyOverview/GrocerySupplyOverview';
 import { GroceryItemAdd } from '../components/pages/groceryItemAdd/GroceryItemAdd';
 import { GroceryItemConsume } from '../components/pages/groceryItemConsume/GroceryItemConsume';
 import { Settings } from '../components/pages/settings/Settings';
@@ -28,7 +28,7 @@ function getContentSectionFor(currentPageId: string): ReactElement | null {
       case pageId.home:
          return <Home />;
       case pageId.grocerySupplyOverview:
-         return <SupplyList />;
+         return <GrocerySupplyOverview />;
       case pageId.grocerySupplyMinimum:
          return <h2>Coming Soon</h2>;
       case pageId.groceryItemAdd:
