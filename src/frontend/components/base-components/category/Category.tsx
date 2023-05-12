@@ -8,12 +8,13 @@ type CategoryProps = {
    name: string,
    additionalText?: string,
    isTopLevel?: boolean,
+   isContentLevel?: boolean,
    contentList: ReactElement[]
 };
 
 
 function Category(props: CategoryProps): ReactElement {
-   const { name, additionalText = ' ', isTopLevel = false, contentList = [] } = props;
+   const { name, additionalText = ' ', isTopLevel = false, isContentLevel = false, contentList = [] } = props;
    const [isContentSectionCollapsed, setIsContentSectionCollapsed] = useState(true);
 
 
@@ -23,9 +24,10 @@ function Category(props: CategoryProps): ReactElement {
 
 
    function createIcon(): ReactElement | null {
-      if (!isRenderable()) return null;
-
-      return <img src={isContentSectionCollapsed ? dropdownCollapseIcon : dropdownUnfoldedIcon} alt="icon" />;
+      if (isRenderable()) {
+         return <img src={isContentSectionCollapsed ? dropdownCollapseIcon : dropdownUnfoldedIcon} alt="icon" />;
+      }
+      return null;
    }
 
 
@@ -45,8 +47,9 @@ function Category(props: CategoryProps): ReactElement {
 
 
    function buildContentSection():ReactElement | null {
-      if (isRenderable() && !isContentSectionCollapsed) {
-         return <div className="content-section">{contentList}</div>;
+      const isRenderNecessary = isRenderable() && !isContentSectionCollapsed;
+      if (isRenderNecessary) {
+         return <div className={(isContentLevel) ? 'content-section' : ''}>{contentList}</div>;
       }
       return null;
    }
