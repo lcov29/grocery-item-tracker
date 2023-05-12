@@ -3,16 +3,11 @@
    padding: 1rem;
 }
 
-.counter-container {
-   float: right;
-   padding-bottom: 1rem;
-}
-
-
 
 @media screen and (max-width: 800px) {
 
-   #supplyOverviewContainer, #upcomingExpirationDatesContainer {
+   #supplyOverviewContainer,
+   #upcomingExpirationDatesContainer {
       border: 0.1rem solid black;
       padding: 1rem;
       margin-bottom: 2rem;
@@ -29,7 +24,8 @@
       column-gap: 2rem;
    }
 
-   #supplyOverviewContainer, #upcomingExpirationDatesContainer {
+   #supplyOverviewContainer,
+   #upcomingExpirationDatesContainer {
       border: 0.1rem solid black;
       padding: 1rem;
       overflow-y: auto;
