@@ -19,6 +19,7 @@ import { handleInformationForIdRequest } from './dataRequestHandler/GetItemInfor
 import { handleConsumeItemsPostRequest } from './dataRequestHandler/PostConsumeItemsRequestHandler';
 import { handleSupplyListRequest } from './dataRequestHandler/GetGrocerySupplyListHandler';
 import { handleSupplyProductNameListRequest } from './dataRequestHandler/GetSupplyProductNameListRequestHandler';
+import { handleProductSupplyRequest } from './dataRequestHandler/GetProductSupplyRequestHandler';
 
 
 dotenv.config();
@@ -101,6 +102,17 @@ app.get('/api/grocerySupplyOverview/productList', async (request, response) => {
       response,
       handler: handleSupplyProductNameListRequest,
       argumentList: [] as string[]
+   };
+   await handleRequest(param);
+});
+
+
+app.get('/api/grocerySupplyOverview/productData/:productId', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleProductSupplyRequest,
+      argumentList: [request.params.productId]
    };
    await handleRequest(param);
 });
