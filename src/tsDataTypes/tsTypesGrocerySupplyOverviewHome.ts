@@ -6,6 +6,12 @@ type SupplyOverviewDatabaseRecord = {
 };
 
 
+type ProductInSupplyDatabaseRecord = {
+   id: number,
+   name: string
+};
+
+
 type CategoryName = 'topcategory' | 'subcategory';
 
 
@@ -38,6 +44,11 @@ type SupplyOverviewFrontendData = {
 
 
 export {
-   SupplyOverviewDatabaseRecord, CategoryName, ProductData, SubCategory,
-   TopCategory, SupplyOverviewFrontendData
+   SupplyOverviewDatabaseRecord,
+   ProductInSupplyDatabaseRecord,
+   CategoryName,
+   ProductData,
+   SubCategory,
+   TopCategory,
+   SupplyOverviewFrontendData
 };
