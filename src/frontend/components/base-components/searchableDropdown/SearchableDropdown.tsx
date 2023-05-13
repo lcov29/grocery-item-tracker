@@ -7,7 +7,7 @@ type SearchableDropdownProps = {
    optionList: string[],
    className?: string,
    placeholderText?: string,
-   nonListedUserInputAllowed?: boolean,
+   isNonListedInputAllowed?: boolean,
    inputRequired?: boolean,
    inputHandler?: (a: string) => void,
 };
@@ -19,7 +19,7 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
       optionList,
       className = '',
       placeholderText = '',
-      nonListedUserInputAllowed = false,
+      isNonListedInputAllowed = false,
       inputRequired = false,
       inputHandler
    } = props;
@@ -32,7 +32,7 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
 
       const isUserInputFilled = target.value !== '';
       const isUserInputInOptionList = optionList.includes(target.value);
-      const isUserInputValid = isUserInputInOptionList || nonListedUserInputAllowed;
+      const isUserInputValid = isUserInputInOptionList || isNonListedInputAllowed;
 
       if (isUserInputFilled && !isUserInputValid) {
          target.value = '';
