@@ -276,6 +276,14 @@ try {
    );
 
 
+   await dbConnection.query(
+      `create view ProductsInSupply as
+      select id, name
+      from Products
+      where id in (select distinct productId from Supply where consumptionDate is not null);`
+   );
+
+
 
    // Insert Standard Data
 
