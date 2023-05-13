@@ -18,6 +18,7 @@ import { handleUnconsumedItemIdListRequest } from './dataRequestHandler/GetUncon
 import { handleInformationForIdRequest } from './dataRequestHandler/GetItemInformationForId';
 import { handleConsumeItemsPostRequest } from './dataRequestHandler/PostConsumeItemsRequestHandler';
 import { handleSupplyListRequest } from './dataRequestHandler/GetGrocerySupplyListHandler';
+import { handleSupplyProductNameListRequest } from './dataRequestHandler/GetSupplyProductNameListRequestHandler';
 
 
 dotenv.config();
@@ -89,6 +90,17 @@ app.get('/api/Home/expirationDateOverview/:dayLimit', async (request, response) 
       response,
       handler: handleExpirationDateRequest,
       argumentList: [request.params.dayLimit]
+   };
+   await handleRequest(param);
+});
+
+
+app.get('/api/grocerySupplyOverview/productList', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleSupplyProductNameListRequest,
+      argumentList: [] as string[]
    };
    await handleRequest(param);
 });
