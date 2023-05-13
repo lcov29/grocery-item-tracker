@@ -9,7 +9,7 @@ type SearchableDropdownProps = {
    placeholderText?: string,
    isNonListedInputAllowed?: boolean,
    inputRequired?: boolean,
-   inputHandler?: (a: string) => void,
+   inputHandler?: (input: string) => void,
 };
 
 
