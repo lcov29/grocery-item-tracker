@@ -2,11 +2,17 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { fetchData } from '../../../utility/fetchServerData';
 import { Category } from '../../base-components/category/Category';
 import { Table } from '../../base-components/table/Table';
-import { ProductData, SubCategory, TopCategory, SupplyOverviewFrontendData } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
+import {
+   ProductSupplyOverview,
+   SubCategory,
+   TopCategory,
+   SupplyOverviewFrontendData
+} from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
 import './supplyOverview.css';
 
 
-function generateProductTable(productList: ProductData[] | undefined): ReactElement[] | [] {
+function generateProductTable(productList: ProductSupplyOverview[] | undefined):
+ReactElement[] | [] {
    if (productList) {
       const headerList = ['Product', 'Amount'];
       const rowList: string[][] = [];
