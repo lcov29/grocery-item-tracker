@@ -6,7 +6,7 @@ import {
    SupplyOverviewFrontendData,
    TopCategory,
    SubCategory,
-   ProductData
+   ProductSupplyOverview
 } from '../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
 
 
@@ -87,10 +87,10 @@ function parseResultSet(resultSet: SupplyOverviewDatabaseRecord[]): SupplyOvervi
          const subCategoryObj = {
             name: subCategory[0].subcategory,
             total: subCategory.reduce((sum, curVal) => sum + parseInt(curVal.amount, 10), 0),
-            productList: [] as ProductData[]
+            productList: [] as ProductSupplyOverview[]
          };
 
-         const parsedProductList: ProductData[] = subCategory.map((element) => (
+         const parsedProductList: ProductSupplyOverview[] = subCategory.map((element) => (
             { name: element.product, total: parseInt(element.amount, 10) }
          ));
 
