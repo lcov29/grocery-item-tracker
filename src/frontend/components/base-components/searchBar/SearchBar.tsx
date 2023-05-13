@@ -1,18 +1,28 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { SearchableDropdown } from '../searchableDropdown/SearchableDropdown';
 import './searchBar.css';
 
 
 type SearchBarProps = {
    id: string,
-   placeholderText?: string,
    optionList: string[],
-   action?: () => void
+   placeholderText?: string,
+   action?: (input: string) => void
 };
 
 
 function SearchBar(props: SearchBarProps): ReactElement {
    const { id, placeholderText, optionList, action } = props;
+   const [searchInput, setSearchInput] = useState('');
+
+
+   function handleSearchClick() {
+      if (action) {
+         action(searchInput);
+      }
+   }
+
+
    return (
       <div>
          <SearchableDropdown
@@ -20,8 +30,9 @@ function SearchBar(props: SearchBarProps): ReactElement {
             className="search-input"
             placeholderText={placeholderText}
             optionList={optionList}
+            inputHandler={setSearchInput}
          />
-         <button type="button" className="search-button" onClick={action}>Search</button>
+         <button type="button" className="search-button" onClick={handleSearchClick}>Search</button>
       </div>
    );
 }
