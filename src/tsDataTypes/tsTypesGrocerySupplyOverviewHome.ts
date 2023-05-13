@@ -43,6 +43,11 @@ type SupplyOverviewFrontendData = {
 };
 
 
+type ProductInSupplyFrontendData = {
+   data: ProductInSupplyDatabaseRecord[]
+};
+
+
 export {
    SupplyOverviewDatabaseRecord,
    ProductInSupplyDatabaseRecord,
@@ -50,5 +55,6 @@ export {
    ProductData,
    SubCategory,
    TopCategory,
-   SupplyOverviewFrontendData
+   SupplyOverviewFrontendData,
+   ProductInSupplyFrontendData
 };
