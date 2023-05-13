@@ -6,6 +6,18 @@ type SupplyOverviewDatabaseRecord = {
 };
 
 
+type SupplyListDatabaseRecord = {
+   topcategory: string,
+   subcategory: string,
+   product: string,
+   weight: string,
+   id: number,
+   distributor: string,
+   buyDate: string,
+   expirationDate: string
+};
+
+
 type ProductInSupplyDatabaseRecord = {
    id: number,
    name: string
@@ -72,6 +84,7 @@ type ProductSupplyFrontendData = {
 export {
    SupplyOverviewDatabaseRecord,
    ProductInSupplyDatabaseRecord,
+   SupplyListDatabaseRecord,
    CategoryName,
    SupplyItem,
    ProductSupplyData,
