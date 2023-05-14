@@ -69,6 +69,17 @@ function SupplyProductDetail(props: Props): ReactElement {
    }
 
 
+   function buildProductInformation(): ReactElement | null {
+      if (isRenderable()) {
+         const item = currentProductData[0];
+         return (
+            <p>{`${currentProductData.length} items of ${item.product} (${item.weight}):`}</p>
+         );
+      }
+      return null;
+   }
+
+
    function buildSupplyTable(): ReactElement | null {
       if (isRenderable()) {
          const headerList = ['Id', 'Distributor', 'Buy Date', 'Expiration Date'];
@@ -101,6 +112,7 @@ function SupplyProductDetail(props: Props): ReactElement {
             />
          </div>
          {buildBreadcrumb()}
+         {buildProductInformation()}
          {buildSupplyTable()}
       </>
    );
