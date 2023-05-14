@@ -2,3 +2,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+#supply-product-detail-breadcrumb {
+    margin-top: 0;
+}
