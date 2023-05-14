@@ -65,7 +65,7 @@ function SupplyProductDetail(props: Props): ReactElement {
    }
 
 
-   function buildItemTable(): ReactElement | null {
+   function buildSupplyTable(): ReactElement | null {
       const isRenderable = currentProductData && currentProductData.length > 0;
       if (isRenderable) {
          const headerList = ['Id', 'Distributor', 'Buy Date', 'Expiration Date'];
@@ -98,7 +98,7 @@ function SupplyProductDetail(props: Props): ReactElement {
             />
          </div>
          {buildBreadcrumb()}
-         {buildItemTable()}
+         {buildSupplyTable()}
       </>
    );
 
