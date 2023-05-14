@@ -83,16 +83,13 @@ function SupplyProductDetail(props: Props): ReactElement {
    function buildSupplyTable(): ReactElement | null {
       if (isRenderable()) {
          const headerList = ['Id', 'Distributor', 'Buy Date', 'Expiration Date'];
-         const rowList: string[][] = [];
-         currentProductData.forEach(
-            (item) => rowList.push(
-               [
-                  item.id.toString(),
-                  item.distributor,
-                  parseDatabaseDate(item.buyDate),
-                  parseDatabaseDate(item.expirationDate)
-               ]
-            )
+         const rowList: string[][] = currentProductData.map(
+            (item) => [
+               item.id.toString(),
+               item.distributor,
+               parseDatabaseDate(item.buyDate),
+               parseDatabaseDate(item.expirationDate)
+            ]
          );
          return <Table headerList={headerList} rowList={rowList} key={1} />;
       }
