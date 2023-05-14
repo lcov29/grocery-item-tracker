@@ -47,7 +47,7 @@ function SupplyProductDetail(props: Props): ReactElement {
    }
 
 
-   function generateBreadcrumb(): ReactElement | null {
+   function buildBreadcrumb(): ReactElement | null {
       const isRenderable = currentProductData && currentProductData.length > 0;
       if (isRenderable) {
          const product = currentProductData[0];
@@ -73,7 +73,7 @@ function SupplyProductDetail(props: Props): ReactElement {
                action={setSearchedProduct}
             />
          </div>
-         {generateBreadcrumb()}
+         {buildBreadcrumb()}
       </>
    );
 
