@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { ReactElement, useEffect, useState } from 'react';
+import { Table } from '../../base-components/table/Table';
 import { SearchBar } from '../../base-components/searchBar/SearchBar';
 import { fetchData } from '../../../utility/fetchServerData';
+import { parseDatabaseDate } from '../../../utility/parseDate';
 import { ProductInSupplyDatabaseRecord, SupplyListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
 import './supplyProductDetail.css';
 
@@ -53,11 +55,32 @@ function SupplyProductDetail(props: Props): ReactElement {
       if (isRenderable) {
          const product = currentProductData[0];
          return (
-            <p>
+            <p id="supply-product-detail-breadcrumb">
                {`${product.topcategory} > ${product.subcategory} > `}
                <b>{product.product}</b>
             </p>
          );
+      }
+      return null;
+   }
+
+
+   function buildItemTable(): ReactElement | null {
+      const isRenderable = currentProductData && currentProductData.length > 0;
+      if (isRenderable) {
+         const headerList = ['Id', 'Distributor', 'Buy Date', 'Expiration Date'];
+         const rowList: string[][] = [];
+         currentProductData.forEach(
+            (item) => rowList.push(
+               [
+                  item.id.toString(),
+                  item.distributor,
+                  parseDatabaseDate(item.buyDate),
+                  parseDatabaseDate(item.expirationDate)
+               ]
+            )
+         );
+         return <Table headerList={headerList} rowList={rowList} key={1} />;
       }
       return null;
    }
@@ -75,6 +98,7 @@ function SupplyProductDetail(props: Props): ReactElement {
             />
          </div>
          {buildBreadcrumb()}
+         {buildItemTable()}
       </>
    );
 
