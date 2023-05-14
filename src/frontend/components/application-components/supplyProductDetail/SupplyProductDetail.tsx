@@ -50,9 +50,13 @@ function SupplyProductDetail(props: Props): ReactElement {
    }
 
 
+   function isRenderable(): boolean {
+      return currentProductData && currentProductData.length > 0;
+   }
+
+
    function buildBreadcrumb(): ReactElement | null {
-      const isRenderable = currentProductData && currentProductData.length > 0;
-      if (isRenderable) {
+      if (isRenderable()) {
          const product = currentProductData[0];
          return (
             <p id="supply-product-detail-breadcrumb">
@@ -66,8 +70,7 @@ function SupplyProductDetail(props: Props): ReactElement {
 
 
    function buildSupplyTable(): ReactElement | null {
-      const isRenderable = currentProductData && currentProductData.length > 0;
-      if (isRenderable) {
+      if (isRenderable()) {
          const headerList = ['Id', 'Distributor', 'Buy Date', 'Expiration Date'];
          const rowList: string[][] = [];
          currentProductData.forEach(
