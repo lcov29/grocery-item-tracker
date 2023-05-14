@@ -3,6 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { SearchBar } from '../../base-components/searchBar/SearchBar';
 import { fetchData } from '../../../utility/fetchServerData';
 import { ProductInSupplyDatabaseRecord, SupplyListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
+import './supplyProductDetail.css';
 
 
 type Props = {
