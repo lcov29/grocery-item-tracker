@@ -60,6 +60,7 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
          );
       }
 
+
       return (
          <input
             id={inputId}
@@ -83,5 +84,6 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
       </>
    );
 }
+
 
 export { SearchableDropdown };
