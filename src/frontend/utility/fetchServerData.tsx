@@ -19,9 +19,4 @@ async function sendData<T, R = Response>(route: string, payload: T): Promise<R> 
 }
 
 
-function getPageId(): string {
-   return window.location.hash.replace('#', '');
-}
-
-
-export { fetchData, sendData, getPageId };
+export { fetchData, sendData };
