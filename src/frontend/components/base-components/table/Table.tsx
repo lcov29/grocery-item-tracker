@@ -11,7 +11,7 @@ type TableProps = {
 
 
 function Table(props: TableProps): ReactElement {
-   const { headerList, rowList, keyList = [], handleRowClick = () => {} } = props;
+   const { headerList, rowList, keyList = [], handleRowClick } = props;
 
 
    function buildTableHeader(): ReactElement {
@@ -24,8 +24,10 @@ function Table(props: TableProps): ReactElement {
 
 
    function handleTableRowClick(index: number): void {
-      const key = keyList[index];
-      handleRowClick(key);
+      if (handleRowClick) {
+         const key = keyList[index];
+         handleRowClick(key);
+      }
    }
 
 
@@ -37,11 +39,23 @@ function Table(props: TableProps): ReactElement {
 
 
    function buildTableRow(index: number, rowDataList: (string | ReactElement)[]): ReactElement {
-      return (
-         <tr key={index} onClick={() => { handleTableRowClick(index); }}>
-            {rowDataList.map((data, columnIndex) => buildTableDataField(data, columnIndex))}
-         </tr>
+      const rowData = rowDataList.map(
+         (data, columnIndex) => buildTableDataField(data, columnIndex)
       );
+
+      const isClickable = handleRowClick !== undefined;
+      if (isClickable) {
+         return (
+            <tr
+               key={index}
+               className="item-table-clickable-row"
+               onClick={() => { handleTableRowClick(index); }}
+            >
+               {rowData}
+            </tr>
+         );
+      }
+      return <tr key={index}>{rowData}</tr>;
    }
 
 

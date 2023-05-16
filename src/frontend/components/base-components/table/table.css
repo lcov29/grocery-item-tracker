@@ -28,3 +28,7 @@
 .reactElementField {
     text-align: center;
 }
+
+.item-table-clickable-row:hover {
+    background-color: rgb(195, 216, 221) !important;
+}
