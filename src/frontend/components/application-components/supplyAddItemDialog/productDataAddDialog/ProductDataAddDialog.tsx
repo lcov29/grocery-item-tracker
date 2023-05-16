@@ -89,7 +89,7 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
          unit: unitInput
       };
       openItemAddDialog();
-      await sendData('/api/GroceryItemAdd/addNewProduct', payload);
+      await sendData('/api/groceryItemAdd/addNewProduct', payload);
    }
 
 

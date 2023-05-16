@@ -44,7 +44,7 @@ function SupplyAddItemDialog(props: Props): ReactElement {
 
       if (isGroceryItemListFilled) {
          const response = await sendData<{ data: GroceryItemData[] }, AddItemToSupplyResponse>(
-            '/api/GroceryItemAdd/addItemsToSupply',
+            '/api/groceryItemAdd/addItemsToSupply',
             { data: groceryItemDataList }
          );
          if (response.ok === 200 && response.data) {
