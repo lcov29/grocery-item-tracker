@@ -84,7 +84,7 @@ app.get('/api/supplyOverview', async (request, response) => {
 });
 
 
-app.get('/api/Home/expirationDateOverview/:dayLimit', async (request, response) => {
+app.get('/api/home/expirationDateOverview/:dayLimit', async (request, response) => {
    const param = {
       request,
       response,
@@ -117,7 +117,7 @@ app.get('/api/grocerySupplyOverview/productData/:productId', async (request, res
 });
 
 
-app.get('/api/GroceryItemAdd/categoryData', async (request, response) => {
+app.get('/api/groceryItemAdd/categoryData', async (request, response) => {
    const param = {
       request,
       response,
@@ -128,7 +128,7 @@ app.get('/api/GroceryItemAdd/categoryData', async (request, response) => {
 });
 
 
-app.get('/api/GroceryItemAdd/measurementUnitData', async (request, response) => {
+app.get('/api/groceryItemAdd/measurementUnitData', async (request, response) => {
    const param = {
       request,
       response,
@@ -139,7 +139,7 @@ app.get('/api/GroceryItemAdd/measurementUnitData', async (request, response) => 
 });
 
 
-app.get('/api/GroceryItemAdd/productNameList', async (request, response) => {
+app.get('/api/groceryItemAdd/productNameList', async (request, response) => {
    const param = {
       request,
       response,
@@ -150,7 +150,7 @@ app.get('/api/GroceryItemAdd/productNameList', async (request, response) => {
 });
 
 
-app.get('/api/GroceryItemAdd/distributorNameList', async (request, response) => {
+app.get('/api/groceryItemAdd/distributorNameList', async (request, response) => {
    const param = {
       request,
       response,
@@ -161,7 +161,7 @@ app.get('/api/GroceryItemAdd/distributorNameList', async (request, response) => 
 });
 
 
-app.get('/api/GroceryItemConsume/unconsumedItemIdList', async (request, response) => {
+app.get('/api/groceryItemConsume/unconsumedItemIdList', async (request, response) => {
    const param = {
       request,
       response,
@@ -172,7 +172,7 @@ app.get('/api/GroceryItemConsume/unconsumedItemIdList', async (request, response
 });
 
 
-app.get('/api/GroceryItemConsume/itemInformationForId/:id', async (request, response) => {
+app.get('/api/groceryItemConsume/itemInformationForId/:id', async (request, response) => {
    const param = {
       request,
       response,
@@ -183,7 +183,7 @@ app.get('/api/GroceryItemConsume/itemInformationForId/:id', async (request, resp
 });
 
 
-app.post('/api/GroceryItemAdd/addTopCategoryData', async (request, response) => {
+app.post('/api/groceryItemAdd/addTopCategoryData', async (request, response) => {
    const param = {
       request,
       response,
@@ -194,7 +194,7 @@ app.post('/api/GroceryItemAdd/addTopCategoryData', async (request, response) => 
 });
 
 
-app.post('/api/GroceryItemAdd/addSubCategoryData', async (request, response) => {
+app.post('/api/groceryItemAdd/addSubCategoryData', async (request, response) => {
    const param = {
       request,
       response,
@@ -205,7 +205,7 @@ app.post('/api/GroceryItemAdd/addSubCategoryData', async (request, response) => 
 });
 
 
-app.post('/api/GroceryItemAdd/addNewProduct', async (request, response) => {
+app.post('/api/groceryItemAdd/addNewProduct', async (request, response) => {
    const param = {
       request,
       response,
@@ -216,7 +216,7 @@ app.post('/api/GroceryItemAdd/addNewProduct', async (request, response) => {
 });
 
 
-app.post('/api/GroceryItemAdd/addNewDistributor', async (request, response) => {
+app.post('/api/groceryItemAdd/addNewDistributor', async (request, response) => {
    const param = {
       request,
       response,
@@ -227,7 +227,7 @@ app.post('/api/GroceryItemAdd/addNewDistributor', async (request, response) => {
 });
 
 
-app.post('/api/GroceryItemAdd/addItemsToSupply', async (request, response) => {
+app.post('/api/groceryItemAdd/addItemsToSupply', async (request, response) => {
    const param = {
       request,
       response,
@@ -238,7 +238,7 @@ app.post('/api/GroceryItemAdd/addItemsToSupply', async (request, response) => {
 });
 
 
-app.post('/api/GroceryItemConsume/consumeItems', async (request, response) => {
+app.post('/api/groceryItemConsume/consumeItems', async (request, response) => {
    const param = {
       request,
       response,
