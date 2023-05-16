@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState, ReactElement } from 'react';
 import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
-import { fetchData, sendData, getPageId } from '../../../../../utility/fetchServerData';
+import { fetchData, sendData } from '../../../../../utility/fetchServerData';
 import { CategoryData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import { getInputValue, setInputValue } from '../../../../../utility/inputValue';
 import { AddNewCategoryDialog } from '../addNewCategoryDialog/AddNewCategoryDialog';
@@ -25,7 +25,7 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
 
 
    useEffect(() => {
-      fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+      fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
    }, []);
 
 
@@ -61,8 +61,8 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
       const isInputInvalid = category === '';
       if (isInputInvalid) return;
 
-      await sendData<{ category: string }>(`/api/${getPageId()}/addTopCategoryData`, { category });
-      await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+      await sendData<{ category: string }>('/api/groceryItemAdd/addTopCategoryData', { category });
+      await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
       setDisplayNewCategoryDialog(false);
    }
 
@@ -75,10 +75,10 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
       if (isTopCategoryInputInvalid || isSubcategoryInputInvalid) return;
 
       await sendData<{ topCategory: string, subCategory: string }>(
-         `/api/${getPageId()}/addSubCategoryData`,
+         '/api/groceryItemAdd/addSubCategoryData',
          { topCategory, subCategory }
       );
-      await fetchData<CategoryData[]>(`/api/${getPageId()}/categoryData`, setCategoryData);
+      await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
       setDisplayNewSubCategoryDialog(false);
    }
 

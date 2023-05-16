@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
-import { fetchData, sendData, getPageId } from '../../../../../utility/fetchServerData';
+import { fetchData, sendData } from '../../../../../utility/fetchServerData';
 import { DistributorNameList } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import { AddNewCategoryDialog } from '../../productDataAddDialog/addNewCategoryDialog/AddNewCategoryDialog';
 
@@ -13,7 +13,7 @@ function DistributorInput(): ReactElement {
 
 
    useEffect(() => {
-      fetchData<DistributorNameList[]>(`/api/${getPageId()}/distributorNameList`, setDistributorData);
+      fetchData<DistributorNameList[]>('/api/groceryItemAdd/distributorNameList', setDistributorData);
    }, []);
 
 
@@ -26,8 +26,8 @@ function DistributorInput(): ReactElement {
       const isInputValid = distributor !== '';
 
       if (isInputValid) {
-         await sendData<{ distributor: string }>(`/api/${getPageId()}/addNewDistributor`, { distributor });
-         await fetchData<DistributorNameList[]>(`/api/${getPageId()}/distributorNameList`, setDistributorData);
+         await sendData<{ distributor: string }>('/api/groceryItemAdd/addNewDistributor', { distributor });
+         await fetchData<DistributorNameList[]>('/api/groceryItemAdd/distributorNameList', setDistributorData);
          setDisplayNewDistributorDialog(false);
       }
    }

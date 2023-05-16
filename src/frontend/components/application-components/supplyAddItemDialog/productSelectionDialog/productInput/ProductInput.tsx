@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
-import { fetchData, getPageId } from '../../../../../utility/fetchServerData';
+import { fetchData } from '../../../../../utility/fetchServerData';
 import { ProductNameListData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
@@ -17,7 +17,7 @@ function ProductInput(props: ProductInputProps): ReactElement {
 
 
    useEffect(() => {
-      fetchData(`/api/${getPageId()}/productNameList`, setProductData);
+      fetchData('/api/groceryItemAdd/productNameList', setProductData);
    }, []);
 
 

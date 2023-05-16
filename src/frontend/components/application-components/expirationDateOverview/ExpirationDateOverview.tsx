@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { fetchData, getPageId } from '../../../utility/fetchServerData';
+import { fetchData } from '../../../utility/fetchServerData';
 import { parseDatabaseDate } from '../../../utility/parseDate';
 import { Counter } from '../../base-components/counter/Counter';
 import { Table } from '../../base-components/table/Table';
@@ -21,7 +21,7 @@ function ExpirationDateOverview(): ReactElement {
 
 
    function fetchExpirationData(): void {
-      fetchData<ExpirationData>(`/api/${getPageId()}/expirationDateOverview/${dayLimit}`, setExpirationData);
+      fetchData<ExpirationData>(`/api/home/expirationDateOverview/${dayLimit}`, setExpirationData);
    }
 
 
