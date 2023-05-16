@@ -9,21 +9,15 @@ import './supplyProductDetail.css';
 
 
 type Props = {
+   productList: ProductListDatabaseRecord[],
    currentProduct: ProductListDatabaseRecord | undefined,
    setCurrentProduct: (e: ProductListDatabaseRecord) => void
 };
 
 
 function SupplyProductDetail(props: Props): ReactElement {
-   const { currentProduct, setCurrentProduct } = props;
-   const [productList, setProductList] = useState<ProductListDatabaseRecord[]>([]);
+   const { productList, currentProduct, setCurrentProduct } = props;
    const [currentProductData, setCurrentProductData] = useState<SupplyListDatabaseRecord[]>([]);
-
-
-   useEffect(() => {
-      const route = '/api/grocerySupplyOverview/productList';
-      fetchData<ProductListDatabaseRecord[]>(route, setProductList);
-   }, []);
 
 
    useEffect(() => {
