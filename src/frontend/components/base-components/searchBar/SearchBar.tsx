@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { SearchableDropdown } from '../searchableDropdown/SearchableDropdown';
+import searchIcon from '../../../icons/search.svg';
 import './searchBar.css';
 
 
@@ -24,7 +25,7 @@ function SearchBar(props: SearchBarProps): ReactElement {
 
 
    return (
-      <div>
+      <div className="search-bar">
          <SearchableDropdown
             id={id}
             className="search-input"
@@ -32,7 +33,9 @@ function SearchBar(props: SearchBarProps): ReactElement {
             optionList={optionList}
             inputHandler={setSearchInput}
          />
-         <button type="button" className="search-button" onClick={handleSearchClick}>Search</button>
+         <button type="button" className="search-button" onClick={handleSearchClick}>
+            <img src={searchIcon} alt="Search" width="20px" height="20px" />
+         </button>
       </div>
    );
 }
