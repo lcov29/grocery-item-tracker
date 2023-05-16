@@ -4,25 +4,25 @@ import { Table } from '../../base-components/table/Table';
 import { SearchBar } from '../../base-components/searchBar/SearchBar';
 import { fetchData } from '../../../utility/fetchServerData';
 import { parseDatabaseDate } from '../../../utility/parseDate';
-import { ProductInSupplyDatabaseRecord, SupplyListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
+import { ProductListDatabaseRecord, SupplyListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 import './supplyProductDetail.css';
 
 
 type Props = {
-   currentProduct: ProductInSupplyDatabaseRecord | undefined,
-   setCurrentProduct: (e: ProductInSupplyDatabaseRecord) => void
+   currentProduct: ProductListDatabaseRecord | undefined,
+   setCurrentProduct: (e: ProductListDatabaseRecord) => void
 };
 
 
 function SupplyProductDetail(props: Props): ReactElement {
    const { currentProduct, setCurrentProduct } = props;
-   const [productList, setProductList] = useState<ProductInSupplyDatabaseRecord[]>([]);
+   const [productList, setProductList] = useState<ProductListDatabaseRecord[]>([]);
    const [currentProductData, setCurrentProductData] = useState<SupplyListDatabaseRecord[]>([]);
 
 
    useEffect(() => {
       const route = '/api/grocerySupplyOverview/productList';
-      fetchData<ProductInSupplyDatabaseRecord[]>(route, setProductList);
+      fetchData<ProductListDatabaseRecord[]>(route, setProductList);
    }, []);
 
 
@@ -35,7 +35,7 @@ function SupplyProductDetail(props: Props): ReactElement {
 
 
    function setSearchedProduct(name: string) {
-      let product: ProductInSupplyDatabaseRecord | undefined;
+      let product: ProductListDatabaseRecord | undefined;
       if (productList) {
          product = productList.find((element) => element.name === name);
       }
@@ -45,7 +45,7 @@ function SupplyProductDetail(props: Props): ReactElement {
    }
 
 
-   function buildProductNameList(productListData: ProductInSupplyDatabaseRecord[]): string[] {
+   function buildProductNameList(productListData: ProductListDatabaseRecord[]): string[] {
       return productListData.map((product) => product.name);
    }
 

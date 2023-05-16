@@ -1,12 +1,12 @@
 import React, { ReactElement, useState } from 'react';
 import { SupplyOverview } from '../../application-components/supplyOverview/SupplyOverview';
 import { SupplyProductDetail } from '../../application-components/supplyProductDetail/SupplyProductDetail';
-import { ProductInSupplyDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
+import { ProductListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 import './grocerySupplyOverview.css';
 
 
 function GrocerySupplyOverview(): ReactElement {
-   const [currentProduct, setCurrentProduct] = useState<ProductInSupplyDatabaseRecord>();
+   const [currentProduct, setCurrentProduct] = useState<ProductListDatabaseRecord>();
 
    return (
       <main id="grocery-supply-overview-container-main">
