@@ -17,7 +17,6 @@ import { handleAddItemsToSupplyPostRequest } from './dataRequestHandler/PostAddI
 import { handleUnconsumedItemIdListRequest } from './dataRequestHandler/GetUnconsumedItemIdListRequestHandler';
 import { handleInformationForIdRequest } from './dataRequestHandler/GetItemInformationForId';
 import { handleConsumeItemsPostRequest } from './dataRequestHandler/PostConsumeItemsRequestHandler';
-import { handleSupplyListRequest } from './dataRequestHandler/GetGrocerySupplyListHandler';
 import { handleSupplyProductNameListRequest } from './dataRequestHandler/GetSupplyProductNameListRequestHandler';
 import { handleProductSupplyRequest } from './dataRequestHandler/GetProductSupplyRequestHandler';
 
@@ -179,17 +178,6 @@ app.get('/api/GroceryItemConsume/itemInformationForId/:id', async (request, resp
       response,
       handler: handleInformationForIdRequest,
       argumentList: [request.params.id]
-   };
-   await handleRequest(param);
-});
-
-
-app.get('/api/GrocerySupplyList/supplyList', async (request, response) => {
-   const param = {
-      request,
-      response,
-      handler: handleSupplyListRequest,
-      argumentList: [] as string[]
    };
    await handleRequest(param);
 });
