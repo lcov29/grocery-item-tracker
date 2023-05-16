@@ -17,7 +17,7 @@ type Props = {
 
 
 function SupplyOverview(props: Props): ReactElement | null {
-   const { handleRowClick = () => {} } = props;
+   const { handleRowClick } = props;
    const [supplyOverviewData, setSupplyOverviewData] = useState<SupplyOverviewFrontendData>();
 
 
