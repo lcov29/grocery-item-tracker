@@ -18,7 +18,7 @@ type SupplyListDatabaseRecord = {
 };
 
 
-type ProductInSupplyDatabaseRecord = {
+type ProductListDatabaseRecord = {
    id: number,
    name: string
 };
@@ -72,7 +72,7 @@ type SupplyOverviewFrontendData = {
 
 
 type ProductListFrontendData = {
-   data: ProductInSupplyDatabaseRecord[]
+   data: ProductListDatabaseRecord[]
 };
 
 
@@ -83,7 +83,7 @@ type ProductSupplyFrontendData = {
 
 export {
    SupplyOverviewDatabaseRecord,
-   ProductInSupplyDatabaseRecord,
+   ProductListDatabaseRecord,
    SupplyListDatabaseRecord,
    CategoryName,
    SupplyItem,
