@@ -4,7 +4,7 @@ import { Table } from '../../base-components/table/Table';
 import { SearchBar } from '../../base-components/searchBar/SearchBar';
 import { fetchData } from '../../../utility/fetchServerData';
 import { parseDatabaseDate } from '../../../utility/parseDate';
-import { ProductInSupplyDatabaseRecord, SupplyListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
+import { ProductInSupplyDatabaseRecord, SupplyListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 import './supplyProductDetail.css';
 
 

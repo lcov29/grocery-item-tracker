@@ -7,7 +7,7 @@ import {
    TopCategory,
    SubCategory,
    ProductSupplyOverview
-} from '../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
+} from '../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 
 
 function getUniquePropertyValueList(

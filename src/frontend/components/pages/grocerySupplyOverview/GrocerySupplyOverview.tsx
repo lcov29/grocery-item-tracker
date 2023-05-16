@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 import { SupplyOverview } from '../../application-components/supplyOverview/SupplyOverview';
 import { SupplyProductDetail } from '../../application-components/supplyProductDetail/SupplyProductDetail';
-import { ProductInSupplyDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
+import { ProductInSupplyDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 import './grocerySupplyOverview.css';
 
 

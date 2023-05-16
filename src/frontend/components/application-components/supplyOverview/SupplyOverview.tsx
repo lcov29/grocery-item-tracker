@@ -7,7 +7,7 @@ import {
    SubCategory,
    TopCategory,
    SupplyOverviewFrontendData
-} from '../../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
+} from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 import './supplyOverview.css';
 
 

@@ -1,6 +1,6 @@
 import { Request } from 'express';
 import { PoolConnection } from 'mariadb';
-import { ProductInSupplyDatabaseRecord } from '../../../tsDataTypes/tsTypesGrocerySupplyOverviewHome';
+import { ProductInSupplyDatabaseRecord } from '../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 
 
 async function handleSupplyProductNameListRequest(request: Request, dbConnection: PoolConnection):
