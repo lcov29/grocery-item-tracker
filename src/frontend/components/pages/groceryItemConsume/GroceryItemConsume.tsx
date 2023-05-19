@@ -86,13 +86,6 @@ function GroceryItemConsume(): ReactElement {
    }
 
 
-   /*
-   function buildIdListString(): string[] {
-      return previewItemList.map((item) => item.id.toString());
-   }
-   */
-
-
    function buildIdListString(): number[] {
       return previewItemList.map((item) => item.id);
    }
