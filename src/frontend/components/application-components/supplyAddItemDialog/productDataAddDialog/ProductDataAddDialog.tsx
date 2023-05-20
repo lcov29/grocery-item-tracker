@@ -27,8 +27,7 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
    }, []);
 
 
-   function buildMeasurementUnitSymbolList(measurementUnitDataList: MeasurementData[]):
-   string[] {
+   function buildMeasurementUnitSymbolList(measurementUnitDataList: MeasurementData[]): string[] {
       return measurementUnitDataList.map((element) => element.unitSymbol);
    }
 
