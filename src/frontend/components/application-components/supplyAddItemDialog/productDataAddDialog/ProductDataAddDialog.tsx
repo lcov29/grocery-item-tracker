@@ -98,6 +98,8 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
          <form id="product-data-add-form">
             { generateProductInput() }
             <ProductDataAddDialogCategoryInput
+               categoryInput={categoryInput}
+               subCategoryInput={subCategoryInput}
                setCategoryInput={setCategoryInput}
                setSubCategoryInput={setSubCategoryInput}
             />
