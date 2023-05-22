@@ -70,6 +70,8 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
                <SearchableDropdown
                   id="unit"
                   optionList={buildMeasurementUnitSymbolList(measurementDataList)}
+                  value={unitInput}
+                  setValue={setUnitInput}
                   inputHandler={setUnitInput}
                   inputRequired
                />
