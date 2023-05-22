@@ -33,6 +33,7 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
       const topCategoryList = categoryDataList.filter(
          (element) => element.parentCategoryId === null
       );
+
       return topCategoryList.map(
          (element) => element.name
       );
