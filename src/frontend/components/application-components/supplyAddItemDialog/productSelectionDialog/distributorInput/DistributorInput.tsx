@@ -7,8 +7,17 @@ import { DistributorNameList } from '../../../../../../tsDataTypes/tsTypesGrocer
 import { AddNewCategoryDialog } from '../../productDataAddDialog/addNewCategoryDialog/AddNewCategoryDialog';
 
 
-function DistributorInput(): ReactElement {
+type Props = {
+   distributorInput: string,
+   setDistributorInput: (a: string) => void
+};
+
+
+function DistributorInput(props: Props): ReactElement {
+   const { distributorInput, setDistributorInput } = props;
+
    const [distributorData, setDistributorData] = useState<DistributorNameList[]>([]);
+   const [newDistributor, setNewDistributor] = useState('');
    const [displayNewDistributorDialog, setDisplayNewDistributorDialog] = useState(false);
 
 
@@ -22,11 +31,12 @@ function DistributorInput(): ReactElement {
    }
 
 
-   async function handleAddingNewDistributor(distributor: string): Promise<void> {
-      const isInputValid = distributor !== '';
+   async function handleAddingNewDistributor(): Promise<void> {
+      const isInputValid = newDistributor !== '';
 
       if (isInputValid) {
-         await sendData<{ distributor: string }>('/api/groceryItemAdd/addNewDistributor', { distributor });
+         const payload = { distributor: newDistributor };
+         await sendData<{ distributor: string }>('/api/groceryItemAdd/addNewDistributor', payload);
          await fetchData<DistributorNameList[]>('/api/groceryItemAdd/distributorNameList', setDistributorData);
          setDisplayNewDistributorDialog(false);
       }
@@ -41,6 +51,8 @@ function DistributorInput(): ReactElement {
                titleText="Add New Distributor"
                labelText="Distributor Name"
                handleSave={handleAddingNewDistributor}
+               inputValue={newDistributor}
+               setInputValue={setNewDistributor}
             />
          );
       }
@@ -56,6 +68,8 @@ function DistributorInput(): ReactElement {
                id="distributor"
                className="product-selection-dialog-dropdown-input"
                optionList={buildDistributorNameList()}
+               value={distributorInput}
+               inputHandler={(input: string) => { setDistributorInput(input); }}
                inputRequired
             />
             <button
