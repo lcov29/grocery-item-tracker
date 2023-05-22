@@ -4,21 +4,21 @@ import React, { useEffect, useState, ReactElement } from 'react';
 import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
 import { fetchData, sendData } from '../../../../../utility/fetchServerData';
 import { CategoryData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { getInputValue, setInputValue } from '../../../../../utility/inputValue';
 import { AddNewCategoryDialog } from '../addNewCategoryDialog/AddNewCategoryDialog';
 import './productDataAddDialogCategoryInput.css';
 
 
 type Props = {
+   categoryInput: string,
+   subCategoryInput: string,
    setCategoryInput: (e: string) => void,
    setSubCategoryInput: (e: string) => void
 };
 
 
 function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
-   const { setCategoryInput, setSubCategoryInput } = props;
+   const { categoryInput, subCategoryInput, setCategoryInput, setSubCategoryInput } = props;
 
-   const [selectedTopCategory, setSelectedTopCategory] = useState('');
    const [categoryData, setCategoryData] = useState<CategoryData[]>();
    const [displayNewCategoryDialog, setDisplayNewCategoryDialog] = useState(false);
    const [displayNewSubCategoryDialog, setDisplayNewSubCategoryDialog] = useState(false);
@@ -42,7 +42,7 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
 
    function buildMappedSubcategoryNameList(categoryDataList: CategoryData[]): string[] {
       const selectedCategory = categoryDataList.filter(
-         (element) => element.name === selectedTopCategory
+         (element) => element.name === categoryInput
       );
 
       const isSelectedCategoryNew = selectedCategory.length === 0;
@@ -60,39 +60,37 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
    }
 
 
-   async function handleAddingNewCategory(input: string): Promise<void> {
-      const isInputValid = input !== '';
-      if (isInputValid) {
-         await sendData<{ category: string }>('/api/groceryItemAdd/addTopCategoryData', { category: input });
+   async function handleAddingNewCategory(): Promise<void> {
+      const isCategoryInputValid = categoryInput !== '';
+
+      if (isCategoryInputValid) {
+         await sendData<{ category: string }>('/api/groceryItemAdd/addTopCategoryData', { category: categoryInput });
          await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
          setDisplayNewCategoryDialog(false);
       }
    }
 
 
-   async function handleAddingNewSubcategory(subCategory: string): Promise<void> {
-      const topCategory = getInputValue('categoryName');
-      const isTopCategoryInputInvalid = topCategory === '';
-      const isSubcategoryInputInvalid = subCategory === '';
+   async function handleAddingNewSubcategory(): Promise<void> {
+      const isCategoryInputValid = categoryInput !== '' && subCategoryInput !== '';
 
-      if (isTopCategoryInputInvalid || isSubcategoryInputInvalid) return;
-
-      await sendData<{ topCategory: string, subCategory: string }>(
-         '/api/groceryItemAdd/addSubCategoryData',
-         { topCategory, subCategory }
-      );
-      await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
-      setDisplayNewSubCategoryDialog(false);
+      if (isCategoryInputValid) {
+         await sendData<{ topCategory: string, subCategory: string }>(
+            '/api/groceryItemAdd/addSubCategoryData',
+            { topCategory: categoryInput, subCategory: subCategoryInput }
+         );
+         await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
+         setDisplayNewSubCategoryDialog(false);
+      }
    }
 
 
-   function handleCategoryInput(category: string): void {
-      const hasCategoryChanged = category !== selectedTopCategory;
+   function handleCategoryInput(input: string): void {
+      const hasCategoryChanged = input !== categoryInput;
 
       if (hasCategoryChanged) {
-         setSelectedTopCategory(category);
-         setInputValue('subcategoryName', '');
-         setCategoryInput(category);
+         setCategoryInput(input);
+         setSubCategoryInput('');
       }
    }
 
@@ -124,10 +122,10 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
 
 
    function generateSubCategoryDropdown(): ReactElement {
-      const isCategoryDataValid = selectedTopCategory && categoryData;
+      const isCategoryDataValid = categoryInput && categoryData;
       const optionList = (isCategoryDataValid) ? buildMappedSubcategoryNameList(categoryData) : [];
 
-      const addButton = (selectedTopCategory) ? (
+      const addButton = (categoryInput) ? (
          <button
             type="button"
             className="category-add-button"
@@ -163,6 +161,8 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
                titleText="Add New Category"
                labelText="Category Name"
                handleSave={handleAddingNewCategory}
+               inputValue={categoryInput}
+               setInputValue={setCategoryInput}
             />
          );
       }
@@ -178,6 +178,8 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
                titleText="Add New Subcategory"
                labelText="Subcategory Name"
                handleSave={handleAddingNewSubcategory}
+               inputValue={subCategoryInput}
+               setInputValue={setSubCategoryInput}
             />
          );
       }
