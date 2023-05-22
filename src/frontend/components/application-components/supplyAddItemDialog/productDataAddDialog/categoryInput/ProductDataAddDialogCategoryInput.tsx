@@ -59,13 +59,13 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
    }
 
 
-   async function handleAddingNewCategory(category: string): Promise<void> {
-      const isInputInvalid = category === '';
-      if (isInputInvalid) return;
-
-      await sendData<{ category: string }>('/api/groceryItemAdd/addTopCategoryData', { category });
-      await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
-      setDisplayNewCategoryDialog(false);
+   async function handleAddingNewCategory(input: string): Promise<void> {
+      const isInputValid = input !== '';
+      if (isInputValid) {
+         await sendData<{ category: string }>('/api/groceryItemAdd/addTopCategoryData', { category: input });
+         await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
+         setDisplayNewCategoryDialog(false);
+      }
    }
 
 
