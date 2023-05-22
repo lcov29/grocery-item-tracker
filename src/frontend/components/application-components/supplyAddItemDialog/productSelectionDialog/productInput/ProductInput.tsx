@@ -7,12 +7,13 @@ import { ProductNameListData } from '../../../../../../tsDataTypes/tsTypesGrocer
 
 type ProductInputProps = {
    openProductAddDialog: () => void
+   productInput: string,
+   setProductInput: (a: string) => void
 };
 
 
 function ProductInput(props: ProductInputProps): ReactElement {
-
-   const { openProductAddDialog } = props;
+   const { openProductAddDialog, productInput, setProductInput } = props;
    const [productData, setProductData] = useState<ProductNameListData[]>([]);
 
 
@@ -32,7 +33,9 @@ function ProductInput(props: ProductInputProps): ReactElement {
          <div>
             <SearchableDropdown
                id="productName"
+               value={productInput}
                className="product-selection-dialog-dropdown-input"
+               inputHandler={(input: string) => { setProductInput(input); }}
                optionList={buildProductNameList(productData)}
                inputRequired
             />
