@@ -4,7 +4,6 @@ import { Counter } from '../../../base-components/counter/Counter';
 import { ProductInput } from './productInput/ProductInput';
 import { DistributorInput } from './distributorInput/DistributorInput';
 import { GroceryItemData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { getInputValue } from '../../../../utility/inputValue';
 import './productSelectionDialog.css';
 
 
@@ -17,16 +16,24 @@ type ProductSelectionDialogProps = {
 
 function ProductSelectionDialog(props: ProductSelectionDialogProps): ReactElement {
    const { addGroceryItemData, openItemAddOverview, openProductAddDialog } = props;
+
+   const [productName, setProductName] = useState('');
+   const [distributor, setDistributor] = useState('');
    const [amount, setAmount] = useState(1);
+   const [unitPrice, setUnitPrice] = useState(1);
+   const [expirationDate, setExpirationDate] = useState('');
 
 
    function addGroceryItemDataToList(): void {
-      const id = -1;
-      const productName = getInputValue('productName');
-      const distributor = getInputValue('distributor');
-      const pricePerUnit = Number.parseInt(getInputValue('input-price-per-unit'), 10);
-      const expirationDate = getInputValue('input-expiration-date');
-      addGroceryItemData({ id, productName, distributor, amount, pricePerUnit, expirationDate });
+      const payload = {
+         id: -1,
+         productName,
+         distributor,
+         amount,
+         pricePerUnit: unitPrice,
+         expirationDate
+      };
+      addGroceryItemData(payload);
       openItemAddOverview();
    }
 
@@ -35,11 +42,17 @@ function ProductSelectionDialog(props: ProductSelectionDialogProps): ReactElemen
       <div id="grocery-item-product-selection-container">
          <h2>Select Grocery Item</h2>
          <form id="product-selection-dialog">
-            <ProductInput openProductAddDialog={openProductAddDialog} />
-            <DistributorInput />
+            <ProductInput
+               openProductAddDialog={openProductAddDialog}
+               setProductInput={setProductName}
+               productInput={productName}
+            />
+            <DistributorInput
+               distributorInput={distributor}
+               setDistributorInput={setDistributor}
+            />
             <label htmlFor="input-amount">Amount</label>
             <Counter value={amount} setValue={setAmount} />
-            <input type="text" name="amount" className="input-amount-hidden" value={amount} readOnly />
             <label htmlFor="input-price-per-unit" className="product-selection-dialog-label">Unit Price</label>
             <input
                id="input-price-per-unit"
@@ -47,6 +60,8 @@ function ProductSelectionDialog(props: ProductSelectionDialogProps): ReactElemen
                className="product-selection-dialog-input"
                type="number"
                min={1}
+               value={unitPrice}
+               onChange={(e) => { setUnitPrice(Number.parseInt(e.target.value, 10)); }}
                required
             />
             <label htmlFor="input-expiration-date" className="product-selection-dialog-label">Expiration Date</label>
@@ -55,6 +70,8 @@ function ProductSelectionDialog(props: ProductSelectionDialogProps): ReactElemen
                name="expirationDate"
                className="product-selection-dialog-input"
                type="date"
+               value={expirationDate}
+               onChange={(e) => { setExpirationDate(e.target.value); }}
                required
             />
             <div id="add-button-container">
