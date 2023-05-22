@@ -34,6 +34,7 @@ function ProductInput(props: ProductInputProps): ReactElement {
             <SearchableDropdown
                id="productName"
                value={productInput}
+               setValue={setProductInput}
                className="product-selection-dialog-dropdown-input"
                inputHandler={(input: string) => { setProductInput(input); }}
                optionList={buildProductNameList(productData)}

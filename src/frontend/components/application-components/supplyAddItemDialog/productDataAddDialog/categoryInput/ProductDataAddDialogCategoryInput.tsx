@@ -103,6 +103,8 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
             <div>
                <SearchableDropdown
                   id="categoryName"
+                  value={categoryInput}
+                  setValue={setCategoryInput}
                   className="category-input"
                   optionList={optionList}
                   inputHandler={handleCategoryInput}
@@ -141,6 +143,8 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
             <div>
                <SearchableDropdown
                   id="subcategoryName"
+                  value={subCategoryInput}
+                  setValue={setSubCategoryInput}
                   className="category-input"
                   optionList={optionList}
                   inputHandler={setSubCategoryInput}

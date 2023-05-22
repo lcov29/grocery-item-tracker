@@ -69,6 +69,7 @@ function DistributorInput(props: Props): ReactElement {
                className="product-selection-dialog-dropdown-input"
                optionList={buildDistributorNameList()}
                value={distributorInput}
+               setValue={setDistributorInput}
                inputHandler={(input: string) => { setDistributorInput(input); }}
                inputRequired
             />
