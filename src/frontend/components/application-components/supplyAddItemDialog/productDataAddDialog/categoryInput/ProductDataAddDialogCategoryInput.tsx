@@ -48,9 +48,11 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
       if (isSelectedCategoryNew) {
          return [];
       }
+
       const mappedSubCategoryList = categoryDataList.filter(
          (element) => element.parentCategoryId === selectedCategory[0].id
       );
+
       return mappedSubCategoryList.map(
          (element) => element.name
       );
