@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import './addNewCategoryDialog.css';
 
 
@@ -6,13 +6,14 @@ type AddNewCategoryDialogParams = {
    displayDialog: (display: boolean) => void,
    titleText: string,
    labelText: string,
-   handleSave: (inputValue: string) => void
+   handleSave: () => void,
+   inputValue: string,
+   setInputValue: (a: string) => void
 };
 
 
 function AddNewCategoryDialog(props: AddNewCategoryDialogParams): ReactElement | null {
-   const { displayDialog, titleText, labelText, handleSave } = props;
-   const [inputValue, setInputValue] = useState('');
+   const { displayDialog, titleText, labelText, handleSave, inputValue, setInputValue } = props;
 
    return (
       <>
@@ -33,7 +34,7 @@ function AddNewCategoryDialog(props: AddNewCategoryDialogParams): ReactElement |
             <br />
             <div className="product-add-dialog-modal-window-control-bar">
                <button type="button" onClick={() => { displayDialog(false); }}>Cancel</button>
-               <button type="button" onClick={() => { handleSave(inputValue); }}>Save</button>
+               <button type="button" onClick={handleSave}>Save</button>
             </div>
 
          </div>
