@@ -5,6 +5,7 @@ import './searchableDropdown.css';
 type SearchableDropdownProps = {
    id: string,
    optionList: string[],
+   value?: string,
    className?: string,
    placeholderText?: string,
    isNonListedInputAllowed?: boolean,
@@ -17,6 +18,7 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
    const {
       id,
       optionList,
+      value = '',
       className = '',
       placeholderText = '',
       isNonListedInputAllowed = false,
@@ -27,7 +29,7 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
    const datalistId = `${id}-list`;
 
 
-   function handleUserInput(event: React.ChangeEvent<HTMLInputElement>) {
+   function handleInputBlur(event: React.ChangeEvent<HTMLInputElement>): void {
       const { target } = event;
 
       const isUserInputFilled = target.value !== '';
@@ -37,7 +39,11 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
       if (isUserInputFilled && !isUserInputValid) {
          target.value = '';
       }
+   }
 
+
+   function handleUserInput(event: React.ChangeEvent<HTMLInputElement>): void {
+      const { target } = event;
       if (inputHandler) {
          inputHandler(target.value);
       }
@@ -50,11 +56,13 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
             <input
                id={inputId}
                name={inputId}
+               value={value}
                className={`searchable-dropdown ${className}`}
                type="search"
                placeholder={placeholderText}
                list={datalistId}
-               onBlur={handleUserInput}
+               onChange={handleUserInput}
+               onBlur={handleInputBlur}
                required
             />
          );
@@ -65,11 +73,13 @@ function SearchableDropdown(props: SearchableDropdownProps): ReactElement {
          <input
             id={inputId}
             name={inputId}
+            value={value}
             className={`searchable-dropdown ${className}`}
             type="search"
             placeholder={placeholderText}
             list={datalistId}
-            onBlur={handleUserInput}
+            onChange={handleUserInput}
+            onBlur={handleInputBlur}
          />
       );
    }
