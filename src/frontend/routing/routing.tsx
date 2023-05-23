@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import { Home } from '../components/pages/home/Home';
-import { GrocerySupplyOverview } from '../components/pages/grocerySupplyOverview/GrocerySupplyOverview';
-import { GroceryItemAdd } from '../components/pages/groceryItemAdd/GroceryItemAdd';
-import { GroceryItemConsume } from '../components/pages/groceryItemConsume/GroceryItemConsume';
+import { SupplyOverview } from '../components/pages/supplyOverview/SupplyOverview';
+import { AddSupplyItems } from '../components/pages/addSupplyItems/AddSupplyItems';
+import { ConsumeSupplyItems } from '../components/pages/consumeSupplyItems/ConsumeSupplyItems';
 import { Settings } from '../components/pages/settings/Settings';
 
 
@@ -28,13 +28,13 @@ function getContentSectionFor(currentPageId: string): ReactElement | null {
       case pageId.home:
          return <Home />;
       case pageId.grocerySupplyOverview:
-         return <GrocerySupplyOverview />;
+         return <SupplyOverview />;
       case pageId.grocerySupplyMinimum:
          return <h2>Coming Soon</h2>;
       case pageId.groceryItemAdd:
-         return <GroceryItemAdd />;
+         return <AddSupplyItems />;
       case pageId.groceryItemConsume:
-         return <GroceryItemConsume />;
+         return <ConsumeSupplyItems />;
       case pageId.shoppingList:
          return <h2>Coming Soon</h2>;
       case pageId.reports:
