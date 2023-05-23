@@ -1,7 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
 import { UnconsumedItemId, PreviewConsumedItem, ConsumeItemsFromSupplyResponse } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
-import { getInputValue } from '../../../utility/inputValue';
 import { fetchData, sendData } from '../../../utility/fetchServerData';
 import { parseDatabaseDate } from '../../../utility/parseDate';
 import { Table } from '../../base-components/table/Table';
@@ -16,6 +15,7 @@ function GroceryItemConsume(): ReactElement {
    const [pageState, setPageState] = useState<PageState>('ConsumedItemSelectionState');
    const [idDropdownContent, setIdDropdownContent] = useState<UnconsumedItemId[]>([]);
    const [previewItemList, setPreviewItemList] = useState<PreviewConsumedItem[]>([]);
+   const [productIdInput, setProductIdInput] = useState('');
 
 
    useEffect(() => {
@@ -40,15 +40,14 @@ function GroceryItemConsume(): ReactElement {
 
 
    async function handleAddItem(): Promise<void> {
-      const inputId = getInputValue('grocery-item-consume-searchbar');
-      const isInputEmpty = inputId === '';
-      if (isInputEmpty) { return; }
+      const isInputValid = productIdInput !== '';
 
-      const id = parseInt(inputId, 10);
-      const isNewId = previewItemList.filter((item) => item.id === id).length === 0;
-
-      if (isNewId) {
-         await addToPreviewItemList(id);
+      if (isInputValid) {
+         const id = parseInt(productIdInput, 10);
+         const isNewId = previewItemList.filter((item) => item.id === id).length === 0;
+         if (isNewId) {
+            await addToPreviewItemList(id);
+         }
       }
    }
 
@@ -76,8 +75,11 @@ function GroceryItemConsume(): ReactElement {
          <>
             <SearchableDropdown
                id="grocery-item-consume-searchbar"
+               value={productIdInput}
+               setValue={setProductIdInput}
                placeholderText="Unconsumed Product Id"
                optionList={buildIdDropdownContent()}
+               inputHandler={setProductIdInput}
             />
             <button type="button" onClick={handleAddItem}>+</button>
          </>, '', '', '', ''
