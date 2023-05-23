@@ -3,7 +3,7 @@ import React, { ReactElement, useState } from 'react';
 import { AddedItemsPreview } from './subcomponents/addedItemsPreview/AddedItemsPreview';
 import { AddNewProductForm } from './subcomponents/addNewProductForm/AddNewProductForm';
 import { ProductSelection } from './subcomponents/productSelection/ProductSelection';
-import { SupplyAddedItemsReceipt } from '../../application-components/supplyAddItemDialog/supplyAddedItemsReceipt/SupplyAddedItemsReceipt';
+import { AddedItemsReceipt } from './subcomponents/addedItemsReceipt/AddedItemsReceipt';
 import { GroceryItemData, AddedItemReceiptData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import './addSupplyItems.css';
 
@@ -57,7 +57,7 @@ function AddSupplyItems(): ReactElement {
       switch (pageState) {
          case 'ReceiptItemsAddedState':
             return (
-               <SupplyAddedItemsReceipt
+               <AddedItemsReceipt
                   addedItemsReceiptDataList={addedItemsReceiptList}
                />
             );

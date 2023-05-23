@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import { AddedItemReceiptData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { parseDatabaseDate } from '../../../../utility/parseDate';
-import { Table } from '../../../base-components/table/Table';
+import { AddedItemReceiptData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { parseDatabaseDate } from '../../../../../utility/parseDate';
+import { Table } from '../../../../base-components/table/Table';
 
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 };
 
 
-function SupplyAddedItemsReceipt(props: Props): ReactElement {
+function AddedItemsReceipt(props: Props): ReactElement {
    const { addedItemsReceiptDataList } = props;
 
 
@@ -41,4 +41,4 @@ function SupplyAddedItemsReceipt(props: Props): ReactElement {
 }
 
 
-export { SupplyAddedItemsReceipt };
+export { AddedItemsReceipt };
