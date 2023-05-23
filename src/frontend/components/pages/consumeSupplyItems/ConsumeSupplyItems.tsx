@@ -4,7 +4,7 @@ import { UnconsumedItemId, PreviewConsumedItem, ConsumeItemsFromSupplyResponse }
 import { fetchData, sendData } from '../../../utility/fetchServerData';
 import { parseDatabaseDate } from '../../../utility/parseDate';
 import { Table } from '../../base-components/table/Table';
-import './groceryItemConsume.css';
+import './consumeSupplyItems.css';
 
 
 type PageState = 'ConsumedItemSelectionState' | 'ConsumedItemConfirmationState';
