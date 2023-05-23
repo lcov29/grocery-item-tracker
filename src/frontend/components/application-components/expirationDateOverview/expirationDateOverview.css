@@ -7,8 +7,3 @@
 #expiration-date-header h2 {
     margin-bottom: 0;
 }
-
-.expiration-date-table td:last-child,
-.expiration-date-table th:last-child {
-    text-align: right;
-}
