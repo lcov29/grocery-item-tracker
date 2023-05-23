@@ -2,12 +2,12 @@
     --border: .1rem solid black;
 }
 
-#counter-container {
+.counter-container {
     display: flex;
     flex-wrap: nowrap;
 }
 
-#counter-value {
+.counter-value {
     display: flex;
     align-items: center;
     border-top: var(--border);
@@ -19,11 +19,11 @@
     justify-content: center;
 }
 
-#counter-container button {
+.counter-container button {
     border: var(--border);
     background: none;  
 }
 
-#counter-container button:hover {
+.counter-container button:hover {
     background-color: lightgray;
 }
