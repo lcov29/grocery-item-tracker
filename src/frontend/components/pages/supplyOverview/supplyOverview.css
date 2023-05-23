@@ -1,16 +1,16 @@
-#grocery-supply-overview-container-main {
+.supply-overview-container-main {
     margin: 2rem;
 }
 
-.grocery-supply-overview-container h2,
-.grocery-supply-overview-container h2 {
+.supply-overview-container h2,
+.supply-overview-container h2 {
    margin-top: 0;
 }
 
 
 @media screen and (max-width: 800px) {
 
-    .grocery-supply-overview-container {
+    .supply-overview-container {
        border: 0.1rem solid black;
        padding: 1rem;
        margin-bottom: 2rem;
@@ -21,13 +21,13 @@
  
  @media screen and (min-width: 801px) {
  
-    #grocery-supply-overview-container-main {
+    .supply-overview-container-main {
        display: grid;
        grid-template-columns: 1fr 1fr;
        column-gap: 2rem;
     }
  
-    .grocery-supply-overview-container {
+    .supply-overview-container {
        border: 0.1rem solid black;
        padding: 1rem;
        overflow-y: auto;

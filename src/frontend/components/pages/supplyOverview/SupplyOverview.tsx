@@ -18,18 +18,18 @@ function SupplyOverview(): ReactElement {
    }, []);
 
 
-   function handleSupplyOverviewRowListClick(productName: string): void {
+   function handleRowListClick(productName: string): void {
       const newProduct = productList.find((product) => product.name === productName);
       setCurrentProduct(newProduct);
    }
 
 
    return (
-      <main id="grocery-supply-overview-container-main">
-         <div className="grocery-supply-overview-container">
-            <Overview handleRowClick={handleSupplyOverviewRowListClick} />
+      <main className="supply-overview-container-main">
+         <div className="supply-overview-container">
+            <Overview handleRowClick={handleRowListClick} />
          </div>
-         <div className="grocery-supply-overview-container">
+         <div className="supply-overview-container">
             <ProductSupply
                productList={productList}
                currentProduct={currentProduct}
