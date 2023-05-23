@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState, ReactElement } from 'react';
-import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
-import { ModalInputPrompt } from '../../../../base-components/modalInputPrompt/ModalInputPrompt';
-import { fetchData, sendData } from '../../../../../utility/fetchServerData';
-import { CategoryData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import './productDataAddDialogCategoryInput.css';
+import { SearchableDropdown } from '../../../../../../base-components/searchableDropdown/SearchableDropdown';
+import { ModalInputPrompt } from '../../../../../../base-components/modalInputPrompt/ModalInputPrompt';
+import { fetchData, sendData } from '../../../../../../../utility/fetchServerData';
+import { CategoryData } from '../../../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import './addNewCategories.css';
 
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
 };
 
 
-function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
+function AddNewCategories(props: Props): ReactElement {
    const { categoryInput, subCategoryInput, setCategoryInput, setSubCategoryInput } = props;
 
    const [categoryData, setCategoryData] = useState<CategoryData[]>();
@@ -200,4 +200,4 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
 }
 
 
-export { ProductDataAddDialogCategoryInput };
+export { AddNewCategories };

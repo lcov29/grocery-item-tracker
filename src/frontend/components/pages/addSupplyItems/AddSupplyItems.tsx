@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { ReactElement, useState } from 'react';
 import { AddedItemsPreview } from './subcomponents/addedItemsPreview/AddedItemsPreview';
-import { ProductDataAddDialog } from '../../application-components/supplyAddItemDialog/productDataAddDialog/ProductDataAddDialog';
+import { AddNewProductForm } from './subcomponents/addNewProductForm/AddNewProductForm';
 import { ProductSelection } from './subcomponents/productSelection/ProductSelection';
 import { SupplyAddedItemsReceipt } from '../../application-components/supplyAddItemDialog/supplyAddedItemsReceipt/SupplyAddedItemsReceipt';
 import { GroceryItemData, AddedItemReceiptData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
@@ -80,7 +80,7 @@ function AddSupplyItems(): ReactElement {
                />
             );
          case 'ProductAddState':
-            return <ProductDataAddDialog openItemAddDialog={openItemAddDialog} />;
+            return <AddNewProductForm openItemAddDialog={openItemAddDialog} />;
          default:
             return null;
       }

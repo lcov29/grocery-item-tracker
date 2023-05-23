@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState, useEffect } from 'react';
-import { SearchableDropdown } from '../../../base-components/searchableDropdown/SearchableDropdown';
-import { fetchData, sendData } from '../../../../utility/fetchServerData';
-import { MeasurementData } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { ProductDataAddDialogCategoryInput } from './categoryInput/ProductDataAddDialogCategoryInput';
-import './productDataAddDialog.css';
+import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
+import { fetchData, sendData } from '../../../../../utility/fetchServerData';
+import { MeasurementData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { AddNewCategories } from './subcomponents/addNewCategories/AddNewCategories';
+import './addNewProductForm.css';
 
 
 type ProductDataAddDialogProps = {
@@ -12,7 +12,7 @@ type ProductDataAddDialogProps = {
 };
 
 
-function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
+function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
    const { openItemAddDialog } = props;
    const [measurementData, setMeasurementData] = useState<MeasurementData[]>();
    const [productInput, setProductInput] = useState('');
@@ -99,7 +99,7 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
          <h2>Add New Product</h2>
          <form id="product-data-add-form">
             { generateProductInput() }
-            <ProductDataAddDialogCategoryInput
+            <AddNewCategories
                categoryInput={categoryInput}
                subCategoryInput={subCategoryInput}
                setCategoryInput={setCategoryInput}
@@ -116,4 +116,4 @@ function ProductDataAddDialog(props: ProductDataAddDialogProps): ReactElement {
 }
 
 
-export { ProductDataAddDialog };
+export { AddNewProductForm };
