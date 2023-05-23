@@ -62,7 +62,7 @@ function DistributorInput(props: Props): ReactElement {
 
    return (
       <>
-         <label htmlFor="input-distributor" className="product-selection-dialog-label">Distributor</label>
+         <label htmlFor="distributor" className="product-selection-dialog-label">Distributor</label>
          <div>
             <SearchableDropdown
                id="distributor"

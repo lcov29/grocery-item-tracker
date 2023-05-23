@@ -29,7 +29,7 @@ function ProductInput(props: ProductInputProps): ReactElement {
 
    return (
       <>
-         <label htmlFor="input-product-name" className="product-selection-dialog-label">Product</label>
+         <label htmlFor="productName" className="product-selection-dialog-label">Product</label>
          <div>
             <SearchableDropdown
                id="productName"

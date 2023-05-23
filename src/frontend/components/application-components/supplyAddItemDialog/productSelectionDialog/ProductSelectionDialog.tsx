@@ -51,7 +51,7 @@ function ProductSelectionDialog(props: ProductSelectionDialogProps): ReactElemen
                distributorInput={distributor}
                setDistributorInput={setDistributor}
             />
-            <label htmlFor="input-amount">Amount</label>
+            <label>Amount</label>
             <Counter value={amount} setValue={setAmount} />
             <label htmlFor="input-price-per-unit" className="product-selection-dialog-label">Unit Price</label>
             <input
