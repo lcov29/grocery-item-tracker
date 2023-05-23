@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { SupplyOverview } from '../../application-components/supplyOverview/SupplyOverview';
+import { SupplyOverview } from '../../sharedComponents/supplyOverview/SupplyOverview';
 import { ExpirationDateOverview } from '../../application-components/expirationDateOverview/ExpirationDateOverview';
 import './home.css';
 

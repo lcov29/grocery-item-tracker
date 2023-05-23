@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { ReactElement, useEffect, useState } from 'react';
-import { SupplyOverview } from '../../application-components/supplyOverview/SupplyOverview';
+import { SupplyOverview } from '../../sharedComponents/supplyOverview/SupplyOverview';
 import { SupplyProductDetail } from '../../application-components/supplyProductDetail/SupplyProductDetail';
 import { ProductListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 import { fetchData } from '../../../utility/fetchServerData';
