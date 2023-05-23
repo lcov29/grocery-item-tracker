@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { SupplyOverview } from '../../sharedComponents/supplyOverview/SupplyOverview';
-import { ExpirationDateOverview } from '../../application-components/expirationDateOverview/ExpirationDateOverview';
+import { ExpirationDateOverview } from './subComponents/expirationDateOverview/ExpirationDateOverview';
 import './home.css';
 
 
@@ -15,7 +15,6 @@ function Home(): ReactElement {
          </div>
       </main>
    );
-
 }
 
 
