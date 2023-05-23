@@ -3,6 +3,7 @@ import { Table } from '../../../../base-components/table/Table';
 import { parseDatabaseDate } from '../../../../../utility/parseDate';
 import { sendData } from '../../../../../utility/fetchServerData';
 import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import './addedItemsPreview.css';
 
 
 type Props = {
@@ -58,14 +59,11 @@ function AddedItemsPreview(props: Props): ReactElement {
    return (
       <>
          <h2>Add Grocery Items</h2>
-         <div id="import-shopping-list-button-container">
-            <button type="button" onClick={() => {}}>Import Shopping List</button>
-         </div>
          <Table
             headerList={['Amount', 'Product', 'Distributor', 'Expiration Date', ' ']}
             rowList={buildRowList()}
          />
-         <div id="save-button-container">
+         <div className="added-items-preview-save-button-container">
             <button type="button" onClick={addItemsToSupply}>Save</button>
          </div>
       </>

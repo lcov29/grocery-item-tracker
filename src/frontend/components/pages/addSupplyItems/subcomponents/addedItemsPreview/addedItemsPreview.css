@@ -1,0 +1,5 @@
+.added-items-preview-save-button-container {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 2rem;
+}
