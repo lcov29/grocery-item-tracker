@@ -8,7 +8,6 @@ import {
    TopCategory,
    SupplyOverviewFrontendData
 } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
-import './supplyOverview.css';
 
 
 type Props = {
