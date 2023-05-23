@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
-import homeIcon from '../../../icons/homeIcon.svg';
-import groceryItemIcon from '../../../icons/groceryItemIcon.svg';
-import shoppingListIcon from '../../../icons/shoppingCartIcon.svg';
-import reportsIcon from '../../../icons/reportIcon.svg';
-import settingsIcons from '../../../icons/settingIcon.svg';
-import { MenuGroceryOptionDropdownContent } from '../menuGroceryOptionDropdownContent/MenuGroceryOptionDropdownContent';
-import { MenuBar } from '../../base-components/menuBar/MenuBar';
-import { pageId } from '../../../routing/routing';
+import homeIcon from '../../../../icons/homeIcon.svg';
+import groceryItemIcon from '../../../../icons/groceryItemIcon.svg';
+import shoppingListIcon from '../../../../icons/shoppingCartIcon.svg';
+import reportsIcon from '../../../../icons/reportIcon.svg';
+import settingsIcons from '../../../../icons/settingIcon.svg';
+import { SupplyOptionDropdownContent } from '../supplyOptionDropdownContent/SupplyOptionDropdownContent';
+import { MenuBar } from '../../../base-components/menuBar/MenuBar';
+import { pageId } from '../../../../routing/routing';
 import './navigationBar.css';
 
 
@@ -40,7 +40,7 @@ function NavigationBar(props: NavigationBarProps): ReactElement {
       },
       {
          button: { content: generateIcon(groceryItemIcon, 'Grocery Items', 'Supply') },
-         dropdown: <MenuGroceryOptionDropdownContent setCurrentPageId={setCurrentPageId} />,
+         dropdown: <SupplyOptionDropdownContent setCurrentPageId={setCurrentPageId} />,
          isActive: isPageActive(pageId.grocerySupplyOverview)
                   || isPageActive(pageId.grocerySupplyMinimum)
                   || isPageActive(pageId.groceryItemAdd)

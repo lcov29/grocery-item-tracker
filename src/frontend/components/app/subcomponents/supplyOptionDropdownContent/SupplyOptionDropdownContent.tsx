@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { pageId } from '../../../routing/routing';
-import './menuGroceryOptionDropdownContent.css';
+import { pageId } from '../../../../routing/routing';
+import './supplyOptionDropdownContent.css';
 
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 
-function MenuGroceryOptionDropdownContent(props: Props): ReactElement {
+function SupplyOptionDropdownContent(props: Props): ReactElement {
    const { setCurrentPageId } = props;
    return (
       <div className="menu-grocery-dropdown-content">
@@ -35,4 +35,4 @@ function MenuGroceryOptionDropdownContent(props: Props): ReactElement {
 }
 
 
-export { MenuGroceryOptionDropdownContent };
+export { SupplyOptionDropdownContent };
