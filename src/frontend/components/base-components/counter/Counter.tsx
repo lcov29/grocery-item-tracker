@@ -60,12 +60,12 @@ function Counter(props: CounterProps): ReactElement {
 
 
    return (
-      <div id="container">
-         <button type="button" className="button" onClick={handleDecrement}>
+      <div id="counter-container">
+         <button type="button" onClick={handleDecrement}>
             <img src={arrowLeft} alt="-" />
          </button>
-         <div className="counter-value">{formatValueString(value, suffix)}</div>
-         <button type="button" className="button" onClick={handleIncrement}>
+         <div id="counter-value">{formatValueString(value, suffix)}</div>
+         <button type="button" onClick={handleIncrement}>
             <img src={arrowRight} alt="+" />
          </button>
       </div>
