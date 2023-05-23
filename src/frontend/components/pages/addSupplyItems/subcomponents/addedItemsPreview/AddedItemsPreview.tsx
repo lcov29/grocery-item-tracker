@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
-import { Table } from '../../../base-components/table/Table';
-import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { parseDatabaseDate } from '../../../../utility/parseDate';
-import { sendData } from '../../../../utility/fetchServerData';
+import { Table } from '../../../../base-components/table/Table';
+import { parseDatabaseDate } from '../../../../../utility/parseDate';
+import { sendData } from '../../../../../utility/fetchServerData';
+import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 };
 
 
-function SupplyAddItemDialog(props: Props): ReactElement {
+function AddedItemsPreview(props: Props): ReactElement {
    const {
       setAddedItemsReceiptList,
       openItemAddDialog,
@@ -73,4 +73,4 @@ function SupplyAddItemDialog(props: Props): ReactElement {
 }
 
 
-export { SupplyAddItemDialog };
+export { AddedItemsPreview };

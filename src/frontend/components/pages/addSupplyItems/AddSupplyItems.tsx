@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { ReactElement, useState } from 'react';
-import { SupplyAddItemDialog } from '../../application-components/supplyAddItemDialog/supplyAddItemDialog/SupplyAddItemDialog';
+import { AddedItemsPreview } from './subcomponents/addedItemsPreview/AddedItemsPreview';
 import { ProductDataAddDialog } from '../../application-components/supplyAddItemDialog/productDataAddDialog/ProductDataAddDialog';
-import { ProductSelectionDialog } from '../../application-components/supplyAddItemDialog/productSelectionDialog/ProductSelectionDialog';
+import { ProductSelection } from './subcomponents/productSelection/ProductSelection';
 import { SupplyAddedItemsReceipt } from '../../application-components/supplyAddItemDialog/supplyAddedItemsReceipt/SupplyAddedItemsReceipt';
 import { GroceryItemData, AddedItemReceiptData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import './groceryItemAdd.css';
@@ -63,7 +63,7 @@ function AddSupplyItems(): ReactElement {
             );
          case 'ItemAddPreviewState':
             return (
-               <SupplyAddItemDialog
+               <AddedItemsPreview
                   setAddedItemsReceiptList={setAddedItemsReceiptList}
                   openItemAddDialog={openItemAddDialog}
                   openAddedItemsReceipt={openAddedItemsReceipt}
@@ -73,7 +73,7 @@ function AddSupplyItems(): ReactElement {
             );
          case 'ItemAddState':
             return (
-               <ProductSelectionDialog
+               <ProductSelection
                   addGroceryItemData={addGroceryItemToList}
                   openProductAddDialog={openProductAddDialog}
                   openItemAddOverview={openItemAddOverview}
