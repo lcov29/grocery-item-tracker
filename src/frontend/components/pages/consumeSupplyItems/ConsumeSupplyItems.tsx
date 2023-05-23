@@ -10,7 +10,7 @@ import './groceryItemConsume.css';
 type PageState = 'ConsumedItemSelectionState' | 'ConsumedItemConfirmationState';
 
 
-function GroceryItemConsume(): ReactElement {
+function ConsumeSupplyItems(): ReactElement {
 
    const [pageState, setPageState] = useState<PageState>('ConsumedItemSelectionState');
    const [idDropdownContent, setIdDropdownContent] = useState<UnconsumedItemId[]>([]);
@@ -152,4 +152,4 @@ function GroceryItemConsume(): ReactElement {
 }
 
 
-export { GroceryItemConsume };
+export { ConsumeSupplyItems };
