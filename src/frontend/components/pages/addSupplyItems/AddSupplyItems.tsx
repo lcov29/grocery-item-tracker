@@ -11,7 +11,7 @@ import './groceryItemAdd.css';
 type PageState = 'ReceiptItemsAddedState' | 'ItemAddPreviewState' | 'ItemAddState' | 'ProductAddState';
 
 
-function GroceryItemAdd(): ReactElement {
+function AddSupplyItems(): ReactElement {
 
    const [pageState, setPageState] = useState<PageState>('ItemAddPreviewState');
    const [groceryItemList, setGroceryItemList] = useState<GroceryItemData[]>([]);
@@ -95,4 +95,4 @@ function GroceryItemAdd(): ReactElement {
 }
 
 
-export { GroceryItemAdd };
+export { AddSupplyItems };
