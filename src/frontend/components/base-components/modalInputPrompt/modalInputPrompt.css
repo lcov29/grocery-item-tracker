@@ -1,0 +1,29 @@
+.modal-input-prompt-overlay {
+   position: fixed;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   z-index: 2;
+   background-color: black;
+   opacity: 90%;
+}
+
+.modal-input-prompt-window {
+   position: fixed;
+   top: 40%;
+   left: 40%;
+   background-color: white;
+   z-index: 3;
+   padding: 1rem;
+}
+
+.modal-input-prompt-input {
+   margin-top: 1rem;
+   margin-bottom: 2.5rem;
+}
+
+.modal-input-prompt-control-bar {
+   display: flex;
+   justify-content: space-between;
+}
