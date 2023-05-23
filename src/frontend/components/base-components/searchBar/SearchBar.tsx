@@ -29,6 +29,8 @@ function SearchBar(props: SearchBarProps): ReactElement {
          <SearchableDropdown
             id={id}
             className="search-input"
+            value={searchInput}
+            setValue={setSearchInput}
             placeholderText={placeholderText}
             optionList={optionList}
             inputHandler={setSearchInput}
