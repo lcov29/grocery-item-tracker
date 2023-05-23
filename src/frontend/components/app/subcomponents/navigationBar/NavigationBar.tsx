@@ -41,10 +41,10 @@ function NavigationBar(props: NavigationBarProps): ReactElement {
       {
          button: { content: generateIcon(groceryItemIcon, 'Grocery Items', 'Supply') },
          dropdown: <SupplyOptionDropdownContent setCurrentPageId={setCurrentPageId} />,
-         isActive: isPageActive(pageId.grocerySupplyOverview)
-                  || isPageActive(pageId.grocerySupplyMinimum)
-                  || isPageActive(pageId.groceryItemAdd)
-                  || isPageActive(pageId.groceryItemConsume)
+         isActive: isPageActive(pageId.supplyOverview)
+                  || isPageActive(pageId.supplyMinimum)
+                  || isPageActive(pageId.addSupplyItems)
+                  || isPageActive(pageId.consumeSupplyItems)
       },
       {
          button: {

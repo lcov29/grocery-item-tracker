@@ -14,19 +14,19 @@ function SupplyOptionDropdownContent(props: Props): ReactElement {
       <div className="menu-grocery-dropdown-content">
          <div className="menu-grocery-dropdown-content-title">Supply</div>
          <div className="menu-grocery-dropdown-content-suboptions">
-            <button type="button" onClick={() => { setCurrentPageId(pageId.grocerySupplyOverview); }}>
+            <button type="button" onClick={() => { setCurrentPageId(pageId.supplyOverview); }}>
                Overview
             </button>
-            <button type="button" onClick={() => { setCurrentPageId(pageId.grocerySupplyMinimum); }}>
+            <button type="button" onClick={() => { setCurrentPageId(pageId.supplyMinimum); }}>
                Minimum
             </button>
          </div>
          <div className="menu-grocery-dropdown-content-title last-title">Grocery Items</div>
          <div className="menu-grocery-dropdown-content-suboptions">
-            <button type="button" onClick={() => { setCurrentPageId(pageId.groceryItemAdd); }}>
+            <button type="button" onClick={() => { setCurrentPageId(pageId.addSupplyItems); }}>
                Add
             </button>
-            <button type="button" onClick={() => { setCurrentPageId(pageId.groceryItemConsume); }}>
+            <button type="button" onClick={() => { setCurrentPageId(pageId.consumeSupplyItems); }}>
                Consume
             </button>
          </div>
