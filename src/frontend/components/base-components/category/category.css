@@ -9,6 +9,16 @@
     justify-content: right;
 }
 
+.category-container-sub-level .content-section {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: .5rem;
+}
+
+.category-container-sub-level .itemTable {
+    width: 95%;
+}
+
 .category {
     width: 95%;
 }
@@ -28,4 +38,9 @@
 
 .category-bar-top-level {
     background-color: rgb(47, 131, 161);
+}
+
+.content-section table td:last-child,
+.content-section table th:last-child {
+    text-align: right;
 }
