@@ -74,7 +74,7 @@ function ConsumeSupplyItems(): ReactElement {
       result.push([
          <>
             <SearchableDropdown
-               id="grocery-item-consume-searchbar"
+               id="consume-supply-items-searchbar"
                value={productIdInput}
                setValue={setProductIdInput}
                placeholderText="Unconsumed Product Id"
@@ -124,7 +124,7 @@ function ConsumeSupplyItems(): ReactElement {
                      headerList={['Id', 'Product Name', 'Amount', 'Expiration Date', '']}
                      rowList={buildConsumedItemsPreview()}
                   />
-                  <div id="grocery-item-consume-consume-button-container">
+                  <div className="consume-supply-items-button-container">
                      <button type="button" onClick={handleSaveButtonClick}>Consume</button>
                   </div>
                </>
@@ -143,7 +143,7 @@ function ConsumeSupplyItems(): ReactElement {
 
 
    return (
-      <div id="grocery-item-consume-container">
+      <div className="consume-supply-items-container">
          <h2>Consume Grocery Items</h2>
          { generatePageContent() }
       </div>

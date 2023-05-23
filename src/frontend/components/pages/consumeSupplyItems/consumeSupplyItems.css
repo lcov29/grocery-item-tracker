@@ -1,14 +1,14 @@
-#grocery-item-consume-container {
+.consume-supply-items-container {
    border: 1px solid black;
    padding: 1rem;
 }
 
-#grocery-item-consume-consume-button-container {
+.consume-supply-items-button-container {
    display: flex;
    justify-content: flex-end;
    margin-top: 1rem;
 }
 
-#grocery-item-consume-container button {
+.consume-supply-items-container button {
    font-weight: bold;
 }
