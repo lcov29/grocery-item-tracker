@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { ReactElement, useEffect, useState } from 'react';
-import { Table } from '../../base-components/table/Table';
-import { SearchBar } from '../../base-components/searchBar/SearchBar';
-import { fetchData } from '../../../utility/fetchServerData';
-import { parseDatabaseDate } from '../../../utility/parseDate';
-import { ProductListDatabaseRecord, SupplyListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
-import './supplyProductDetail.css';
+import { Table } from '../../../../base-components/table/Table';
+import { SearchBar } from '../../../../base-components/searchBar/SearchBar';
+import { fetchData } from '../../../../../utility/fetchServerData';
+import { parseDatabaseDate } from '../../../../../utility/parseDate';
+import { ProductListDatabaseRecord, SupplyListDatabaseRecord } from '../../../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
+import './productSupply.css';
 
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
 };
 
 
-function SupplyProductDetail(props: Props): ReactElement {
+function ProductSupply(props: Props): ReactElement {
    const { productList, currentProduct, setCurrentProduct } = props;
    const [currentProductData, setCurrentProductData] = useState<SupplyListDatabaseRecord[]>([]);
 
@@ -111,4 +111,4 @@ function SupplyProductDetail(props: Props): ReactElement {
 }
 
 
-export { SupplyProductDetail };
+export { ProductSupply };

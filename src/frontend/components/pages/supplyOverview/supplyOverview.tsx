@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { ReactElement, useEffect, useState } from 'react';
-import { SupplyOverview } from '../../sharedComponents/supplyOverview/SupplyOverview';
-import { SupplyProductDetail } from '../../application-components/supplyProductDetail/SupplyProductDetail';
+import { SupplyOverview as Overview } from '../../sharedComponents/supplyOverview/SupplyOverview';
+import { ProductSupply } from './subComponents/productSupply/ProductSupply';
 import { ProductListDatabaseRecord } from '../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 import { fetchData } from '../../../utility/fetchServerData';
-import './grocerySupplyOverview.css';
+import './supplyOverview.css';
 
 
-function GrocerySupplyOverview(): ReactElement {
+function SupplyOverview(): ReactElement {
    const [productList, setProductList] = useState<ProductListDatabaseRecord[]>([]);
    const [currentProduct, setCurrentProduct] = useState<ProductListDatabaseRecord>();
 
@@ -27,10 +27,10 @@ function GrocerySupplyOverview(): ReactElement {
    return (
       <main id="grocery-supply-overview-container-main">
          <div className="grocery-supply-overview-container">
-            <SupplyOverview handleRowClick={handleSupplyOverviewRowListClick} />
+            <Overview handleRowClick={handleSupplyOverviewRowListClick} />
          </div>
          <div className="grocery-supply-overview-container">
-            <SupplyProductDetail
+            <ProductSupply
                productList={productList}
                currentProduct={currentProduct}
                setCurrentProduct={setCurrentProduct}
@@ -41,4 +41,4 @@ function GrocerySupplyOverview(): ReactElement {
 }
 
 
-export { GrocerySupplyOverview };
+export { SupplyOverview };
