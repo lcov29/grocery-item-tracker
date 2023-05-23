@@ -31,7 +31,7 @@ function TabArea(props: TabAreaProps): ReactElement {
    return (
       <div className="tab-area">
          { buildTabBar() }
-         <div className="content-area">
+         <div className="tab-content-area">
             { entryList[activeAreaIndex].content }
          </div>
       </div>

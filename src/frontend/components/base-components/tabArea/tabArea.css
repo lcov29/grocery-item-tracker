@@ -19,15 +19,15 @@
     background-color: lightgray
 }
 
+.tab-content-area {
+    border: 0.1rem solid black;
+    padding: 1rem;
+}
+
 .active-tab {
     background-color: gray;
 }
 
 .active-tab:hover {
     background-color: gray;
-}
-
-.content-area {
-    border: 0.1rem solid black;
-    padding: 1rem;
 }
