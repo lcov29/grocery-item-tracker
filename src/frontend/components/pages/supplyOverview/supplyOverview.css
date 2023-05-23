@@ -2,6 +2,11 @@
     margin: 2rem;
 }
 
+.grocery-supply-overview-container h2,
+.grocery-supply-overview-container h2 {
+   margin-top: 0;
+}
+
 
 @media screen and (max-width: 800px) {
 
