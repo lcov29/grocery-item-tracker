@@ -2,9 +2,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState, ReactElement } from 'react';
 import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
+import { ModalInputPrompt } from '../../../../base-components/modalInputPrompt/ModalInputPrompt';
 import { fetchData, sendData } from '../../../../../utility/fetchServerData';
 import { CategoryData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { AddNewCategoryDialog } from '../addNewCategoryDialog/AddNewCategoryDialog';
 import './productDataAddDialogCategoryInput.css';
 
 
@@ -160,10 +160,9 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
    function generateNewCategoryDialog(): ReactElement | null {
       if (displayNewCategoryDialog) {
          return (
-            <AddNewCategoryDialog
-               displayDialog={setDisplayNewCategoryDialog}
-               titleText="Add New Category"
-               labelText="Category Name"
+            <ModalInputPrompt
+               displayPrompt={setDisplayNewCategoryDialog}
+               title="Add New Category"
                handleSave={handleAddingNewCategory}
                inputValue={categoryInput}
                setInputValue={setCategoryInput}
@@ -177,10 +176,9 @@ function ProductDataAddDialogCategoryInput(props: Props): ReactElement {
    function generateNewSubCategoryDialog(): ReactElement | null {
       if (displayNewSubCategoryDialog) {
          return (
-            <AddNewCategoryDialog
-               displayDialog={setDisplayNewSubCategoryDialog}
-               titleText="Add New Subcategory"
-               labelText="Subcategory Name"
+            <ModalInputPrompt
+               displayPrompt={setDisplayNewSubCategoryDialog}
+               title="Add New Subcategory"
                handleSave={handleAddingNewSubcategory}
                inputValue={subCategoryInput}
                setInputValue={setSubCategoryInput}
