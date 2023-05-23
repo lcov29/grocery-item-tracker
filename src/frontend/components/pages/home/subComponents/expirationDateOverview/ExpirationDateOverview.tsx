@@ -1,8 +1,8 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { fetchData } from '../../../utility/fetchServerData';
-import { parseDatabaseDate } from '../../../utility/parseDate';
-import { Counter } from '../../base-components/counter/Counter';
-import { Table } from '../../base-components/table/Table';
+import { fetchData } from '../../../../../utility/fetchServerData';
+import { parseDatabaseDate } from '../../../../../utility/parseDate';
+import { Counter } from '../../../../base-components/counter/Counter';
+import { Table } from '../../../../base-components/table/Table';
 import './expirationDateOverview.css';
 
 
