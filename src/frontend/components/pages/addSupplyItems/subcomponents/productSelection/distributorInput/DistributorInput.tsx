@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState, useEffect } from 'react';
-import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
-import { ModalInputPrompt } from '../../../../base-components/modalInputPrompt/ModalInputPrompt';
-import { fetchData, sendData } from '../../../../../utility/fetchServerData';
-import { DistributorNameList } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { SearchableDropdown } from '../../../../../base-components/searchableDropdown/SearchableDropdown';
+import { ModalInputPrompt } from '../../../../../base-components/modalInputPrompt/ModalInputPrompt';
+import { fetchData, sendData } from '../../../../../../utility/fetchServerData';
+import { DistributorNameList } from '../../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
 type Props = {
