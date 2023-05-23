@@ -11,7 +11,7 @@ function Settings(): ReactElement {
          <div>
             <h2>Settings</h2>
             <div className="setting-container">
-               <label htmlFor="expiration-warning-setting">Expiration Warning Limit</label>
+               <label>Expiration Warning Limit</label>
                <Counter
                   value={expirationWarningDayLimit}
                   setValue={setExpirationWarningDayLimit}
@@ -21,14 +21,14 @@ function Settings(): ReactElement {
             </div>
             <div className="setting-container">
                <label htmlFor="language-setting">Language</label>
-               <select name="language-setting">
+               <select id="language-setting" name="language-setting">
                   <option value="English">English</option>
                   <option value="German">German</option>
                </select>
             </div>
             <div className="setting-container">
                <label htmlFor="currency-setting">Currency</label>
-               <select name="currency-setting">
+               <select id="currency-setting" name="currency-setting">
                   <option value="Dollar">$ (US-Dollar)</option>
                   <option value="Euro">€ (Euro)</option>
                   <option value="Pound">&#163; (Pound)</option>
@@ -36,7 +36,7 @@ function Settings(): ReactElement {
             </div>
             <div className="setting-container">
                <label htmlFor="database-setting">Database</label>
-               <select name="database-selection">
+               <select id="database-setting" name="database-selection">
                   <option value="MariaDB">MariaDB</option>
                   <option value="IndexedDB">IndexedDB</option>
                </select>
