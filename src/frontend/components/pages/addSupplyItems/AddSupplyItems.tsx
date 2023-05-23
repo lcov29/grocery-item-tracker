@@ -5,7 +5,7 @@ import { ProductDataAddDialog } from '../../application-components/supplyAddItem
 import { ProductSelection } from './subcomponents/productSelection/ProductSelection';
 import { SupplyAddedItemsReceipt } from '../../application-components/supplyAddItemDialog/supplyAddedItemsReceipt/SupplyAddedItemsReceipt';
 import { GroceryItemData, AddedItemReceiptData } from '../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import './groceryItemAdd.css';
+import './addSupplyItems.css';
 
 
 type PageState = 'ReceiptItemsAddedState' | 'ItemAddPreviewState' | 'ItemAddState' | 'ProductAddState';
