@@ -1,16 +1,4 @@
-#grocery-item-add-container {
+.add-supply-items-container{
    border: 1px solid black;
    padding: 1rem;
-}
-
-#import-shopping-list-button-container {
-   display: flex;
-   justify-content: flex-end;
-   margin-bottom: 2rem;
-}
-
-#save-button-container {
-   display: flex;
-   justify-content: flex-end;
-   margin-top: 2rem;
 }
