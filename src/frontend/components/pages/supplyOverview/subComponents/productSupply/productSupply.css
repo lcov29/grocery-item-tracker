@@ -1,9 +1,9 @@
-#supply-product-detail-header {
+.product-supply-header {
     display: flex;
     justify-content: space-between;
 }
 
-#supply-product-detail-breadcrumb {
+.product-supply-breadcrumb {
     margin-top: 0;
     margin-bottom: 2rem;
 }

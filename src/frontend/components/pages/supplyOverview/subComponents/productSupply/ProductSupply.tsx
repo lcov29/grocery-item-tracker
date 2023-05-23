@@ -53,7 +53,7 @@ function ProductSupply(props: Props): ReactElement {
       if (isRenderable()) {
          const product = currentProductData[0];
          return (
-            <p id="supply-product-detail-breadcrumb">
+            <p className="product-supply-breadcrumb">
                {`${product.topcategory} > ${product.subcategory} > `}
                <b>{product.product}</b>
             </p>
@@ -93,7 +93,7 @@ function ProductSupply(props: Props): ReactElement {
 
    return (
       <>
-         <div id="supply-product-detail-header">
+         <div className="product-supply-header">
             <h2>Product Supply</h2>
             <SearchBar
                id="supply-product-detail-searchbar"
