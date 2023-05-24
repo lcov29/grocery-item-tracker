@@ -35,12 +35,11 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
    function generateProductInput(): ReactElement {
       return (
          <>
-            <label htmlFor="input-product-name" className="product-data-label">Product</label>
+            <label htmlFor="add-new-product-form-input">Product</label>
             <input
                type="text"
-               id="input-product-name"
-               name="productName"
-               className="product-add-dialog-input-field"
+               id="add-new-product-form-input"
+               className="add-new-product-form-input"
                value={productInput}
                onChange={(e) => setProductInput(e.target.value)}
                required
@@ -54,13 +53,12 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
       const measurementDataList = measurementData || [{ id: 1, unitName: '', unitSymbol: '' }];
       return (
          <>
-            <label htmlFor="input-weight" className="product-data-label">Weight</label>
-            <div id="input-weight-container">
+            <label htmlFor="input-weight">Weight</label>
+            <div className="add-new-product-form-weight-input-container">
                <input
                   type="number"
                   id="input-weight"
-                  name="weight"
-                  className="product-add-dialog-input-field"
+                  className="add-new-product-form-input"
                   min={0}
                   max={1_000_000}
                   value={weightInput}
@@ -97,7 +95,7 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
    return (
       <>
          <h2>Add New Product</h2>
-         <form id="product-data-add-form">
+         <form className="add-new-product-form">
             { generateProductInput() }
             <AddNewCategories
                categoryInput={categoryInput}
@@ -107,7 +105,7 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
             />
             { generateMeasurementUnitDropdown() }
             <button type="button" onClick={openItemAddDialog}>Back</button>
-            <div id="product-data-save-button-container">
+            <div className="add-new-product-form-save-button-container">
                <button type="button" onClick={submitFormData}>Save</button>
             </div>
          </form>

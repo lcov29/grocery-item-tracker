@@ -1,28 +1,28 @@
-.product-add-dialog-input-field {
-   padding: .5rem;
-}
-
-#input-weight-container {
-   display: flex;
-   justify-content: flex-start;
-   column-gap: 1rem;
-}
-
-#product-data-add-form {
+.add-new-product-form {
    display: grid;
    grid-template-columns: 1fr 7fr;
    row-gap: 1rem;
    padding: 2rem 1rem;
 }
 
-#product-data-save-button-container {
+.add-new-product-form label {
+   font-weight: bold;
+   padding: .5rem 0;
+}
+
+.add-new-product-form-input {
+   padding: .5rem;
+}
+
+.add-new-product-form-weight-input-container {
+   display: flex;
+   justify-content: flex-start;
+   column-gap: 1rem;
+}
+
+.add-new-product-form-save-button-container {
    display: flex;
    justify-content: flex-end;
    margin-top: 1rem;
    grid-column: 2;
-}
-
-.product-data-label {
-   font-weight: bold;
-   padding: .5rem 0;
 }
