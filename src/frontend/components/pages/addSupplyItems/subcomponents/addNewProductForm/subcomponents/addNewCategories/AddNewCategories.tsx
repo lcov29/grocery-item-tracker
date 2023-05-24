@@ -99,20 +99,20 @@ function AddNewCategories(props: Props): ReactElement {
       const optionList = (categoryData) ? buildTopCategoryNameList(categoryData) : [];
       return (
          <>
-            <label htmlFor="categoryName" className="product-data-label">Category</label>
+            <label htmlFor="categoryName">Category</label>
             <div>
                <SearchableDropdown
                   id="categoryName"
                   value={categoryInput}
                   setValue={setCategoryInput}
-                  className="category-input"
+                  className="add-new-categories-input"
                   optionList={optionList}
                   inputHandler={handleCategoryInput}
                   inputRequired
                />
                <button
                   type="button"
-                  className="category-add-button"
+                  className="add-new-categories-button"
                   onClick={() => { setDisplayNewCategoryDialog(true); }}
                >
                   +
@@ -130,7 +130,7 @@ function AddNewCategories(props: Props): ReactElement {
       const addButton = (categoryInput) ? (
          <button
             type="button"
-            className="category-add-button"
+            className="add-new-categories-button"
             onClick={() => { setDisplayNewSubCategoryDialog(true); }}
          >
             +
@@ -139,13 +139,13 @@ function AddNewCategories(props: Props): ReactElement {
 
       return (
          <>
-            <label htmlFor="subcategoryName" className="product-data-label">Subcategory</label>
+            <label htmlFor="subcategoryName">Subcategory</label>
             <div>
                <SearchableDropdown
                   id="subcategoryName"
                   value={subCategoryInput}
                   setValue={setSubCategoryInput}
-                  className="category-input"
+                  className="add-new-categories-input"
                   optionList={optionList}
                   inputHandler={setSubCategoryInput}
                   inputRequired
