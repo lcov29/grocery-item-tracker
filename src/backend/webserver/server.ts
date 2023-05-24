@@ -161,28 +161,6 @@ app.get('/api/addSupplyItems/get/distributorNameList', async (request, response)
 });
 
 
-app.get('/api/consumeSupplyItems/get/unconsumedItemIdList', async (request, response) => {
-   const param = {
-      request,
-      response,
-      handler: handleUnconsumedItemIdListRequest,
-      argumentList: [] as string[]
-   };
-   await handleRequest(param);
-});
-
-
-app.get('/api/consumeSupplyItems/get/itemInformationForId/:id', async (request, response) => {
-   const param = {
-      request,
-      response,
-      handler: handleInformationForIdRequest,
-      argumentList: [request.params.id]
-   };
-   await handleRequest(param);
-});
-
-
 app.post('/api/addSupplyItems/post/addTopCategoryData', async (request, response) => {
    const param = {
       request,
@@ -233,6 +211,28 @@ app.post('/api/addSupplyItems/post/addItemsToSupply', async (request, response) 
       response,
       handler: handleAddItemsToSupplyPostRequest,
       argumentList: [] as string[]
+   };
+   await handleRequest(param);
+});
+
+
+app.get('/api/consumeSupplyItems/get/unconsumedItemIdList', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleUnconsumedItemIdListRequest,
+      argumentList: [] as string[]
+   };
+   await handleRequest(param);
+});
+
+
+app.get('/api/consumeSupplyItems/get/itemInformationForId/:id', async (request, response) => {
+   const param = {
+      request,
+      response,
+      handler: handleInformationForIdRequest,
+      argumentList: [request.params.id]
    };
    await handleRequest(param);
 });
