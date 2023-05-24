@@ -19,14 +19,14 @@ function ConsumeSupplyItems(): ReactElement {
 
 
    useEffect(() => {
-      fetchData<UnconsumedItemId[]>('/api/groceryItemConsume/unconsumedItemIdList', setIdDropdownContent);
+      fetchData<UnconsumedItemId[]>('/api/consumeSupplyItems/get/unconsumedItemIdList', setIdDropdownContent);
    }, []);
 
 
    async function addToPreviewItemList(id: number): Promise<void> {
       const responseData: { data: PreviewConsumedItem }[] = [];
       await fetchData<{ data: PreviewConsumedItem }>(
-         `/api/groceryItemConsume/itemInformationForId/${id}`,
+         `/api/consumeSupplyItems/get/itemInformationForId/${id}`,
          (response) => responseData.push(response)
       );
       setPreviewItemList([...previewItemList, responseData[0].data]);
@@ -98,7 +98,7 @@ function ConsumeSupplyItems(): ReactElement {
       if (isItemListEmpty) { return; }
 
       const response = await sendData<{ idList: number[] }, ConsumeItemsFromSupplyResponse>(
-         '/api/groceryItemConsume/consumeItems',
+         '/api/consumeSupplyItems/post/consumeItems',
          { idList: buildIdListString() }
       );
 
@@ -106,7 +106,7 @@ function ConsumeSupplyItems(): ReactElement {
          setPageState('ConsumedItemConfirmationState');
          setPreviewItemList([]);
          await fetchData<UnconsumedItemId[]>(
-            '/api/groceryItemConsume/unconsumedItemIdList',
+            '/api/consumeSupplyItems/get/unconsumedItemIdList',
             setIdDropdownContent
          );
       } else {

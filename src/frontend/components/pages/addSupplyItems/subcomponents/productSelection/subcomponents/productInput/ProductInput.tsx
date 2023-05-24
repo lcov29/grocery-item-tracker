@@ -19,7 +19,7 @@ function ProductInput(props: ProductInputProps): ReactElement {
 
 
    useEffect(() => {
-      fetchData('/api/groceryItemAdd/productNameList', setProductData);
+      fetchData('/api/addSupplyItems/get/productNameList', setProductData);
    }, []);
 
 

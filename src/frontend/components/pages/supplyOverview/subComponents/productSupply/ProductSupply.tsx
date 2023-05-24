@@ -22,7 +22,7 @@ function ProductSupply(props: Props): ReactElement {
 
    useEffect(() => {
       if (currentProduct) {
-         const route = `/api/grocerySupplyOverview/productData/${currentProduct.id}`;
+         const route = `/api/supplyOverview/get/productData/${currentProduct.id}`;
          fetchData<SupplyListDatabaseRecord[]>(route, setCurrentProductData);
       }
    }, [currentProduct]);

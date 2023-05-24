@@ -23,7 +23,7 @@ function DistributorInput(props: Props): ReactElement {
 
 
    useEffect(() => {
-      fetchData<DistributorNameList[]>('/api/groceryItemAdd/distributorNameList', setDistributorData);
+      fetchData<DistributorNameList[]>('/api/addSupplyItems/get/distributorNameList', setDistributorData);
    }, []);
 
 
@@ -37,8 +37,8 @@ function DistributorInput(props: Props): ReactElement {
 
       if (isInputValid) {
          const payload = { distributor: newDistributor };
-         await sendData<{ distributor: string }>('/api/groceryItemAdd/addNewDistributor', payload);
-         await fetchData<DistributorNameList[]>('/api/groceryItemAdd/distributorNameList', setDistributorData);
+         await sendData<{ distributor: string }>('/api/addSupplyItems/post/addNewDistributor', payload);
+         await fetchData<DistributorNameList[]>('/api/addSupplyItems/get/distributorNameList', setDistributorData);
          setDisplayNewDistributorDialog(false);
       }
    }

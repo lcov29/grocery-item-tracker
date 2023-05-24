@@ -13,7 +13,7 @@ function SupplyOverview(): ReactElement {
 
 
    useEffect(() => {
-      const route = '/api/grocerySupplyOverview/productList';
+      const route = '/api/supplyOverview/get/productList';
       fetchData<ProductListDatabaseRecord[]>(route, setProductList);
    }, []);
 

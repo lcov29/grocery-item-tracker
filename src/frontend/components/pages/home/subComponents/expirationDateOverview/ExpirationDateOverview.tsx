@@ -21,7 +21,7 @@ function ExpirationDateOverview(): ReactElement {
 
 
    function fetchExpirationData(): void {
-      fetchData<ExpirationData>(`/api/home/expirationDateOverview/${dayLimit}`, setExpirationData);
+      fetchData<ExpirationData>(`/api/home/expirationDateOverview/get/${dayLimit}`, setExpirationData);
    }
 
 

@@ -23,8 +23,9 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
 
 
    useEffect(() => {
-      fetchData<MeasurementData[]>('/api/groceryItemAdd/measurementUnitData', setMeasurementData);
+      fetchData<MeasurementData[]>('/api/addSupplyItems/get/measurementUnitData', setMeasurementData);
    }, []);
+
 
 
    function buildMeasurementUnitSymbolList(measurementUnitDataList: MeasurementData[]): string[] {
@@ -88,7 +89,7 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
          unit: unitInput
       };
       openItemAddDialog();
-      await sendData('/api/groceryItemAdd/addNewProduct', payload);
+      await sendData('/api/addSupplyItems/post/addNewProduct', payload);
    }
 
 

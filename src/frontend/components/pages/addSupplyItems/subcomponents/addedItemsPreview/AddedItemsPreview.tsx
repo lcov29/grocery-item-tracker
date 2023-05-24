@@ -45,7 +45,7 @@ function AddedItemsPreview(props: Props): ReactElement {
 
       if (isGroceryItemListFilled) {
          const response = await sendData<{ data: GroceryItemData[] }, AddItemToSupplyResponse>(
-            '/api/groceryItemAdd/addItemsToSupply',
+            '/api/addSupplyItems/post/addItemsToSupply',
             { data: groceryItemDataList }
          );
          if (response.ok === 200 && response.data) {

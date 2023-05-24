@@ -25,7 +25,7 @@ function AddNewCategories(props: Props): ReactElement {
 
 
    useEffect(() => {
-      fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
+      fetchData<CategoryData[]>('/api/addSupplyItems/get/categoryData', setCategoryData);
    }, []);
 
 
@@ -64,8 +64,8 @@ function AddNewCategories(props: Props): ReactElement {
       const isCategoryInputValid = categoryInput !== '';
 
       if (isCategoryInputValid) {
-         await sendData<{ category: string }>('/api/groceryItemAdd/addTopCategoryData', { category: categoryInput });
-         await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
+         await sendData<{ category: string }>('/api/addSupplyItems/post/addTopCategoryData', { category: categoryInput });
+         await fetchData<CategoryData[]>('/api/addSupplyItems/get/categoryData', setCategoryData);
          setDisplayNewCategoryDialog(false);
       }
    }
@@ -76,10 +76,10 @@ function AddNewCategories(props: Props): ReactElement {
 
       if (isCategoryInputValid) {
          await sendData<{ topCategory: string, subCategory: string }>(
-            '/api/groceryItemAdd/addSubCategoryData',
+            '/api/addSupplyItems/post/addSubCategoryData',
             { topCategory: categoryInput, subCategory: subCategoryInput }
          );
-         await fetchData<CategoryData[]>('/api/groceryItemAdd/categoryData', setCategoryData);
+         await fetchData<CategoryData[]>('/api/addSupplyItems/get/categoryData', setCategoryData);
          setDisplayNewSubCategoryDialog(false);
       }
    }
