@@ -3,6 +3,7 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../../../../../base-components/searchableDropdown/SearchableDropdown';
 import { fetchData } from '../../../../../../../utility/fetchServerData';
 import { ProductNameListData } from '../../../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import './productInput.css';
 
 
 type ProductInputProps = {
@@ -29,18 +30,18 @@ function ProductInput(props: ProductInputProps): ReactElement {
 
    return (
       <>
-         <label htmlFor="productName" className="product-selection-dialog-label">Product</label>
+         <label htmlFor="productName">Product</label>
          <div>
             <SearchableDropdown
                id="productName"
                value={productInput}
                setValue={setProductInput}
-               className="product-selection-dialog-dropdown-input"
+               className="product-input-dropdown"
                inputHandler={(input: string) => { setProductInput(input); }}
                optionList={buildProductNameList(productData)}
                inputRequired
             />
-            <button className="product-selection-dialog-add-button" type="button" onClick={openProductAddDialog}>+</button>
+            <button className="product-input-add-button" type="button" onClick={openProductAddDialog}>+</button>
          </div>
       </>
    );

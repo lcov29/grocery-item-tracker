@@ -5,6 +5,7 @@ import { SearchableDropdown } from '../../../../../../base-components/searchable
 import { ModalInputPrompt } from '../../../../../../base-components/modalInputPrompt/ModalInputPrompt';
 import { fetchData, sendData } from '../../../../../../../utility/fetchServerData';
 import { DistributorNameList } from '../../../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import './distributorInput.css';
 
 
 type Props = {
@@ -61,11 +62,11 @@ function DistributorInput(props: Props): ReactElement {
 
    return (
       <>
-         <label htmlFor="distributor" className="product-selection-dialog-label">Distributor</label>
+         <label htmlFor="distributor">Distributor</label>
          <div>
             <SearchableDropdown
                id="distributor"
-               className="product-selection-dialog-dropdown-input"
+               className="distributor-input-dropdown"
                optionList={buildDistributorNameList()}
                value={distributorInput}
                setValue={setDistributorInput}
@@ -73,7 +74,7 @@ function DistributorInput(props: Props): ReactElement {
                inputRequired
             />
             <button
-               className="product-selection-dialog-add-button"
+               className="distributor-input-add-button"
                type="button"
                onClick={() => { setDisplayNewDistributorDialog(true); }}
             >

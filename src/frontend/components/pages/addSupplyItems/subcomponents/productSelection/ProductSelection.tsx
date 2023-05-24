@@ -39,9 +39,9 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
 
 
    return (
-      <div id="grocery-item-product-selection-container">
+      <div>
          <h2>Select Grocery Item</h2>
-         <form id="product-selection-dialog">
+         <form className="product-selection-form">
             <ProductInput
                openProductAddDialog={openProductAddDialog}
                setProductInput={setProductName}
@@ -53,28 +53,28 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
             />
             <label>Amount</label>
             <Counter value={amount} setValue={setAmount} />
-            <label htmlFor="input-price-per-unit" className="product-selection-dialog-label">Unit Price</label>
+            <label htmlFor="input-price-per-unit">Unit Price</label>
             <input
                id="input-price-per-unit"
                name="pricePerUnit"
-               className="product-selection-dialog-input"
+               className="product-selection-input"
                type="number"
                min={1}
                value={unitPrice}
                onChange={(e) => { setUnitPrice(Number.parseInt(e.target.value, 10)); }}
                required
             />
-            <label htmlFor="input-expiration-date" className="product-selection-dialog-label">Expiration Date</label>
+            <label htmlFor="input-expiration-date">Expiration Date</label>
             <input
                id="input-expiration-date"
                name="expirationDate"
-               className="product-selection-dialog-input"
+               className="product-selection-input"
                type="date"
                value={expirationDate}
                onChange={(e) => { setExpirationDate(e.target.value); }}
                required
             />
-            <div id="add-button-container">
+            <div className="product-selection-add-button-container">
                <button type="button" onClick={addGroceryItemDataToList}>Add</button>
             </div>
          </form>
