@@ -1,4 +1,23 @@
-.add-supply-items-container{
+.add-supply-items-main {
+   display: flex;
+   justify-content: center;
+   margin: 2rem
+}
+
+.add-supply-items-container {
    border: 1px solid black;
    padding: 1rem;
+}
+
+.add-supply-items-container h2 {
+   margin-top: 0;
+}
+
+
+@media screen and (min-width: 801px) {
+
+   .add-supply-items-container {
+      width: 70%;
+   }
+
 }
