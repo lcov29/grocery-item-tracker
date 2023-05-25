@@ -18,7 +18,10 @@ function ModalInputPrompt(props: Props): ReactElement | null {
       <>
          <div className="modal-input-prompt-overlay">&nbsp;</div>
          <div className="modal-input-prompt-window">
-            <h3>{title}</h3>
+            <div className="modal-input-prompt-header">
+               <h3>{title}</h3>
+               <button type="button" onClick={() => { displayPrompt(false); }}>X</button>
+            </div>
             <input
                type="text"
                className="modal-input-prompt-input"
@@ -27,7 +30,6 @@ function ModalInputPrompt(props: Props): ReactElement | null {
             />
             <br />
             <div className="modal-input-prompt-control-bar">
-               <button type="button" onClick={() => { displayPrompt(false); }}>Cancel</button>
                <button type="button" onClick={handleSave}>Save</button>
             </div>
 
