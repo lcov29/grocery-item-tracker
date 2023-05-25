@@ -106,11 +106,11 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
                setSubCategoryInput={setSubCategoryInput}
             />
             { generateMeasurementUnitDropdown() }
-            <button type="button" onClick={openItemAddDialog}>Back</button>
-            <div className="add-new-product-form-save-button-container">
-               <button type="button" onClick={submitFormData}>Save</button>
-            </div>
          </form>
+         <div className="add-new-product-form-controls-container">
+            <button type="button" onClick={openItemAddDialog}>Back</button>
+            <button type="button" onClick={submitFormData}>Save</button>
+         </div>
       </>
    );
 }
