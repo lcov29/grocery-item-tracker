@@ -27,7 +27,7 @@ describe('<TabArea />', () => {
 
 
    it('displays content of first entry by default', () => {
-      cy.get('.content-area').should('contain.text', 'Option 1');
+      cy.get('.tab-content-area').should('contain.text', 'Option 1');
       cy.get('.tab-bar > :nth-child(1)').should('have.class', 'active-tab');
       cy.get('.tab-bar > :nth-child(2)').should('not.have.class', 'active-tab');
       cy.get('.tab-bar > :nth-child(3)').should('not.have.class', 'active-tab');
@@ -36,13 +36,13 @@ describe('<TabArea />', () => {
 
    it('changes content upon clicking a tab button', () => {
       cy.get('.tab-bar > :nth-child(2)').click();
-      cy.get('.content-area').should('contain.text', 'Option 2');
+      cy.get('.tab-content-area').should('contain.text', 'Option 2');
       cy.get('.tab-bar > :nth-child(1)').should('not.have.class', 'active-tab');
       cy.get('.tab-bar > :nth-child(2)').should('have.class', 'active-tab');
       cy.get('.tab-bar > :nth-child(3)').should('not.have.class', 'active-tab');
 
       cy.get('.tab-bar > :nth-child(3)').click();
-      cy.get('.content-area').should('contain.text', 'Option 3');
+      cy.get('.tab-content-area').should('contain.text', 'Option 3');
       cy.get('.tab-bar > :nth-child(1)').should('not.have.class', 'active-tab');
       cy.get('.tab-bar > :nth-child(2)').should('not.have.class', 'active-tab');
       cy.get('.tab-bar > :nth-child(3)').should('have.class', 'active-tab');

@@ -75,40 +75,40 @@ describe('<Counter />', () => {
 
    it('increments by 1 when increment button is pressed', () => {
       cy.mount(<CounterWrapper defaultValue={4} />);
-      cy.get('#container > :nth-child(3)').click();
+      cy.get('.counter-container > :nth-child(3)').click();
       cy.get('.counter-value').should('have.text', '5');
-      cy.get('#container > :nth-child(3)').click();
+      cy.get('.counter-container > :nth-child(3)').click();
       cy.get('.counter-value').should('have.text', '6');
-      cy.get('#container > :nth-child(3)').click();
+      cy.get('.counter-container > :nth-child(3)').click();
       cy.get('.counter-value').should('have.text', '7');
    });
 
 
    it('decrements by 1 when decrement button is pressed', () => {
       cy.mount(<CounterWrapper defaultValue={4} />);
-      cy.get('#container > :nth-child(1)').click();
+      cy.get('.counter-container > :nth-child(1)').click();
       cy.get('.counter-value').should('have.text', '3');
-      cy.get('#container > :nth-child(1)').click();
+      cy.get('.counter-container > :nth-child(1)').click();
       cy.get('.counter-value').should('have.text', '2');
-      cy.get('#container > :nth-child(1)').click();
+      cy.get('.counter-container > :nth-child(1)').click();
       cy.get('.counter-value').should('have.text', '1');
    });
 
 
    it('increments not above the user defined maximum', () => {
       cy.mount(<CounterWrapper defaultValue={5} maximum={6} />);
-      cy.get('#container > :nth-child(3)').click();
+      cy.get('.counter-container > :nth-child(3)').click();
       cy.get('.counter-value').should('have.text', '6');
-      cy.get('#container > :nth-child(3)').click();
+      cy.get('.counter-container > :nth-child(3)').click();
       cy.get('.counter-value').should('have.text', '6');
    });
 
 
    it('decrements not below the user defined minimum', () => {
       cy.mount(<CounterWrapper defaultValue={4} minimum={3} />);
-      cy.get('#container > :nth-child(1)').click();
+      cy.get('.counter-container > :nth-child(1)').click();
       cy.get('.counter-value').should('have.text', '3');
-      cy.get('#container > :nth-child(1)').click();
+      cy.get('.counter-container > :nth-child(1)').click();
       cy.get('.counter-value').should('have.text', '3');
    });
 

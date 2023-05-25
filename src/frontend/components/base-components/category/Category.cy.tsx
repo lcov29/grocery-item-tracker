@@ -57,19 +57,21 @@ describe('<Category />', () => {
 
    it('shows user defined content upon first click of collapse button', () => {
       cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
-      cy.get('.content-section').should('not.exist');
+      cy.get('p').should('not.exist');
       cy.get('button').click();
-      cy.get('.content-section').should('exist');
+      cy.get('p').should('exist');
+      cy.get('p').should('contain.text', 'Content');
    });
 
 
    it('collapses user defined content upon second click of collapse button', () => {
       cy.mount(<Category name="CategoryName" isTopLevel contentList={[<p>Content</p>]} />);
-      cy.get('.content-section').should('not.exist');
+      cy.get('p').should('not.exist');
       cy.get('button').click();
-      cy.get('.content-section').should('exist');
+      cy.get('p').should('exist');
+      cy.get('p').should('contain.text', 'Content');
       cy.get('button').click();
-      cy.get('.content-section').should('not.exist');
+      cy.get('p').should('not.exist');
    });
 
 
