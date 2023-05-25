@@ -1,6 +1,16 @@
+.consume-supply-items-main {
+   display: flex;
+   justify-content: center;
+   margin: 2rem
+}
+
 .consume-supply-items-container {
    border: 1px solid black;
    padding: 1rem;
+}
+
+.consume-supply-items-container h2 {
+   margin-top: 0;
 }
 
 .consume-supply-items-button-container {
@@ -11,4 +21,17 @@
 
 .consume-supply-items-container button {
    font-weight: bold;
+}
+
+.consume-supply-items-item-remove-button {
+   width: 100%;
+}
+
+
+@media screen and (min-width: 801px) {
+
+   .consume-supply-items-container{
+      width: 70%;
+   }
+
 }
