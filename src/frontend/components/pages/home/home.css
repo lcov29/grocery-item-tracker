@@ -1,4 +1,4 @@
-#home-main {
+.home-main {
    margin: 2rem;
 }
 
@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 801px) {
 
-   #home-main {
+   .home-main {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: 2rem;

@@ -6,7 +6,7 @@ import './home.css';
 
 function Home(): ReactElement {
    return (
-      <main id="home-main">
+      <main className="home-main">
          <div className="home-container">
             <SupplyOverview />
          </div>
