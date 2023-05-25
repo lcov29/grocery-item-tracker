@@ -31,11 +31,17 @@ function AddedItemsPreview(props: Props): ReactElement {
          item.productName,
          item.distributor,
          parseDatabaseDate(item.expirationDate),
-         <button type="button" onClick={() => { removeGroceryItemFromList(item.id); }}>x</button>
+         <button
+            type="button"
+            onClick={() => { removeGroceryItemFromList(item.id); }}
+            title="Remove"
+         >
+            x
+         </button>
       ]);
 
       // Add last row with add item button
-      output.push(['', '', '', '', <button type="button" onClick={openItemAddDialog}>+</button>]);
+      output.push(['', '', '', '', <button type="button" onClick={openItemAddDialog} title="Add">+</button>]);
       return output;
    }
 
