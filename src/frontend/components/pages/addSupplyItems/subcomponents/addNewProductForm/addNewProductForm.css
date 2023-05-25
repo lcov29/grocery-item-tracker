@@ -13,6 +13,10 @@
    padding: .5rem;
 }
 
+.add-new-product-form-weight-unit-input {
+   width: 5rem;
+}
+
 .add-new-product-form-weight-input-container {
    display: flex;
    justify-content: flex-start;
