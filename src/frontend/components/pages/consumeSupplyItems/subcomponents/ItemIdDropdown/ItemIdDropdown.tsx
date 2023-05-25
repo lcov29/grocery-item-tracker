@@ -2,6 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { UnconsumedItemId } from '../../../../../../tsDataTypes/tsTypeGroceryItemConsume';
 import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
 import { fetchData } from '../../../../../utility/fetchServerData';
+import './itemIdDropdown.css';
 
 
 type Props = {
@@ -30,7 +31,7 @@ function ItemIdDropdown(props: Props): ReactElement {
 
 
    return (
-      <>
+      <div className="consume-supply-items-searchbar">
          <SearchableDropdown
             id="consume-supply-items-searchbar"
             value={idInput}
@@ -40,7 +41,7 @@ function ItemIdDropdown(props: Props): ReactElement {
             inputHandler={setIdInput}
          />
          <button type="button" onClick={handleButtonClick}>+</button>
-      </>
+      </div>
    );
 }
 
