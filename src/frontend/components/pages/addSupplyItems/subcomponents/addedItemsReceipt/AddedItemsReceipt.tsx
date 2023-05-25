@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { AddedItemReceiptData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { parseDatabaseDate } from '../../../../../utility/parseDate';
+import { parseDatabaseDate } from '../../../../../utility/parseDate/parseDate';
 import { Table } from '../../../../base-components/table/Table';
 
 

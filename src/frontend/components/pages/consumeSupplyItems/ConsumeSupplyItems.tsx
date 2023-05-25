@@ -2,7 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
 import { UnconsumedItemId, PreviewConsumedItem, ConsumeItemsFromSupplyResponse } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
 import { fetchData, sendData } from '../../../utility/fetchServerData';
-import { parseDatabaseDate } from '../../../utility/parseDate';
+import { parseDatabaseDate } from '../../../utility/parseDate/parseDate';
 import { Table } from '../../base-components/table/Table';
 import './consumeSupplyItems.css';
 

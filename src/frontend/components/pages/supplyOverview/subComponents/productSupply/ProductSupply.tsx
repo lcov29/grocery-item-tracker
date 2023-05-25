@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { Table } from '../../../../base-components/table/Table';
 import { SearchBar } from '../../../../base-components/searchBar/SearchBar';
 import { fetchData } from '../../../../../utility/fetchServerData';
-import { parseDatabaseDate } from '../../../../../utility/parseDate';
+import { parseDatabaseDate } from '../../../../../utility/parseDate/parseDate';
 import { ProductListDatabaseRecord, SupplyListDatabaseRecord } from '../../../../../../tsDataTypes/tsTypesGrocerySupplyOverview';
 import './productSupply.css';
 
