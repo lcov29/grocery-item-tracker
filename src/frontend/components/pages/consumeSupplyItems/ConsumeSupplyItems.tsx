@@ -1,8 +1,9 @@
-import React, { ReactElement, useState, useEffect } from 'react';
-import { SearchableDropdown } from '../../base-components/searchableDropdown/SearchableDropdown';
-import { UnconsumedItemId, PreviewConsumedItem, ConsumeItemsFromSupplyResponse } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
+/* eslint-disable react/jsx-no-bind */
+import React, { ReactElement, useState } from 'react';
+import { PreviewConsumedItem, ConsumeItemsFromSupplyResponse } from '../../../../tsDataTypes/tsTypeGroceryItemConsume';
 import { fetchData, sendData } from '../../../utility/fetchServerData';
 import { parseDatabaseDate } from '../../../utility/parseDate/parseDate';
+import { ItemIdDropdown } from './subcomponents/ItemIdDropdown/ItemIdDropdown';
 import { Table } from '../../base-components/table/Table';
 import './consumeSupplyItems.css';
 
@@ -13,14 +14,8 @@ type PageState = 'ConsumedItemSelectionState' | 'ConsumedItemConfirmationState';
 function ConsumeSupplyItems(): ReactElement {
 
    const [pageState, setPageState] = useState<PageState>('ConsumedItemSelectionState');
-   const [idDropdownContent, setIdDropdownContent] = useState<UnconsumedItemId[]>([]);
    const [previewItemList, setPreviewItemList] = useState<PreviewConsumedItem[]>([]);
    const [productIdInput, setProductIdInput] = useState('');
-
-
-   useEffect(() => {
-      fetchData<UnconsumedItemId[]>('/api/consumeSupplyItems/get/unconsumedItemIdList', setIdDropdownContent);
-   }, []);
 
 
    async function addToPreviewItemList(id: number): Promise<void> {
@@ -48,16 +43,8 @@ function ConsumeSupplyItems(): ReactElement {
          if (isNewId) {
             await addToPreviewItemList(id);
          }
+         setProductIdInput('');
       }
-   }
-
-
-   function buildIdDropdownContent(): string[] {
-      const idInPreviewList = previewItemList.map((element) => element.id);
-      const contentList = idDropdownContent.filter(
-         (element) => !idInPreviewList.includes(element.id)
-      );
-      return contentList.map((element) => element.id.toString());
    }
 
 
@@ -71,19 +58,17 @@ function ConsumeSupplyItems(): ReactElement {
             <button type="button" onClick={() => { removeFromPreviewItemList(element.id); }}>x</button>
          ]
       );
-      result.push([
-         <>
-            <SearchableDropdown
-               id="consume-supply-items-searchbar"
-               value={productIdInput}
-               setValue={setProductIdInput}
-               placeholderText="Unconsumed Product Id"
-               optionList={buildIdDropdownContent()}
-               inputHandler={setProductIdInput}
-            />
-            <button type="button" onClick={handleAddItem}>+</button>
-         </>, '', '', '', ''
-      ]);
+
+      const itemIdDropdown = (
+         <ItemIdDropdown
+            idInput={productIdInput}
+            setIdInput={setProductIdInput}
+            previewIdList={previewItemList.map((element) => element.id)}
+            handleButtonClick={handleAddItem}
+         />
+      );
+
+      result.push([itemIdDropdown, '', '', '', '']);
       return result;
    }
 
@@ -105,10 +90,6 @@ function ConsumeSupplyItems(): ReactElement {
       if (response.ok === 200) {
          setPageState('ConsumedItemConfirmationState');
          setPreviewItemList([]);
-         await fetchData<UnconsumedItemId[]>(
-            '/api/consumeSupplyItems/get/unconsumedItemIdList',
-            setIdDropdownContent
-         );
       } else {
          console.log('Items not consumed');
       }
