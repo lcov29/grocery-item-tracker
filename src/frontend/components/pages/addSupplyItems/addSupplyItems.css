@@ -18,6 +18,10 @@
    font-size: medium;
 }
 
+.add-supply-items-container table button {
+   width: 100%;
+}
+
 
 @media screen and (min-width: 801px) {
 
