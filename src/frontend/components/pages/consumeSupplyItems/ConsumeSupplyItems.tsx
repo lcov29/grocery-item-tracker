@@ -55,7 +55,14 @@ function ConsumeSupplyItems(): ReactElement {
             element.productName,
             element.amount,
             parseDatabaseDate(element.expirationDate),
-            <button type="button" onClick={() => { removeFromPreviewItemList(element.id); }}>x</button>
+            <button
+               type="button"
+               className="consume-supply-items-item-remove-button"
+               title="Remove"
+               onClick={() => { removeFromPreviewItemList(element.id); }}
+            >
+               x
+            </button>
          ]
       );
 
@@ -124,10 +131,12 @@ function ConsumeSupplyItems(): ReactElement {
 
 
    return (
-      <div className="consume-supply-items-container">
-         <h2>Consume Grocery Items</h2>
-         { generatePageContent() }
-      </div>
+      <main className="consume-supply-items-main">
+         <div className="consume-supply-items-container">
+            <h2>Consume Grocery Items</h2>
+            { generatePageContent() }
+         </div>
+      </main>
    );
 
 }
