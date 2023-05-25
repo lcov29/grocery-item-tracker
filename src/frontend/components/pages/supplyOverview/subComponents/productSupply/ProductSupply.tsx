@@ -93,7 +93,7 @@ function ProductSupply(props: Props): ReactElement {
          <div className="product-supply-header">
             <h2>Product Supply</h2>
             <SearchBar
-               id="supply-product-detail-searchbar"
+               id="product-supply-searchbar"
                placeholderText="Product"
                optionList={buildProductNameList(productList)}
                action={setSearchedProduct}
