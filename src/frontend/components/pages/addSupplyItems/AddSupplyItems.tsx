@@ -88,9 +88,11 @@ function AddSupplyItems(): ReactElement {
 
 
    return (
-      <div className="add-supply-items-container">
-         { renderDialog() }
-      </div>
+      <main className="add-supply-items-main">
+         <div className="add-supply-items-container">
+            { renderDialog() }
+         </div>
+      </main>
    );
 }
 
