@@ -1,0 +1,14 @@
+.consume-supply-items-searchbar button {
+   height: 2.05rem;
+   width: 2rem;
+   border: 1px solid black;
+   border-left: none;
+}
+
+.consume-supply-items-searchbar button:hover {
+   background-color: darkgray;
+}
+
+.consume-supply-items-searchbar {
+   text-align: left;
+}
