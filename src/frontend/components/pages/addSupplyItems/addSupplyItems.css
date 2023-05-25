@@ -13,6 +13,11 @@
    margin-top: 0;
 }
 
+.add-supply-items-container button {
+   font-weight: bold;
+   font-size: medium;
+}
+
 
 @media screen and (min-width: 801px) {
 
