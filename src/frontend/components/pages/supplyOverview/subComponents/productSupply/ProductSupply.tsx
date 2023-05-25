@@ -29,10 +29,7 @@ function ProductSupply(props: Props): ReactElement {
 
 
    function setSearchedProduct(name: string) {
-      let product: ProductListDatabaseRecord | undefined;
-      if (productList) {
-         product = productList.find((element) => element.name === name);
-      }
+      const product = productList.find((element) => element.name === name);
       if (product) {
          setCurrentProduct(product);
       }
@@ -65,9 +62,9 @@ function ProductSupply(props: Props): ReactElement {
 
    function buildProductInformation(): ReactElement | null {
       if (isRenderable()) {
-         const item = currentProductData[0];
+         const product = currentProductData[0];
          return (
-            <p>{`${currentProductData.length} items of ${item.product} (${item.weight}):`}</p>
+            <p>{`${currentProductData.length} items of ${product.product} (${product.weight}):`}</p>
          );
       }
       return null;
