@@ -278,7 +278,7 @@ try {
 
 
    await dbConnection.query(
-      `create view ProductsInSupply as
+      `create view grocery_item_manager.ProductsInSupply as
       select id, name
       from Products
       where id in (select distinct productId from Supply where consumptionDate is null);`
