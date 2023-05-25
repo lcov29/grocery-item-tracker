@@ -53,7 +53,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
             />
             <label>Amount</label>
             <Counter value={amount} setValue={setAmount} minimum={1} />
-            <label htmlFor="input-price-per-unit">Unit Price</label>
+            <label htmlFor="input-price-per-unit">Price</label>
             <input
                id="input-price-per-unit"
                name="pricePerUnit"
