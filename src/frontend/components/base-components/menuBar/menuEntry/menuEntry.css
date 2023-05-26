@@ -3,6 +3,7 @@
 }
 
 .menu-entry-button:hover {
+    background-color: lightgray;
     font-weight: bold;
 }
 
