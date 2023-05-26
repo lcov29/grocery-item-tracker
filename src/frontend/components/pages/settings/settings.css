@@ -1,17 +1,21 @@
-#setting-page-container h2, h3, h4 {
-   margin-top: 0;
+.setting-main {
+   margin: 2rem;
 }
 
-#setting-page-container label {
-   font-weight: bold;
-   margin-right: 1rem;
-}
-
-#setting-page-container {
+.setting-page-container {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+}
+
+.setting-page-container h2, h3, h4 {
+   margin-top: 0;
+}
+
+.setting-page-container label {
+   font-weight: bold;
+   margin-right: 1rem;
 }
 
 .setting-container {
