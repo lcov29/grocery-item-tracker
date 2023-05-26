@@ -29,6 +29,12 @@
     justify-content: space-between;
     padding: 0.5rem 1rem;
     font-weight: bold;
+    border-radius: 5px;
+}
+
+.category-bar button {
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 .category-bar-sub-level {
