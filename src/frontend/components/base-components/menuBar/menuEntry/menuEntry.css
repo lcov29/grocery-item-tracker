@@ -47,6 +47,7 @@
         column-gap: .5rem;
         text-align: left;
         padding: .5rem;
+        border-radius: 5px;
     }
 
     .active-menu-entry {
