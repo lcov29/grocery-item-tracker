@@ -5,8 +5,8 @@
 }
 
 .category-container-sub-level {
-    display: flex;
-    justify-content: right;
+    width: 95%;
+    margin-left: 5%;
 }
 
 .category-container-sub-level .content-section {
@@ -20,7 +20,7 @@
 }
 
 .category {
-    width: 95%;
+    width: 100%;
 }
 
 .category-bar {
