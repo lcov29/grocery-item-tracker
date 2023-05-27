@@ -1,52 +1,67 @@
 .category-container-top-level {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1.5rem;
+   display: flex;
+   justify-content: flex-end;
+   margin-bottom: 1.5rem;
 }
 
 .category-container-sub-level {
-    width: 95%;
-    margin-left: 5%;
+   width: 95%;
+   margin-left: 5%;
 }
 
 .category-container-sub-level .content-section {
-    display: flex;
-    flex-direction: row-reverse;
-    margin-bottom: .5rem;
+   display: flex;
+   flex-direction: row-reverse;
+   margin-bottom: .5rem;
 }
 
 .category-container-sub-level .itemTable {
-    width: 95%;
+   width: 95%;
 }
 
 .category {
-    width: 100%;
+   width: 100%;
 }
 
 .category-bar {
-    display: grid;
-    grid-template-columns: 5fr 1fr 0.2fr;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    font-weight: bold;
-    border-radius: 5px;
+   display: grid;
+   grid-template-columns: 5fr 1fr 0.2fr;
+   justify-content: space-between;
+   padding: 0.5rem 1rem;
+   font-weight: bold;
+   border-radius: 5px;
 }
 
 .category-bar button {
-    border-radius: 5px;
-    border: 1px solid black;
+   border-radius: 5px;
+   border: 1px solid black;
 }
 
 .category-bar-sub-level {
-    background-color: rgb(160, 202, 216);
-    margin-top: .5rem;
+   background-color: rgb(160, 202, 216);
+   margin-top: .5rem;
 }
 
 .category-bar-top-level {
-    background-color: rgb(47, 131, 161);
+   background-color: rgb(47, 131, 161);
 }
 
 .content-section table td:last-child,
 .content-section table th:last-child {
-    text-align: right;
+   text-align: right;
+}
+
+.category-content-collapse-button,
+.category-additional-text,
+.category-name {
+   display: flex;
+   align-items: center;
+}
+
+.category-content-collapse-button {
+   padding: .3rem;
+}
+
+.category-content-collapse-button:hover {
+   opacity: 85%;
 }
