@@ -19,3 +19,8 @@
    margin-top: 2rem;
    grid-column: 2;
 }
+
+.product-selection-add-button-container button {
+   display: flex;
+   align-items: center;
+}
