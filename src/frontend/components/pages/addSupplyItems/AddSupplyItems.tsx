@@ -53,6 +53,34 @@ function AddSupplyItems(): ReactElement {
    }
 
 
+   function renderBreadCrumb(): ReactElement | null {
+      switch (pageState) {
+         case 'ItemAddState':
+            return (
+               <p className="add-supply-items-breadcrumb">
+                  <button type="button" onClick={openItemAddOverview}>Add Items To Supply</button>
+                  &nbsp; &gt; &nbsp;
+                  Select Item To Add
+               </p>
+            );
+            break;
+         case 'ProductAddState':
+            return (
+               <p className="add-supply-items-breadcrumb">
+                  <button type="button" onClick={openItemAddOverview}>Add Items To Supply</button>
+                  &nbsp; &gt; &nbsp;
+                  <button type="button" onClick={openItemAddDialog}>Select Item To Add</button>
+                  &nbsp; &gt; &nbsp;
+                  Add New Product
+               </p>
+            );
+            break;
+         default:
+            return null;
+      }
+   }
+
+
    function renderDialog(): ReactElement | null {
       switch (pageState) {
          case 'ReceiptItemsAddedState':
@@ -90,6 +118,7 @@ function AddSupplyItems(): ReactElement {
    return (
       <main className="add-supply-items-main">
          <div className="add-supply-items-container">
+            { renderBreadCrumb() }
             { renderDialog() }
          </div>
       </main>

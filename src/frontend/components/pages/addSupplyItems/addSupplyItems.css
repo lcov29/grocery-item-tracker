@@ -10,9 +10,11 @@
    padding: 1rem;
 }
 
+
 .add-supply-items-container h2 {
    margin-top: 0;
 }
+
 
 .add-supply-items-container button {
    font-weight: bold;
@@ -21,6 +23,21 @@
 
 .add-supply-items-container table button {
    width: 100%;
+}
+
+.add-supply-items-breadcrumb {
+   margin-top: 0;
+   margin-bottom: 3rem;
+}
+
+.add-supply-items-breadcrumb button {
+   border: none;
+   background-color: white;
+   font-weight: normal;
+}
+
+.add-supply-items-breadcrumb button:hover {
+   text-decoration: underline;
 }
 
 
