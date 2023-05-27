@@ -41,7 +41,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
 
    return (
       <div>
-         <h2>Select Grocery Item</h2>
+         <h2>Select Item To Add</h2>
          <form className="product-selection-form">
             <ProductInput
                openProductAddDialog={openProductAddDialog}

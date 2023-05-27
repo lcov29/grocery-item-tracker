@@ -64,13 +64,13 @@ function AddedItemsPreview(props: Props): ReactElement {
 
    return (
       <>
-         <h2>Add Grocery Items</h2>
+         <h2>Add Items To Supply</h2>
          <Table
             headerList={['Amount', 'Product', 'Distributor', 'Expiration Date', ' ']}
             rowList={buildRowList()}
          />
          <div className="added-items-preview-save-button-container">
-            <button type="button" onClick={addItemsToSupply}>Save</button>
+            <button type="button" onClick={addItemsToSupply}>Add To Supply</button>
          </div>
       </>
    );
