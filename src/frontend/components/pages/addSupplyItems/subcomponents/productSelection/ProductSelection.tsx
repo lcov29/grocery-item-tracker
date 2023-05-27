@@ -4,6 +4,7 @@ import { Counter } from '../../../../base-components/counter/Counter';
 import { ProductInput } from './subcomponents/productInput/ProductInput';
 import { DistributorInput } from './subcomponents/distributorInput/DistributorInput';
 import { GroceryItemData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import backIcon from '../../../../../icons/backArrowIcon.svg';
 import './productSelection.css';
 
 
@@ -74,10 +75,13 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
                onChange={(e) => { setExpirationDate(e.target.value); }}
                required
             />
-            <div className="product-selection-add-button-container">
-               <button type="button" onClick={addGroceryItemDataToList}>Add</button>
-            </div>
          </form>
+         <div className="product-selection-add-button-container">
+            <button type="button" onClick={openItemAddOverview}>
+               <img src={backIcon} alt="Back" width="25px" height="25px" />
+            </button>
+            <button type="button" onClick={addGroceryItemDataToList}>OK</button>
+         </div>
       </div>
    );
 }
