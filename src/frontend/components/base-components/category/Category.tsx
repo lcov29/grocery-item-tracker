@@ -36,6 +36,7 @@ function Category(props: CategoryProps): ReactElement {
          return (
             <button
                type="button"
+               className="category-content-collapse-button"
                onClick={() => { setIsContentSectionCollapsed(!isContentSectionCollapsed); }}
             >
                {createIcon()}
@@ -60,7 +61,7 @@ function Category(props: CategoryProps): ReactElement {
          <div className="category">
             <div className={`category-bar ${(isTopLevel) ? 'category-bar-top-level' : 'category-bar-sub-level'}`}>
                <div className="category-name">{name}</div>
-               <div className="additionalText">{additionalText}</div>
+               <div className="category-additional-text">{additionalText}</div>
                { buildContentCollapseButton() }
             </div>
             { buildContentSection() }
