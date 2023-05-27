@@ -4,6 +4,7 @@ import { SearchableDropdown } from '../../../../base-components/searchableDropdo
 import { fetchData, sendData } from '../../../../../utility/fetchServerData';
 import { MeasurementData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import { AddNewCategories } from './subcomponents/addNewCategories/AddNewCategories';
+import backIcon from '../../../../../icons/backArrowIcon.svg';
 import './addNewProductForm.css';
 
 
@@ -108,8 +109,10 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
             { generateMeasurementUnitDropdown() }
          </form>
          <div className="add-new-product-form-controls-container">
-            <button type="button" onClick={openItemAddDialog}>Back</button>
-            <button type="button" onClick={submitFormData}>Save</button>
+            <button type="button" onClick={openItemAddDialog}>
+               <img src={backIcon} alt="Back" width="35px" height="25px" />
+            </button>
+            <button type="button" onClick={submitFormData}>OK</button>
          </div>
       </>
    );
