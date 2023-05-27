@@ -41,7 +41,7 @@ function generateBuyAndExpirationData() {
 const read = readline.createInterface({ input, output });
 
 
-console.log('\n========== Grocery Item Manager Database Setup ==========\n\n');
+console.log('\n========== Grocery Item Tracker Database Setup ==========\n\n');
 
 
 console.log('Setting up the database requires access to a MariaDB server with the following privileges:');
@@ -97,8 +97,8 @@ try {
    // Create Database
 
    console.log('\n\n\n=== Create Database \n');
-   await dbConnection.query('create database grocery_item_manager;');
-   console.log('\nSuccessfully created database "grocery_item_manager"');
+   await dbConnection.query('create database grocery_item_tracker;');
+   console.log('\nSuccessfully created database "grocery_item_tracker"');
 
 
 
@@ -109,7 +109,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.Localization (
+      `create table grocery_item_tracker.Localization (
          id int auto_increment,
          language varchar(100) not null,
          currencySymbol varchar(10) not null,
@@ -121,7 +121,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.MeasurementUnits (
+      `create table grocery_item_tracker.MeasurementUnits (
          id int auto_increment,
          unitName varchar(50),
          unitSymbol varchar(10),
@@ -132,7 +132,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.Distributor (
+      `create table grocery_item_tracker.Distributor (
          id int auto_increment,
          name varchar(250) not null,
          primary key(id)
@@ -142,7 +142,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.MeasurementUnitsMap (
+      `create table grocery_item_tracker.MeasurementUnitsMap (
          localizationId int not null,
          measurementUnitId int not null,
          primary key(localizationId, measurementUnitId),
@@ -154,7 +154,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.Categories (
+      `create table grocery_item_tracker.Categories (
          id int auto_increment,
          name varchar(250) not null,
          parentCategoryId int default null,
@@ -166,7 +166,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.Products (
+      `create table grocery_item_tracker.Products (
          id int auto_increment,
          categoryId int not null,
          measurementUnitId int,
@@ -182,7 +182,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.ShoppingList (
+      `create table grocery_item_tracker.ShoppingList (
          id int auto_increment,
          productId int not null,
          amount int not null,
@@ -196,7 +196,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.Supply (
+      `create table grocery_item_tracker.Supply (
          id int auto_increment,
          productId int not null,
          distributorId int not null,
@@ -214,7 +214,7 @@ try {
 
 
    await dbConnection.query(
-      `create table grocery_item_manager.MinimumSupply (
+      `create table grocery_item_tracker.MinimumSupply (
          id int auto_increment,
          productId int,
          categoryId int,
@@ -235,21 +235,21 @@ try {
    // Create Views
 
    await dbConnection.query(
-      `create view grocery_item_manager.GrocerySupplyOverview as
+      `create view grocery_item_tracker.GrocerySupplyOverview as
       select c2.name as topcategory, c1.name as subcategory, p.name as product, s.amount
       from (select productId, count(distinct id) as amount 
-            from grocery_item_manager.Supply 
+            from grocery_item_tracker.Supply 
             where consumptionDate is null
             group by productId) as s 
-            inner join grocery_item_manager.Products as p on s.productId = p.id
-            inner join grocery_item_manager.Categories as c1 on p.categoryId = c1.id
-            inner join grocery_item_manager.Categories as c2 on c1.parentCategoryId = c2.id
+            inner join grocery_item_tracker.Products as p on s.productId = p.id
+            inner join grocery_item_tracker.Categories as c1 on p.categoryId = c1.id
+            inner join grocery_item_tracker.Categories as c2 on c1.parentCategoryId = c2.id
       order by c2.id asc, c1.id asc;`
    );
 
 
    await dbConnection.query(
-      `create view grocery_item_manager.GrocerySupplyList as 
+      `create view grocery_item_tracker.GrocerySupplyList as 
       select c2.name as topcategory,
              c1.name as subcategory,
              p.name as product,
@@ -258,30 +258,30 @@ try {
              d.name as distributor,
              s.buyDate,
              s.expirationDate
-      from (select * from grocery_item_manager.Supply where consumptionDate is null) as s
-            inner join grocery_item_manager.Products as p on s.productId = p.id
-            inner join grocery_item_manager.MeasurementUnits as m on p.measurementUnitId = m.id
-            inner join grocery_item_manager.Distributor as d on s.distributorId = d.id
-            inner join grocery_item_manager.Categories as c1 on p.categoryId = c1.id
-            inner join grocery_item_manager.Categories as c2 on c1.parentCategoryId = c2.id
+      from (select * from grocery_item_tracker.Supply where consumptionDate is null) as s
+            inner join grocery_item_tracker.Products as p on s.productId = p.id
+            inner join grocery_item_tracker.MeasurementUnits as m on p.measurementUnitId = m.id
+            inner join grocery_item_tracker.Distributor as d on s.distributorId = d.id
+            inner join grocery_item_tracker.Categories as c1 on p.categoryId = c1.id
+            inner join grocery_item_tracker.Categories as c2 on c1.parentCategoryId = c2.id
       order by c2.id asc, c1.id asc, s.productId asc, s.id asc;`
    );
 
 
    await dbConnection.query(
-      `create view grocery_item_manager.UpcomingExpirationDates as
+      `create view grocery_item_tracker.UpcomingExpirationDates as
       select s.id, p.name as product, s.expirationDate
-      from (select id, productId, expirationDate from grocery_item_manager.Supply where consumptionDate is null) as s
-            inner join grocery_item_manager.Products as p on s.productId = p.id
+      from (select id, productId, expirationDate from grocery_item_tracker.Supply where consumptionDate is null) as s
+            inner join grocery_item_tracker.Products as p on s.productId = p.id
       order by s.expirationDate asc, s.id asc;`
    );
 
 
    await dbConnection.query(
-      `create view grocery_item_manager.ProductsInSupply as
+      `create view grocery_item_tracker.ProductsInSupply as
       select id, name
       from Products
-      where id in (select distinct productId from Supply where consumptionDate is null);`
+      where id in (select distinct productId from grocery_item_tracker.Supply where consumptionDate is null);`
    );
 
 
@@ -289,20 +289,20 @@ try {
    // Insert Standard Data
 
    await dbConnection.query(
-      `insert into grocery_item_manager.Localization (language, currencySymbol, localeCode)
+      `insert into grocery_item_tracker.Localization (language, currencySymbol, localeCode)
       values ("USA", "$", "en-US"), ("UK", "£", "en-GB" ), ("France", "€", "fr-FR"),
              ("Germany", "€", "de-DE"), ("Spain", "€", "es-ES");`
    );
 
 
    await dbConnection.query(
-      `insert into grocery_item_manager.MeasurementUnits (unitName, unitSymbol)
+      `insert into grocery_item_tracker.MeasurementUnits (unitName, unitSymbol)
       values ("gallon", "gal"), ("pound", "lb"), ("liter", "L"), ("gramm", 'g');`
    );
 
 
    await dbConnection.query(
-      `insert into grocery_item_manager.MeasurementUnitsMap
+      `insert into grocery_item_tracker.MeasurementUnitsMap
       values (1, 1), (1, 2), (2, 1), (2, 2), (3, 3), (3, 4), (4, 3), (4, 4), (5, 3), (5, 4);`
    );
 
@@ -317,13 +317,13 @@ try {
       try {
 
          await dbConnection.query(
-            `insert into grocery_item_manager.Distributor(name)
+            `insert into grocery_item_tracker.Distributor(name)
             values ("Aldi"), ("Netto"), ("Super U"), ("Walmart");`
          );
 
 
          await dbConnection.query(
-            `insert into grocery_item_manager.Categories(name, parentCategoryid) 
+            `insert into grocery_item_tracker.Categories(name, parentCategoryid) 
             values ("Food", null), ("Beverages", null), ("Canned Food", 1), 
             ("Instant Meal", 1), ("Bread", 1), ("Mineral Water", 2),
             ("Coffee", 2), ("Milk", 2);`
@@ -331,7 +331,7 @@ try {
 
 
          await dbConnection.query(
-            `insert into grocery_item_manager.Products (categoryId, measurementUnitId, weight, name)
+            `insert into grocery_item_tracker.Products (categoryId, measurementUnitId, weight, name)
             values 
             (3, 2, 800, "Chicken Soup"),
             (3, 1, 400, "Tomato Soup"),
@@ -350,7 +350,7 @@ try {
 
 
          await dbConnection.query(
-            `insert into grocery_item_manager.Supply (productId, distributorId, price, buyDate, expirationDate, consumptionDate)
+            `insert into grocery_item_tracker.Supply (productId, distributorId, price, buyDate, expirationDate, consumptionDate)
             values
             (1, 1, 2.50, ${generateBuyAndExpirationData()}, null),
             (1, 1, 2.24, ${generateBuyAndExpirationData()}, null),
@@ -405,39 +405,39 @@ try {
          );
 
 
-         await dbConnection.query('create role groceryItemManagerUserRole;');
+         await dbConnection.query('create role groceryItemTrackerUserRole;');
 
 
          await dbConnection.query(
             `grant select 
-            on grocery_item_manager.*
-            to groceryItemManagerUserRole;`
+            on grocery_item_tracker.*
+            to groceryItemTrackerUserRole;`
          );
 
 
          await dbConnection.query(
             `grant insert
-            on grocery_item_manager.*
-            to groceryItemManagerUserRole;`
+            on grocery_item_tracker.*
+            to groceryItemTrackerUserRole;`
          );
 
 
          await dbConnection.query(
             `grant update
-            on grocery_item_manager.Supply
-            to groceryItemManagerUserRole;`
+            on grocery_item_tracker.Supply
+            to groceryItemTrackerUserRole;`
          );
 
 
          await dbConnection.query(
-            `grant groceryItemManagerUserRole
+            `grant groceryItemTrackerUserRole
             to ?@?;`,
             [restrictedAppUser, host]
          );
 
 
          await dbConnection.query(
-            `set default role groceryItemManagerUserRole 
+            `set default role groceryItemTrackerUserRole 
             for ?@?;`,
             [restrictedAppUser, host]
          );
@@ -479,21 +479,21 @@ try {
             );
 
 
-            await dbConnection.query('create role "groceryItemManagerAdminRole";');
+            await dbConnection.query('create role "groceryItemTrackerAdminRole";');
 
 
-            await dbConnection.query('grant all on grocery_item_manager.* to "groceryItemManagerAdminRole";');
+            await dbConnection.query('grant all on grocery_item_manager.* to "groceryItemTrackerAdminRole";');
 
 
             await dbConnection.query(
-               `grant groceryItemManagerAdminRole
+               `grant groceryItemManagerTrackerRole
                to ?@?;`,
                [appAdminUser, host]
             );
 
 
             await dbConnection.query(
-               `set default role groceryItemManagerAdminRole 
+               `set default role groceryItemTrackerAdminRole 
                for ?@?;`,
                [appAdminUser, host]
             );
@@ -528,15 +528,15 @@ try {
    console.log('\n\nResetting created entities...');
 
    try {
-      await dbConnection.query('drop database grocery_item_manager');
-      console.log('Dropped database grocery_item_manager');
+      await dbConnection.query('drop database grocery_item_tracker');
+      console.log('Dropped database grocery_item_tracker');
    } catch (error2) {
-      console.log(`Failed to drop database grocery_item_manager\n\n${error}`);
+      console.log(`Failed to drop database grocery_item_tracker\n\n${error}`);
    }
 
    try {
-      await dbConnection.query('drop role if exists groceryItemManagerUserRole;');
-      await dbConnection.query('drop role if exists groceryItemManagerAdminRole;');
+      await dbConnection.query('drop role if exists groceryItemTrackerUserRole;');
+      await dbConnection.query('drop role if exists groceryItemTrackerAdminRole;');
 
       if (restrictedAppUser) {
          await dbConnection.query('drop user ?@?;', [restrictedAppUser, host]);

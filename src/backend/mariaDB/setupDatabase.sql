@@ -1,9 +1,9 @@
 -- create database
 
-drop database if exists grocery_item_manager;
+drop database if exists grocery_item_tracker;
 
-create database grocery_item_manager;
-use grocery_item_manager;
+create database grocery_item_tracker;
+use grocery_item_tracker;
 
 
 
@@ -219,32 +219,32 @@ values (1, 1, 2.50, '2022-03-04', '2022-11-14', null),
 
 -- create role for application user and grant rights
 
-create user 'groceryItemManagerUser'@'localhost'
+create user 'groceryItemTrackerUser'@'localhost'
 identified by 'secret'
 password expire never;
 
 
-create role groceryItemManagerUserRole;
+create role groceryItemTrackerUserRole;
 
 
 grant select 
-on grocery_item_manager.*
-to groceryItemManagerUserRole;
+on grocery_item_tracker.*
+to groceryItemTrackerUserRole;
 
 
 grant insert
-on grocery_item_manager.*
-to groceryItemManagerUserRole;
+on grocery_item_tracker.*
+to groceryItemTrackerUserRole;
 
 
 grant update
-on grocery_item_manager.Supply
-to groceryItemManagerUserRole;
+on grocery_item_tracker.Supply
+to groceryItemTrackerUserRole;
 
 
-grant groceryItemManagerUserRole
-to 'groceryItemManagerUser'@'localhost';
+grant groceryItemTrackerUserRole
+to 'groceryItemTrackerUser'@'localhost';
 
 
-set default role groceryItemManagerUserRole 
-for 'groceryItemManagerUser'@'localhost';
+set default role groceryItemTrackerUserRole 
+for 'groceryItemTrackerUser'@'localhost';
