@@ -113,6 +113,7 @@ function AddNewCategories(props: Props): ReactElement {
                <button
                   type="button"
                   className="add-new-categories-button"
+                  title="Add New Category"
                   onClick={() => { setDisplayNewCategoryDialog(true); }}
                >
                   +
@@ -131,6 +132,7 @@ function AddNewCategories(props: Props): ReactElement {
          <button
             type="button"
             className="add-new-categories-button"
+            title="Add New Subcategory"
             onClick={() => { setDisplayNewSubCategoryDialog(true); }}
          >
             +

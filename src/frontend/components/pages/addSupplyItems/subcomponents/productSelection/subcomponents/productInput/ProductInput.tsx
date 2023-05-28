@@ -41,7 +41,14 @@ function ProductInput(props: ProductInputProps): ReactElement {
                optionList={buildProductNameList(productData)}
                inputRequired
             />
-            <button className="product-input-add-button" type="button" onClick={openProductAddDialog}>+</button>
+            <button
+               type="button"
+               className="product-input-add-button"
+               title="Add New Product"
+               onClick={openProductAddDialog}
+            >
+               +
+            </button>
          </div>
       </>
    );

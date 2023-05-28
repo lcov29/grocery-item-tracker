@@ -74,8 +74,9 @@ function DistributorInput(props: Props): ReactElement {
                inputRequired
             />
             <button
-               className="distributor-input-add-button"
                type="button"
+               className="distributor-input-add-button"
+               title="Add New Distributor"
                onClick={() => { setDisplayNewDistributorDialog(true); }}
             >
                +
