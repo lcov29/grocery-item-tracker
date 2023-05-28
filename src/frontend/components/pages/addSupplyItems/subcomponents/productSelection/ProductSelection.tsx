@@ -11,12 +11,12 @@ import './productSelection.css';
 type ProductSelectionDialogProps = {
    addGroceryItemData: (data: GroceryItemData) => void,
    openAddedItemPreviewDialog: () => void,
-   openProductAddDialog: () => void
+   openAddNewProductDialog: () => void
 };
 
 
 function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
-   const { addGroceryItemData, openAddedItemPreviewDialog, openProductAddDialog } = props;
+   const { addGroceryItemData, openAddedItemPreviewDialog, openAddNewProductDialog } = props;
 
    const [productName, setProductName] = useState('');
    const [distributor, setDistributor] = useState('');
@@ -44,7 +44,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
          <h2>Select Item To Add</h2>
          <form className="product-selection-form">
             <ProductInput
-               openProductAddDialog={openProductAddDialog}
+               openAddNewProductDialog={openAddNewProductDialog}
                setProductInput={setProductName}
                productInput={productName}
             />

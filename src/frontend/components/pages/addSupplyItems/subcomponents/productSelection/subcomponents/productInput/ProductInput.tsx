@@ -7,14 +7,14 @@ import './productInput.css';
 
 
 type ProductInputProps = {
-   openProductAddDialog: () => void
+   openAddNewProductDialog: () => void
    productInput: string,
    setProductInput: (a: string) => void
 };
 
 
 function ProductInput(props: ProductInputProps): ReactElement {
-   const { openProductAddDialog, productInput, setProductInput } = props;
+   const { openAddNewProductDialog, productInput, setProductInput } = props;
    const [productData, setProductData] = useState<ProductNameListData[]>([]);
 
 
@@ -45,7 +45,7 @@ function ProductInput(props: ProductInputProps): ReactElement {
                type="button"
                className="product-input-add-button"
                title="Add New Product"
-               onClick={openProductAddDialog}
+               onClick={openAddNewProductDialog}
             >
                +
             </button>
