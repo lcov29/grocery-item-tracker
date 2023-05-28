@@ -10,13 +10,13 @@ import './productSelection.css';
 
 type ProductSelectionDialogProps = {
    addGroceryItemData: (data: GroceryItemData) => void,
-   openItemAddOverview: () => void,
+   openAddedItemPreviewDialog: () => void,
    openProductAddDialog: () => void
 };
 
 
 function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
-   const { addGroceryItemData, openItemAddOverview, openProductAddDialog } = props;
+   const { addGroceryItemData, openAddedItemPreviewDialog, openProductAddDialog } = props;
 
    const [productName, setProductName] = useState('');
    const [distributor, setDistributor] = useState('');
@@ -35,7 +35,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
          expirationDate
       };
       addGroceryItemData(payload);
-      openItemAddOverview();
+      openAddedItemPreviewDialog();
    }
 
 
@@ -77,7 +77,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
             />
          </form>
          <div className="product-selection-add-button-container">
-            <button type="button" onClick={openItemAddOverview}>
+            <button type="button" onClick={openAddedItemPreviewDialog}>
                <img src={backIcon} alt="Back" width="25px" height="25px" />
             </button>
             <button type="button" onClick={addGroceryItemDataToList}>OK</button>
