@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { AddedItemReceiptData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
-import { parseDatabaseDate } from '../../../../../utility/parseDate/parseDate';
+import { parseDatabaseDate } from '../../../../../utility/dateFunctions/dateFunctions';
 import { Table } from '../../../../base-components/table/Table';
 
 
@@ -18,6 +18,7 @@ function AddedItemsReceipt(props: Props): ReactElement {
          item.id,
          item.productName,
          item.distributor,
+         parseDatabaseDate(item.buyDate),
          parseDatabaseDate(item.expirationDate)
       ]);
       return output;
@@ -33,7 +34,7 @@ function AddedItemsReceipt(props: Props): ReactElement {
             This id is used to consume specific items of your supply.
          </p>
          <Table
-            headerList={['Id', 'Product', 'Distributor', 'Expiration Date']}
+            headerList={['Id', 'Product', 'Distributor', 'Buy Date', 'Expiration Date']}
             rowList={buildRowList()}
          />
       </>
