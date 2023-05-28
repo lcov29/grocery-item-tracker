@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { describe, test, expect } from '@jest/globals';
-import { parseDatabaseDate } from './parseDate';
+import { parseDatabaseDate } from './dateFunctions';
 
 
 describe('parseDatabaseDate', () => {
