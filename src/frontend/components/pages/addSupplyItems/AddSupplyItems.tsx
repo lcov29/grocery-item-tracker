@@ -8,7 +8,7 @@ import { GroceryItemData, AddedItemReceiptData } from '../../../../tsDataTypes/t
 import './addSupplyItems.css';
 
 
-type PageState = 'AddedItemPreview' | 'ProductSelection' | 'AddNewProduct' | 'ReceiptItemsAddedState';
+type PageState = 'AddedItemPreview' | 'ProductSelection' | 'AddNewProduct' | 'AddedItemsReceipt';
 
 
 function AddSupplyItems(): ReactElement {
@@ -48,8 +48,8 @@ function AddSupplyItems(): ReactElement {
    }
 
 
-   function openAddedItemsReceipt() {
-      setPageState('ReceiptItemsAddedState');
+   function openAddedItemsReceiptDialog() {
+      setPageState('AddedItemsReceipt');
    }
 
 
@@ -88,7 +88,7 @@ function AddSupplyItems(): ReactElement {
                <AddedItemsPreview
                   setAddedItemsReceiptList={setAddedItemsReceiptList}
                   openProductSelectionDialog={openProductSelectionDialog}
-                  openAddedItemsReceipt={openAddedItemsReceipt}
+                  openAddedItemsReceiptDialog={openAddedItemsReceiptDialog}
                   removeGroceryItemFromList={removeGroceryItemFromList}
                   groceryItemDataList={groceryItemList}
                />
@@ -107,7 +107,7 @@ function AddSupplyItems(): ReactElement {
                   openProductSelectionDialog={openProductSelectionDialog}
                />
             );
-         case 'ReceiptItemsAddedState':
+         case 'AddedItemsReceipt':
             return (
                <AddedItemsReceipt
                   addedItemsReceiptDataList={addedItemsReceiptList}
