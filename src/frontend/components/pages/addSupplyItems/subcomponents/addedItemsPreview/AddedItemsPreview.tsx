@@ -8,7 +8,7 @@ import './addedItemsPreview.css';
 
 type Props = {
    setAddedItemsReceiptList: (a: AddedItemReceiptData[]) => void,
-   openItemAddDialog: () => void,
+   openProductSelectionDialog: () => void,
    openAddedItemsReceipt: () => void,
    removeGroceryItemFromList: (a: number) => void,
    groceryItemDataList: GroceryItemData[]
@@ -18,7 +18,7 @@ type Props = {
 function AddedItemsPreview(props: Props): ReactElement {
    const {
       setAddedItemsReceiptList,
-      openItemAddDialog,
+      openProductSelectionDialog,
       openAddedItemsReceipt,
       removeGroceryItemFromList,
       groceryItemDataList
@@ -41,7 +41,16 @@ function AddedItemsPreview(props: Props): ReactElement {
       ]);
 
       // Add last row with add item button
-      output.push(['', '', '', '', <button type="button" onClick={openItemAddDialog} title="Add">+</button>]);
+      const button = (
+         <button
+            type="button"
+            title="Add Item"
+            onClick={openProductSelectionDialog}
+         >
+            +
+         </button>
+      );
+      output.push(['', '', '', '', button]);
       return output;
    }
 

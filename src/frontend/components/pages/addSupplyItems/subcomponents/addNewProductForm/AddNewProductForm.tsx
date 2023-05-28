@@ -9,12 +9,12 @@ import './addNewProductForm.css';
 
 
 type ProductDataAddDialogProps = {
-   openItemAddDialog: () => void;
+   openProductSelectionDialog: () => void;
 };
 
 
 function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
-   const { openItemAddDialog } = props;
+   const { openProductSelectionDialog } = props;
    const [measurementData, setMeasurementData] = useState<MeasurementData[]>();
    const [productInput, setProductInput] = useState('');
    const [categoryInput, setCategoryInput] = useState('');
@@ -90,7 +90,7 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
          weight: weightInput,
          unit: unitInput
       };
-      openItemAddDialog();
+      openProductSelectionDialog();
       await sendData('/api/addSupplyItems/post/addNewProduct', payload);
    }
 
@@ -109,7 +109,7 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
             { generateMeasurementUnitDropdown() }
          </form>
          <div className="add-new-product-form-controls-container">
-            <button type="button" onClick={openItemAddDialog}>
+            <button type="button" onClick={openProductSelectionDialog}>
                <img src={backIcon} alt="Back" width="35px" height="25px" />
             </button>
             <button type="button" onClick={submitFormData}>OK</button>
