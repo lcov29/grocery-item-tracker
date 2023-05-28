@@ -8,6 +8,7 @@ type AddedItemReceiptData = {
    id: string,
    productName: string,
    distributor: string,
+   buyDate: string,
    expirationDate: string
 };
 
@@ -18,6 +19,7 @@ type GroceryItemData = {
    distributor: string,
    amount: number,
    pricePerUnit: number,
+   buyDate: string,
    expirationDate: string
 };
 
