@@ -4,12 +4,6 @@ import { PoolConnection } from 'mariadb';
 import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../tsDataTypes/tsTypesGroceryItemAdd';
 
 
-function getCurrentDateString(): string {
-   const date = new Date().toISOString();
-   return date.replaceAll(/T[0-9:.]*Z/g, '');
-}
-
-
 async function handleAddItemsToSupplyPostRequest(request: Request, dbConnection: PoolConnection):
 Promise<AddItemToSupplyResponse> {
    try {
@@ -38,7 +32,7 @@ Promise<AddItemToSupplyResponse> {
                   product[0].id,
                   distributor[0].id,
                   item.pricePerUnit,
-                  getCurrentDateString(),
+                  item.buyDate,
                   item.expirationDate
                ]
             );
@@ -47,6 +41,7 @@ Promise<AddItemToSupplyResponse> {
                id: result.insertId.toString(),
                productName: item.productName,
                distributor: item.distributor,
+               buyDate: item.buyDate,
                expirationDate: item.expirationDate
             });
          }
