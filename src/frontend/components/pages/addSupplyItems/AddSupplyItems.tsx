@@ -8,7 +8,7 @@ import { GroceryItemData, AddedItemReceiptData } from '../../../../tsDataTypes/t
 import './addSupplyItems.css';
 
 
-type PageState = 'AddedItemPreview' | 'ProductSelection' | 'ReceiptItemsAddedState' | 'ProductAddState';
+type PageState = 'AddedItemPreview' | 'ProductSelection' | 'AddNewProduct' | 'ReceiptItemsAddedState';
 
 
 function AddSupplyItems(): ReactElement {
@@ -38,18 +38,18 @@ function AddSupplyItems(): ReactElement {
    }
 
 
-   function openAddedItemsReceipt() {
-      setPageState('ReceiptItemsAddedState');
-   }
-
-
    function openProductSelectionDialog() {
       setPageState('ProductSelection');
    }
 
 
-   function openProductAddDialog() {
-      setPageState('ProductAddState');
+   function openAddNewProductDialog() {
+      setPageState('AddNewProduct');
+   }
+
+
+   function openAddedItemsReceipt() {
+      setPageState('ReceiptItemsAddedState');
    }
 
 
@@ -64,7 +64,7 @@ function AddSupplyItems(): ReactElement {
                </p>
             );
             break;
-         case 'ProductAddState':
+         case 'AddNewProduct':
             return (
                <p className="add-supply-items-breadcrumb">
                   <button type="button" onClick={openAddedItemPreviewDialog}>Add Items To Supply</button>
@@ -97,20 +97,20 @@ function AddSupplyItems(): ReactElement {
             return (
                <ProductSelection
                   addGroceryItemData={addGroceryItemToList}
-                  openProductAddDialog={openProductAddDialog}
+                  openAddNewProductDialog={openAddNewProductDialog}
                   openAddedItemPreviewDialog={openAddedItemPreviewDialog}
+               />
+            );
+         case 'AddNewProduct':
+            return (
+               <AddNewProductForm
+                  openProductSelectionDialog={openProductSelectionDialog}
                />
             );
          case 'ReceiptItemsAddedState':
             return (
                <AddedItemsReceipt
                   addedItemsReceiptDataList={addedItemsReceiptList}
-               />
-            );
-         case 'ProductAddState':
-            return (
-               <AddNewProductForm
-                  openProductSelectionDialog={openProductSelectionDialog}
                />
             );
          default:
