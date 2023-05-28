@@ -60,7 +60,7 @@ function AddSupplyItems(): ReactElement {
                <p className="add-supply-items-breadcrumb">
                   <button type="button" onClick={openItemAddOverview}>Add Items To Supply</button>
                   &nbsp; &gt; &nbsp;
-                  Select Item To Add
+                  <b>Select Item To Add</b>
                </p>
             );
             break;
@@ -71,7 +71,7 @@ function AddSupplyItems(): ReactElement {
                   &nbsp; &gt; &nbsp;
                   <button type="button" onClick={openItemAddDialog}>Select Item To Add</button>
                   &nbsp; &gt; &nbsp;
-                  Add New Product
+                  <b>Add New Product</b>
                </p>
             );
             break;
