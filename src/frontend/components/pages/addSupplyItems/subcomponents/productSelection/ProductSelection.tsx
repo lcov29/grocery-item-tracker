@@ -4,6 +4,7 @@ import { Counter } from '../../../../base-components/counter/Counter';
 import { ProductInput } from './subcomponents/productInput/ProductInput';
 import { DistributorInput } from './subcomponents/distributorInput/DistributorInput';
 import { GroceryItemData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import { getCurrentDateString } from '../../../../../utility/dateFunctions/dateFunctions';
 import backIcon from '../../../../../icons/backArrowIcon.svg';
 import './productSelection.css';
 
@@ -22,6 +23,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
    const [distributor, setDistributor] = useState('');
    const [amount, setAmount] = useState(1);
    const [unitPrice, setUnitPrice] = useState(1);
+   const [buyDate, setBuyDate] = useState(getCurrentDateString());
    const [expirationDate, setExpirationDate] = useState('');
 
 
@@ -32,6 +34,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
          distributor,
          amount,
          pricePerUnit: unitPrice,
+         buyDate,
          expirationDate
       };
       addGroceryItemData(payload);
@@ -65,6 +68,17 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
                onChange={(e) => { setUnitPrice(Number.parseInt(e.target.value, 10)); }}
                required
             />
+            <label htmlFor="input-buy-date">Buy Date</label>
+            <input
+               id="input-buy-date"
+               name="buyDate"
+               className="product-selection-input"
+               type="date"
+               value={buyDate}
+               max={getCurrentDateString()}
+               onChange={(e) => { setBuyDate(e.target.value); }}
+               required
+            />
             <label htmlFor="input-expiration-date">Expiration Date</label>
             <input
                id="input-expiration-date"
@@ -72,6 +86,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
                className="product-selection-input"
                type="date"
                value={expirationDate}
+               min={getCurrentDateString()}
                onChange={(e) => { setExpirationDate(e.target.value); }}
                required
             />
