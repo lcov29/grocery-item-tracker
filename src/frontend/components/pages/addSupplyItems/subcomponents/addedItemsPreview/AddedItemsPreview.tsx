@@ -9,7 +9,7 @@ import './addedItemsPreview.css';
 type Props = {
    setAddedItemsReceiptList: (a: AddedItemReceiptData[]) => void,
    openProductSelectionDialog: () => void,
-   openAddedItemsReceipt: () => void,
+   openAddedItemsReceiptDialog: () => void,
    removeGroceryItemFromList: (a: number) => void,
    groceryItemDataList: GroceryItemData[]
 };
@@ -19,7 +19,7 @@ function AddedItemsPreview(props: Props): ReactElement {
    const {
       setAddedItemsReceiptList,
       openProductSelectionDialog,
-      openAddedItemsReceipt,
+      openAddedItemsReceiptDialog,
       removeGroceryItemFromList,
       groceryItemDataList
    } = props;
@@ -66,7 +66,7 @@ function AddedItemsPreview(props: Props): ReactElement {
          if (response.ok === 200 && response.data) {
             setAddedItemsReceiptList(response.data);
          }
-         openAddedItemsReceipt();
+         openAddedItemsReceiptDialog();
       }
    }
 
