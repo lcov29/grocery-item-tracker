@@ -8,12 +8,12 @@ import { GroceryItemData, AddedItemReceiptData } from '../../../../tsDataTypes/t
 import './addSupplyItems.css';
 
 
-type PageState = 'ReceiptItemsAddedState' | 'ItemAddPreviewState' | 'ItemAddState' | 'ProductAddState';
+type PageState = 'AddedItemPreview' | 'ReceiptItemsAddedState' | 'ItemAddState' | 'ProductAddState';
 
 
 function AddSupplyItems(): ReactElement {
 
-   const [pageState, setPageState] = useState<PageState>('ItemAddPreviewState');
+   const [pageState, setPageState] = useState<PageState>('AddedItemPreview');
    const [groceryItemList, setGroceryItemList] = useState<GroceryItemData[]>([]);
    const [unusedGroceryItemId, setUnusedGroceryItemId] = useState(1);
    const [addedItemsReceiptList, setAddedItemsReceiptList] = useState<AddedItemReceiptData[]>([]);
@@ -38,8 +38,8 @@ function AddSupplyItems(): ReactElement {
    }
 
 
-   function openItemAddOverview() {
-      setPageState('ItemAddPreviewState');
+   function openAddedItemPreviewDialog() {
+      setPageState('AddedItemPreview');
    }
 
 
@@ -58,7 +58,7 @@ function AddSupplyItems(): ReactElement {
          case 'ItemAddState':
             return (
                <p className="add-supply-items-breadcrumb">
-                  <button type="button" onClick={openItemAddOverview}>Add Items To Supply</button>
+                  <button type="button" onClick={openAddedItemPreviewDialog}>Add Items To Supply</button>
                   &nbsp; &gt; &nbsp;
                   <b>Select Item To Add</b>
                </p>
@@ -67,7 +67,7 @@ function AddSupplyItems(): ReactElement {
          case 'ProductAddState':
             return (
                <p className="add-supply-items-breadcrumb">
-                  <button type="button" onClick={openItemAddOverview}>Add Items To Supply</button>
+                  <button type="button" onClick={openAddedItemPreviewDialog}>Add Items To Supply</button>
                   &nbsp; &gt; &nbsp;
                   <button type="button" onClick={openItemAddDialog}>Select Item To Add</button>
                   &nbsp; &gt; &nbsp;
@@ -83,13 +83,7 @@ function AddSupplyItems(): ReactElement {
 
    function renderDialog(): ReactElement | null {
       switch (pageState) {
-         case 'ReceiptItemsAddedState':
-            return (
-               <AddedItemsReceipt
-                  addedItemsReceiptDataList={addedItemsReceiptList}
-               />
-            );
-         case 'ItemAddPreviewState':
+         case 'AddedItemPreview':
             return (
                <AddedItemsPreview
                   setAddedItemsReceiptList={setAddedItemsReceiptList}
@@ -99,12 +93,18 @@ function AddSupplyItems(): ReactElement {
                   groceryItemDataList={groceryItemList}
                />
             );
+         case 'ReceiptItemsAddedState':
+            return (
+               <AddedItemsReceipt
+                  addedItemsReceiptDataList={addedItemsReceiptList}
+               />
+            );
          case 'ItemAddState':
             return (
                <ProductSelection
                   addGroceryItemData={addGroceryItemToList}
                   openProductAddDialog={openProductAddDialog}
-                  openItemAddOverview={openItemAddOverview}
+                  openAddedItemPreviewDialog={openAddedItemPreviewDialog}
                />
             );
          case 'ProductAddState':
