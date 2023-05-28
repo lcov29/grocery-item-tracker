@@ -1,6 +1,6 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { fetchData } from '../../../../../utility/fetchServerData';
-import { parseDatabaseDate } from '../../../../../utility/parseDate/parseDate';
+import { parseDatabaseDate } from '../../../../../utility/dateFunctions/dateFunctions';
 import { Counter } from '../../../../base-components/counter/Counter';
 import { Table } from '../../../../base-components/table/Table';
 import './expirationDateOverview.css';
