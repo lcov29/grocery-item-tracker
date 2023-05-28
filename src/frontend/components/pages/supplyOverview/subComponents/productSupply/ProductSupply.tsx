@@ -46,7 +46,7 @@ function ProductSupply(props: Props): ReactElement {
    }
 
 
-   function buildBreadcrumb(): ReactElement | null {
+   function renderBreadcrumb(): ReactElement | null {
       if (isRenderable()) {
          const product = currentProductData[0];
          return (
@@ -60,7 +60,7 @@ function ProductSupply(props: Props): ReactElement {
    }
 
 
-   function buildProductInformation(): ReactElement | null {
+   function renderProductInformation(): ReactElement | null {
       if (isRenderable()) {
          const product = currentProductData[0];
          return (
@@ -71,7 +71,7 @@ function ProductSupply(props: Props): ReactElement {
    }
 
 
-   function buildSupplyTable(): ReactElement | null {
+   function renderSupplyTable(): ReactElement | null {
       if (isRenderable()) {
          const headerList = ['Id', 'Distributor', 'Buy Date', 'Expiration Date'];
          const rowList: string[][] = currentProductData.map(
@@ -99,9 +99,9 @@ function ProductSupply(props: Props): ReactElement {
                action={setSearchedProduct}
             />
          </div>
-         {buildBreadcrumb()}
-         {buildProductInformation()}
-         {buildSupplyTable()}
+         {renderBreadcrumb()}
+         {renderProductInformation()}
+         {renderSupplyTable()}
       </>
    );
 

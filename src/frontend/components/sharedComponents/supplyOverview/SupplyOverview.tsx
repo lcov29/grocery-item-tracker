@@ -25,7 +25,7 @@ function SupplyOverview(props: Props): ReactElement | null {
    }, []);
 
 
-   function generateProductTable(productList: ProductSupplyOverview[] | undefined):
+   function renderProductTable(productList: ProductSupplyOverview[] | undefined):
    ReactElement[] | [] {
       if (productList) {
          const headerList = ['Product', 'Amount'];
@@ -46,12 +46,12 @@ function SupplyOverview(props: Props): ReactElement | null {
    }
 
 
-   function generateSubCategory(subCategory: SubCategory, key: number): ReactElement {
+   function renderSubCategory(subCategory: SubCategory, key: number): ReactElement {
       return (
          <Category
             name={subCategory.name}
             additionalText={`${subCategory.total} Items`}
-            contentList={generateProductTable(subCategory.productList)}
+            contentList={renderProductTable(subCategory.productList)}
             isContentLevel
             key={key}
          />
@@ -59,11 +59,11 @@ function SupplyOverview(props: Props): ReactElement | null {
    }
 
 
-   function generateTopCategory(topCategory: TopCategory, key: number): ReactElement {
+   function renderTopCategory(topCategory: TopCategory, key: number): ReactElement {
       let contentList: ReactElement[] | [] = [];
       if (topCategory.subCategoryList) {
          contentList = topCategory.subCategoryList.map(
-            (subcategory, index) => generateSubCategory(subcategory, index)
+            (subcategory, index) => renderSubCategory(subcategory, index)
          );
       }
 
@@ -79,14 +79,14 @@ function SupplyOverview(props: Props): ReactElement | null {
    }
 
 
-   function generateGrocerySupplyOverview(): ReactElement | null {
+   function renderGrocerySupplyOverview(): ReactElement | null {
       const isDataRenderable = supplyOverviewData && supplyOverviewData.data;
       if (isDataRenderable) {
          return (
             <>
                {
                   supplyOverviewData.data.map(
-                     (topCategory, index) => generateTopCategory(topCategory, index)
+                     (topCategory, index) => renderTopCategory(topCategory, index)
                   )
                }
             </>
@@ -99,7 +99,7 @@ function SupplyOverview(props: Props): ReactElement | null {
    return (
       <>
          <h2>Supply Overview</h2>
-         { generateGrocerySupplyOverview() }
+         { renderGrocerySupplyOverview() }
       </>
    );
 }

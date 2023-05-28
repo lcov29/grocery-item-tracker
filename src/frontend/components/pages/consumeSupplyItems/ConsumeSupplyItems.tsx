@@ -103,7 +103,7 @@ function ConsumeSupplyItems(): ReactElement {
    }
 
 
-   function generatePageContent(): ReactElement | null {
+   function renderPageControl(): ReactElement | null {
       switch (pageState) {
          case 'ConsumedItemSelectionState':
             return (
@@ -134,7 +134,7 @@ function ConsumeSupplyItems(): ReactElement {
       <main className="consume-supply-items-main">
          <div className="consume-supply-items-container">
             <h2>Consume Grocery Items</h2>
-            { generatePageContent() }
+            { renderPageControl() }
          </div>
       </main>
    );

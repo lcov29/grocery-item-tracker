@@ -26,7 +26,7 @@ function ExpirationDateOverview(): ReactElement {
    }, [dayLimit]);
 
 
-   function generateExpirationDateTable(): ReactElement | null {
+   function renderExpirationDateTable(): ReactElement | null {
       const isDataRenderable = expirationData && expirationData.data;
       if (isDataRenderable) {
          const headerList = ['Id', 'Product', 'Expiration Date'];
@@ -51,7 +51,7 @@ function ExpirationDateOverview(): ReactElement {
                suffix="Days"
             />
          </div>
-         { generateExpirationDateTable() }
+         { renderExpirationDateTable() }
       </>
    );
 }
