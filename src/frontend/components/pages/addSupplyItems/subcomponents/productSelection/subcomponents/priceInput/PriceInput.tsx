@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState } from 'react';
 import { isPriceInputValid } from './priceInputValidation';
+import './priceInput.css';
 
 
 type Props = {
