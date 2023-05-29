@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState } from 'react';
+import { parseDatabasePrice, parsePriceInput } from '../../../../../../../utility/currencyFunctions/currencyFunctions';
 import { isPriceInputValid } from './priceInputValidation';
 import './priceInput.css';
 
@@ -15,23 +16,14 @@ function PriceInput(props: Props): ReactElement {
 
 
    function updatePrice(): void {
-      const parsedPriceInCent = Number.parseFloat(input.replace(',', '.')) * 100;
-      setPrice(parsedPriceInCent);
-   }
-
-
-   function updateInput(inputText: string): void {
-      let parsedInput = inputText.replaceAll(' ', '');
-      parsedInput = parsedInput.replaceAll('€', '');
-      setInput(parsedInput);
-   }
-
-
-   function handleBlur(): void {
       if (isPriceInputValid(input)) {
-         updatePrice();
+         const parsedInputNumber = parsePriceInput(input);
+         const parsedInputFormattedString = parseDatabasePrice(parsedInputNumber);
+         setInput(parsedInputFormattedString);
+         setPrice(parsedInputNumber);
       } else {
          setInput('');
+         setPrice(0);
       }
    }
 
@@ -44,9 +36,9 @@ function PriceInput(props: Props): ReactElement {
             name="pricePerUnit"
             className="product-selection-input"
             type="text"
-            value={(input) ? `${input} €` : ''}
-            onChange={(e) => { updateInput(e.target.value); }}
-            onBlur={handleBlur}
+            value={input}
+            onChange={(e) => { setInput(e.target.value); }}
+            onBlur={updatePrice}
             required
          />
       </>
