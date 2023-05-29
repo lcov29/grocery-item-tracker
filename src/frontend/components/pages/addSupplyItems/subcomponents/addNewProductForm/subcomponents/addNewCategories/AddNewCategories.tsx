@@ -5,6 +5,7 @@ import { SearchableDropdown } from '../../../../../../base-components/searchable
 import { ModalInputPrompt } from '../../../../../../base-components/modalInputPrompt/ModalInputPrompt';
 import { fetchData, sendData } from '../../../../../../../utility/fetchServerData';
 import { CategoryData } from '../../../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import plusIcon from '../../../../../../../icons/plusIcon.svg';
 import './addNewCategories.css';
 
 
@@ -116,7 +117,7 @@ function AddNewCategories(props: Props): ReactElement {
                   title="Add New Category"
                   onClick={() => { setDisplayNewCategoryDialog(true); }}
                >
-                  +
+                  <img src={plusIcon} alt="+" width="15px" height="15px" />
                </button>
             </div>
          </>
@@ -135,7 +136,7 @@ function AddNewCategories(props: Props): ReactElement {
             title="Add New Subcategory"
             onClick={() => { setDisplayNewSubCategoryDialog(true); }}
          >
-            +
+            <img src={plusIcon} alt="+" width="15px" height="15px" />
          </button>
       ) : null;
 

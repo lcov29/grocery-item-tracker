@@ -5,6 +5,7 @@ import { SearchableDropdown } from '../../../../../../base-components/searchable
 import { ModalInputPrompt } from '../../../../../../base-components/modalInputPrompt/ModalInputPrompt';
 import { fetchData, sendData } from '../../../../../../../utility/fetchServerData';
 import { DistributorNameList } from '../../../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import plusIcon from '../../../../../../../icons/plusIcon.svg';
 import './distributorInput.css';
 
 
@@ -79,7 +80,7 @@ function DistributorInput(props: Props): ReactElement {
                title="Add New Distributor"
                onClick={() => { setDisplayNewDistributorDialog(true); }}
             >
-               +
+               <img src={plusIcon} alt="+" width="15px" height="15px" />
             </button>
          </div>
          { generateNewDistributorDialog() }

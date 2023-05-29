@@ -3,6 +3,7 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { SearchableDropdown } from '../../../../../../base-components/searchableDropdown/SearchableDropdown';
 import { fetchData } from '../../../../../../../utility/fetchServerData';
 import { ProductNameListData } from '../../../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import plusIcon from '../../../../../../../icons/plusIcon.svg';
 import './productInput.css';
 
 
@@ -47,7 +48,7 @@ function ProductInput(props: ProductInputProps): ReactElement {
                title="Add New Product"
                onClick={openAddNewProductDialog}
             >
-               +
+               <img src={plusIcon} alt="+" width="15px" height="15px" />
             </button>
          </div>
       </>

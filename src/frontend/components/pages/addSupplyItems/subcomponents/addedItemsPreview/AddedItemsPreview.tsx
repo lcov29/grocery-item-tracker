@@ -4,6 +4,8 @@ import { parseDatabasePrice } from '../../../../../utility/currencyFunctions/cur
 import { parseDatabaseDate } from '../../../../../utility/dateFunctions/dateFunctions';
 import { sendData } from '../../../../../utility/fetchServerData';
 import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
+import plusIcon from '../../../../../icons/plusIcon.svg';
+import closeIcon from '../../../../../icons/closeIcon.svg';
 import './addedItemsPreview.css';
 
 
@@ -36,10 +38,11 @@ function AddedItemsPreview(props: Props): ReactElement {
          parseDatabaseDate(item.expirationDate),
          <button
             type="button"
-            onClick={() => { removeGroceryItemFromList(item.id); }}
             title="Remove"
+            className="added-items-preview-button"
+            onClick={() => { removeGroceryItemFromList(item.id); }}
          >
-            x
+            <img src={closeIcon} alt="x" width="15px" height="15px" />
          </button>
       ]);
 
@@ -48,9 +51,15 @@ function AddedItemsPreview(props: Props): ReactElement {
          <button
             type="button"
             title="Add Item"
+            className="added-items-preview-button"
             onClick={openProductSelectionDialog}
          >
-            +
+            <img
+               src={plusIcon}
+               alt="+"
+               width="15px"
+               height="15px"
+            />
          </button>
       );
       output.push(['', '', '', '', '', '', button]);
