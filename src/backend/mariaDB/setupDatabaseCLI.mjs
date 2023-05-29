@@ -200,7 +200,7 @@ try {
          id int auto_increment,
          productId int not null,
          distributorId int not null,
-         price decimal(8, 2),
+         price int,
          buyDate Date not null,
          expirationDate Date not null,
          consumptionDate Date,
