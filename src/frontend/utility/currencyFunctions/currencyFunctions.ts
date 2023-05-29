@@ -1,4 +1,4 @@
-function formatDatabasePrice(price: number): string {
+function parseDatabasePrice(price: number): string {
    let formattedPrice = (price / 100).toFixed(2);
    formattedPrice = Number.parseFloat(formattedPrice).toLocaleString('de-DE');
 
@@ -11,4 +11,4 @@ function formatDatabasePrice(price: number): string {
 }
 
 
-export { formatDatabasePrice };
+export { parseDatabasePrice };
