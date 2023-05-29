@@ -1,3 +1,12 @@
+.added-items-preview-table-container table th:nth-child(4), 
+.added-items-preview-table-container table th:nth-child(5),
+.added-items-preview-table-container table th:nth-child(6),
+.added-items-preview-table-container table td:nth-child(4), 
+.added-items-preview-table-container table td:nth-child(5),
+.added-items-preview-table-container table td:nth-child(6) {
+    text-align: right;
+}
+
 .added-items-preview-save-button-container {
     display: flex;
     flex-direction: row-reverse;
