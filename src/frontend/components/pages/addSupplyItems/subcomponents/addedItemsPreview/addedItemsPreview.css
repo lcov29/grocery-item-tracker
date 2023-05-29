@@ -12,3 +12,8 @@
     flex-direction: row-reverse;
     margin-top: 2rem;
 }
+
+.added-items-preview-button {
+    display: flex;
+    justify-content: center;
+}
