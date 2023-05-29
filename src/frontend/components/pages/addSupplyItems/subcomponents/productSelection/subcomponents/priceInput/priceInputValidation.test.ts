@@ -3,7 +3,6 @@ import { describe, test, expect } from '@jest/globals';
 import {
    isInputNotEmpty,
    isContainingOnlyValidCharacters,
-   isContainingNoLeadingZero,
    isContainingAtMostOneDecimalSeparator,
    isAmountOfCharactersAfterDecimalSeparatorCorrect,
    isPriceInputValid
@@ -47,23 +46,6 @@ describe('priceInputValidation', () => {
          expect(isContainingOnlyValidCharacters('AbcD')).toBe(false);
          expect(isContainingOnlyValidCharacters('123:45')).toBe(false);
          expect(isContainingOnlyValidCharacters('123%45')).toBe(false);
-      });
-
-   });
-
-
-   describe('isContainingNoLeadingZero()', () => {
-
-      test('detects valid input', () => {
-         expect(isContainingNoLeadingZero('123')).toBe(true);
-         expect(isContainingNoLeadingZero('ABC')).toBe(true);
-         expect(isContainingNoLeadingZero('12%&AB')).toBe(true);
-      });
-
-      test('detects invalid input', () => {
-         expect(isContainingNoLeadingZero('0123')).toBe(false);
-         expect(isContainingNoLeadingZero('0ABC')).toBe(false);
-         expect(isContainingNoLeadingZero('012%&AB')).toBe(false);
       });
 
    });
@@ -152,14 +134,14 @@ describe('priceInputValidation', () => {
          expect(isPriceInputValid('12. 34')).toBe(true);
          expect(isPriceInputValid('1234567890,12')).toBe(true);
          expect(isPriceInputValid('1234567890.12')).toBe(true);
+         expect(isPriceInputValid('0123456789')).toBe(true);
+         expect(isPriceInputValid('012,34')).toBe(true);
+         expect(isPriceInputValid('012.34')).toBe(true);
       });
 
       test('detects invalid input', () => {
          expect(isPriceInputValid('-12')).toBe(false);
          expect(isPriceInputValid('+12')).toBe(false);
-         expect(isPriceInputValid('0123456789')).toBe(false);
-         expect(isPriceInputValid('012,34')).toBe(false);
-         expect(isPriceInputValid('012.34')).toBe(false);
          expect(isPriceInputValid('12,34 €')).toBe(false);
          expect(isPriceInputValid('12.34 €')).toBe(false);
          expect(isPriceInputValid('12,34A')).toBe(false);
