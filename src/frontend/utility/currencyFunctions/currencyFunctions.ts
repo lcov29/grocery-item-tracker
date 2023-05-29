@@ -11,4 +11,10 @@ function parseDatabasePrice(price: number): string {
 }
 
 
-export { parseDatabasePrice };
+function parsePriceInput(price: string): number {
+   const priceDigits = price.replaceAll(/\D/g, '');
+   return Number.parseInt(priceDigits, 10);
+}
+
+
+export { parseDatabasePrice, parsePriceInput };
