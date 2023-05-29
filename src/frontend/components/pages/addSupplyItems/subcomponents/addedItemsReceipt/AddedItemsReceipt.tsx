@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import { AddedItemReceiptData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
 import { parseDatabaseDate } from '../../../../../utility/dateFunctions/dateFunctions';
 import { Table } from '../../../../base-components/table/Table';
+import idAddIcon from '../../../../../icons/idAddIcon.svg';
 import './addedItemsReceipt.css';
 
 
@@ -28,12 +29,19 @@ function AddedItemsReceipt(props: Props): ReactElement {
 
    return (
       <>
-         <h2>Added Grocery Items</h2>
-         <p>Successfully added the following items to the supply.</p>
-         <p>
-            Please mark the physical items with the assigned id.
-            This id is used to consume specific items of your supply.
-         </p>
+         <h2>Sucessfully Added Grocery Items</h2>
+         <div className="added-items-receipt-info-container">
+            <img
+               src={idAddIcon}
+               alt="Tag items with id"
+            />
+            <div>
+               Tag your items with the assigned Ids below.
+               <br />
+               <br />
+               The Ids are later required to consume items.
+            </div>
+         </div>
          <div className="added-items-receipt-table-container">
             <Table
                headerList={['Id', 'Product', 'Distributor', 'Buy Date', 'Expiration Date']}
