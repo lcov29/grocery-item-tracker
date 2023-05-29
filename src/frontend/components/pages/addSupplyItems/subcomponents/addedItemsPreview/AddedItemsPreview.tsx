@@ -77,10 +77,12 @@ function AddedItemsPreview(props: Props): ReactElement {
    return (
       <>
          <h2>Add Items To Supply</h2>
-         <Table
-            headerList={['Amount', 'Product', 'Distributor', 'Price', 'Buy Date', 'Expiration Date', ' ']}
-            rowList={buildRowList()}
-         />
+         <div className="added-items-preview-table-container">
+            <Table
+               headerList={['Amount', 'Product', 'Distributor', 'Price', 'Buy Date', 'Expiration Date', ' ']}
+               rowList={buildRowList()}
+            />
+         </div>
          <div className="added-items-preview-save-button-container">
             <button type="button" onClick={addItemsToSupply}>Add To Supply</button>
          </div>
