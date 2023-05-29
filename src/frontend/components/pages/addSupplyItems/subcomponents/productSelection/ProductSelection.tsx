@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement, useState } from 'react';
 import { Counter } from '../../../../base-components/counter/Counter';
+import { PriceInput } from './subcomponents/priceInput/PriceInput';
 import { ProductInput } from './subcomponents/productInput/ProductInput';
 import { DistributorInput } from './subcomponents/distributorInput/DistributorInput';
 import { GroceryItemData } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
@@ -57,17 +58,7 @@ function ProductSelection(props: ProductSelectionDialogProps): ReactElement {
             />
             <label>Amount</label>
             <Counter value={amount} setValue={setAmount} minimum={1} />
-            <label htmlFor="input-price-per-unit">Price</label>
-            <input
-               id="input-price-per-unit"
-               name="pricePerUnit"
-               className="product-selection-input"
-               type="number"
-               min={1}
-               value={unitPrice}
-               onChange={(e) => { setUnitPrice(Number.parseInt(e.target.value, 10)); }}
-               required
-            />
+            <PriceInput setPrice={setUnitPrice} />
             <label htmlFor="input-buy-date">Buy Date</label>
             <input
                id="input-buy-date"
