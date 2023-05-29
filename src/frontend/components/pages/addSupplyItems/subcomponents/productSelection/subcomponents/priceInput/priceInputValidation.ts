@@ -1,5 +1,5 @@
-function isInputEmpty(input: string): boolean {
-   return input === '';
+function isInputNotEmpty(input: string): boolean {
+   return input !== '';
 }
 
 
@@ -37,18 +37,17 @@ function isAmountOfCharactersAfterDecimalSeparatorCorrect(input: string): boolea
 function isPriceInputValid(input: string): boolean {
    const price = input.replaceAll(' ', '');
    return (
-      isInputEmpty(price) || (
-         isContainingOnlyValidCharacters(price)
-         && isContainingNoLeadingZero(price)
-         && isContainingAtMostOneDecimalSeparator(price)
-         && isAmountOfCharactersAfterDecimalSeparatorCorrect(price)
-      )
+      isInputNotEmpty(price)
+      && isContainingOnlyValidCharacters(price)
+      && isContainingNoLeadingZero(price)
+      && isContainingAtMostOneDecimalSeparator(price)
+      && isAmountOfCharactersAfterDecimalSeparatorCorrect(price)
    );
 }
 
 
 export {
-   isInputEmpty,
+   isInputNotEmpty,
    isContainingOnlyValidCharacters,
    isContainingNoLeadingZero,
    isContainingAtMostOneDecimalSeparator,
