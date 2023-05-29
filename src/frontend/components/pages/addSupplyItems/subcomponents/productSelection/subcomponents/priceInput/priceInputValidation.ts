@@ -8,11 +8,6 @@ function isContainingOnlyValidCharacters(input: string): boolean {
 }
 
 
-function isContainingNoLeadingZero(input: string): boolean {
-   return !input.startsWith('0');
-}
-
-
 function isContainingAtMostOneDecimalSeparator(input: string): boolean {
    const separatorList = input.match(/[.,]/g);
    if (separatorList) {
@@ -39,7 +34,6 @@ function isPriceInputValid(input: string): boolean {
    return (
       isInputNotEmpty(price)
       && isContainingOnlyValidCharacters(price)
-      && isContainingNoLeadingZero(price)
       && isContainingAtMostOneDecimalSeparator(price)
       && isAmountOfCharactersAfterDecimalSeparatorCorrect(price)
    );
@@ -49,7 +43,6 @@ function isPriceInputValid(input: string): boolean {
 export {
    isInputNotEmpty,
    isContainingOnlyValidCharacters,
-   isContainingNoLeadingZero,
    isContainingAtMostOneDecimalSeparator,
    isAmountOfCharactersAfterDecimalSeparatorCorrect,
    isPriceInputValid
