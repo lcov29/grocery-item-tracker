@@ -30,7 +30,7 @@ function isAmountOfCharactersAfterDecimalSeparatorCorrect(input: string): boolea
       const stringAfterSeparator = input.substring(decimalSeparatorIndex + 1);
       return [1, 2].includes(stringAfterSeparator.length);
    }
-   return false;
+   return true;
 }
 
 
