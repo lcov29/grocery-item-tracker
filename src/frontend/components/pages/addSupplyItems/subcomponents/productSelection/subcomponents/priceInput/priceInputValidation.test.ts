@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { describe, test, expect } from '@jest/globals';
 import {
-   isInputEmpty,
+   isInputNotEmpty,
    isContainingOnlyValidCharacters,
    isContainingNoLeadingZero,
    isContainingAtMostOneDecimalSeparator,
@@ -17,13 +17,13 @@ describe('priceInputValidation', () => {
    describe('isInputEmpty()', () => {
 
       test('detects valid input', () => {
-         expect(isInputEmpty('')).toBe(true);
+         expect(isInputNotEmpty('123')).toBe(true);
+         expect(isInputNotEmpty(' ')).toBe(true);
+         expect(isInputNotEmpty('foo bar')).toBe(true);
       });
 
       test('detects invalid input', () => {
-         expect(isInputEmpty('123')).toBe(false);
-         expect(isInputEmpty(' ')).toBe(false);
-         expect(isInputEmpty('foo bar')).toBe(false);
+         expect(isInputNotEmpty('')).toBe(false);
       });
 
    });
@@ -144,7 +144,6 @@ describe('priceInputValidation', () => {
    describe('isPriceInputValid()', () => {
 
       test('detects valid input', () => {
-         expect(isPriceInputValid('')).toBe(true);
          expect(isPriceInputValid('12,34')).toBe(true);
          expect(isPriceInputValid('12.34')).toBe(true);
          expect(isPriceInputValid(' 12,34')).toBe(true);
@@ -171,6 +170,8 @@ describe('priceInputValidation', () => {
          expect(isPriceInputValid('1234567890.123')).toBe(false);
          expect(isPriceInputValid('Test')).toBe(false);
          expect(isPriceInputValid('!"§$%&/()=?`´*+~#-_.:,;<>|^°')).toBe(false);
+         expect(isPriceInputValid('')).toBe(false);
+         expect(isPriceInputValid(' ')).toBe(false);
       });
 
    });
