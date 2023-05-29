@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Table } from '../../../../base-components/table/Table';
+import { parseDatabasePrice } from '../../../../../utility/currencyFunctions/currencyFunctions';
 import { parseDatabaseDate } from '../../../../../utility/dateFunctions/dateFunctions';
 import { sendData } from '../../../../../utility/fetchServerData';
 import { GroceryItemData, AddedItemReceiptData, AddItemToSupplyResponse } from '../../../../../../tsDataTypes/tsTypesGroceryItemAdd';
@@ -30,6 +31,7 @@ function AddedItemsPreview(props: Props): ReactElement {
          item.amount.toString(),
          item.productName,
          item.distributor,
+         parseDatabasePrice(item.pricePerUnit),
          parseDatabaseDate(item.buyDate),
          parseDatabaseDate(item.expirationDate),
          <button
@@ -51,7 +53,7 @@ function AddedItemsPreview(props: Props): ReactElement {
             +
          </button>
       );
-      output.push(['', '', '', '', '', button]);
+      output.push(['', '', '', '', '', '', button]);
       return output;
    }
 
@@ -76,7 +78,7 @@ function AddedItemsPreview(props: Props): ReactElement {
       <>
          <h2>Add Items To Supply</h2>
          <Table
-            headerList={['Amount', 'Product', 'Distributor', 'Buy Date', 'Expiration Date', ' ']}
+            headerList={['Amount', 'Product', 'Distributor', 'Price', 'Buy Date', 'Expiration Date', ' ']}
             rowList={buildRowList()}
          />
          <div className="added-items-preview-save-button-container">
