@@ -31,5 +31,5 @@
 }
 
 .item-table-clickable-row:hover {
-    background-color: rgb(195, 216, 221) !important;
+    background-color: var(--main-color-11) !important;
 }

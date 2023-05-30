@@ -3,7 +3,7 @@
 }
 
 .supply-overview-container {
-   border: 0.1rem solid black;
+   border: .2rem solid var(--main-color-4);
    border-radius: 8px;
    padding: 1rem;
    overflow-y: auto;
@@ -33,7 +33,7 @@
     }
  
     .supply-overview-container {
-       max-height: 80vh;
+       max-height: 75vh;
     }
  
  }

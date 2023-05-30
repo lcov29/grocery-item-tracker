@@ -1,17 +1,22 @@
 .search-bar {
-    display: flex;
-    height: 2rem;
+   display: flex;
+   height: 2rem;
 }
 
 .search-input {
-    border: .1rem solid black;
-    border-right: none;
-    border-radius: 25px 0px 0px 25px;
-    width: 10rem;
+   background-color: var(--background-color);
+   border: .15rem solid var(--main-color-4);
+   border-right: none;
+   border-radius: 25px 0px 0px 25px;
+   width: 10rem;
 }
 
 .search-button {
-    width: fit-content;
-    border: .1rem solid black;
-    border-radius: 0px 25px 25px 0px;
+   width: fit-content;
+   border: .15rem solid var(--main-color-4);
+   border-radius: 0px 25px 25px 0px;
+}
+
+.search-button:hover {
+   background-color: var(--main-color-5);
 }
