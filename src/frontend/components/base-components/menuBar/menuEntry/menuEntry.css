@@ -33,12 +33,12 @@
    }
 
    .menu-entry-dropdown {
-      background-color: white;
+      background-color: var(--background-color);
       width: fit-content;
       padding: 1rem;
       margin: .5rem 0rem;
       border-radius: .25rem;
-      box-shadow: 0 .2rem .4rem 0 rgba(0, 0, 0, .5);
+      box-shadow: 0 .4rem .6rem 0 var(--main-color-2);
       overflow: auto;
    }
     
@@ -64,10 +64,10 @@
       position: absolute;
       left: 0;
       top: calc(100% + .5rem);
-      background-color: white;
+      background-color: var(--background-color);
       padding: 1rem;
       border-radius: .25rem;
-      box-shadow: 0 .2rem .4rem 0 rgba(0, 0, 0, .5);
+      box-shadow: 0 .4rem .6rem 0 var(--main-color-2);
       overflow: auto;
    }
 
