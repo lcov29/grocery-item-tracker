@@ -25,5 +25,5 @@
 }
 
 .counter-container button:hover {
-    background-color: lightgray;
+    background-color: var(--main-color-5);
 }
