@@ -8,13 +8,14 @@
 }
 
 .itemTable th {
-    background-color: gray;
+    color: var(--background-color);
+    background-color: var(--main-color-5);
     text-align: left;
     padding: var(--tablePadding);
 }
 
 .itemTable tr:nth-child(2n+1) {
-    background-color: rgb(236, 232, 232);
+    background-color: var(--background-color);
 }
 
 .itemTable tr:nth-child(2n) {
