@@ -1,5 +1,5 @@
 nav {
-    background-color: lightgray;
+    background-color: var(--main-color-6);
     padding: 1rem;
 }
 
