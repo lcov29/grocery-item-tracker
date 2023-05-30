@@ -4,16 +4,26 @@
 .added-items-preview-table-container table td:nth-child(4), 
 .added-items-preview-table-container table td:nth-child(5),
 .added-items-preview-table-container table td:nth-child(6) {
-    text-align: right;
+   text-align: right;
 }
 
 .added-items-preview-save-button-container {
-    display: flex;
-    flex-direction: row-reverse;
-    margin-top: 2rem;
+   display: flex;
+   flex-direction: row-reverse;
+   margin-top: 2rem;
+}
+
+.added-items-preview-save-button-container button {
+  padding: .25rem .5rem;
+  border-radius: 25px;
+  border: .15rem solid var(--main-color-5);
+}
+
+.added-items-preview-save-button-container button:hover {
+   background-color: var(--support-color-error);
 }
 
 .added-items-preview-button {
-    display: flex;
-    justify-content: center;
+   display: flex;
+   justify-content: center;
 }
