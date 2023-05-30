@@ -37,13 +37,13 @@
    border: 1px solid black;
 }
 
-.category-bar-sub-level {
-   background-color: rgb(160, 202, 216);
-   margin-top: .5rem;
+.category-bar-top-level {
+   background-color: var(--main-color-5);
 }
 
-.category-bar-top-level {
-   background-color: rgb(47, 131, 161);
+.category-bar-sub-level {
+   background-color: var(--main-color-9);
+   margin-top: .5rem;
 }
 
 .content-section table td:last-child,
