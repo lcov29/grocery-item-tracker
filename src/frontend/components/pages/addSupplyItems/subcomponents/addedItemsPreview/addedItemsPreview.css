@@ -23,7 +23,13 @@
    background-color: var(--support-color-error);
 }
 
-.added-items-preview-button {
+.added-items-preview-add-item-button,
+.added-items-preview-remove-item-button  {
    display: flex;
    justify-content: center;
+   border: .15rem solid var(--main-color-5);
+}
+
+.added-items-preview-add-item-button:hover {
+   background-color: .15rem solid var(--main-color-5);
 }

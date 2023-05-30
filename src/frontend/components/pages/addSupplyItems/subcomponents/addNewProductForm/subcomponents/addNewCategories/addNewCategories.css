@@ -1,9 +1,15 @@
 .add-new-categories-input {
    width: 85%;
+   border: .15rem solid var(--main-color-5);
 }
 
 .add-new-categories-button {
    width: 10%;
    margin-left: 5%;
    height: 95%;
+   border: .15rem solid var(--main-color-5);
+}
+
+.add-new-categories-button:hover {
+   background-color: var(--main-color-5);
 }

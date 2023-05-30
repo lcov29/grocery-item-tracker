@@ -6,7 +6,7 @@
 }
 
 .added-items-receipt-table-container table td:first-child {
-    background-color: red;
+    background-color: var(--support-color-error);
 }
 
 .added-items-receipt-table-container table td:nth-child(4),

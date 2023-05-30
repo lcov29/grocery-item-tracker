@@ -20,12 +20,25 @@
    margin-top: 1rem;
 }
 
+.consume-supply-items-button-container button {
+   padding: .25rem;
+}
+
+.consume-supply-items-button-container button:hover {
+   background-color: var(--support-color-error);
+}
+
 .consume-supply-items-container button {
    font-weight: bold;
 }
 
 .consume-supply-items-item-remove-button {
    width: 100%;
+   border: .15rem solid var(--main-color-5);
+}
+
+.consume-supply-items-item-remove-button:hover {
+   background-color: var(--support-color-error);
 }
 
 

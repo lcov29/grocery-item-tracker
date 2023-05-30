@@ -39,7 +39,7 @@ function AddedItemsPreview(props: Props): ReactElement {
          <button
             type="button"
             title="Remove"
-            className="added-items-preview-button"
+            className="added-items-preview-remove-item-button"
             onClick={() => { removeGroceryItemFromList(item.id); }}
          >
             <img src={closeIcon} alt="x" width="15px" height="15px" />
@@ -51,7 +51,7 @@ function AddedItemsPreview(props: Props): ReactElement {
          <button
             type="button"
             title="Add Item"
-            className="added-items-preview-button"
+            className="added-items-preview-add-item-button"
             onClick={openProductSelectionDialog}
          >
             <img

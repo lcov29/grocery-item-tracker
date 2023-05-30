@@ -1,14 +1,18 @@
 .consume-supply-items-searchbar button {
-   height: 2.05rem;
+   height: 2.2rem;
    width: 2rem;
-   border: 1px solid black;
+   border: .15rem solid var(--main-color-5);
    border-left: none;
 }
 
 .consume-supply-items-searchbar button:hover {
-   background-color: darkgray;
+   background-color: var(--main-color-5);
 }
 
 .consume-supply-items-searchbar {
    text-align: left;
+}
+
+.consume-supply-items-searchbar input{
+   border: .15rem solid var(--main-color-5);
 }
