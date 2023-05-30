@@ -1,3 +1,7 @@
 #input-price-per-unit {
    text-align: center;
 }
+
+.product-selection-input {
+   border: .15rem solid var(--main-color-5);
+}

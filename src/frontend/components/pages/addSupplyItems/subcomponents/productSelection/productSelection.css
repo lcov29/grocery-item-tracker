@@ -24,4 +24,9 @@
 .product-selection-add-button-container button {
    display: flex;
    align-items: center;
+   border: .15rem solid var(--main-color-5);
+}
+
+.product-selection-add-button-container button:hover {
+   background-color:  var(--main-color-5);
 }

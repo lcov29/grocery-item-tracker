@@ -32,7 +32,7 @@
 
 .add-supply-items-breadcrumb button {
    border: none;
-   background-color: white;
+   background-color: var(--background-color);
    font-weight: normal;
 }
 
