@@ -3,7 +3,7 @@
 }
 
 .home-container {
-   border: 1px solid black;
+   border: .2rem solid var(--main-color-4);
    padding: 1rem;
    border-radius: 8px;
    overflow-y: auto;

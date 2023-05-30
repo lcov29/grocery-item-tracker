@@ -1,5 +1,5 @@
 :root {
-    --border: .1rem solid black;
+    --border: .15rem solid var(--main-color-5);
 }
 
 .counter-container {
