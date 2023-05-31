@@ -7,9 +7,9 @@ footer {
     color: var(--background-color);
     display: flex;
     width: 100vw;
-    height: 3.5vh;
-    padding: .5rem 2rem;
+    height: 2.5vh;
+    padding: .3rem 2rem;
     justify-content: space-between;
-    font-size: 12pt;
+    font-size: 10pt;
     font-weight: bold;
 }
