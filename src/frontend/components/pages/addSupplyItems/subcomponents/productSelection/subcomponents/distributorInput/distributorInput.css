@@ -5,11 +5,16 @@
    border: .15rem solid var(--main-color-5);
 }
 
-.distributor-input-add-button:hover {
+.distributor-input-add-button:hover,
+.distributor-input-add-button:focus {
    background-color: var(--main-color-5);
 }
 
 .distributor-input-dropdown {
    width: 85%;
    border: .15rem solid var(--main-color-5);
+}
+
+.distributor-input-dropdown:focus {
+   border: .2rem solid var(--main-color-8);
 }

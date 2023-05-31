@@ -25,6 +25,7 @@
     background: none;  
 }
 
-.counter-container button:hover {
+.counter-container button:hover,
+.counter-container button:focus {
     background-color: var(--main-color-5);
 }

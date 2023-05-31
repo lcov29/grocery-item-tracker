@@ -5,3 +5,7 @@
 .product-selection-input {
    border: .15rem solid var(--main-color-5);
 }
+
+.product-selection-input:focus {
+   border: .2rem solid var(--main-color-8);
+}

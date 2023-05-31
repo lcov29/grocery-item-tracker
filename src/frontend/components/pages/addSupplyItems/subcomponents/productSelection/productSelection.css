@@ -14,6 +14,10 @@
    width: 6.5rem;
 }
 
+.product-selection-input:focus {
+   border: .2rem solid var(--main-color-8);
+}
+
 .product-selection-add-button-container {
    display: flex;
    justify-content: space-between;
@@ -27,6 +31,7 @@
    border: .15rem solid var(--main-color-5);
 }
 
-.product-selection-add-button-container button:hover {
+.product-selection-add-button-container button:hover,
+.product-selection-add-button-container button:focus {
    background-color:  var(--main-color-5);
 }
