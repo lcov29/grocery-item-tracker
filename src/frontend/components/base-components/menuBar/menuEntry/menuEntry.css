@@ -12,6 +12,10 @@
    font-weight: bold;
 }
 
+.menu-entry-button:focus {
+   border: .15rem solid darkgray;
+}
+
 
 @media screen and (max-width: 700px) {
 
