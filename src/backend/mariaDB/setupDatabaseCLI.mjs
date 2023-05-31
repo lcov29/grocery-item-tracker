@@ -297,13 +297,13 @@ try {
 
    await dbConnection.query(
       `insert into grocery_item_tracker.MeasurementUnits (unitName, unitSymbol)
-      values ("gallon", "gal"), ("pound", "lb"), ("liter", "L"), ("gramm", 'g');`
+      values ("gramm", 'g'), ("liter", "L");`
    );
 
 
    await dbConnection.query(
       `insert into grocery_item_tracker.MeasurementUnitsMap
-      values (1, 1), (1, 2), (2, 1), (2, 2), (3, 3), (3, 4), (4, 3), (4, 4), (5, 3), (5, 4);`
+      values (3, 1), (3, 2), (4, 1), (4, 2), (5, 1), (5, 2);`
    );
 
 

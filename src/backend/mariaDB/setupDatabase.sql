@@ -156,18 +156,18 @@ values ("USA", "$", "en-US"), ("UK", "£", "en-GB" ), ("France", "€", "fr-FR")
 
 
 insert into MeasurementUnits (unitName, unitSymbol)
-values ("gallon", "gal"), ("pound", "lb"), ("liter", "L"), ("gramm", 'g');
+values ("liter", "L"), ("gramm", 'g');
 
 
 insert into MeasurementUnitsMap
-values (1, 1), (1, 2), (2, 1), (2, 2), (3, 3), (3, 4), (4, 3), (4, 4), (5, 3), (5, 4);
+values (3, 1), (3, 2), (4, 1), (4, 2), (5, 1), (5, 2);
 
 
 
 -- insert demo data
 
 insert into Distributor(name)
-values ("Aldi"), ("Netto"), ("Super U"), ("Walmart");
+values ("Aldi"), ("Netto"), ("Super U");
 
 
 insert into Categories(name, parentCategoryid) 
@@ -183,12 +183,12 @@ values (3, 2, 800, "Chicken Soup"),
        (5, 2, 300, "Baguette"),
        (5, 2, 500, "Toast"),
        (5, 2, 400, "Croissant"),
-       (6, 1, 9000, "Mineral Water (6 x 1,5 Liter)"), 
-       (6, 1, 9000, "Sparkling Mineral Water (6 x 1,5 Liter)"),
-       (7, 1, 1000, "Espresso"),
-       (7, 1, 500, "Standard Coffee"),
-       (8, 1, 1000, "Milk (fat free)"),
-       (8, 1, 1000, "Milk (standard fat)");
+       (6, 1, 9, "Mineral Water (6 x 1,5 Liter)"), 
+       (6, 1, 9, "Sparkling Mineral Water (6 x 1,5 Liter)"),
+       (7, 1, 1, "Espresso"),
+       (7, 1, 3, "Standard Coffee"),
+       (8, 1, 1, "Milk (fat free)"),
+       (8, 1, 1, "Milk (standard fat)");
 
 
 insert into Supply (productId, distributorId, price, buyDate, expirationDate, consumptionDate)
@@ -198,8 +198,8 @@ values (1, 1, 2.50, '2022-03-04', '2022-11-14', null),
        (1, 1, 2.50, '2022-04-10', '2022-12-03', null),
        (2, 2, 0.90, '2020-02-25', '2023-05-15', null),
        (2, 2, 0.90, '2020-04-25', '2023-08-07', null),
-       (3, 4, 1.50, '2021-05-23', '2022-10-28', null),
-       (3, 4, 1.40, '2022-10-05', '2023-05-14', null),
+       (3, 2, 1.50, '2021-05-23', '2022-10-28', null),
+       (3, 1, 1.40, '2022-10-05', '2023-05-14', null),
        (4, 3, 1.70, '2021-07-15', '2022-11-15', null),
        (5, 1, 3.75, '2022-10-13', '2022-11-30', null),
        (5, 1, 3.75, '2022-10-13', '2022-11-27', null),
