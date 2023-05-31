@@ -33,6 +33,8 @@
 }
 
 .setting-container select {
+   background-color: white;
    border: .15rem solid var(--main-color-4);
    font-size: 12pt;
+   width: 8rem;
 }
