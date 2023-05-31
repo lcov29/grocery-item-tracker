@@ -16,6 +16,7 @@
    border-radius: 0px 25px 25px 0px;
 }
 
-.search-button:hover {
+.search-button:hover,
+.search-button:focus {
    background-color: var(--main-color-5);
 }
