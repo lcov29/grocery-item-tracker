@@ -134,7 +134,7 @@ function ConsumeSupplyItems(): ReactElement {
    return (
       <main className="consume-supply-items-main">
          <div className="consume-supply-items-container">
-            <h2>Consume Grocery Items</h2>
+            <h2>Consume Items</h2>
             { renderPageControl() }
          </div>
       </main>
