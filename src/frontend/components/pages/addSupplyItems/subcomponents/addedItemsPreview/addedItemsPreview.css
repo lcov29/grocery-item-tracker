@@ -19,7 +19,8 @@
   border: .15rem solid var(--main-color-5);
 }
 
-.added-items-preview-save-button-container button:hover {
+.added-items-preview-save-button-container button:hover,
+.added-items-preview-save-button-container button:focus {
    background-color: var(--support-color-error);
 }
 
@@ -30,6 +31,12 @@
    border: .15rem solid var(--main-color-5);
 }
 
-.added-items-preview-add-item-button:hover {
-   background-color: .15rem solid var(--main-color-5);
+.added-items-preview-add-item-button:hover,
+.added-items-preview-add-item-button:focus {
+   background-color: var(--main-color-5);
+}
+
+.added-items-preview-remove-item-button:hover,
+.added-items-preview-remove-item-button:focus {
+   background-color: var(--support-color-error);
 }
