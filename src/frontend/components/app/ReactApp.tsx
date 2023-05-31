@@ -1,6 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { routeContentSection, pageId } from '../../routing/routing';
 import { NavigationBar } from './subcomponents/navigationBar/NavigationBar';
+import { FooterBar } from './subcomponents/footerBar/FooterBar';
 import './reactApp.css';
 
 
@@ -29,6 +30,7 @@ function ReactApp(): ReactElement {
       <>
          <NavigationBar currentPageId={currentPageId} setCurrentPageId={setCurrentPageId} />
          {routeContentSection(currentPageId)}
+         <FooterBar />
       </>
    );
 }
