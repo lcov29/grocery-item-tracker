@@ -7,3 +7,10 @@
     margin-top: 0;
     margin-bottom: 2rem;
 }
+
+.product-supply-table table th:nth-child(3),
+.product-supply-table table th:nth-child(4),
+.product-supply-table table td:nth-child(3),
+.product-supply-table table td:nth-child(4) {
+    text-align: right;
+}

@@ -82,7 +82,11 @@ function ProductSupply(props: Props): ReactElement {
                parseDatabaseDate(item.expirationDate)
             ]
          );
-         return <Table headerList={headerList} rowList={rowList} key={1} />;
+         return (
+            <div className="product-supply-table">
+               <Table headerList={headerList} rowList={rowList} key={1} />
+            </div>
+         );
       }
       return null;
    }
