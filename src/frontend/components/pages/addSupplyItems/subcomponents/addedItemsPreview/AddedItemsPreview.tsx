@@ -38,7 +38,7 @@ function AddedItemsPreview(props: Props): ReactElement {
          parseDatabaseDate(item.expirationDate),
          <button
             type="button"
-            title="Remove"
+            title="Remove Item"
             className="added-items-preview-remove-item-button"
             onClick={() => { removeGroceryItemFromList(item.id); }}
          >
