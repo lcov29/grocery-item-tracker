@@ -3,7 +3,7 @@ footer {
     position: fixed;
     left: 0;
     bottom: 0;
-    background-color: var(--main-color-5);
+    background-color: var(--main-color-6);
     color: var(--background-color);
     display: flex;
     width: 100vw;
