@@ -1,12 +1,16 @@
 .setting-main {
    margin: 0rem 2rem;
-}
-
-.setting-page-container {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+}
+
+.setting-page-container {
+   border: .2rem solid var(--main-color-4);
+   padding: 1rem;
+   border-radius: 8px;
+   overflow-y: auto;
 }
 
 .setting-page-container h2, h3, h4 {
@@ -19,11 +23,16 @@
 }
 
 .setting-container {
-   border: 1px solid black;
+   border: .2rem solid var(--main-color-4);
    padding: .5rem 1rem;
    margin-bottom: 2rem;
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
    max-width: 25rem;
+}
+
+.setting-container select {
+   border: .15rem solid var(--main-color-4);
+   font-size: 12pt;
 }

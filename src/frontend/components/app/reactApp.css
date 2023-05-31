@@ -21,3 +21,7 @@ body {
    font-size: 14pt;
    background-color: var(--background-color);
 }
+
+input {
+   font-size: 12pt;
+}
