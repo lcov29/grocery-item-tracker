@@ -5,7 +5,7 @@ import shoppingListIcon from '../../../../icons/shoppingCartIcon.svg';
 import reportsIcon from '../../../../icons/reportIcon.svg';
 import settingsIcons from '../../../../icons/settingIcon.svg';
 import { NavigationIcon } from '../NavigationIcon';
-import { SupplyOptionDropdownContent } from '../supplyOptionDropdownContent/SupplyOptionDropdownContent';
+import { SupplyOptionDropdownContent } from './subcomponents/supplyOptionDropdownContent/SupplyOptionDropdownContent';
 import { MenuBar } from '../../../base-components/menuBar/MenuBar';
 import { pageId } from '../../../../routing/routing';
 import './navigationBar.css';

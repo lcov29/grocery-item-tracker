@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
-import { pageId } from '../../../../routing/routing';
-import { NavigationIcon } from '../NavigationIcon';
-import supplyOverviewIcon from '../../../../icons/supplyIcon.svg';
-import itemAddIcon from '../../../../icons/itemAddIcon.svg';
-import itemRemoveIcon from '../../../../icons/itemRemoveIcon.svg';
+import { pageId } from '../../../../../../routing/routing';
+import { NavigationIcon } from '../../../NavigationIcon';
+import supplyOverviewIcon from '../../../../../../icons/supplyIcon.svg';
+import itemAddIcon from '../../../../../../icons/itemAddIcon.svg';
+import itemRemoveIcon from '../../../../../../icons/itemRemoveIcon.svg';
 import './supplyOptionDropdownContent.css';
 
 
