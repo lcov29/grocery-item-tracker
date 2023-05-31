@@ -482,7 +482,7 @@ try {
             await dbConnection.query('create role "groceryItemTrackerAdminRole";');
 
 
-            await dbConnection.query('grant all on grocery_item_manager.* to "groceryItemTrackerAdminRole";');
+            await dbConnection.query('grant all on grocery_item_tracker.* to "groceryItemTrackerAdminRole";');
 
 
             await dbConnection.query(

@@ -33,7 +33,7 @@ const dbConnectionPool = createPool(
       port: parseInt(process.env.DB_PORT as string, 10),
       user: process.env.DB_USER,
       password: process.env.DB_PWD,
-      database: 'grocery_item_manager',
+      database: 'grocery_item_tracker',
       connectionLimit: 4
    }
 );
