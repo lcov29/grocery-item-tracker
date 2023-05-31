@@ -28,10 +28,7 @@
    width: 2rem;
    border-style: none;
    background-color: var(--background-color);
-}
-
-.modal-input-prompt-header button:hover {
-   background-color: darkgray;
+   padding-top: .5rem;
 }
 
 .modal-input-prompt-header h3 {
