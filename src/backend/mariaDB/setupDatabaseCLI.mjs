@@ -79,8 +79,8 @@ while (!isValidConnectionOptions) {
    const isDefaultPort = ['y', 'Y'].includes(answerDefaultPort);
    port = (isDefaultPort) ? 3306 : await read.question('Port:\t');
 
-   const user = await read.question('\nUser:\t\t');
-   const password = await read.question('\nPassword:\t');
+   const user = await read.question('\nAdmin User:\t\t');
+   const password = await read.question('\nPassword:\t\t');
 
    try {
       dbConnection = await createConnection({ host, port, user, password });
@@ -280,7 +280,7 @@ try {
    await dbConnection.query(
       `create view grocery_item_tracker.ProductsInSupply as
       select id, name
-      from Products
+      from grocery_item_tracker.Products
       where id in (select distinct productId from grocery_item_tracker.Supply where consumptionDate is null);`
    );
 
@@ -318,7 +318,7 @@ try {
 
          await dbConnection.query(
             `insert into grocery_item_tracker.Distributor(name)
-            values ("Aldi"), ("Netto"), ("Super U"), ("Walmart");`
+            values ("Aldi"), ("Netto"), ("Super U");`
          );
 
 
@@ -358,8 +358,8 @@ try {
             (1, 1, 2.50, ${generateBuyAndExpirationData()}, null),
             (2, 2, 0.90, ${generateBuyAndExpirationData()}, null),
             (2, 2, 0.56, ${generateBuyAndExpirationData()}, null),
-            (3, 4, 1.50, ${generateBuyAndExpirationData()}, null),
-            (3, 4, 1.40, ${generateBuyAndExpirationData()}, null),
+            (3, 3, 1.50, ${generateBuyAndExpirationData()}, null),
+            (3, 2, 1.40, ${generateBuyAndExpirationData()}, null),
             (4, 3, 1.70, ${generateBuyAndExpirationData()}, null),
             (5, 1, 3.75, ${generateBuyAndExpirationData()}, null),
             (5, 1, 3.36, ${generateBuyAndExpirationData()}, null),
