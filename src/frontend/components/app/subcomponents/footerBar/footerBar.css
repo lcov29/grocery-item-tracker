@@ -1,0 +1,15 @@
+footer {
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: var(--main-color-5);
+    color: var(--background-color);
+    display: flex;
+    width: 100vw;
+    height: 3.5vh;
+    padding: .5rem 2rem;
+    justify-content: space-between;
+    font-size: 12pt;
+    font-weight: bold;
+}
