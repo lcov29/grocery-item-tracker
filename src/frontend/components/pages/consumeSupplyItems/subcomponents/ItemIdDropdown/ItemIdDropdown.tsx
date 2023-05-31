@@ -37,7 +37,7 @@ function ItemIdDropdown(props: Props): ReactElement {
             id="consume-supply-items-searchbar"
             value={idInput}
             setValue={setIdInput}
-            placeholderText="Unconsumed Product Id"
+            placeholderText="Unconsumed Item Id"
             optionList={buildDropdownList()}
             inputHandler={setIdInput}
          />
