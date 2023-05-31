@@ -9,7 +9,9 @@ type MeasurementUnitData = {
 
 async function handleMeasurementUnitRequest(request: Request, dbConnection: PoolConnection):
 Promise<MeasurementUnitData[]> {
-   const resultSet: MeasurementUnitData[] = await dbConnection.query('select unitSymbol from MeasurementUnits;');
+   const resultSet: MeasurementUnitData[] = await dbConnection.query(
+      'select unitSymbol from MeasurementUnits order by unitSymbol asc;'
+   );
    return resultSet.slice();
 }
 
