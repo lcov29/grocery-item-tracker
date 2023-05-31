@@ -36,6 +36,9 @@
 }
 
 .consume-supply-items-item-remove-button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
    width: 100%;
    border: .15rem solid var(--main-color-5);
 }
