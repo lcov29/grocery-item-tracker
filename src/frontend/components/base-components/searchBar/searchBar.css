@@ -4,7 +4,6 @@
 }
 
 .search-input {
-   background-color: var(--background-color);
    border: .15rem solid var(--main-color-4);
    border-right: none;
    border-radius: 25px 0px 0px 25px;

@@ -3,6 +3,10 @@
    border: .15rem solid var(--main-color-5);
 }
 
+.add-new-categories-input:focus {
+   border: .25rem solid var(--main-color-8);
+}
+
 .add-new-categories-button {
    width: 10%;
    margin-left: 5%;
