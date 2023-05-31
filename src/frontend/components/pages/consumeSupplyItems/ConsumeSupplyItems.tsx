@@ -5,6 +5,7 @@ import { fetchData, sendData } from '../../../utility/fetchServerData';
 import { parseDatabaseDate } from '../../../utility/dateFunctions/dateFunctions';
 import { ItemIdDropdown } from './subcomponents/ItemIdDropdown/ItemIdDropdown';
 import { Table } from '../../base-components/table/Table';
+import closeIcon from '../../../icons/closeIcon.svg';
 import './consumeSupplyItems.css';
 
 
@@ -61,7 +62,7 @@ function ConsumeSupplyItems(): ReactElement {
                title="Remove"
                onClick={() => { removeFromPreviewItemList(element.id); }}
             >
-               x
+               <img src={closeIcon} alt="X" width="15px" height="15px" />
             </button>
          ]
       );

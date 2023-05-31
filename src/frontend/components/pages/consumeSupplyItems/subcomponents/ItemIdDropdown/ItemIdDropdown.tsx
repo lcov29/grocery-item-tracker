@@ -2,6 +2,7 @@ import React, { ReactElement, useState, useEffect } from 'react';
 import { UnconsumedItemId } from '../../../../../../tsDataTypes/tsTypeGroceryItemConsume';
 import { SearchableDropdown } from '../../../../base-components/searchableDropdown/SearchableDropdown';
 import { fetchData } from '../../../../../utility/fetchServerData';
+import plusIcon from '../../../../../icons/plusIcon.svg';
 import './itemIdDropdown.css';
 
 
@@ -40,7 +41,9 @@ function ItemIdDropdown(props: Props): ReactElement {
             optionList={buildDropdownList()}
             inputHandler={setIdInput}
          />
-         <button type="button" onClick={handleButtonClick}>+</button>
+         <button type="button" onClick={handleButtonClick}>
+            <img src={plusIcon} alt="X" width="12px" height="12px" />
+         </button>
       </div>
    );
 }
