@@ -41,7 +41,7 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
             <input
                type="text"
                id="add-new-product-form-input"
-               className="add-new-product-form-input"
+               className="add-new-product-form-input add-new-product-form-product-input"
                value={productInput}
                onChange={(e) => setProductInput(e.target.value)}
                required
