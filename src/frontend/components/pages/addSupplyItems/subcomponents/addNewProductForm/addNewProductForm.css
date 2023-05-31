@@ -14,8 +14,12 @@
    border: .15rem solid var(--main-color-5);
 }
 
+.add-new-product-form-product-input {
+   margin-right: 15%;
+}
+
 .add-new-product-form-input:focus {
-   border: .25rem solid var(--main-color-8);
+   border: .2rem solid var(--main-color-8);
 }
 
 .add-new-product-form-weight-unit-input {
@@ -40,6 +44,7 @@
    border: .15rem solid var(--main-color-5);
 }
 
-.add-new-product-form-controls-container button:hover {
+.add-new-product-form-controls-container button:hover,
+.add-new-product-form-controls-container button:focus {
    background-color: var(--main-color-5);
 }
