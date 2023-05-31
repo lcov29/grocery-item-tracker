@@ -5,7 +5,7 @@
 }
 
 .consume-supply-items-container {
-   border: 1px solid black;
+   border: .2rem solid var(--main-color-5);
    border-radius: 8px;
    padding: 1rem;
 }
@@ -46,7 +46,7 @@
 
 @media screen and (min-width: 801px) {
 
-   .consume-supply-items-container{
+   .consume-supply-items-container {
       width: 70%;
    }
 
