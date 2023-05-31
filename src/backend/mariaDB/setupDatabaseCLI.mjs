@@ -392,7 +392,7 @@ try {
    let isValidAppUser = false;
 
    while (!isValidAppUser) {
-      restrictedAppUser = await read.question('Application User:\t');
+      restrictedAppUser = await read.question('Create Application User:\t');
       restrictedAppUserPassword = await read.question('Password:\t\t');
 
       try {
