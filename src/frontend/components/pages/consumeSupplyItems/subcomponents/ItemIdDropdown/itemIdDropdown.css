@@ -5,7 +5,8 @@
    border-left: none;
 }
 
-.consume-supply-items-searchbar button:hover {
+.consume-supply-items-searchbar button:hover,
+.consume-supply-items-searchbar button:focus {
    background-color: var(--main-color-5);
 }
 
