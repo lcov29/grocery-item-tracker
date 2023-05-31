@@ -12,8 +12,8 @@ function FooterBar(): ReactElement {
             <img
                src={githubIcon}
                alt="GitHub"
-               width="20px"
-               height="20px"
+               width="17px"
+               height="17px"
             />
          </a>
       </footer>
