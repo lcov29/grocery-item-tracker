@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import closeIcon from '../../../icons/closeIcon.svg';
 import './modalInputPrompt.css';
 
 
@@ -20,7 +21,9 @@ function ModalInputPrompt(props: Props): ReactElement | null {
          <div className="modal-input-prompt-window">
             <div className="modal-input-prompt-header">
                <h3>{title}</h3>
-               <button type="button" onClick={() => { displayPrompt(false); }}>X</button>
+               <button type="button" onClick={() => { displayPrompt(false); }}>
+                  <img src={closeIcon} alt="X" width="24px" height="14px" />
+               </button>
             </div>
             <input
                type="text"
