@@ -69,7 +69,7 @@ function AddNewProductForm(props: ProductDataAddDialogProps): ReactElement {
                />
                <SearchableDropdown
                   id="unit"
-                  className="add-new-product-form-weight-unit-input"
+                  className="add-new-product-form-weight-unit-input add-new-product-form-input"
                   optionList={buildMeasurementUnitSymbolList(measurementDataList)}
                   value={unitInput}
                   setValue={setUnitInput}
