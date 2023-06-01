@@ -57,7 +57,7 @@ erDiagram
         id int PK
         productId int FK
         distributorId int FK
-        price double
+        price int
         buyDate date
         expirationDate date
         consumptionDate date
