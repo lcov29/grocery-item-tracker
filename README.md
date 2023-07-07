@@ -1,6 +1,7 @@
 # **Grocery Item Tracker**
 <br>
 <br>
+<br>
 
 ## **Table Of Contents**
 <br>
@@ -10,12 +11,21 @@
   - [**About This Project**](#about-this-project)
   - [**Tech Stack**](#tech-stack)
   - [**Installation**](#installation)
+    - [**Prerequisite**](#prerequisite)
+    - [**Clone Repository**](#clone-repository)
+    - [**Install Dependencies**](#install-dependencies)
+    - [**Initialize Database**](#initialize-database)
+      - [**Option 1: Run Command Line Installation Script**](#option-1-run-command-line-installation-script)
+      - [**Option 2: Run SQL Script**](#option-2-run-sql-script)
+    - [**Compile Source Code**](#compile-source-code)
+    - [**Start Application Server**](#start-application-server)
   - [**Documentation**](#documentation)
   - [**Features To Add**](#features-to-add)
   - [**Screen Captures**](#screen-captures)
   - [**Version History**](#version-history)
     - [**Version 0.1**](#version-01)
 
+<br>
 <br>
 <br>
 
@@ -46,6 +56,7 @@ The application should provide the user with the following core features:
 
 <br>
 <br>
+<br>
 
 ## **Tech Stack**
 
@@ -58,12 +69,107 @@ The application should provide the user with the following core features:
 
 <br>
 <br>
+<br>
 
 ## **Installation**
 <br>
+<br>
 
-- add content
+### **Prerequisite**
+<br>
 
+* MariaDB with root access
+* Node.js
+
+<br>
+<br>
+
+### **Clone Repository**
+<br>
+
+```bash
+git clone https://github.com/voss29/grocery-item-tracker.git
+cd grocery-item-tracker
+```
+
+<br>
+<br>
+
+### **Install Dependencies**
+<br>
+
+```bash
+npm install
+```
+
+<br>
+<br>
+
+### **Initialize Database** 
+<br>
+<br>
+
+#### **Option 1: Run Command Line Installation Script**
+<br>
+
+```bash
+node ./src/backend/mariaDB/setupDatabaseCLI.mjs
+```
+
+<br>
+
+This script will walk you through the installation and will create the _.env_ file containing the database credentials for the application.
+
+<br>
+<br>
+
+#### **Option 2: Run SQL Script**
+<br>
+
+File `./src/backend/mariaDB/setupDatabase.sql`:
+
+Replace password placeholder `secret` at line 223.
+
+<br>
+
+Log into mariaDB with root privileges an run script:
+
+```bash
+source ./src/backend/mariaDB/setupDatabase.sql
+```
+
+<br>
+
+Create file `./dist/.env` with the following content:
+
+```
+DB_HOST=<host>
+DB_PORT=<port>
+DB_USER=groceryItemTrackerUser
+DB_PWD=<password>
+```
+
+<br>
+<br>
+
+### **Compile Source Code**
+<br>
+
+```bash
+npm run compile
+```
+
+<br>
+<br>
+
+### **Start Application Server**
+<br>
+
+```bash
+node ./dist/server.js
+```
+
+<br>
 <br>
 <br>
 
